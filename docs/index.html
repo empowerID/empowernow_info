@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmpowerNow - Identity & Authorization Infrastructure</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="empowernow-logo.svg">
+    <meta property="og:title" content="EmpowerNow – Identity & Authorization Infrastructure">
+    <meta property="og:description" content="AI-native identity orchestration and AuthZEN-compliant authorization platform.">
+    <meta property="og:image" content="https://empowernow.com/social-preview.png">
+    <meta property="twitter:card" content="summary_large_image">
     <style>
         * {
             margin: 0;
@@ -13,18 +18,17 @@
         }
         
         :root {
-            --primary: #6366F1;
+            --primary-50: #EDEBFF;
+            --primary: #6C4CFF; /* EmpowerNow Purple */
             --primary-dark: #4F46E5;
-            --secondary: #22D3EE;
-            --accent: #F59E0B;
-            --success: #10B981;
-            --dark: #0F172A;
-            --dark-light: #1E293B;
-            --gray: #64748B;
-            --light-gray: #F1F5F9;
+            --cyan: #22D3EE;   /* EmpowerNow Sky */
+            --neutral-900: #0F172A;
+            --neutral-700: #1E293B;
+            --neutral-400: #94A3B8;
             --white: #FFFFFF;
-            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%);
-            --gradient-accent: linear-gradient(135deg, #10B981 0%, #14B8A6 100%);
+            --success: var(--cyan);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--cyan) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--cyan) 0%, var(--primary) 100%);
         }
         
         body {
@@ -77,7 +81,7 @@
         
         /* Container */
         .container {
-            max-width: 1280px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -126,14 +130,21 @@
         }
         
         .nav-links a {
-            color: var(--gray);
+            color: var(--neutral-400);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
         
+        .nav-links a:focus,
+        .footer-links a:focus,
+        .btn:focus {
+            outline: 2px solid var(--cyan);
+            outline-offset: 4px;
+        }
+        
         .nav-links a:hover {
-            color: var(--white);
+            color: var(--cyan);
         }
         
         /* Hero Section */
@@ -179,7 +190,7 @@
         
         .hero-subtitle {
             font-size: 24px;
-            color: var(--gray);
+            color: var(--neutral-400);
             max-width: 700px;
             margin: 0 auto 48px;
             line-height: 1.5;
@@ -205,7 +216,7 @@
         
         .section-subtitle {
             font-size: 20px;
-            color: var(--gray);
+            color: var(--neutral-400);
         }
         
         .products-grid {
@@ -215,7 +226,7 @@
         }
         
         .product-card {
-            background: var(--dark-light);
+            background: var(--neutral-700);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
             padding: 48px;
@@ -274,13 +285,13 @@
         
         .product-card .tagline {
             font-size: 18px;
-            color: var(--secondary);
+            color: var(--cyan);
             margin-bottom: 20px;
             font-weight: 600;
         }
         
         .product-card p {
-            color: var(--gray);
+            color: var(--neutral-400);
             font-size: 16px;
             line-height: 1.8;
             margin-bottom: 32px;
@@ -296,7 +307,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--light-gray);
+            color: var(--neutral-400);
         }
         
         .product-features li::before {
@@ -346,7 +357,7 @@
         }
         
         .stat-item p {
-            color: var(--gray);
+            color: var(--neutral-400);
             font-size: 18px;
         }
         
@@ -391,7 +402,7 @@
         }
         
         .why-card p {
-            color: var(--gray);
+            color: var(--neutral-400);
             font-size: 16px;
         }
         
@@ -411,7 +422,7 @@
         
         .cta p {
             font-size: 20px;
-            color: var(--gray);
+            color: var(--neutral-400);
             margin-bottom: 40px;
         }
         
@@ -475,17 +486,17 @@
         }
         
         .footer-links a {
-            color: var(--gray);
+            color: var(--neutral-400);
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-links a:hover {
-            color: var(--white);
+            color: var(--cyan);
         }
         
         .footer-bottom {
-            color: var(--gray);
+            color: var(--neutral-400);
             font-size: 14px;
         }
         
@@ -552,6 +563,14 @@
         .fade-in-delay-1 { animation-delay: 0.1s; }
         .fade-in-delay-2 { animation-delay: 0.2s; }
         .fade-in-delay-3 { animation-delay: 0.3s; }
+
+        /* Motion-safe preference */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
