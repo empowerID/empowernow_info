@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmpowerNow - Identity & Authorization Infrastructure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="empowernow-logo.svg">
     <meta property="og:title" content="EmpowerNow – Identity & Authorization Infrastructure">
     <meta property="og:description" content="AI-native identity orchestration and AuthZEN-compliant authorization platform.">
@@ -21,14 +21,19 @@
             --primary-50: #EDEBFF;
             --primary: #6C4CFF; /* EmpowerNow Purple */
             --primary-dark: #4F46E5;
-            --cyan: #22D3EE;   /* EmpowerNow Sky */
-            --neutral-900: #0F172A;
-            --neutral-700: #1E293B;
-            --neutral-400: #94A3B8;
+            --cyan: #00E7F6;   /* Empower Cyan */
+            --navy: #0B1C3D;   /* Navy Night */
+            --slate: #8891A5;  /* Slate Grey */
+            --error: #FF5F5F;  /* Coral Alert */
+            --success: #31D48D;/* Success Green */
+            --neutral-900: var(--navy);
+            --neutral-700: rgba(11,28,61,0.8); /* glass panel */
+            --neutral-400: var(--slate);
             --white: #FFFFFF;
-            --success: var(--cyan);
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--cyan) 100%);
+            --gradient-primary: linear-gradient(135deg, var(--cyan) 0%, #2FE7F6 100%);
             --gradient-accent: linear-gradient(135deg, var(--cyan) 0%, var(--primary) 100%);
+            --dark: var(--navy);
+            --dark-light: var(--neutral-700);
         }
         
         body {
@@ -91,9 +96,9 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(11, 28, 61, 0.8); /* glass panel */
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--cyan);
             z-index: 1000;
         }
         
@@ -105,23 +110,33 @@
         }
         
         .logo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 28px;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            color: var(--white);
             display: flex;
             align-items: center;
-            gap: 12px;
+            position: relative;
         }
         
-        .logo::before {
-            content: '🔐';
-            font-size: 32px;
-            -webkit-text-fill-color: initial;
+        /* Pulse icon to the right of wordmark */
+        .logo::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--cyan);
+            margin-left: 8px;
+            animation: pulseIcon 1.6s infinite ease-in-out;
         }
+        
+        @keyframes pulseIcon {
+            0%,100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+        
+        .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
+        .logo-text { display: inline-block; }
         
         .nav-links {
             display: flex;
@@ -226,8 +241,8 @@
         }
         
         .product-card {
-            background: var(--neutral-700);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(11, 28, 61, 0.8); /* glass */
+            border: 1px solid rgba(0, 231, 246, 0.3);
             border-radius: 24px;
             padding: 48px;
             position: relative;
@@ -445,24 +460,24 @@
         }
         
         .btn-primary {
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            background: var(--cyan);
+            color: var(--navy);
+            box-shadow: 0 4px 20px rgba(0, 231, 246, 0.3);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 231, 246, 0.4);
         }
         
         .btn-secondary {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--cyan);
+            border: 2px solid var(--cyan);
         }
         
         .btn-secondary:hover {
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(0, 231, 246, 0.1);
         }
         
         /* Footer */
