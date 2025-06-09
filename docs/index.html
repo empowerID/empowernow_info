@@ -110,29 +110,14 @@
         }
         
         .logo {
-            font-family: 'Inter', sans-serif;
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--white);
             display: flex;
             align-items: center;
-            position: relative;
+            height: 48px;
         }
         
-        /* Pulse icon to the right of wordmark */
-        .logo::after {
-            content: '';
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--cyan);
-            margin-left: 8px;
-            animation: pulseIcon 1.6s infinite ease-in-out;
-        }
-        
-        @keyframes pulseIcon {
-            0%,100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.6; }
+        .logo img {
+            height: 100%;
+            width: auto;
         }
         
         .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
@@ -595,7 +580,7 @@
     <nav>
         <div class="container">
             <div class="nav-content">
-                <div class="logo">EmpowerNow</div>
+                <div class="logo"><img src="../public/en-logo-light.png" alt="EmpowerNow logo"></div>
                 <ul class="nav-links">
                     <li><a href="#products">Products</a></li>
                     <li><a href="#why">Why EmpowerNow</a></li>

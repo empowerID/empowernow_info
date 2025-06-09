@@ -55,7 +55,7 @@
         
         /* Header */
         header {
-            padding: 24px 0;
+            padding: 16px 0;
             border-bottom: 1px solid var(--border-color);
             backdrop-filter: blur(12px);
             position: sticky;
@@ -76,12 +76,15 @@
         }
         
         .logo {
-            font-size: 28px;
-            font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 100%;
+            max-height: 48px;
+            width: auto;
         }
         
         /* Hero Section - Side by side layout */
@@ -630,7 +633,7 @@
     <header>
         <div class="wrapper">
             <div class="header-content">
-                <div class="logo">EmpowerNow AuthZen PDP</div>
+                <div class="logo"><a href="index.html"><img src="../public/en-logo-light.png" alt="EmpowerNow logo" /></a></div>
                 <div class="header-subtitle">
                     PDP • Instant, Explainable Authorization
                 </div>
