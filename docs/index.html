@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmpowerNow - Identity & Authorization Infrastructure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <title>EmpowerNow Identity Fabric – Identity, Authorization & Automation</title>
+    <!-- Performance: preconnect & preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load only required font weights to improve performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Plus+Jakarta+Sans:wght@800&display=swap" rel="stylesheet">
     <link rel="icon" href="empowernow-logo.svg">
     <meta property="og:title" content="EmpowerNow – Identity & Authorization Infrastructure">
     <meta property="og:description" content="AI-native identity orchestration and AuthZEN-compliant authorization platform.">
     <meta property="og:image" content="https://empowernow.com/social-preview.png">
     <meta property="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/docs/css/fabric.css">
     <style>
         * {
             margin: 0;
@@ -23,7 +28,7 @@
             --primary-dark: #4F46E5;
             --cyan: #00E7F6;   /* Empower Cyan */
             --navy: #0B1C3D;   /* Navy Night */
-            --slate: #8891A5;  /* Slate Grey */
+            --slate: #9ba3b7;  /* Accessible Slate Grey */
             --error: #FF5F5F;  /* Coral Alert */
             --success: #31D48D;/* Success Green */
             --neutral-900: var(--navy);
@@ -55,13 +60,14 @@
             background: var(--dark);
         }
         
+        /* Subtle background: reduce opacity */
         .bg-gradient::before {
             content: '';
             position: absolute;
             width: 600px;
             height: 600px;
             background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.1;
+            opacity: 0.08;
             top: -300px;
             right: -300px;
             animation: float 20s ease-in-out infinite;
@@ -73,7 +79,7 @@
             width: 800px;
             height: 800px;
             background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
-            opacity: 0.08;
+            opacity: 0.05;
             bottom: -400px;
             left: -400px;
             animation: float 25s ease-in-out infinite reverse;
@@ -98,6 +104,7 @@
             width: 100%;
             background: rgba(11, 28, 61, 0.8); /* glass panel */
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--cyan);
             z-index: 1000;
         }
@@ -106,7 +113,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 20px 12px;
+            font-size:15px;
         }
         
         .logo {
@@ -123,10 +131,11 @@
         .logo-mark { width: 32px; height: 32px; flex-shrink: 0; }
         .logo-text { display: inline-block; }
         
+        /* nav list gap */
         .nav-links {
             display: flex;
             gap: 40px;
-            list-style: none;
+            margin-left:32px;
         }
         
         .nav-links a {
@@ -149,11 +158,12 @@
         
         /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
+            padding: 212px 0 124px; /* extra breathing room */
             text-align: center;
             position: relative;
         }
         
+        /* hero badge spacing */
         .hero-badge {
             display: inline-block;
             padding: 8px 24px;
@@ -163,7 +173,7 @@
             font-size: 14px;
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 32px;
+            margin-bottom: 48px;
             animation: pulse 2s ease-in-out infinite;
         }
         
@@ -172,6 +182,7 @@
             50% { transform: scale(1.05); opacity: 0.8; }
         }
         
+        /* Adjust headline weight & responsiveness remain */
         .hero h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: clamp(48px, 8vw, 80px);
@@ -186,6 +197,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            font-size: 0.85em; /* subordinate to main line */
         }
         
         .hero-subtitle {
@@ -194,6 +207,21 @@
             max-width: 700px;
             margin: 0 auto 48px;
             line-height: 1.5;
+        }
+        .pill{display:inline-block;padding:2px 8px;border-radius:12px;font-size:14px;font-weight:600;margin:0 4px}
+        .pill.lime{background:#A3FF3C;color:#0B1C3D}
+        .pill.magenta{background:#6e1bff;color:#0B1C3D}
+        .pill.gray{background:#44464A;color:#ffffff}
+        .pill.optional{background:#E5E7EB;color:#0B1C3D;border:1px solid #CBD5E1}
+        .lead-badge{display:inline-block;font-size:12px;font-weight:600;color:#9ba3b7;border:1px solid rgba(255,255,255,0.2);padding:2px 6px;border-radius:6px;margin-bottom:8px}
+        .lead-engines{font-weight:700;font-size:14px;margin-right:8px}
+
+        .hero-outcome{
+            font-size:24px;
+            color:var(--neutral-400);
+            max-width:700px;
+            margin:0 auto 24px;
+            line-height:1.5;
         }
         
         /* Products Grid */
@@ -563,6 +591,13 @@
         .fade-in-delay-1 { animation-delay: 0.1s; }
         .fade-in-delay-2 { animation-delay: 0.2s; }
         .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+        .fade-in-delay-5 { animation-delay: 0.5s; }
+
+        /* Bullets under hero */
+        .hero-bullets{list-style:none;padding:0;margin:24px auto 32px;max-width:640px;color:var(--neutral-400);font-size:18px;line-height:1.6;text-align:left}
+        .hero-bullets li{margin-bottom:8px;display:flex;gap:8px}
+        .hero-bullets li::before{content:"✔";color:var(--cyan);flex-shrink:0}
 
         /* Motion-safe preference */
         @media (prefers-reduced-motion: reduce) {
@@ -571,6 +606,33 @@
                 transition: none !important;
             }
         }
+
+        /* Focus-visible accessibility */
+        .nav-links a:focus-visible {outline:2px solid var(--cyan);outline-offset:4px}
+
+        /* ===== Add new hero layout styles ===== */
+        .hero-inner{display:flex;gap:64px;align-items:center;flex-wrap:wrap}
+        /* responsive headline scaling & copy max width */
+        .hero-copy{flex:1 1 420px;min-width:340px;max-width:540px}
+        /* hero top padding */
+        .hero{padding:220px 0 100px;text-align:center;position:relative;}
+        @media(max-width:1280px){.hero{padding-top:180px}}
+        /* reduce H1 default */
+        .hero h1{font-size:59px;line-height:1.1;max-width:550px}
+        @media(max-width:1280px){.hero h1{font-size:56px}}
+        @media(max-width:1024px){.hero h1{font-size:48px}}
+        /* adjust video styles */
+        .hero-visual video{width:100%;height:auto;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+        .hero-visual img{width:100%;height:auto;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+        @media (max-width:1200px){.hero-inner{flex-direction:column;text-align:center}.hero-copy{margin:0 auto}}
+        /* replace video with img fallback if needed */
+        @media(max-width:1024px){.hero-inner{flex-direction:column;gap:32px}.hero-visual{max-width:420px}}
+
+        /* Accent divider */
+        .accent-rule{width:80px;height:3px;background:linear-gradient(90deg,var(--cyan),var(--primary));border-radius:2px;margin:24px 0}
+
+        /* Bullet list size tweak */
+        .hero-bullets li{font-size:16px}
     </style>
 </head>
 <body>
@@ -581,10 +643,15 @@
         <div class="container">
             <div class="nav-content">
                 <div class="logo"><img src="../public/en-logo-light.png" alt="EmpowerNow logo"></div>
-                <ul class="nav-links">
-                    <li><a href="#products">Products</a></li>
+                <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
+                <ul class="nav-links" id="menu">
+                    <li><a href="#products">Platform</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
                     <li><a href="#why">Why EmpowerNow</a></li>
-                    <li><a href="#">Documentation</a></li>
+                    <li><a href="/docs/api/index.html">Developers</a></li>
+                    <li><a href="/docs/about/brand.html">About</a></li>
+                    <li><a href="/docs/trust/index.html">Trust</a></li>
+                    <li><a href="/docs/pricing/index.html">Pricing</a></li>
                     <li><a href="#contact">Get Started</a></li>
                 </ul>
             </div>
@@ -593,15 +660,57 @@
     
     <!-- Hero Section -->
     <section class="hero container">
-        <div class="hero-badge fade-in">🚀 Identity & Authorization for the AI Era</div>
+      <div class="hero-inner">
+       <div class="hero-copy">
+        <div class="hero-badge fade-in">🤖 Designed for AI, by AI</div>
         <h1 class="fade-in fade-in-delay-1">
-            Build Your Identity Fabric<br>
-            <span class="gradient">Orchestrate &amp; Authorize at Scale</span>
+            Secure every human, service, and AI-agent<br>
+            with one <span class="gradient"><strong>Identity</strong> &amp; <strong>Authorization</strong> Fabric</span>
         </h1>
-        <p class="hero-subtitle fade-in fade-in-delay-2">
-            Process orchestration, identity management, and AuthZEN-compliant 
-            authorization that scales. Built for AI agents, humans, and everything in between.
-        </p>
+        <p class="hero-outcome fade-in fade-in-delay-1">Connect • Control • Accelerate <span class="pill lime" title="5 ms decisions">Authorization Studio</span> + <span class="pill magenta" title="GenAI workflows">Automation Studio</span> <span class="pill gray-light">Ready Day 1</span></p>
+        <div class="accent-rule fade-in fade-in-delay-1"></div>
+        <ul class="hero-bullets fade-in fade-in-delay-2" style="text-align:left;margin-top:12px;max-width:480px">
+            <li>Zero-code connectors live in <strong>&lt; 5 min</strong></li>
+            <li>Graph policies decide in <strong>&lt; 20 ms</strong>—even at 100 K req/s</li>
+            <li>Redact <em>before</em> models react—EU AI Act ready</li>
+        </ul>
+        <p class="hero-outcome fade-in fade-in-delay-2" style="font-size:18px;color:var(--neutral-400);max-width:720px;margin:12px auto 0">Already on <strong>Okta</strong> or <strong>Entra ID</strong>? Plug <strong>Authorization Studio</strong> in minutes—<span class="pill gray">Authentication Studio optional</span>.</p>
+        <div style="display:flex;gap:8px;justify-content:flex-start" class="fade-in fade-in-delay-3">
+          <a href="#contact" class="btn btn-primary">Launch a Workflow →</a>
+          <a href="#contact" class="btn btn-secondary">Book a Security Demo</a>
+        </div>
+        <!-- Trusted by logos -->
+        <div class="trust-logos fade-in fade-in-delay-5" style="margin-top:24px">
+              <img src="https://placehold.co/120x40?text=Acme" alt="Acme Corp logo">
+              <img src="https://placehold.co/120x40?text=Globex" alt="Globex logo">
+        </div>
+       </div>
+       <!-- Hero micro demo -->
+       <div class="hero-visual fade-in fade-in-delay-4">
+            <img src="/public/screens/hero-demo-poster.webp" alt="Platform demo" loading="lazy">
+       </div>
+      </div>
+    </section>
+    <!-- JTBD Section -->
+    <section id="solutions" class="container" style="padding:60px 0">
+        <div class="section-header" style="text-align:center;margin-bottom:40px">
+            <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:40px;margin:0 0 16px">Plug · Protect · Propel</h2>
+            <p style="color:var(--neutral-400);font-size:18px">Outcome-focused capabilities delivered by EmpowerNow.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px">
+            <div style="background:var(--neutral-700);border:1px solid rgba(0,231,246,0.3);border-radius:20px;padding:32px;text-align:center">
+                <h3 style="margin-bottom:12px">Plug</h3>
+                <p style="color:var(--neutral-400);font-size:16px">Zero-code connectors light up any system in minutes.</p>
+            </div>
+            <div style="background:var(--neutral-700);border:1px solid rgba(0,231,246,0.3);border-radius:20px;padding:32px;text-align:center">
+                <h3 style="margin-bottom:12px">Protect</h3>
+                <p style="color:var(--neutral-400);font-size:16px">Graph-anchored policies redact &amp; revoke in real time.</p>
+            </div>
+            <div style="background:var(--neutral-700);border:1px solid rgba(0,231,246,0.3);border-radius:20px;padding:32px;text-align:center">
+                <h3 style="margin-bottom:12px">Propel</h3>
+                <p style="color:var(--neutral-400);font-size:16px">AI agents execute workflows safely at machine speed.</p>
+            </div>
+        </div>
     </section>
     
     <!-- Products Section -->
@@ -615,9 +724,11 @@
         
         <div class="products-grid">
             <a href="pdp-doc.html" class="product-card fade-in fade-in-delay-1">
+                <span class="lead-badge">Lead Engine</span>
                 <div class="product-icon">🛡️</div>
-                <h3>Policy Decision Point (PDP)</h3>
-                <p class="tagline">AuthZEN-Compliant Authorization</p>
+                <h3>Authorization Studio</h3>
+                <p class="tagline">OpenID AuthZEN Draft 3 Certified PDP</p>
+                <p style="color:var(--cyan);font-size:14px;font-weight:600;margin-bottom:12px">Powered by Policy Engine</p>
                 <p>
                     Industry-standard policy decision point with delegation graphs, 
                     batch evaluation, and explainable decisions. Full AuthZEN compliance 
@@ -635,26 +746,38 @@
                 </span>
             </a>
             
-            <a href="crud-service-doc.html" class="product-card fade-in fade-in-delay-2">
-                <div class="product-icon">⚡</div>
-                <h3>CRUD Service</h3>
-                <p class="tagline">Universal Data Platform</p>
-                <p>
-                    Production-ready data service with automatic API generation, 
-                    real-time sync, and enterprise-grade security. Build data-driven 
-                    applications 10x faster.
-                </p>
-                <ul class="product-features">
-                    <li>Auto-generated REST & GraphQL APIs</li>
-                    <li>Real-time data synchronization</li>
-                    <li>Built-in caching & optimization</li>
-                    <li>Multi-database support</li>
-                </ul>
-                <span class="product-link">
-                    Explore CRUD Service
-                    <span>→</span>
-                </span>
+            <!-- Identity Core -->
+            <a href="studios/automation.html" class="product-card fade-in fade-in-delay-2">
+                <span class="lead-badge">Lead Engine</span>
+                <div class="product-icon">⚙️</div>
+                <h3>Automation Studio</h3>
+                <p class="tagline">AI-Powered Orchestrator</p>
+                <p style="color:var(--cyan);font-size:14px;font-weight:600;margin-bottom:12px">Powered by Automation Engine</p>
+                <p>Drag. Drop. Deploy AI workflows—identity-secured and policy-gated.</p>
+                <ul class="product-features"><li>100+ connectors</li><li>LLM spend limits</li><li>Mermaid audit graphs</li></ul>
+                <span class="product-link">Explore Automation Core<span>→</span></span>
             </a>
+
+            <!-- Identity Core -->
+            <a href="studios/authentication.html" class="product-card fade-in fade-in-delay-3">
+                <div class="product-icon">🔑</div>
+                <h3>Authentication Studio <span class="pill optional">Optional</span></h3>
+                <p class="tagline">FAPI 2.0-Ready Identity Provider</p>
+                <p style="color:var(--cyan);font-size:14px;font-weight:600;margin-bottom:12px">Powered by Identity Engine</p>
+                <p>Passkeys, OIDC and adaptive risk built-in—issue FAPI 2.0-compliant tokens and fine-grained <em>on-behalf-of</em> (OBO) credentials for AI agents.</p>
+                <ul class="product-features"><li>WebAuthn &amp; CAEP events</li><li>FAPI 2.0 security profile</li><li>Fine-grained OBO &amp; EMT tokens</li><li>Self-host or SaaS</li></ul>
+                <span class="product-link">Explore Identity Core<span>→</span></span>
+            </a>
+             <!-- Inventory Core -->
+             <a href="studios/inventory.html" class="product-card fade-in fade-in-delay-4">
+                 <div class="product-icon">📊</div>
+                 <h3>Inventory Studio</h3>
+                 <p class="tagline">Universal Collector</p>
+                 <p style="color:var(--cyan);font-size:14px;font-weight:600;margin-bottom:12px">Powered by Inventory Engine</p>
+                 <p>No identity left unknown—discover, diff &amp; reconcile at cursor-scale.</p>
+                 <ul class="product-features"><li>100+ connectors</li><li>Hash-based delta detection</li><li>Policy-gated writes</li></ul>
+                 <span class="product-link">Explore Inventory Core<span>→</span></span>
+             </a>
         </div>
     </section>
     
@@ -739,6 +862,19 @@
             </div>
         </div>
     </section>
+    <!-- Customer quotes -->
+    <section class="container" style="padding:60px 0">
+        <h2 style="text-align:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;margin-bottom:32px">What our design partners say</h2>
+        <div style="display:flex;flex-direction:column;gap:32px">
+            <blockquote style="background:var(--neutral-700);border-left:4px solid var(--cyan);padding:24px;border-radius:12px">“With EmpowerNow we reconciled three HR systems and provisioned Workday in under 3&nbsp;weeks—no custom code.”<br><span style="color:var(--cyan);font-weight:600">CTO, Acme Corp</span></blockquote>
+            <blockquote style="background:var(--neutral-700);border-left:4px solid var(--cyan);padding:24px;border-radius:12px">“PDP decisions under 15&nbsp;ms let us enforce real-time SoD checks across 500&nbsp;million API calls per day.”<br><span style="color:var(--cyan);font-weight:600">Security Architect, BioHealth</span></blockquote>
+        </div>
+    </section>
+    <!-- Analyst recognition -->
+    <section class="container" style="padding:40px 0;text-align:center">
+        <img src="https://placehold.co/200x50?text=KC+PBAM+Leader+2025" alt="KuppingerCole Leader 2025" style="margin-bottom:16px">
+        <p style="color:var(--neutral-400);font-size:16px">Rated Overall, Product & Innovation Leader in the 2025 KuppingerCole PBAM Leadership Compass.</p>
+    </section>
     
     <!-- Footer -->
     <footer>
@@ -754,7 +890,7 @@
                 </ul>
             </div>
             <div class="footer-bottom">
-                © 2024 EmpowerNow. Modern identity and authorization infrastructure.
+                © 2025 EmpowerNow. Modern identity and authorization infrastructure.
             </div>
         </div>
     </footer>
@@ -790,5 +926,6 @@
             observer.observe(el);
         });
     </script>
+    <script>const b=document.getElementById('burger');const m=document.getElementById('menu');b&&b.addEventListener('click',()=>m.classList.toggle('open'));</script>
 </body>
 </html>

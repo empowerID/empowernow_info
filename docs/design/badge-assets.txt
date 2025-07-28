@@ -1,0 +1,6 @@
+Request official PNG/SVG from KC production team after reprint licence purchase.
+Sizes needed:
+• 240x60 dark background (landing pages)
+• 160x40 transparent (hero strips)
+• 600x400 hi-res (LinkedIn carousel)
+Store in /public/badges/ and replace placeholders. 

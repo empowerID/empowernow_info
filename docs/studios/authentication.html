@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Authentication Studio – EmpowerNow</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs/css/quantum.css">
+<style>
+:root{--purple:#6C4CFF;--cyan:#00E7F6;--navy:#0B1C3D;--slate:#8891A5;--white:#ffffff}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);line-height:1.6}
+header{padding:24px 0;background:rgba(11,28,61,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:sticky;top:0}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0}
+nav a{color:var(--slate);text-decoration:none;font-weight:500}
+nav a:hover{color:var(--cyan)}
+.hero{padding:120px 0 80px;text-align:center}
+.hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:56px;margin:0 0 16px}
+.hero h1 span{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--slate);font-size:20px;max-width:700px;margin:0 auto 32px}
+.btn{display:inline-block;padding:16px 32px;border-radius:12px;font-weight:600;text-decoration:none}
+.btn-primary{background:var(--cyan);color:var(--navy)}
+.section{padding:80px 0}
+.section h2{text-align:center;font-size:32px;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px}
+.card{background:rgba(11,28,61,.8);border:1px solid rgba(0,231,246,.3);border-radius:20px;padding:32px;transition:transform .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--purple)}
+.card h3{margin:0 0 8px;font-size:20px}
+.card p{color:var(--slate);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+ <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+  <div style="font-weight:700;color:var(--cyan)">EmpowerNow</div>
+  <nav><ul>
+   <li><a href="/index.html">Home</a></li>
+   <li><a href="/docs/studios/index.html">Studios</a></li>
+   <li><a href="/docs/index.html">Docs</a></li>
+  </ul></nav>
+ </div>
+</header>
+<section class="hero">
+ <div class="container">
+  <h1><span>Authentication Studio</span></h1>
+  <!-- MEDIA_PLACEHOLDER: auth-hero.mp4 | 12-second muted loop showing WebAuthn login & CAEP event -->
+  <video src="/public/screens/auth-hero.mp4" autoplay muted loop playsinline style="max-width:640px;width:100%;border-radius:16px;margin:24px auto 0" poster="/public/screens/auth-hero-poster.webp"></video>
+  <p>Enterprise-grade Identity Provider with OIDC, WebAuthn and CAEP security events—built for humans, IoT devices and AI agents.</p>
+  <a class="btn btn-primary" href="#get-started">Start free trial →</a>
+ </div>
+</section>
+<section class="section">
+ <div class="container">
+  <h2>Key capabilities</h2>
+  <div class="grid">
+   <div class="card"><h3>Full OAuth2 / OIDC</h3><p>PKCE, dynamic client registration and device flow.</p></div>
+   <div class="card"><h3>WebAuthn & Passkeys</h3><p>Passwordless MFA built-in.</p></div>
+   <div class="card"><h3>Adaptive Auth</h3><p>Risk signals from Authorization Studio adjust step-up requirements.</p></div>
+   <div class="card"><h3>CAEP & SIEM</h3><p>Publishes Cloud Auditing Event Patterns for every login and token event.</p></div>
+  </div>
+ </div>
+</section>
+<section class="section" style="background:rgba(30,41,59,.3)">
+ <div class="container">
+  <h2>How it works</h2>
+  <p style="text-align:center;color:var(--slate);max-width:800px;margin:0 auto 48px">Authentication Studio issues signed tokens that flow through the Backend-for-Frontend and are verified by Authorization Studio before reaching your APIs.</p>
+  <img src="../../public/images/login-background.jpg" alt="Auth flow diagram" style="width:100%;border-radius:16px;max-width:900px;display:block;margin:0 auto">
+ </div>
+</section>
+<section class="section" id="compare">
+ <div class="container">
+  <h2>How we compare</h2>
+  <div class="table-wrap" style="overflow-x:auto">
+   <table class="comp-table" style="width:100%;border-collapse:collapse;font-size:14px">
+    <tr><th>Feature</th><th>Okta</th><th>Auth0</th><th><strong>Authentication Studio</strong></th></tr>
+    <tr><td>WebAuthn built-in</td><td>△ (passkeys beta)</td><td>△</td><td>✔</td></tr>
+    <tr><td>CAEP security events</td><td>✖</td><td>✖</td><td>✔</td></tr>
+    <tr><td>Graph-based delegation</td><td>✖</td><td>✖</td><td>✔</td></tr>
+    <tr><td>Self-host option</td><td>Enterprise only</td><td>✖</td><td>✔ Docker/K8s</td></tr>
+    <tr><td>PDP integration latency</td><td>—</td><td>—</td><td><20 ms</td></tr>
+   </table>
+   <p style="color:var(--slate);font-size:14px;margin-top:8px">△ Feature available only in higher-tier plans or beta.</p>
+  </div>
+ </div>
+</section>
+<section class="section" id="get-started">
+ <div class="container" style="text-align:center">
+  <h2>Ready to onboard identities?</h2>
+  <a class="btn btn-primary" href="#">Launch Authentication Studio</a>
+ </div>
+</section>
+</body>
+</html> 
