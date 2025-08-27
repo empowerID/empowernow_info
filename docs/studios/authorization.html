@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Authorization Studio – EmpowerNow</title>
+<title>Authorization Studio â€“ EmpowerNow</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/docs/css/quantum.css">
+<link rel="stylesheet" href="../css/quantum.css">
 <style>:root{--purple:#6C4CFF;--cyan:#00E7F6;--navy:#0B1C3D;--slate:#8891A5;--white:#ffffff}
 body{margin:0;font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);line-height:1.6}
 header{padding:24px 0;background:rgba(11,28,61,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:sticky;top:0}
@@ -36,19 +36,19 @@ nav a:hover{color:var(--cyan)}
 <header>
  <div class="container" style="display:flex;justify-content:space-between;align-items:center">
    <div style="font-weight:700;color:var(--cyan)">EmpowerNow</div>
-   <nav><ul><li><a href="/index.html">Home</a></li><li><a href="/docs/studios/index.html">Studios</a></li><li><a href="/docs/index.html">Docs</a></li></ul></nav>
+   <nav><ul><li><a href="/index.html">Home</a></li><li><a href="../studios/index.html">Studios</a></li><li><a href="../index.html">Docs</a></li></ul></nav>
  </div>
 </header>
 <section class="hero">
  <div class="container">
   <h1><span>Authorization Studio</span></h1>
   <!-- MEDIA_PLACEHOLDER: authz-hero.mp4 | 12s loop of drag-and-drop rule & Mermaid explain diagram -->
-  <video src="/public/screens/authz-hero.mp4" autoplay muted loop playsinline style="max-width:640px;width:100%;border-radius:16px;margin:24px auto 0" poster="/public/screens/authz-hero-poster.webp"></video>
+  <video src="../public/screens/authz-hero.mp4" autoplay muted loop playsinline style="max-width:640px;width:100%;border-radius:16px;margin:24px auto 0" poster="/public/screens/authz-hero-poster.webp"></video>
   <p class="hero-subtitle">
    <img src="https://placehold.co/160x40?text=KC+Leader+2025" alt="KuppingerCole Leader 2025 badge" style="margin-top:12px">
   </p>
   <p>AuthZEN-compliant Policy Decision Point delivering audit-ready decisions in under 20&nbsp;ms.</p>
-  <a class="btn btn-primary" href="#get-started">Evaluate a policy →</a>
+  <a class="btn btn-primary" href="#get-started">Evaluate a policy â†’</a>
  </div>
 </section>
 <section class="section">
@@ -57,7 +57,7 @@ nav a:hover{color:var(--cyan)}
   <div class="grid">
    <div class="card"><h3>Delegation graphs</h3><p>Model human, service & AI-agent relationships without role explosion.</p></div>
    <div class="card"><h3>Batch evaluation</h3><p>Authorise thousands of resources in one request.</p></div>
-   <div class="card"><h3>Explain mode</h3><p>Mermaid diagrams for every decision—perfect for auditors.</p></div>
+   <div class="card"><h3>Explain mode</h3><p>Mermaid diagrams for every decisionâ€”perfect for auditors.</p></div>
    <div class="card"><h3>Pluggable PIPs</h3><p>GeoIP, risk score, membership graph & custom Python plugins.</p></div>
   </div>
  </div>
@@ -75,15 +75,15 @@ nav a:hover{color:var(--cyan)}
   <div class="table-wrap">
   <table class="comp-table">
    <tr><th>Feature</th><th>OPA</th><th>Cedar</th><th><strong>Authorization Studio</strong></th></tr>
-   <tr><td>AuthZEN protocol</td><td>✖</td><td>✖</td><td>✔</td></tr>
-   <tr><td>Delegation graphs</td><td>✖</td><td>Limited</td><td>✔</td></tr>
-   <tr><td>Mermaid explain</td><td>✖</td><td>✖</td><td>✔</td></tr>
-   <tr><td>CAEP events</td><td>✖</td><td>✖</td><td>✔</td></tr>
+   <tr><td>AuthZEN protocol</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr>
+   <tr><td>Delegation graphs</td><td>âœ–</td><td>Limited</td><td>âœ”</td></tr>
+   <tr><td>Mermaid explain</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr>
+   <tr><td>CAEP events</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr>
   </table>
   </div>
   <h3 style="margin-top:40px">Against AWS Cedar & OPA</h3>
-  <div class="table-wrap"><table class="comp-table"><tr><th>Feature</th><th>OPA/Rego</th><th>AWS Cedar</th><th><strong>Authorization Studio</strong></th></tr><tr><td>Delegation graphs</td><td>✖</td><td>✖</td><td>✔</td></tr><tr><td>GUI policy editor</td><td>✖ (code)</td><td>JSON only</td><td>✔ drag-drop & YAML</td></tr><tr><td>Mermaid explainability</td><td>✖</td><td>✖</td><td>✔</td></tr><tr><td>CAEP emission</td><td>✖</td><td>✖</td><td>✔</td></tr><tr><td>Latency p95</td><td>variable</td><td>40-60 ms</td><td><20 ms</td></tr></table></div>
-<p style="color:var(--slate);font-size:14px;margin-top:8px">△ Indicates partial or roadmap support.</p>
+  <div class="table-wrap"><table class="comp-table"><tr><th>Feature</th><th>OPA/Rego</th><th>AWS Cedar</th><th><strong>Authorization Studio</strong></th></tr><tr><td>Delegation graphs</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr><tr><td>GUI policy editor</td><td>âœ– (code)</td><td>JSON only</td><td>âœ” drag-drop & YAML</td></tr><tr><td>Mermaid explainability</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr><tr><td>CAEP emission</td><td>âœ–</td><td>âœ–</td><td>âœ”</td></tr><tr><td>Latency p95</td><td>variable</td><td>40-60 ms</td><td><20 ms</td></tr></table></div>
+<p style="color:var(--slate);font-size:14px;margin-top:8px">â–³ Indicates partial or roadmap support.</p>
  </div>
 </section>
 <section class="section" id="get-started" style="text-align:center">
@@ -92,5 +92,5 @@ nav a:hover{color:var(--cyan)}
   <a class="btn btn-primary" href="#">Launch Authorization Studio</a>
  </div>
 </section>
-</body>
+    <script src="../js/pages-fix.js"></script></body>
 </html> 

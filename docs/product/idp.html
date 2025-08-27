@@ -1,31 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IdP — Agent Passports</title>
-  <link rel="stylesheet" href="/docs/css/fabric.css" />
+  <title>IdP â€” Agent Passports</title>
+  <link rel="stylesheet" href="../css/fabric.css" />
 </head>
 <body>
   <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
     <div class="container" style="display:flex;justify-content:space-between;align-items:center">
-      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <a href="../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
       <div style="display:flex;gap:24px">
-        <a href="/docs/product/index.html">Product</a>
-        <a href="/docs/solutions/index.html">Solutions</a>
-        <a href="/docs/docs/index.html">Docs</a>
-        <a href="/docs/resources/index.html">Resources</a>
-        <a href="/docs/pricing/index.html">Pricing</a>
-        <a href="/docs/trust/index.html">Trust</a>
-        <a href="/docs/about/index.html">Company</a>
-        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+        <a href="../product/index.html">Product</a>
+        <a href="../solutions/index.html">Solutions</a>
+        <a href="../docs/index.html">Docs</a>
+        <a href="../resources/index.html">Resources</a>
+        <a href="../pricing/index.html">Pricing</a>
+        <a href="../trust/index.html">Trust</a>
+        <a href="../about/index.html">Company</a>
+        <a href="../demo/index.html" class="btn btn-primary">Book a Demo</a>
       </div>
     </div>
   </nav>
 
   <section class="container" style="padding:48px 0 16px">
-    <h1>IdP — Agent Passports</h1>
-    <p style="color:#9ba3b7;max-width:860px">Issue ARIA Passports for AI agents via OAuth Token Exchange (RFC 8693) with RAR (RFC 9396). Passports carry least‑privilege context for agents, with optional DPoP binding (RFC 9449).</p>
+    <h1>IdP â€” Agent Passports</h1>
+    <p style="color:#9ba3b7;max-width:860px">Issue ARIA Passports for AI agents via OAuth Token Exchange (RFC 8693) with RAR (RFC 9396). Passports carry leastâ€‘privilege context for agents, with optional DPoP binding (RFC 9449).</p>
   </section>
 
   <section class="container" style="padding-bottom:16px">
@@ -34,19 +34,19 @@
       <li>Pairwise identities (<code>sub</code>) and actor chain (<code>act.sub</code>)</li>
       <li>Plan contracts (JWS) and tool schema pins from the Tool Registry</li>
       <li>Optional DPoP binding (<code>cnf.jkt</code>)</li>
-      <li>Policy‑gated identity chaining endpoints</li>
+      <li>Policyâ€‘gated identity chaining endpoints</li>
       <li>Discovery + JWKS and ARIA claims documentation endpoints</li>
     </ul>
-    <p><strong>Why it matters</strong>: Move agent governance left into identity. Agents receive verifiable, purpose‑built credentials that encode plan discipline, schema integrity, budgets/max_steps, and proof‑of‑possession when enabled.</p>
+    <p><strong>Why it matters</strong>: Move agent governance left into identity. Agents receive verifiable, purposeâ€‘built credentials that encode plan discipline, schema integrity, budgets/max_steps, and proofâ€‘ofâ€‘possession when enabled.</p>
   </section>
 
   <section class="container" style="padding-bottom:16px">
-    <h2>Identity Chaining (feature‑flagged)</h2>
+    <h2>Identity Chaining (featureâ€‘flagged)</h2>
     <p>Both flows are gated by PDP constraints (<code>constraints.identity_chain</code>).</p>
     <h3>Delegated assertion</h3>
     <pre><code>POST /api/oidc/oauth/identity-assertion
 Inputs: subject_token, (optional) actor_token, audience, optional scope
-Output: { assertion, token_type, expires_in } (≤ configured TTL, max ~300s)</code></pre>
+Output: { assertion, token_type, expires_in } (â‰¤ configured TTL, max ~300s)</code></pre>
     <h3>Brokered exchange</h3>
     <pre><code>POST /api/oidc/oauth/identity-chain/token
 Inputs: subject_token, (optional) actor_token, audience, optional scope, token_endpoint, client_auth
@@ -96,9 +96,9 @@ Output: downstream { access_token, expires_in, ... }</code></pre>
     <h2>Security Model</h2>
     <ul>
       <li>DPoP binding at token endpoint (optional) with replay protection (JTI cache)</li>
-      <li>Pairwise subjects mitigate cross‑audience linkability; agent <code>act.sub</code> binds the user→service relationship</li>
+      <li>Pairwise subjects mitigate crossâ€‘audience linkability; agent <code>act.sub</code> binds the userâ†’service relationship</li>
       <li>Plan JWS + schema pins ensure step/order and shape integrity</li>
-      <li>Fail‑closed defaults on invalid/missing RAR, inactive delegations, or audience mismatch</li>
+      <li>Failâ€‘closed defaults on invalid/missing RAR, inactive delegations, or audience mismatch</li>
     </ul>
   </section>
 
@@ -121,9 +121,10 @@ Output: downstream { access_token, expires_in, ... }</code></pre>
   </section>
 
   <section class="container" style="padding-bottom:48px">
-    <a href="/docs/docs/index.html" class="btn">Read docs</a>
-    <a href="/docs/resources/index.html" class="btn" style="margin-left:12px">Watch the demo</a>
+    <a href="../docs/index.html" class="btn">Read docs</a>
+    <a href="../resources/index.html" class="btn" style="margin-left:12px">Watch the demo</a>
   </section>
-</body>
+    <script src="../js/pages-fix.js"></script></body>
 </html>
+
 

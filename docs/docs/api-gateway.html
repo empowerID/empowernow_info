@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API — ARIA Gateway (MCP)</title>
-  <link rel="stylesheet" href="/docs/css/fabric.css" />
+  <title>API â€” ARIA Gateway (MCP)</title>
+  <link rel="stylesheet" href="../css/fabric.css" />
 </head>
 <body>
   <section class="container" style="padding:48px 0 16px">
     <h1>ARIA Gateway API (MCP)</h1>
-    <p>Policy enforcement at the agent→tool boundary.</p>
+    <p>Policy enforcement at the agentâ†’tool boundary.</p>
   </section>
   <section class="container" style="padding-bottom:16px">
     <h2>Ingress</h2>
@@ -23,18 +23,19 @@
     <p>On deny: HTTP error with reason (e.g., <code>egress_denied</code>, <code>plan_step_violation</code>, <code>budget_exceeded</code>).</p>
   </section>
   <section class="container" style="padding-bottom:16px">
-    <h2>What’s enforced</h2>
+    <h2>Whatâ€™s enforced</h2>
     <ul>
       <li>Identity binding (pairwise <code>sub</code>, <code>act.sub</code>)</li>
       <li>Schema pins, params/egress allowlists</li>
-      <li>Plan‑step checks and budgets (idempotent debit via <code>call_id</code>)</li>
+      <li>Planâ€‘step checks and budgets (idempotent debit via <code>call_id</code>)</li>
       <li>Inbound shaping and analytics/receipts obligations on permit</li>
     </ul>
   </section>
   <section class="container" style="padding-bottom:48px">
-    <a href="/docs/product/gateway.html" class="btn">Back to Gateway</a>
-    <a href="/docs/product/receipts.html" class="btn" style="margin-left:12px">See Receipts</a>
+    <a href="../product/gateway.html" class="btn">Back to Gateway</a>
+    <a href="../product/receipts.html" class="btn" style="margin-left:12px">See Receipts</a>
   </section>
-</body>
+    <script src="../js/pages-fix.js"></script></body>
 </html>
+
 

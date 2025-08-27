@@ -17,18 +17,18 @@ Get-ChildItem -Path $docsRoot -Recurse -Filter *.html | ForEach-Object {
   $c = Get-Content -Raw -LiteralPath $filePath
 
   # css link
-  $c = $c -replace 'href="/docs/css/','href="' + $prefix + 'css/'
+  $c = $c.Replace('href="/docs/css/','href="' + $prefix + 'css/')
   # internal doc links
-  $c = $c -replace 'href="/docs/','href="' + $prefix
-  $c = $c -replace 'src="/docs/','src="' + $prefix
+  $c = $c.Replace('href="/docs/','href="' + $prefix)
+  $c = $c.Replace('src="/docs/','src="' + $prefix)
   # public assets
-  $c = $c -replace 'href="/public/','href="' + $prefix + 'public/'
-  $c = $c -replace 'src="/public/','src="' + $prefix + 'public/'
+  $c = $c.Replace('href="/public/','href="' + $prefix + 'public/')
+  $c = $c.Replace('src="/public/','src="' + $prefix + 'public/')
 
   # ensure pages-fix is included with correct prefix (optional safety)
   if ($c -notmatch 'js/pages-fix.js') {
     $scriptTag = '    <script src="' + $prefix + 'js/pages-fix.js"></script>'
-    $c = $c -replace '</body>',$scriptTag + '</body>'
+    $c = $c.Replace('</body>', $scriptTag + '</body>')
   }
 
   Set-Content -LiteralPath $filePath -Value $c -Encoding UTF8
