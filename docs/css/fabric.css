@@ -20,3 +20,11 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 } 
+
+/* Links: improve contrast on dark background */
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Top nav links */
+nav a { color: rgba(255,255,255,.9); }
+nav a:hover { color: var(--cyan); }
