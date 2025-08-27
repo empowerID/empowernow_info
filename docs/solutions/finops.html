@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinOps Governance</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <section class="container" style="padding:48px 0 16px">
+    <h1>FinOps Governance</h1>
+    <p style="color:#9ba3b7;max-width:820px">Predictable spend with runtime guardrails and auditable receipts.</p>
+  </section>
+  <section class="container" style="padding-bottom:16px">
+    <h2>The problem</h2>
+    <p>AI usage sprawls; traditional gateways show cost, but rarely enforce budgets or plans in real time.</p>
+  </section>
+  <section class="container" style="padding-bottom:16px">
+    <h2>The ARIA approach</h2>
+    <ul>
+      <li>Per‑agent budgets (idempotent debits keyed by call_id)</li>
+      <li>Deny before tool execution when PDP says no</li>
+      <li>Plan contracts (JWS) and schema pins govern execution</li>
+      <li>Signed, hash‑chained receipts for reconciliation</li>
+    </ul>
+  </section>
+  <section class="container" style="padding-bottom:16px">
+    <h2>Outcomes</h2>
+    <ul>
+      <li>Predictable spend</li>
+      <li>Auditable usage trails</li>
+      <li>Safer experimentation</li>
+    </ul>
+  </section>
+  <section class="container" style="padding-bottom:32px">
+    <h2>Pilot outline (2–3 weeks)</h2>
+    <ul>
+      <li>Week 1: connect Registry; model budget policy; enable receipts</li>
+      <li>Week 2: enforce plan/budgets in Gateway/BFF; dashboards</li>
+      <li>Week 3: expand; document runbook; tune PDP TTLs</li>
+    </ul>
+  </section>
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/demo/index.html" class="btn btn-primary">Book a FinOps demo</a>
+    <a href="/docs/resources/index.html" class="btn" style="margin-left:12px">See budget/402 behavior</a>
+  </section>
+</body>
+</html>
+

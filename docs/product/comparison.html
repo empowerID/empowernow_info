@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Comparison — Where ARIA Fits</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <section class="container" style="padding:48px 0 16px">
+    <h1>Where ARIA Fits</h1>
+    <p>How ARIA differs from AI gateways, authorization engines, and workflow tools.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>ARIA vs. “AI Gateways”</h2>
+    <ul>
+      <li><strong>Focus</strong>: Gateways emphasize observability and cost estimates; ARIA enforces AuthZEN decisions at runtime with plan/budget gating and receipts.</li>
+      <li><strong>Identity</strong>: Gateways rarely carry user‑bound agent identity; ARIA uses Passports with pairwise IDs and optional DPoP.</li>
+      <li><strong>Control</strong>: Gateways can’t enforce per‑agent plan/budget pre‑execution; ARIA denies before tool calls and returns clear 402 on exceed.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>ARIA vs. Authorization Engines</h2>
+    <ul>
+      <li><strong>Scope</strong>: PDPs decide; ARIA decides + enforces (MCP PEP) with schema/params/egress, plan/budgets, receipts.</li>
+      <li><strong>Context</strong>: ARIA integrates Membership PIP for data_scope, step_up, identity_chain.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>ARIA vs. Workflow Tools</h2>
+    <ul>
+      <li><strong>Model</strong>: Generic tools orchestrate UIs/tasks; ARIA Orchestration is AI‑native (zero‑shot, next paths, node decisions, Mermaid).</li>
+      <li><strong>Governance</strong>: ARIA couples identity + policy + enforcement + receipts end‑to‑end.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/demo/index.html" class="btn btn-primary">Book a demo</a>
+    <a href="/docs/docs/index.html" class="btn" style="margin-left:12px">Read the docs</a>
+  </section>
+</body>
+</html>
+

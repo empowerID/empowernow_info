@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docs — Start Here</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="/docs/product/index.html">Product</a>
+        <a href="/docs/solutions/index.html">Solutions</a>
+        <a href="/docs/docs/index.html">Docs</a>
+        <a href="/docs/resources/index.html">Resources</a>
+        <a href="/docs/pricing/index.html">Pricing</a>
+        <a href="/docs/trust/index.html">Trust</a>
+        <a href="/docs/about/index.html">Company</a>
+        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+  <section class="container" style="padding:48px 0 24px">
+    <h1>Docs</h1>
+    <p>Quickstart, core APIs, and guides.</p>
+  </section>
+  <section class="container" style="padding-bottom:48px">
+    <h2>Quickstart</h2>
+    <ol>
+      <li>Clone the repo and run <code>docker compose up</code></li>
+      <li>Mint an ARIA Passport via IdP token exchange (RAR + schema pins)</li>
+      <li>Invoke the ARIA Gateway <code>/mcp/{tool}</code> and observe PDP constraints</li>
+      <li>Start a workflow and inspect <code>mermaid_full</code>, <code>next_paths</code>, and receipts</li>
+    </ol>
+  </section>
+
+  <section class="container" style="padding-bottom:32px">
+    <h2>Core APIs</h2>
+    <ul>
+      <li><a href="/docs/docs/api-pdp.html">PDP — POST /access/v1/evaluation, /evaluations</a></li>
+      <li><a href="/docs/docs/api-gateway.html">ARIA Gateway (MCP) — POST /mcp/{tool_id}</a></li>
+      <li><a href="/docs/product/bff.html">BFF — /chat/completions (provider‑compatible)</a></li>
+      <li><a href="/docs/product/registry.html">Tool Registry — GET/HEAD /tools/{id}, GET /tools/{id}/pin</a></li>
+      <li><a href="/docs/product/receipts.html">Receipt Vault — sign/verify receipts</a></li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <h2>Guides</h2>
+    <ul>
+      <li><a href="/docs/product/idp.html">Agent Passports (RAR, DPoP, plan, schema pins)</a></li>
+      <li><a href="/docs/product/orchestration.html">Self‑Driving Workflows (zero‑shot, next paths, Mermaid)</a></li>
+      <li><a href="/docs/product/pdp.html">AuthZEN mapping for PEP/PDP</a></li>
+      <li><a href="/docs/product/receipts.html">Receipts viewer and exports</a></li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:64px">
+    <a href="/docs/resources/demo.html" class="btn btn-primary">Watch the 10‑min Demo</a>
+    <a href="/docs/resources/index.html#quickstart" class="btn" style="margin-left:12px">Try the Quickstart</a>
+  </section>
+</body>
+</html>
+

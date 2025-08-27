@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership Graph</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="/docs/product/index.html">Product</a>
+        <a href="/docs/solutions/index.html">Solutions</a>
+        <a href="/docs/docs/index.html">Docs</a>
+        <a href="/docs/resources/index.html">Resources</a>
+        <a href="/docs/pricing/index.html">Pricing</a>
+        <a href="/docs/trust/index.html">Trust</a>
+        <a href="/docs/about/index.html">Company</a>
+        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="padding:48px 0 16px">
+    <h1>Membership Graph (Neo4j)</h1>
+    <p style="color:#9ba3b7;max-width:860px">Authoritative graph for delegations, capabilities, budgets/max_steps, and SaaS eligibility. Powers both issuance (IdP) and decisions (PDP).</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>PIP endpoints (read‑only)</h2>
+    <pre><code>GET /membership/v1/capabilities?user_id={id}&agent_id={id}
+GET /membership/v1/delegations?user_id={id}&agent_id={id}&status=active
+GET /membership/v1/data-scope?subject_id={id}&resource_type={type}
+GET /membership/v1/step-up?subject_id={id}
+GET /membership/v1/chain-eligibility?user_id={id}&agent_id={id}&tool_id={id}</code></pre>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>How PDP and IdP use it</h2>
+    <ul>
+      <li>PDP enriches evaluations with <code>data_scope</code>, <code>step_up</code>, <code>identity_chain</code>, and verifies capability</li>
+      <li>IdP verifies delegation and fetches <code>budget</code>/<code>max_steps</code> to embed in the Passport</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:32px">
+    <h2>Why it matters</h2>
+    <p>A single source of truth reduces drift between issuance and enforcement. Graph queries keep constraints grounded in real relationships and are safe to cache.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/docs/index.html" class="btn">Read docs</a>
+    <a href="/docs/resources/index.html" class="btn" style="margin-left:12px">View PDP integration</a>
+  </section>
+</body>
+</html>
+

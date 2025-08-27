@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Registry</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="/docs/product/index.html">Product</a>
+        <a href="/docs/solutions/index.html">Solutions</a>
+        <a href="/docs/docs/index.html">Docs</a>
+        <a href="/docs/resources/index.html">Resources</a>
+        <a href="/docs/pricing/index.html">Pricing</a>
+        <a href="/docs/trust/index.html">Trust</a>
+        <a href="/docs/about/index.html">Company</a>
+        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="padding:48px 0 16px">
+    <h1>Tool Registry</h1>
+    <p style="color:#9ba3b7;max-width:860px">Catalog of MCP/HTTP tools enabling verifiable request shaping via hash‑pinned schemas with safe rollouts.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>CURRENT/pin semantics</h2>
+    <ul>
+      <li>Exactly one CURRENT version per tool</li>
+      <li>Pins include <code>{ schema_version, schema_hash }</code> from canonical JSON</li>
+      <li>Rollout grace windows allow accepting the previous version temporarily</li>
+      <li>ETag on GET enables conditional requests</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Read endpoints (hot path)</h2>
+    <pre><code>GET  /tools/{tool_id}
+HEAD /tools/{tool_id}
+GET  /tools/{tool_id}/pin   (?format=jws)</code></pre>
+    <p>GET returns <code>{ id, endpoint, schema_version, schema_hash, previous_version, previous_hash, updated_at, grace_seconds, risk_tier, auth_mode, cost_per_call }</code> with <code>ETag</code> and <code>Cache-Control</code>.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Admin flows (write path)</h2>
+    <ul>
+      <li>Create tool, add versions, and flip CURRENT atomically</li>
+      <li>Optional signed pin JWS for integrity</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:32px">
+    <h2>Why it matters</h2>
+    <p>Prevents schema drift and enables safe version flips without breaking agents. Caches efficiently for high QPS.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/docs/index.html" class="btn">Read docs</a>
+    <a href="/docs/resources/index.html" class="btn" style="margin-left:12px">See pin format</a>
+  </section>
+</body>
+</html>
+

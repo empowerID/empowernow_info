@@ -645,14 +645,14 @@
                 <div class="logo"><img src="../public/en-logo-light.png" alt="EmpowerNow logo"></div>
                 <div class="hamburger" id="burger"><span></span><span></span><span></span></div>
                 <ul class="nav-links" id="menu">
-                    <li><a href="#products">Platform</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#why">Why EmpowerNow</a></li>
-                    <li><a href="/docs/api/index.html">Developers</a></li>
-                    <li><a href="/docs/about/brand.html">About</a></li>
+                    <li><a href="/docs/product/index.html">Product</a></li>
+                    <li><a href="/docs/solutions/index.html">Solutions</a></li>
+                    <li><a href="/docs/docs/index.html">Docs</a></li>
+                    <li><a href="/docs/resources/index.html">Resources</a></li>
                     <li><a href="/docs/trust/index.html">Trust</a></li>
                     <li><a href="/docs/pricing/index.html">Pricing</a></li>
-                    <li><a href="#contact">Get Started</a></li>
+                    <li><a href="/docs/about/index.html">Company</a></li>
+                    <li><a href="/docs/demo/index.html">Book a Demo</a></li>
                 </ul>
             </div>
         </div>
@@ -669,20 +669,14 @@
         </h1>
         <p class="hero-outcome fade-in fade-in-delay-1">Connect • Control • Accelerate <span class="pill lime" title="5 ms decisions">Authorization Studio</span> + <span class="pill magenta" title="GenAI workflows">Automation Studio</span> <span class="pill gray-light">Ready Day 1</span></p>
         <div class="accent-rule fade-in fade-in-delay-1"></div>
-        <ul class="hero-bullets fade-in fade-in-delay-2" style="text-align:left;margin-top:12px;max-width:480px">
-            <li>Zero-code connectors live in <strong>&lt; 5 min</strong></li>
-            <li>Graph policies decide in <strong>&lt; 20 ms</strong>—even at 100 K req/s</li>
-            <li>Redact <em>before</em> models react—EU AI Act ready</li>
+        <ul class="hero-bullets fade-in fade-in-delay-2" style="text-align:left;margin-top:12px;max-width:560px">
+            <li>AuthZEN evaluation with constraints and obligations</li>
+            <li>OAuth Token Exchange (RFC 8693), RAR (RFC 9396), optional DPoP (RFC 9449)</li>
+            <li>MCP‑aware enforcement and cryptographic receipts</li>
         </ul>
-        <p class="hero-outcome fade-in fade-in-delay-2" style="font-size:18px;color:var(--neutral-400);max-width:720px;margin:12px auto 0">Already on <strong>Okta</strong> or <strong>Entra ID</strong>? Plug <strong>Authorization Studio</strong> in minutes—<span class="pill gray">Authentication Studio optional</span>.</p>
         <div style="display:flex;gap:8px;justify-content:flex-start" class="fade-in fade-in-delay-3">
-          <a href="#contact" class="btn btn-primary">Launch a Workflow →</a>
-          <a href="#contact" class="btn btn-secondary">Book a Security Demo</a>
-        </div>
-        <!-- Trusted by logos -->
-        <div class="trust-logos fade-in fade-in-delay-5" style="margin-top:24px">
-              <img src="https://placehold.co/120x40?text=Acme" alt="Acme Corp logo">
-              <img src="https://placehold.co/120x40?text=Globex" alt="Globex logo">
+          <a href="/docs/resources/demo.html" class="btn btn-primary">Watch the 10‑min Demo →</a>
+          <a href="/docs/demo/index.html" class="btn btn-secondary">Book a Demo</a>
         </div>
        </div>
        <!-- Hero micro demo -->
@@ -723,7 +717,7 @@
         </div>
         
         <div class="products-grid">
-            <a href="pdp-doc.html" class="product-card fade-in fade-in-delay-1">
+            <a href="/docs/product/pdp.html" class="product-card fade-in fade-in-delay-1">
                 <span class="lead-badge">Lead Engine</span>
                 <div class="product-icon">🛡️</div>
                 <h3>Authorization Studio</h3>
@@ -747,7 +741,7 @@
             </a>
             
             <!-- Identity Core -->
-            <a href="studios/automation.html" class="product-card fade-in fade-in-delay-2">
+            <a href="/docs/product/orchestration.html" class="product-card fade-in fade-in-delay-2">
                 <span class="lead-badge">Lead Engine</span>
                 <div class="product-icon">⚙️</div>
                 <h3>Automation Studio</h3>
@@ -759,7 +753,7 @@
             </a>
 
             <!-- Identity Core -->
-            <a href="studios/authentication.html" class="product-card fade-in fade-in-delay-3">
+            <a href="/docs/product/idp.html" class="product-card fade-in fade-in-delay-3">
                 <div class="product-icon">🔑</div>
                 <h3>Authentication Studio <span class="pill optional">Optional</span></h3>
                 <p class="tagline">FAPI 2.0-Ready Identity Provider</p>
@@ -769,7 +763,7 @@
                 <span class="product-link">Explore Identity Core<span>→</span></span>
             </a>
              <!-- Inventory Core -->
-             <a href="studios/inventory.html" class="product-card fade-in fade-in-delay-4">
+             <a href="/docs/product/registry.html" class="product-card fade-in fade-in-delay-4">
                  <div class="product-icon">📊</div>
                  <h3>Inventory Studio</h3>
                  <p class="tagline">Universal Collector</p>
@@ -781,28 +775,15 @@
         </div>
     </section>
     
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <h3>10M+</h3>
-                    <p>Identities Managed</p>
-                </div>
-                <div class="stat-item fade-in fade-in-delay-1">
-                    <h3>500M+</h3>
-                    <p>Auth Decisions Daily</p>
-                </div>
-                <div class="stat-item fade-in fade-in-delay-2">
-                    <h3>&lt;20ms</h3>
-                    <p>Decision Latency</p>
-                </div>
-                <div class="stat-item fade-in fade-in-delay-3">
-                    <h3>AuthZEN</h3>
-                    <p>Fully Compliant</p>
-                </div>
-            </div>
-        </div>
+    <!-- Standards & Interop (replaces stats) -->
+    <section class="container" style="padding:40px 0">
+        <h2 class="section-title">Standards & Interop</h2>
+        <ul style="color:var(--neutral-400);line-height:1.8">
+            <li>OpenID Authorization API (AuthZEN) — evaluation endpoints</li>
+            <li>OAuth Token Exchange (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449)</li>
+            <li>Model Context Protocol (MCP) for agent↔tool calls</li>
+            <li>Signed, hash‑chained receipts for auditability</li>
+        </ul>
     </section>
     
     <!-- Why EmpowerNow -->
@@ -852,29 +833,12 @@
                 Join leading companies using EmpowerNow for identity and authorization
             </p>
             <div class="cta-buttons fade-in fade-in-delay-2">
-                <a href="#" class="btn btn-primary">
-                    Start Free Trial
-                    <span>→</span>
-                </a>
-                <a href="#" class="btn btn-secondary">
-                    Contact Sales
-                </a>
+                <a href="/docs/resources/demo.html" class="btn btn-primary">Watch the 10‑min Demo <span>→</span></a>
+                <a href="/docs/demo/index.html" class="btn btn-secondary">Book a Demo</a>
             </div>
         </div>
     </section>
-    <!-- Customer quotes -->
-    <section class="container" style="padding:60px 0">
-        <h2 style="text-align:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;margin-bottom:32px">What our design partners say</h2>
-        <div style="display:flex;flex-direction:column;gap:32px">
-            <blockquote style="background:var(--neutral-700);border-left:4px solid var(--cyan);padding:24px;border-radius:12px">“With EmpowerNow we reconciled three HR systems and provisioned Workday in under 3&nbsp;weeks—no custom code.”<br><span style="color:var(--cyan);font-weight:600">CTO, Acme Corp</span></blockquote>
-            <blockquote style="background:var(--neutral-700);border-left:4px solid var(--cyan);padding:24px;border-radius:12px">“PDP decisions under 15&nbsp;ms let us enforce real-time SoD checks across 500&nbsp;million API calls per day.”<br><span style="color:var(--cyan);font-weight:600">Security Architect, BioHealth</span></blockquote>
-        </div>
-    </section>
-    <!-- Analyst recognition -->
-    <section class="container" style="padding:40px 0;text-align:center">
-        <img src="https://placehold.co/200x50?text=KC+PBAM+Leader+2025" alt="KuppingerCole Leader 2025" style="margin-bottom:16px">
-        <p style="color:var(--neutral-400);font-size:16px">Rated Overall, Product & Innovation Leader in the 2025 KuppingerCole PBAM Leadership Compass.</p>
-    </section>
+    <!-- Removed fabricated quotes/recognition for internal review -->
     
     <!-- Footer -->
     <footer>
@@ -882,11 +846,13 @@
             <div class="footer-content">
                 <div class="logo">EmpowerNow</div>
                 <ul class="footer-links">
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">API Reference</a></li>
-                    <li><a href="#">AuthZEN Spec</a></li>
-                    <li><a href="#">Status</a></li>
-                    <li><a href="#">Security</a></li>
+                    <li><a href="/docs/product/index.html">Product</a></li>
+                    <li><a href="/docs/solutions/index.html">Solutions</a></li>
+                    <li><a href="/docs/docs/index.html">Docs</a></li>
+                    <li><a href="/docs/resources/index.html">Resources</a></li>
+                    <li><a href="/docs/pricing/index.html">Pricing</a></li>
+                    <li><a href="/docs/trust/index.html">Trust</a></li>
+                    <li><a href="/docs/about/index.html">Company</a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
@@ -928,4 +894,5 @@
     </script>
     <script>const b=document.getElementById('burger');const m=document.getElementById('menu');b&&b.addEventListener('click',()=>m.classList.toggle('open'));</script>
 </body>
+</html>
 </html>

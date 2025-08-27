@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDP — AuthZEN + Membership PIP</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="/docs/product/index.html">Product</a>
+        <a href="/docs/solutions/index.html">Solutions</a>
+        <a href="/docs/docs/index.html">Docs</a>
+        <a href="/docs/resources/index.html">Resources</a>
+        <a href="/docs/pricing/index.html">Pricing</a>
+        <a href="/docs/trust/index.html">Trust</a>
+        <a href="/docs/about/index.html">Company</a>
+        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="padding:48px 0 16px">
+    <h1>PDP — AuthZEN + Membership PIP</h1>
+    <p style="color:#9ba3b7;max-width:860px">OpenID Authorization API (AuthZEN) evaluation with graph‑derived constraints and obligations. Batch evaluation and app‑scoped resolution supported.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Overview</h2>
+    <ul>
+      <li>Endpoints: <code>POST /access/v1/evaluation</code>, <code>POST /access/v1/evaluations</code> (batch)</li>
+      <li>Response: <code>{ decision, context: { constraints, obligations, decision_id, policy_version, constraints_schema, ttl_ms } }</code></li>
+      <li>App scoping via <code>resource.properties.pdp_application</code></li>
+      <li>Short TTL decision cache for hot paths</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Membership‑powered constraints (PIP)</h2>
+    <ul>
+      <li><code>data_scope</code> — tenant_ids and row filters</li>
+      <li><code>step_up</code> — MFA hints</li>
+      <li><code>identity_chain</code> — allow‑listed audiences/scopes and TTL caps</li>
+      <li>Capability checks per tool/action</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Merge model (most‑restrictive)</h2>
+    <ul>
+      <li>Intersection: allowlists for model, egress, params</li>
+      <li>Minimums: tokens and spend caps, identity_chain TTL</li>
+      <li>Logical AND: conservative booleans (e.g., MFA required)</li>
+      <li>SQL AND: compose <code>data_scope.row_filter_sql</code></li>
+    </ul>
+    <p>Obligations merge by presence/union; <code>emit_receipt</code> is idempotent.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Example request/response</h2>
+    <h3>Request (shape)</h3>
+    <pre><code>{
+  "subject": {"type": "agent", "id": "agent:svc-123:for:pairwise", "properties": {"bound_user": "user:pairwise"}},
+  "action": {"name": "execute"},
+  "resource": {"type": "tool", "id": "mcp:flights:search", "properties": {"pdp_application": "aria-gateway", "schema_hash": "sha256:..."}},
+  "context": {"capability": "mcp:flights:search", "budget_remaining": 42.0}
+}</code></pre>
+    <h3>Response (shape)</h3>
+    <pre><code>{
+  "decision": true,
+  "context": {
+    "constraints": {
+      "tokens": {"max_input": 6000, "max_output": 1500, "max_stream": 4096},
+      "egress": {"allow": ["tools.example.com:443"]},
+      "params": {"allowlist": {"amount": ["^\\d+(\\.\\d{1,2})?$"]}},
+      "data_scope": {"tenant_ids": ["acme"], "row_filter_sql": "tenant_id='acme'"},
+      "step_up": {"mfa_required": false},
+      "identity_chain": {"allowed_audiences": ["https://graph.microsoft.com"], "allowed_scopes": ["User.Read"], "max_token_ttl_seconds": 300}
+    },
+    "obligations": [{"id": "emit_receipt"}, {"id": "tee_analytics", "attributes": {"include": ["usage", "limits"]}}],
+    "decision_id": "...",
+    "policy_version": "...",
+    "constraints_schema": "aria.constraints.v1",
+    "ttl_ms": 1500
+  }
+}</code></pre>
+  </section>
+
+  <section class="container" style="padding-bottom:32px">
+    <h2>Why this matters</h2>
+    <p>AuthZEN provides a standard PEP↔PDP contract. Membership ensures decisions carry live, graph‑derived context. The merge model keeps effective constraints conservative across policy layers.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/docs/index.html" class="btn">Read docs</a>
+    <a href="/docs/resources/index.html" class="btn" style="margin-left:12px">View examples</a>
+  </section>
+</body>
+</html>
+

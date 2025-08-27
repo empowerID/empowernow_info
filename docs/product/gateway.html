@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARIA Gateway — MCP PEP</title>
+  <link rel="stylesheet" href="/docs/css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="/docs/index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="/docs/product/index.html">Product</a>
+        <a href="/docs/solutions/index.html">Solutions</a>
+        <a href="/docs/docs/index.html">Docs</a>
+        <a href="/docs/resources/index.html">Resources</a>
+        <a href="/docs/pricing/index.html">Pricing</a>
+        <a href="/docs/trust/index.html">Trust</a>
+        <a href="/docs/about/index.html">Company</a>
+        <a href="/docs/demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="padding:48px 0 16px">
+    <h1>ARIA Gateway — MCP PEP</h1>
+    <p style="color:#9ba3b7;max-width:860px">Policy enforcement at the agent→tool boundary. Verifies ARIA Passports, enforces policy before execution, and emits receipts on permit.</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Overview</h2>
+    <ul>
+      <li>Ingress: <code>POST /mcp/{tool_id}</code></li>
+      <li>Normalizes PDP responses into enforceable constraints</li>
+      <li>Executes obligations (receipts, analytics) on permit</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Boundary enforcement</h2>
+    <ul>
+      <li>Identity binding via pairwise <code>sub</code> and <code>act.sub</code>; optional PoP (DPoP) downstream (roadmap)</li>
+      <li>Schema pins with rollout grace windows</li>
+      <li>Params and egress allowlists</li>
+      <li>Plan‑step checks against signed plan JWS</li>
+      <li>Budget gating with idempotent debit per <code>call_id</code>; 402 on exceed</li>
+      <li>Inbound shaping: redaction, rails injection, token/byte caps, data_scope tagging</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Example ingress (shape)</h2>
+    <pre><code>{
+  "args": {"amount": "12.34", "q": "SFO"},
+  "instruction": "search for flights",
+  "sql": null
+}</code></pre>
+    <p>On deny, returns a standard HTTP error with reason code (e.g., <code>egress_denied</code>, <code>plan_step_violation</code>, <code>budget_exceeded</code>).</p>
+  </section>
+
+  <section class="container" style="padding-bottom:16px">
+    <h2>Obligations and receipts</h2>
+    <ul>
+      <li>Signed, hash‑chained receipts include policy snapshot, schema hash, params hash, linkage to previous receipt</li>
+      <li>Analytics tee with constraints fingerprints and timings (no token bodies)</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:32px">
+    <h2>Interoperability</h2>
+    <ul>
+      <li>Works with any AuthZEN‑compatible PDP</li>
+      <li>Consumes Tool Registry pins (ETag‑friendly)</li>
+      <li>Emits receipts to the Receipt Vault</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="/docs/docs/index.html" class="btn">Read docs</a>
+    <a href="/docs/resources/index.html#demo" class="btn" style="margin-left:12px">Watch the demo</a>
+  </section>
+</body>
+</html>
+
