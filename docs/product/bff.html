@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BFF â€” Spending Control</title>
+  <title>BFF — Spending Control</title>
   <link rel="stylesheet" href="../css/fabric.css" />
 </head>
 <body>
@@ -24,16 +24,16 @@
   </nav>
 
   <section class="container" style="padding:48px 0 16px">
-    <h1>BFF â€” Spending Control for AI Providers</h1>
-    <p style="color:#9ba3b7;max-width:860px">Dropâ€‘in provider proxy that enforces PDP constraints while streaming. Debits budget idempotently and settles signed receipts on completion.</p>
+    <h1>BFF — Spending Control for AI Providers</h1>
+    <p style="color:#9ba3b7;max-width:860px">Drop‑in provider proxy that enforces PDP constraints while streaming. Debits budget idempotently and settles signed receipts on completion.</p>
   </section>
 
   <section class="container" style="padding-bottom:16px">
-    <h2>Streamâ€‘time enforcement</h2>
+    <h2>Stream‑time enforcement</h2>
     <ul>
       <li>Live token/output caps guide the streaming loop</li>
-      <li>Early stop with policyâ€‘driven warning when limits are reached</li>
-      <li>Preserves providerâ€‘native SSE shape to the client</li>
+      <li>Early stop with policy‑driven warning when limits are reached</li>
+      <li>Preserves provider‑native SSE shape to the client</li>
     </ul>
   </section>
 
@@ -48,9 +48,9 @@
   <section class="container" style="padding-bottom:16px">
     <h2>Budget hold/settle</h2>
     <ul>
-      <li>Perâ€‘agent budget is debited idempotently using <code>call_id</code> at invocation time</li>
+      <li>Per‑agent budget is debited idempotently using <code>call_id</code> at invocation time</li>
       <li>On retries, additional debits are 0; on exceed, return <code>402 budget_exceeded</code></li>
-      <li>On success, emit a signed, hashâ€‘chained receipt (policy snapshot, schema hash, params hash)</li>
+      <li>On success, emit a signed, hash‑chained receipt (policy snapshot, schema hash, params hash)</li>
     </ul>
   </section>
 
@@ -68,5 +68,6 @@
   </section>
     <script src="../js/pages-fix.js"></script></body>
 </html>
+
 
 
