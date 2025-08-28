@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARIA — Agent Risk & Identity Authorization (Two‑Pager)</title>
+  <link rel="stylesheet" href="../css/fabric.css" />
+  <meta name="description" content="Two‑page overview of ARIA: seven cryptographic controls for AI agent security—user‑bound identities, capability proofs, plan contracts, context binding, tool attestation, behavioral DNA, and receipt chains." />
+  <style>
+    :root { --cyan:#00E7F6; --primary:#6C4CFF; --navy:#0B1C3D; --slate:#9ba3b7; --white:#fff; }
+    body { background:#0B1C3D; color:#fff; font-family: Inter, -apple-system, sans-serif; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .hero { padding: 64px 0 24px; text-align: center; }
+    .hero h1 { font-size: 44px; margin: 0 0 8px; }
+    .hero h1 .gradient { background: linear-gradient(135deg, var(--cyan), var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { color: var(--slate); font-size: 18px; max-width: 780px; margin: 8px auto 0; }
+    .accent-rule { width:80px; height:3px; background: linear-gradient(90deg, var(--cyan), var(--primary)); border-radius:2px; margin:16px auto; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2,1fr); gap:24px; }
+    .card { background: rgba(11,28,61,0.8); border:1px solid rgba(0,231,246,0.3); border-radius:16px; padding:20px; }
+    h2 { font-size: 28px; margin: 0 0 12px; }
+    h3 { font-size: 18px; margin: 0 0 8px; }
+    p, li { color:#cbd5e1; }
+    ul { margin: 8px 0 0 18px; }
+    .tag { display:inline-block; font-size:11px; border:1px solid rgba(0,231,246,0.4); color:#9be8f1; padding:2px 8px; border-radius:10px; margin-left:8px }
+    .kpis { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; margin-top:12px }
+    .kpi { text-align:center; }
+    .kpi h3 { font-size:28px; background: linear-gradient(135deg, var(--cyan), var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:4px }
+    .muted { color: var(--slate); font-size: 12px }
+    .flow { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px }
+    .node { padding:10px 12px; border:1px solid rgba(0,231,246,0.5); border-radius:10px; font-size:13px; background: rgba(0,231,246,0.08) }
+    .section { padding: 28px 0; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:700; margin-left:6px }
+    .pill.cyan { background: var(--cyan); color:#0B1C3D }
+    .pill.gray { background: #44464A; color:#fff }
+    /* Print */
+    @media print {
+      body { background:#fff; color:#000 }
+      .card { background:#fff; border:1px solid #ddd }
+      .hero h1 .gradient { -webkit-text-fill-color: initial; background: none; color:#000 }
+      .accent-rule { background:#000 }
+      .page-break { page-break-before: always; }
+      a[href]:after { content: "" !important; }
+    }
+    /* Mobile */
+    @media(max-width: 900px){ .grid-2 { grid-template-columns: 1fr } .kpis { grid-template-columns: repeat(2,1fr) } }
+  </style>
+</head>
+<body>
+  <section class="hero container">
+    <h1><span class="gradient">ARIA</span> — Agent Risk & Identity Authorization</h1>
+    <p class="subtitle">Seven cryptographic controls that let enterprises run AI agents with **provable** safety: user‑bound identities, capability proofs, plan contracts, context binding, tool attestation, behavioral DNA, and tamper‑evident receipt chains.</p>
+    <div class="accent-rule"></div>
+    <div class="kpis">
+      <div class="kpi"><h3>7</h3><div class="muted">Coordinated controls</div></div>
+      <div class="kpi"><h3>0</h3><div class="muted">Secrets exposed</div></div>
+      <div class="kpi"><h3>≤20 ms</h3><div class="muted">PDP decision time</div></div>
+      <div class="kpi"><h3>100%</h3><div class="muted">Receipt coverage</div></div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>The Problem ARIA Solves</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Traditional controls assume predictable apps</h3>
+        <ul>
+          <li>Emergent agent behavior at machine speed</li>
+          <li>Static scopes lead to over‑permissioning or paralysis</li>
+          <li>Prompt/context manipulation bypasses intent</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>ARIA outcomes</h3>
+        <ul>
+          <li>User‑bound isolation per agent instance</li>
+          <li>Least disclosure: one capability proof per call</li>
+          <li>Pre‑signed plans with hard spend limits</li>
+          <li>Tool/version attested before execution</li>
+          <li>Tamper‑evident receipts for every decision</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow" aria-label="aria-controls">
+      <div class="node">1. User‑Bound Identity</div>
+      <div class="node">2. Capability Proof</div>
+      <div class="node">3. Plan Contract</div>
+      <div class="node">4. Context Binding</div>
+      <div class="node">5. Tool Attestation</div>
+      <div class="node">6. Behavioral DNA</div>
+      <div class="node">7. Receipt Chain</div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Seven Controls — Plain Language</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>1) User‑Bound Agent Identity</h3>
+        <p>Each agent instance is cryptographically tied to one user—eliminates cross‑user data leaks and clarifies accountability.</p>
+      </div>
+      <div class="card">
+        <h3>2) Tool Schema Attestation</h3>
+        <p>Only call approved tool versions; schema hashes must match or calls fail closed.</p>
+      </div>
+      <div class="card">
+        <h3>3) Capability Proofs</h3>
+        <p>Prove the one permission you’re using (e.g., refund.issue) without revealing your full capability set.</p>
+      </div>
+      <div class="card">
+        <h3>4) Plan Contracts</h3>
+        <p>Pre‑signed steps with parameter fingerprints and hard budget caps prevent “off‑script” behavior.</p>
+      </div>
+      <div class="card">
+        <h3>5) Context‑Root Binding</h3>
+        <p>Fingerprint trusted inputs (prompts, policy text, prior outputs); if they change, execution stops.</p>
+      </div>
+      <div class="card">
+        <h3>6) Behavioral DNA</h3>
+        <p>Behavioral baselines detect agent drift and compromise; enforce, alert, or require re‑auth.</p>
+      </div>
+      <div class="card">
+        <h3>7) Receipt Chains</h3>
+        <p>Signed, hash‑linked receipts create a tamper‑evident audit for every allow/deny.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <section class="container section">
+    <h2>Solutions Delivered</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>AI Agent Delegation</h3>
+        <ul>
+          <li>User‑bound agents with spend caps and expiry</li>
+          <li>Capability proofs + plan contracts per step</li>
+          <li>Receipts for every operation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>SaaS Tenant Isolation</h3>
+        <ul>
+          <li>Relationship + attribute rules via PDP (AuthZEN)</li>
+          <li>Context binding and attestation proofs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>API Governance</h3>
+        <ul>
+          <li>Constraints the PEP enforces (rate/geo/quota)</li>
+          <li>Batch PDP evaluation with explainable outcomes</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Zero‑Trust Operations</h3>
+        <ul>
+          <li>Re‑evaluate on every call (AuthZEN boolean)</li>
+          <li>OTEL tracing + Prometheus metrics + Receipts</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Why ARIA is Different</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Cryptographic Guarantees, not best‑effort logs</h3>
+        <p>Mathematical verification at decision time; evidence anchored and verifiable.</p>
+      </div>
+      <div class="card">
+        <h3>Standards‑Aligned</h3>
+        <p>AuthZEN (OpenID), OAuth Token Exchange, RAR, optional DPoP; PDP remains boolean‑only.</p>
+      </div>
+      <div class="card">
+        <h3>Privacy‑Preserving by Design</h3>
+        <p>No prompts or PII stored—only hashes, ids, and small scalars.</p>
+      </div>
+      <div class="card">
+        <h3>Portable & Composable</h3>
+        <p>Drop‑in with existing IdP/PDP, gateways, Vault; hybrid‑cloud ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Quantified Impact</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Agent WRITE enablement</h3>
+        <p><strong>Before:</strong> Read‑only POCs → <strong>With ARIA:</strong> Policy‑gated CRUD</p>
+      </div>
+      <div class="card">
+        <h3>Integration speed</h3>
+        <p><strong>Before:</strong> 4–6 weeks → <strong>With ARIA:</strong> 2–3 days</p>
+      </div>
+      <div class="card">
+        <h3>Audit effort</h3>
+        <p><strong>Before:</strong> 5 FTE/qtr → <strong>With ARIA:</strong> 0.5 FTE</p>
+      </div>
+      <div class="card">
+        <h3>Secrets risk</h3>
+        <p><strong>Before:</strong> Static creds everywhere → <strong>With ARIA:</strong> Vault‑native dynamic secrets</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" style="padding-bottom:40px">
+    <h2>See It Live</h2>
+    <p>Explore capability proofs, plan contracts, and receipt chains in the product demo.</p>
+    <p><a class="btn btn-primary" href="../resources/demo.html">Watch the 10‑min Demo →</a></p>
+  </section>
+  <script src="../js/pages-fix.js"></script></body>
+  </html>
+
+

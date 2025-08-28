@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EmpowerNow — Identity Fabric Two‑Pager</title>
+  <link rel="stylesheet" href="../css/fabric.css" />
+  <style>
+    :root { --cyan:#00E7F6; --primary:#6C4CFF; --navy:#0B1C3D; --slate:#9ba3b7; --white:#fff; }
+    body { background:#0B1C3D; color:#fff; font-family: Inter, -apple-system, sans-serif; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .hero { padding: 64px 0 24px; text-align: center; }
+    .hero h1 { font-size: 44px; margin: 0 0 8px; }
+    .hero h1 .gradient { background: linear-gradient(135deg, var(--cyan), var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { color: var(--slate); font-size: 18px; max-width: 760px; margin: 8px auto 0; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:12px; font-size:12px; font-weight:700; margin:0 4px; }
+    .pill.cyan { background: var(--cyan); color:#0B1C3D; }
+    .pill.gray { background: #44464A; color:#fff; }
+    .section { padding: 28px 0; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2,1fr); gap:24px; }
+    .card { background: rgba(11,28,61,0.8); border:1px solid rgba(0,231,246,0.3); border-radius:16px; padding:20px; }
+    h2 { font-size: 28px; margin: 0 0 12px; }
+    h3 { font-size: 18px; margin: 0 0 8px; }
+    p, li { color:#cbd5e1; }
+    ul { margin: 8px 0 0 18px; }
+    .tag { display:inline-block; font-size:11px; border:1px solid rgba(0,231,246,0.4); color:#9be8f1; padding:2px 8px; border-radius:10px; margin-left:8px }
+    .accent-rule { width:80px; height:3px; background: linear-gradient(90deg, var(--cyan), var(--primary)); border-radius:2px; margin:16px auto; }
+    .logo { font-weight:800; color: var(--cyan); text-align:center; margin-bottom:8px }
+    .kpis { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; margin-top:12px }
+    .kpi { text-align:center; }
+    .kpi h3 { font-size:28px; background: linear-gradient(135deg, var(--cyan), var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom:4px }
+    .muted { color: var(--slate); font-size: 12px }
+    /* Print */
+    @media print {
+      body { background:#fff; color:#000 }
+      .card { background:#fff; border:1px solid #ddd }
+      .hero h1 .gradient { -webkit-text-fill-color: initial; background: none; color:#000 }
+      .accent-rule { background:#000 }
+      .page-break { page-break-before: always; }
+      a[href]:after { content: "" !important; }
+    }
+    /* Mobile */
+    @media(max-width: 900px){ .grid-2 { grid-template-columns: 1fr } .kpis { grid-template-columns: repeat(2,1fr) } }
+  </style>
+  <meta name="description" content="Two‑page overview of EmpowerNow Identity Fabric: Authentication, Authorization, Automation, and Analytics—standards‑driven, AI‑native, and provable." />
+  <meta property="og:title" content="EmpowerNow — Identity Fabric Two‑Pager" />
+  <meta property="og:description" content="Standards‑driven Identity Fabric that unifies Auth, AuthZ, Automation and Analytics." />
+  <link rel="icon" href="../empowernow-logo.svg" />
+  <style>
+    /* Simple mermaid-like visual blocks without external deps */
+    .flow { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px }
+    .flow .node { padding:10px 12px; border:1px solid rgba(0,231,246,0.5); border-radius:10px; font-size:13px; background: rgba(0,231,246,0.08) }
+  </style>
+</head>
+<body>
+  <section class="hero container">
+    <div class="logo">EmpowerNow</div>
+    <h1>Secure every human, service, and agent with one <span class="gradient">Identity & Authorization Fabric</span></h1>
+    <p class="subtitle">Zero‑token SPAs via BFF, OpenID <strong>AuthZEN</strong> decisions in <strong><20 ms</strong>, and policy‑guarded <strong>Automation</strong>. Built on standards (OAuth TE, RAR, DPoP, MCP) with full observability.</p>
+    <div class="accent-rule"></div>
+    <div class="kpis">
+      <div class="kpi"><h3>~12 ms</h3><div class="muted">Median PDP eval</div></div>
+      <div class="kpi"><h3>100+</h3><div class="muted">Connectors</div></div>
+      <div class="kpi"><h3>0</h3><div class="muted">Tokens in browser</div></div>
+      <div class="kpi"><h3>1</h3><div class="muted">Fabric, many clouds</div></div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>What EmpowerNow Is</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Identity Fabric Control Plane <span class="tag">Standards‑Driven</span></h3>
+        <p>API‑first control plane that unifies <strong>Authentication</strong>, <strong>Authorization</strong>, <strong>Automation</strong>, and <strong>Analytics</strong>. Composable, portable, and provable.</p>
+        <ul>
+          <li>Zero‑token SPAs with <strong>BFF</strong> session termination</li>
+          <li><strong>AuthZEN</strong>‑compliant PDP with explainability</li>
+          <li>Policy‑guarded workflows; constraints vs obligations</li>
+          <li>Event‑native analytics (Kafka → ClickHouse)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Studios & Services</h3>
+        <ul>
+          <li><strong>Authentication Studio</strong> — Passkeys, adaptive risk, FAPI 2.0</li>
+          <li><strong>Authorization Studio</strong> — AuthZEN PDP, batch eval, diagrams</li>
+          <li><strong>Automation Studio</strong> — No‑code graphs, MCP tools, Vault‑native</li>
+          <li><strong>Inventory Studio</strong> — Universal collector, policy‑gated writes</li>
+          <li><strong>Analytics</strong> — API layer for SPAs, Learning Mode</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Why It Matters — Problems We Solve</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Modern app auth is fragile</h3>
+        <ul>
+          <li>SPAs leak tokens; inconsistent gateway patterns</li>
+          <li>AuthZ logic scattered across services</li>
+          <li>AI agents lack safe WRITE capabilities</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>EmpowerNow outcomes</h3>
+        <ul>
+          <li>Zero‑token SPAs via <strong>BFF</strong> and ForwardAuth</li>
+          <li>Central, explainable <strong>PDP</strong> with batch evaluation</li>
+          <li>Policy‑guarded <strong>Automation</strong> with cryptographic receipts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow" aria-label="fabric-loop">
+      <div class="node">Zero‑token SPAs (BFF)</div>
+      <div class="node">AuthZEN PDP <20 ms</div>
+      <div class="node">Policy‑guarded Automation</div>
+      <div class="node">Event‑native Analytics</div>
+      <div class="node">Hybrid Connectivity</div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>What Makes Us Different</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>AI‑Native Delegation</h3>
+        <p>Delegation graphs for user‑bound agents with spend caps and expiry; MCP‑aware enforcement.</p>
+        <ul>
+          <li>CONTROLLED_BY edges, constraints, obligations</li>
+          <li>Signed, hash‑chained <strong>receipts</strong> for audit</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Performance & Explainability</h3>
+        <ul>
+          <li>Batch evaluation endpoint (~12 ms median)</li>
+          <li>Mermaid‑style decision diagrams</li>
+          <li>Prometheus metrics and OTEL traces</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Zero‑Trust by Default</h3>
+        <ul>
+          <li>FAPI 2.0 tokens; OAuth TE, RAR, optional DPoP</li>
+          <li>Session‑bound BFF, gateway PEP integration</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Portable, Swap‑Friendly</h3>
+        <ul>
+          <li>Standards first; no proprietary policy lock‑in</li>
+          <li>Hybrid patterns (Azure Relay, on‑prem without inbound ports)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <section class="container section">
+    <h2>Studios Overview — At a Glance</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Authorization Studio <span class="pill cyan">Lead Engine</span></h3>
+        <ul>
+          <li>OpenID AuthZEN Draft 3‑compliant PDP</li>
+          <li>Delegation graphs; batch eval; explainable decisions</li>
+          <li>Learning Mode to compare decisions safely</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Automation Studio</h3>
+        <ul>
+          <li>Graph orchestration engine (ACTION/FORM/APPROVAL)</li>
+          <li>MCP tools in/out; Vault dynamic secrets</li>
+          <li>Policy‑gated writes; Mermaid audit graphs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Authentication Studio <span class="pill gray">Optional</span></h3>
+        <ul>
+          <li>Passkeys, adaptive risk, FAPI 2.0 profile</li>
+          <li>Fine‑grained OBO & EMT tokens for agents</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Inventory Studio</h3>
+        <ul>
+          <li>100+ connectors; hash‑based delta detection</li>
+          <li>Policy‑gated writes; visual diffs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Where It Fits — Common Use Cases</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>AI Agent Delegation</h3>
+        <p>Give agents scoped WRITE with spend caps, velocity checks, and audit obligations.</p>
+      </div>
+      <div class="card">
+        <h3>SaaS Multi‑Tenant Isolation</h3>
+        <p>Relationship + attribute rules in YAML; hot‑reload policies with structured logs.</p>
+      </div>
+      <div class="card">
+        <h3>API Governance</h3>
+        <p>Constraints that gateways enforce (rate, geo, quota) with batch PDP calls.</p>
+      </div>
+      <div class="card">
+        <h3>Zero‑Trust Continuous Auth</h3>
+        <p>Re‑evaluate on every request; Token Exchange + observability for compliance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>Quantified Impact</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Time to integrate new API</h3>
+        <p><strong>Today:</strong> 4–6 weeks → <strong>With EmpowerNow:</strong> 2–3 days</p>
+      </div>
+      <div class="card">
+        <h3>Agent WRITE capability</h3>
+        <p><strong>Today:</strong> Read‑only POCs → <strong>With EmpowerNow:</strong> Policy‑gated CRUD</p>
+      </div>
+      <div class="card">
+        <h3>Static service credentials</h3>
+        <p><strong>Today:</strong> ~100k → <strong>With EmpowerNow:</strong> Replaced by Vault</p>
+      </div>
+      <div class="card">
+        <h3>Audit prep (bot ops)</h3>
+        <p><strong>Today:</strong> 5 FTE/qtr → <strong>With EmpowerNow:</strong> 0.5 FTE</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" style="padding-bottom:40px">
+    <h2>Get the Full Demo</h2>
+    <p>Watch a 10‑minute demo of the Authorization Studio and Automation Studio in action.</p>
+    <p><a class="btn btn-primary" href="../resources/demo.html">Watch the 10‑min Demo →</a></p>
+  </section>
+  <script src="../js/pages-fix.js"></script></body>
+</html>
+
+
