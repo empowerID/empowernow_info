@@ -1,7 +1,17 @@
 :root {
-  --purple: #6C4CFF;
-  --cyan: #00E7F6;
-  --navy: #0B1C3D;
+  /* NeonFlux brand tokens (aligned to @empowernow/ui) */
+  --color-bg: #0E0E10;
+  --color-primary: #6C4CFF; /* quantum violet */
+  --color-secondary: #B326FF; /* ultraviolet magenta */
+  --color-accent: #00E7F6; /* pulse cyan */
+  --color-success: #B6FF3C; /* ion lime */
+  --color-warning: #FFC266; /* signal amber */
+  --color-surface: rgba(255,255,255,0.06); /* glass frost */
+
+  /* Legacy aliases kept for backwards compat in existing pages */
+  --purple: var(--color-primary);
+  --cyan: var(--color-accent);
+  --navy: #0B1C3D; /* deep space blue */
   --slate: #8891A5;
   --white: #FFFFFF;
   --error: #FF5F5F;
@@ -9,8 +19,17 @@
   --neutral-900: var(--navy);
   --neutral-700: rgba(11, 28, 61, 0.8);
   --neutral-400: var(--slate);
+  --deep-space-blue: var(--navy);
+
+  /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--cyan) 0%, #2FE7F6 100%);
   --gradient-accent: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+
+  /* Spacing & radii */
+  --spacing-1: 8px;
+  --radius-sm: 4px;
+  --radius-card: 12px;
+  --radius-modal: 12px;
 }
 
 body {
@@ -28,3 +47,30 @@ a:hover { text-decoration: underline; }
 /* Top nav links */
 nav a { color: rgba(255,255,255,.9); }
 nav a:hover { color: var(--cyan); }
+
+/* Unified navbar styling */
+nav .nav-links { display:flex; gap:20px; align-items:center; flex-wrap:nowrap; list-style:none; margin:0; padding:0 }
+nav .nav-links a { white-space: nowrap; font-size: 15px }
+@media (max-width:1200px){ nav .nav-links { gap:16px } nav .nav-links a{ font-size:14px } }
+@media (max-width:992px){ nav .nav-links { overflow-x:auto; scrollbar-width:none } nav .nav-links::-webkit-scrollbar{ display:none } }
+
+/* Buttons */
+.btn { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600; border:1px solid rgba(255,255,255,.18); color:var(--white) }
+.btn:hover { text-decoration:none }
+.btn-primary { background: var(--cyan); color: var(--navy); box-shadow: 0 6px 22px rgba(0,231,246,.25) }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,231,246,.35) }
+.btn-secondary { background: transparent; border:1px solid var(--cyan); color: var(--cyan) }
+.btn-secondary:hover { background: rgba(0,231,246,.1); box-shadow: 0 4px 18px rgba(0,231,246,.25) }
+
+/* Focus-visible accessibility */
+:where(:focus-visible) { outline: 2px solid var(--cyan); outline-offset: 2px }
+
+/* Glass Header (design system utility) */
+.glass-header { background: rgba(11, 28, 61, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 231, 246, 0.2); height: 64px }
+
+/* Glass Card (design system utility) */
+.glass-card { background: rgba(11, 28, 61, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: var(--radius-card); box-shadow: 0 4px 20px rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.1); position: relative; overflow: hidden }
+.glass-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(to right, transparent, var(--cyan), transparent) }
+
+/* Containers */
+.container { max-width: 960px; margin: 0 auto; padding: 0 24px }
