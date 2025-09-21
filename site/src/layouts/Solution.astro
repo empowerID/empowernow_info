@@ -1,5 +1,6 @@
 ---
 interface FAQ { q: string; a: string }
+interface CTA { label: string; href: string }
 interface Props {
 	title: string;
 	description: string;
@@ -7,6 +8,8 @@ interface Props {
 	headline: string;
 	outcomes?: string[];
 	faq?: FAQ[];
+	primaryCTA?: CTA;
+	secondaryCTA?: CTA;
 }
 const p = Astro.props as Props;
 const faqJson = p.faq && p.faq.length ? {
@@ -27,6 +30,10 @@ const faqJson = p.faq && p.faq.length ? {
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
 			<header class="container" style="padding:72px 0 24px">
 				<h1 class="display">{p.headline}</h1>
+				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`}>{p.primaryCTA.label}</a>}
+					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`}>{p.secondaryCTA.label}</a>}
+				</div>
 			</header>
 			{p.outcomes && p.outcomes.length > 0 && (
 				<section class="container" style="padding:8px 0 24px">

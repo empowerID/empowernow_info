@@ -1,5 +1,5 @@
 ---
-const { title = 'EmpowerNow', description = 'Identity & Authorization Fabric', canonical = '/', ogImage } = Astro.props as any;
+const { title = 'EmpowerNow', description = 'Identity & Authorization Fabric', canonical = '/', ogImage, hreflangs } = Astro.props as any;
 import '../styles/tokens.css';
 import '../styles/utilities.css';
 ---
@@ -11,6 +11,7 @@ import '../styles/utilities.css';
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={new URL(canonical, Astro.site)} />
+		{hreflangs && hreflangs.map((h: { href: string; lang: string }) => <link rel="alternate" hrefLang={h.lang} href={h.href} />)}
 		<link rel="icon" href="/favicon.svg" />
 		{ogImage && <meta property="og:image" content={ogImage} />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -11,6 +11,7 @@ interface Props {
 	primaryCTA?: CTA;
 	secondaryCTA?: CTA;
 	jsonLdProduct?: Record<string, any>;
+	proofTitle?: string;
 }
 const p = Astro.props as Props;
 ---
@@ -31,8 +32,8 @@ const p = Astro.props as Props;
 					<p style="color:#9ba3b7;margin:8px 0 0">For: {p.targetICP.join(', ')}</p>
 				)}
 				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href}>{p.primaryCTA.label}</a>}
-					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href}>{p.secondaryCTA.label}</a>}
+					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`}>{p.primaryCTA.label}</a>}
+					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`}>{p.secondaryCTA.label}</a>}
 				</div>
 			</section>
 			{p.keyBenefits && p.keyBenefits.length > 0 && (
@@ -44,6 +45,7 @@ const p = Astro.props as Props;
 				</section>
 			)}
 			<slot name="how" />
+			{p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
 			<slot name="proof" />
 			<slot name="related" />
 		</Base>
