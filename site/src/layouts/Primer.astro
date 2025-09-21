@@ -1,0 +1,28 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	canonical: string;
+}
+const p = Astro.props as Props;
+---
+<html lang="en">
+	<head>
+		<title>{p.title}</title>
+		<meta name="description" content={p.description} />
+		<link rel="canonical" href={new URL(p.canonical, Astro.site)} />
+	</head>
+	<body>
+		<import Base from './Base.astro' />
+		<Base title={p.title} description={p.description} canonical={p.canonical}>
+			<section class="container" style="padding:48px 0 24px">
+				<h1>{p.title}</h1>
+				<slot name="what" />
+				<slot name="why" />
+				<slot name="how" />
+				<slot name="pitfalls" />
+				<slot name="learn" />
+			</section>
+		</Base>
+	</body>
+</html>

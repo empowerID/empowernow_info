@@ -1,0 +1,44 @@
+---
+interface FAQ { q: string; a: string }
+interface Props {
+	title: string;
+	description: string;
+	canonical: string;
+	headline: string;
+	outcomes?: string[];
+	faq?: FAQ[];
+}
+const p = Astro.props as Props;
+const faqJson = p.faq && p.faq.length ? {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: p.faq.map(f => ({"@type":"Question", name: f.q, acceptedAnswer: {"@type":"Answer", text: f.a}}))
+} : null;
+---
+<html lang="en">
+	<head>
+		<title>{p.title}</title>
+		<meta name="description" content={p.description} />
+		<link rel="canonical" href={new URL(p.canonical, Astro.site)} />
+		{faqJson && <script type="application/ld+json">{JSON.stringify(faqJson)}</script>}
+	</head>
+	<body>
+		<import Base from './Base.astro' />
+		<Base title={p.title} description={p.description} canonical={p.canonical}>
+			<header class="container" style="padding:72px 0 24px">
+				<h1 class="display">{p.headline}</h1>
+			</header>
+			{p.outcomes && p.outcomes.length > 0 && (
+				<section class="container" style="padding:8px 0 24px">
+					<h2 class="section-title">Outcomes</h2>
+					<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+						{p.outcomes.map((o) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{o}</div>)}
+					</div>
+				</section>
+			)}
+			<slot name="how" />
+			<slot name="standards" />
+			<slot name="related" />
+		</Base>
+	</body>
+</html>
