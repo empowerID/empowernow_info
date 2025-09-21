@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARIA Shield — Agent Risk & Identity Authorization</title>
   <meta name="description" content="ARIA Shield puts provable guardrails on AI agents and LLMs: schema pins, plan contracts, stream‑time enforcement, and signed receipts." />
+  <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/product/aria.html" />
   <link rel="stylesheet" href="../css/fabric.css" />
   <script type="application/ld+json">
   {
@@ -43,7 +44,7 @@
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-primary" href="../resources/index.html#demo">Watch 10‑minute demo</a>
           <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/">See Standards</a>
-          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md">Read the tech</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway">Read the tech</a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -119,12 +120,31 @@
   <section class="container" style="padding:16px 0 48px">
     <h2 class="section-title">Learn more</h2>
     <div class="grid-2">
-      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md">
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway">
         <div class="card"><h3>Gateway deep dive</h3><p>Technical guide to PDP constraints, enforcement, and receipts.</p></div>
       </a>
-      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway_technical.md">
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway_technical">
         <div class="card"><h3>Authorization & receipts</h3><p>Kafka metrics, deny paths, and dashboard/alerts.</p></div>
       </a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/">
+        <div class="card"><h3>AuthZEN PDP</h3><p>Decisions with constraints and obligations for APIs and agents.</p></div>
+      </a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/idp/">
+        <div class="card"><h3>IdP & Passports</h3><p>Pairwise identities, schema pins, and optional plan contracts.</p></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 40px">
+    <div class="glass-card" style="padding:24px">
+      <h2 style="margin-top:0">How ARIA fits</h2>
+      <p>Passports flow from the IdP to Gateway and BFF. PDP decisions drive constraints and obligations. Receipts make every action provable.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="../product/gateway.html">MCP Gateway</a>
+        <a class="btn" href="../product/bff.html">BFF</a>
+        <a class="btn" href="../product/pdp.html">PDP</a>
+        <a class="btn" href="../product/idp.html">IdP</a>
+      </div>
     </div>
   </section>
 
