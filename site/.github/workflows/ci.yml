@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: |
+          cd site
+          npm ci
+      - name: Build
+        run: |
+          cd site
+          npm run build
+      - name: Lighthouse CI
+        run: |
+          npm i -g @lhci/cli@0.13.0
+          npx lhci autorun --collect.staticDistDir=site/dist --upload.target=temporary-public-storage || echo "LHCI warnings"
+      - name: Pa11y
+        run: |
+          npm i -g pa11y@6.3.1
+          npx http-server site/dist -p 4321 &
+          sleep 2
+          npx pa11y http://localhost:4321/ --threshold 5

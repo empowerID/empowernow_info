@@ -1,10 +1,11 @@
 ---
 interface Props { logos: Array<{ alt: string; src: string }>; title?: string }
 const p = Astro.props as Props;
+import ResponsiveImg from './ResponsiveImg.astro';
 ---
 <section class="container" style="padding:16px 0">
 	{p.title && <h2 class="section-title">{p.title}</h2>}
 	<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px;align-items:center;opacity:.85">
-		{p.logos.map(l => <img src={l.src} alt={l.alt} style="max-height:34px;object-fit:contain;filter:grayscale(100%)" />)}
+		{p.logos.map(l => <ResponsiveImg src={l.src} alt={l.alt} style="max-height:34px;object-fit:contain;filter:grayscale(100%)" />)}
 	</div>
 </section>
