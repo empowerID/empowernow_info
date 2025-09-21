@@ -34,7 +34,13 @@ const faqJson = p.faq && p.faq.length ? {
 		<import CrossSiteLinks from '../components/CrossSiteLinks.astro' />
 		<import RelatedContent from '../components/RelatedContent.astro' />
 		<import { relatedFor } from '../lib/keywords' />
+		<import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro' />
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
+			<BreadcrumbsJsonLd items={[
+				{ name: 'Home', item: new URL('/', Astro.site).toString() },
+				{ name: 'Solutions', item: new URL('/solutions/', Astro.site).toString() },
+				{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
+			]} />
 			<header class="container" style="padding:72px 0 24px">
 				<h1 class="display">{p.headline}</h1>
 				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">

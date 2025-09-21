@@ -31,7 +31,13 @@ const p = Astro.props as Props;
 		<import CrossSiteLinks from '../components/CrossSiteLinks.astro' />
 		<import RelatedContent from '../components/RelatedContent.astro' />
 		<import { relatedFor } from '../lib/keywords' />
+		<import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro' />
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
+			<BreadcrumbsJsonLd items={[
+				{ name: 'Home', item: new URL('/', Astro.site).toString() },
+				{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
+				{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
+			]} />
 			<section class="container" style="padding:72px 0 32px">
 				<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 				{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
