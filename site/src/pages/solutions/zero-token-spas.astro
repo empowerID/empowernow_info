@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
+import CrossSiteLinks from '../../components/CrossSiteLinks.astro';
 const title = 'Zero‑Token SPAs — Secure by Design';
 const description = 'Move tokens out of the browser. Use a BFF to deliver session UX, AuthZEN policy, stream-time caps, and signed receipts.';
 const canonical = '/solutions/zero-token-spas/';
@@ -21,6 +22,13 @@ const canonical = '/solutions/zero-token-spas/';
 		</fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/products/aria-shield/',label:'ARIA Shield'},{href:'/resources/',label:'Resources'}]} />
+			<CrossSiteLinks docsLinks={[
+				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' },
+				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway/', label: 'BFF Gateway' }
+			]} wwwLinks={[
+				{ href: '/products/aria-shield/', label: 'ARIA Shield' },
+				{ href: '/deep-dives/', label: 'Deep Dives' }
+			]} />
 		</fragment>
 	</Solution>
 </Base>
