@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Solution from '../../layouts/Solution.astro';
+const title = 'Hybrid Connectivity — Connect with Control';
+const description = 'Use Orchestration + Registry + PDP to connect cloud and on‑prem systems with policy‑aware flows and observability.';
+const canonical = '/solutions/hybrid-connectivity/';
+---
+<Base title={title} description={description} canonical={canonical}>
+	<Solution title={title} description={description} canonical={canonical} headline="Hybrid Connectivity" outcomes={[ 'Connect faster', 'Enforce policy', 'Observe end‑to‑end' ]} docsLinks={[]} wwwLinks={[ { href: '/products/orchestration/', label: 'Orchestration' }, { href: '/products/registry/', label: 'Tool Registry' }, { href: '/products/pdp/', label: 'AuthZEN PDP' } ]} keywords={[ 'authzen' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<p style="color:#9ba3b7">Compose flows that call across networks and systems; every step checked by policy; outputs observed and receipted.</p>
+			</section>
+		</fragment>
+	</Solution>
+</Base>
