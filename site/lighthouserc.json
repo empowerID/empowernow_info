@@ -1,7 +1,10 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "dist"
+      "staticDistDir": "dist",
+      "settings": {
+        "budgetsPath": "./budgets.json"
+      }
     },
     "assert": {
       "assertions": {
