@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Collector — Spend & Outcomes Analytics</title>
+  <meta name="description" content="Real‑time receipts, spend, and outcomes analytics for AI usage. Ingests signed receipts and events to power KPIs, budgets, and governance." />
+  <link rel="stylesheet" href="../css/fabric.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"EmpowerNow Data Collector","brand":{"@type":"Brand","name":"EmpowerNow"},"description":"Real‑time receipts, spend, and outcomes analytics for AI usage. Ingests signed receipts and events to power KPIs, budgets, and governance.","url":"https://empowerid.github.io/empowernow_info/docs/product/data-collector.html"}
+  </script>
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../product/index.html">Product</a>
+        <a href="../product/aria.html">ARIA Shield</a>
+        <a href="../solutions/index.html">Solutions</a>
+        <a href="../docs/index.html">Docs</a>
+        <a href="../resources/index.html">Resources</a>
+        <a href="../pricing/index.html">Pricing</a>
+        <a href="../trust/index.html">Trust</a>
+        <a href="../about/index.html">Company</a>
+        <a href="../demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container" style="padding:72px 0 32px">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">Data Collector</h1>
+        <p class="lead">See spend, safety, and outcomes in real time. We ingest signed receipts and events from ARIA Shield to power KPIs and governance.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="../resources/index.html#demo">Watch demo</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/caep">CAEP Primer</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/receipt-chains">Receipts</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glass-card" style="padding:24px">
+          <h3 style="margin:0 0 8px">What we measure</h3>
+          <ul class="bullets-small">
+            <li>Spend: holds, debits, settle‑on‑usage</li>
+            <li>Policy: denies by reason, capped tokens/bytes</li>
+            <li>Safety: egress blocks, schema drift catches</li>
+            <li>Outcomes: tasks completed, SLAs, time‑to‑value</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="container" style="padding:24px 0 8px">
+    <h2 class="section-title">Outcomes</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Transparent spend</h3><p>Live dashboards for budget burn and unit economics per team.</p></div>
+      <div class="card"><h3>Operational safety</h3><p>Visibility into denies, caps, and policy hot spots.</p></div>
+      <div class="card"><h3>Business impact</h3><p>Outcome and SLA analytics tied to agent workflows.</p></div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2 class="section-title">Capabilities</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Receipts ingestion</h3><p>Consume signed, hash‑chained receipts from Gateway and BFF.</p></div>
+      <div class="card"><h3>Events & CAEP</h3><p>Track continuous access signals for risk and posture.</p></div>
+      <div class="card"><h3>KPIs & alerts</h3><p>Team dashboards, anomaly detection, and budget alerts.</p></div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2 class="section-title">Example metrics</h2>
+    <pre><code>{
+  "tenant": "acme",
+  "period": "2025-09-01..2025-09-07",
+  "spend": {"usd": 1243.18, "held": 1300.00, "settled": 1211.04},
+  "safety": {"denies": 42, "egress_blocks": 17, "token_caps": 29},
+  "drift": {"schema": 6, "plan_step": 3},
+  "outcomes": {"tasks": 812, "sla_p90_ms": 840, "success_rate": 0.972}
+}</code></pre>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <div class="glass-card" style="padding:24px">
+      <h2 style="margin-top:0">How it fits</h2>
+      <p>Collector listens to receipts and CAEP events. Dashboards show spend and outcomes by team, tool, and policy. Alerts fire on anomalies or budget thresholds.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="../product/bff.html">BFF</a>
+        <a class="btn" href="../product/gateway.html">MCP Gateway</a>
+        <a class="btn" href="../product/receipts.html">Receipt Vault</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© 2025 EmpowerNow</div>
+      <div style="display:flex;gap:16px">
+        <a href="../product/index.html">All products</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/pages-fix.js"></script>
+</body>
+</html>
+
+
