@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
 	site: 'https://empowerid.github.io/empowernow_info',
 	trailingSlash: 'always',
+	build: {
+		outDir: '../docs',
+	},
 	integrations: [
 		mdx(),
 		sitemap({

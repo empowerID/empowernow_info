@@ -1,0 +1,23 @@
+---
+const slug = Astro.params.slug as string;
+const map: Record<string,string> = {
+	'aria': '/products/aria-shield/',
+	'gateway': '/products/gateway/',
+	'pdp': '/products/pdp/',
+	'idp': '/products/idp/',
+	'registry': '/products/registry/',
+	'receipts': '/products/receipts/',
+	'membership': '/products/membership/',
+	'orchestration': '/products/orchestration/',
+};
+const to = map[slug] || '/products/';
+---
+<html>
+	<head>
+		<meta http-equiv="refresh" content={`0; url=${to}`} />
+		<link rel="canonical" href={to} />
+	</head>
+	<body>
+		<a href={to}>Redirecting…</a>
+	</body>
+</html>
