@@ -1,0 +1,11 @@
+{
+  "urls": [
+    "http://localhost:4321/",
+    "http://localhost:4321/products/",
+    "http://localhost:4321/solutions/"
+  ],
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 120000
+  }
+}

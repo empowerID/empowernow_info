@@ -23,11 +23,13 @@ jobs:
           npm run build
       - name: Lighthouse CI
         run: |
-          npm i -g @lhci/cli@0.13.0
-          npx lhci autorun --collect.staticDistDir=site/dist --upload.target=temporary-public-storage || echo "LHCI warnings"
+          npm i -g @lhci/cli@0.13.0 http-server@14.1.1
+          cd site
+          npx http-server dist -p 4321 &
+          sleep 2
+          npx lhci autorun --config=./lighthouserc.json --collect.url=http://localhost:4321/
       - name: Pa11y
         run: |
           npm i -g pa11y@6.3.1
-          npx http-server site/dist -p 4321 &
-          sleep 2
-          npx pa11y http://localhost:4321/ --threshold 5
+          cd site
+          npx pa11y-ci --config ./.pa11yci.json

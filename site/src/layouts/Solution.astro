@@ -1,6 +1,7 @@
 ---
 interface FAQ { q: string; a: string }
 interface CTA { label: string; href: string }
+interface Link { href: string; label: string }
 interface Props {
 	title: string;
 	description: string;
@@ -10,6 +11,8 @@ interface Props {
 	faq?: FAQ[];
 	primaryCTA?: CTA;
 	secondaryCTA?: CTA;
+	docsLinks?: Link[];
+	wwwLinks?: Link[];
 }
 const p = Astro.props as Props;
 const faqJson = p.faq && p.faq.length ? {
@@ -27,12 +30,13 @@ const faqJson = p.faq && p.faq.length ? {
 	</head>
 	<body>
 		<import Base from './Base.astro' />
+		<import CrossSiteLinks from '../components/CrossSiteLinks.astro' />
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
 			<header class="container" style="padding:72px 0 24px">
 				<h1 class="display">{p.headline}</h1>
 				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`}>{p.primaryCTA.label}</a>}
-					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`}>{p.secondaryCTA.label}</a>}
+					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
+					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
 				</div>
 			</header>
 			{p.outcomes && p.outcomes.length > 0 && (
@@ -46,6 +50,7 @@ const faqJson = p.faq && p.faq.length ? {
 			<slot name="how" />
 			<slot name="standards" />
 			<slot name="related" />
+			{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
 		</Base>
 	</body>
 </html>

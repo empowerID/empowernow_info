@@ -6,7 +6,6 @@ import PricingCTA from '../../components/PricingCTA.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import { getVariant } from '../../lib/experiments';
-import CrossSiteLinks from '../../components/CrossSiteLinks.astro';
 const title = 'ARIA Shield — Agent & LLM Guardrails';
 const description = 'Application-aware BFF that enforces AuthZEN constraints, stream-time caps, and cryptographic receipts.';
 const canonical = '/products/aria-shield/';
@@ -16,7 +15,7 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: primaryCtaLabel, href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
+	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: primaryCtaLabel, href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/' }} docsLinks={[{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }]} wwwLinks={[{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' }, { href: '/deep-dives/', label: 'Deep Dives' }]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -34,13 +33,9 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 		</fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'},{href:'/resources/',label:'Resources'}]} />
-			<CrossSiteLinks docsLinks={[
-				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' },
-				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }
-			]} wwwLinks={[
-				{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' },
-				{ href: '/deep-dives/', label: 'Deep Dives' }
-			]} />
 		</fragment>
 	</Product>
+	<script>
+		try { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event: 'experiment_exposure', experiment: 'aria-hero-cta', variant: '{variant}' }); } catch {}
+	</script>
 </Base>
