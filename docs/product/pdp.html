@@ -3,6 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDP — Policy Decision Service</title>
+  <meta name="description" content="Fine‑grained authorization for APIs and agents. Returns allow/deny with constraints and obligations for enforcement across BFF and MCP Gateway." />
+  <link rel="stylesheet" href="../css/fabric.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"EmpowerNow PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":"Policy Decision Point for fine‑grained authorization with constraints and obligations for APIs and AI agents.","url":"https://empowerid.github.io/empowernow_info/docs/product/pdp.html"}
+  </script>
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../product/index.html">Product</a>
+        <a href="../solutions/index.html">Solutions</a>
+        <a href="../docs/index.html">Docs</a>
+        <a href="../resources/index.html">Resources</a>
+        <a href="../pricing/index.html">Pricing</a>
+        <a href="../trust/index.html">Trust</a>
+        <a href="../about/index.html">Company</a>
+        <a href="../demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container" style="padding:72px 0 32px">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">EmpowerNow PDP</h1>
+        <p class="lead">Central policy decisions for APIs and AI agents. Evaluate subject, resource, action, and context; return decisions with enforceable constraints and obligations.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="../resources/index.html#demo">Watch demo</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/">See Standards</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glass-card" style="padding:24px">
+          <h3 style="margin:0 0 8px">What it evaluates</h3>
+          <ul class="bullets-small">
+            <li>Subject (user, agent) and actor chain</li>
+            <li>Resource + action + attributes</li>
+            <li>Context: tenant, time, channel, risk</li>
+          </ul>
+          <h3 style="margin:16px 0 8px">What it returns</h3>
+          <ul class="bullets-small">
+            <li>Decision: allow / deny</li>
+            <li>Constraints: filters, limits, pins</li>
+            <li>Obligations: receipts, consent, analytics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="container" style="padding:24px 0 8px">
+    <h2 class="section-title">Outcomes</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Least privilege</h3><p>Permit with tight constraints instead of broad scopes.</p></div>
+      <div class="card"><h3>Business‑aware</h3><p>Decisions use tenant, risk, and workflow context.</p></div>
+      <div class="card"><h3>Provable control</h3><p>Obligations emit signed receipts and analytics.</p></div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2 class="section-title">Capabilities</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Constraint‑based permits</h3><p>Return filters, field masks, token/byte caps, and egress allowlists.</p></div>
+      <div class="card"><h3>Obligations</h3><p>Require consent, receipts, alerts, or additional checks on permit.</p></div>
+      <div class="card"><h3>Membership graph</h3><p>Use roles, teams, and relationships in decisions.</p></div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2 class="section-title">Example decision</h2>
+    <pre><code>{
+  "decision": "allow",
+  "constraints": {
+    "data_scope": ["tenant:acme"],
+    "filters": {"region": "US"},
+    "egress_allow": ["mcp:flights:search"],
+    "token_cap": 2048
+  },
+  "obligations": [
+    {"type": "receipt", "level": "high_value"},
+    {"type": "consent", "required": false}
+  ],
+  "reason": "policy:travel.search"
+}</code></pre>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Standards and primers</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/rar">RAR</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/par">PAR</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/jarm">JARM</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/caep">CAEP</a>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <div class="glass-card" style="padding:24px">
+      <h2 style="margin-top:0">How it fits</h2>
+      <p>PDP decisions are enforced at the MCP Gateway and BFF. Constraints shape requests and responses; obligations trigger receipts and analytics.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn" href="../product/gateway.html">MCP Gateway</a>
+        <a class="btn" href="../product/bff.html">BFF</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding-bottom:48px">
+    <a href="../docs/index.html" class="btn">Read docs</a>
+    <a href="../resources/index.html" class="btn" style="margin-left:12px">Watch the demo</a>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© 2025 EmpowerNow</div>
+      <div style="display:flex;gap:16px">
+        <a href="../product/index.html">All products</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/pages-fix.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDP — AuthZEN + Membership PIP</title>
   <link rel="stylesheet" href="../css/fabric.css" />
 </head>

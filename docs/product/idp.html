@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IdP — Agent Passports</title>
+  <title>IdP — Agent Passports & Consent</title>
+  <meta name="description" content="Issue ARIA Passports with pairwise identities, schema pins, plan contracts, and optional consent. Standards: RAR, PAR, JARM, FAPI 2.0, OIDC." />
   <link rel="stylesheet" href="../css/fabric.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"EmpowerNow IdP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":"OAuth/OIDC IdP for agent passports and consent with RAR, PAR, JARM, and FAPI 2.0 support.","url":"https://empowerid.github.io/empowernow_info/docs/product/idp.html"}
+  </script>
 </head>
 <body>
   <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
@@ -23,10 +27,30 @@
     </div>
   </nav>
 
-  <section class="container" style="padding:48px 0 16px">
-    <h1>IdP — Agent Passports</h1>
-    <p style="color:#9ba3b7;max-width:860px">Issue ARIA Passports for AI agents via OAuth Token Exchange (RFC 8693) with RAR (RFC 9396). Passports carry least‑privilege context for agents, with optional DPoP binding (RFC 9449).</p>
-  </section>
+  <header class="container" style="padding:72px 0 32px">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">EmpowerNow IdP</h1>
+        <p class="lead">Issue ARIA Passports that bind agents to users, pin tool schemas, and carry plan/budget context. Add consent where policy requires.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="../resources/index.html#demo">Watch demo</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/">See Standards</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glass-card" style="padding:24px">
+          <h3 style="margin:0 0 8px">Passports at a glance</h3>
+          <ul class="bullets-small">
+            <li>Pairwise identities for user↔agent binding</li>
+            <li>authorization_details (RAR) for structured permissions</li>
+            <li>Schema pins per tool (version/hash)</li>
+            <li>Optional plan contract JWS and budget envelope</li>
+            <li>Consent obligations for high‑risk actions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <section class="container" style="padding-bottom:16px">
     <h2>Overview</h2>
@@ -121,8 +145,10 @@ Output: downstream { access_token, expires_in, ... }</code></pre>
   </section>
 
   <section class="container" style="padding-bottom:48px">
-    <a href="../docs/index.html" class="btn">Read docs</a>
-    <a href="../resources/index.html" class="btn" style="margin-left:12px">Watch the demo</a>
+    <div class="grid-2">
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/rar"><div class="card"><h3>RAR Primer</h3><p>Structured permissions beyond scopes.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/fapi-2-0"><div class="card"><h3>FAPI 2.0</h3><p>High‑assurance profiles for OAuth/OIDC.</p></div></a>
+    </div>
   </section>
     <script src="../js/pages-fix.js"></script></body>
 </html>
