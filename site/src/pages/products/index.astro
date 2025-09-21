@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Products — EmpowerNow ARIA';
+const description = 'Explore ARIA Shield, MCP Gateway, BFF, PDP, IdP, Registry, Receipts, and more.';
+const canonical = '/products/';
+const products = [
+	{ href: '/products/aria-shield/', title: 'ARIA Shield', desc: 'Agent & LLM guardrails with receipts' },
+	{ href: '/products/gateway/', title: 'MCP Gateway', desc: 'Agent-to-tool enforcement & schema pins' },
+	{ href: '/products/bff/', title: 'BFF', desc: 'Stream-time enforcement & spend control' },
+	{ href: '/products/pdp/', title: 'PDP', desc: 'AuthZEN decisions with constraints & obligations' },
+	{ href: '/products/idp/', title: 'IdP', desc: 'Passports, RAR/PAR/JARM, FAPI 2.0' },
+];
+---
+<Base title={title} description={description} canonical={canonical}>
+	<section class="container" style="padding:48px 0 24px">
+		<h1>Products</h1>
+		<div class="grid-3">
+			{products.map(p => (
+				<a href={p.href} class="glass-card" style="padding:16px">
+					<h3 style="margin:0 0 8px">{p.title}</h3>
+					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
+				</a>
+			))}
+		</div>
+	</section>
+</Base>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Solutions — EmpowerNow';
+const description = 'Outcome-focused solutions for agent security, zero-token SPAs, spend governance, and delegated authorization.';
+const canonical = '/solutions/';
+const items = [
+	{ href: '/solutions/zero-token-spas/', title: 'Zero‑Token SPAs', desc: 'Session UX with BFF + AuthZEN decisions' },
+	{ href: '/solutions/agent-safe-tools/', title: 'Agent‑Safe Tools', desc: 'MCP Gateway + ARIA Shield' },
+];
+---
+<Base title={title} description={description} canonical={canonical}>
+	<section class="container" style="padding:48px 0 24px">
+		<h1>Solutions</h1>
+		<div class="grid-3">
+			{items.map(p => (
+				<a href={p.href} class="glass-card" style="padding:16px">
+					<h3 style="margin:0 0 8px">{p.title}</h3>
+					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
+				</a>
+			))}
+		</div>
+	</section>
+</Base>
