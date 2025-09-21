@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is RAR (Rich Authorization Requests)? — Standards Fundamentals</title>
+  <meta name="description" content="RAR lets clients request structured, least‑privilege permissions beyond coarse scopes by defining rich objects in authorization requests." />
+  <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/resources/standards/rar.html" />
+  <link rel="stylesheet" href="../../css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../../product/index.html">Product</a>
+        <a href="../../solutions/index.html">Solutions</a>
+        <a href="../../docs/index.html">Docs</a>
+        <a href="../index.html">Resources</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container" style="padding:48px 0 16px">
+    <h1>What is RAR (Rich Authorization Requests)?</h1>
+    <p class="lead">RAR extends OAuth to request fine‑grained, structured permissions (authorization details) rather than broad scopes.</p>
+  </header>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2>Why it matters</h2>
+    <ul>
+      <li>Enables least‑privilege access aligned to business objects</li>
+      <li>Improves auditability by capturing intent at consent time</li>
+      <li>Pairs well with PDP decisions for runtime enforcement</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2>How it works (at a glance)</h2>
+    <ol class="numbered">
+      <li>Client sends <code>authorization_details</code> describing the requested access</li>
+      <li>AS obtains consent and issues a token bound to those details</li>
+      <li>RS enforces the requested permissions; PDP can further constrain</li>
+    </ol>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2>Learn more</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="../../product/pdp.html">Product: PDP</a>
+      <a class="btn" href="../../solutions/delegated-authorization.html">Solution: Delegated Authorization</a>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="index.html" style="color:#00E7F6">← Back to Standards</a>
+      <a href="../../index.html" style="color:#00E7F6">Back to site</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+

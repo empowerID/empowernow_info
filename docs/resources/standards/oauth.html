@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is OAuth 2.0? — Standards Fundamentals</title>
+  <meta name="description" content="OAuth 2.0 is an authorization framework for delegated access via tokens. Learn why it matters, how it works, pitfalls, and where to go deeper." />
+  <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/resources/standards/oauth.html" />
+  <link rel="stylesheet" href="../../css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../../product/index.html">Product</a>
+        <a href="../../solutions/index.html">Solutions</a>
+        <a href="../../docs/index.html">Docs</a>
+        <a href="../index.html">Resources</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container" style="padding:48px 0 16px">
+    <h1>What is OAuth 2.0?</h1>
+    <p class="lead">OAuth 2.0 is an authorization framework that lets a client access an API on behalf of a resource owner using time‑bounded access tokens instead of passwords.</p>
+  </header>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2>Why it matters</h2>
+    <ul>
+      <li>Removes the need to share credentials with applications</li>
+      <li>Scopes constrain what a token can do</li>
+      <li>Standardized flows enable secure, interoperable integrations</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2>How it works (at a glance)</h2>
+    <ol class="numbered">
+      <li>The client sends the user to the Authorization Server to request consent</li>
+      <li>On consent, the client obtains an authorization code and exchanges it for tokens</li>
+      <li>The client calls the API with the access token; the API validates and serves data</li>
+    </ol>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2>Key terms</h2>
+    <ul>
+      <li><strong>Authorization Server (AS)</strong>: Issues tokens after consent</li>
+      <li><strong>Resource Server (RS)</strong>: API that validates tokens</li>
+      <li><strong>Client</strong>: App requesting access on the user’s behalf</li>
+      <li><strong>Scopes</strong>: Permissions attached to tokens</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2>Common pitfalls</h2>
+    <ul>
+      <li>Storing tokens in the browser (risk of theft). Prefer BFF with HTTP‑only cookies.</li>
+      <li>Overly broad scopes. Prefer least‑privilege via RAR and resource‑level policy.</li>
+      <li>Long‑lived tokens. Prefer short lifetimes and refresh rotation.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:8px 0 32px">
+    <h2>Learn more</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="../../product/bff.html">Product: BFF</a>
+      <a class="btn" href="../../solutions/zero-token-spas.html">Solution: Zero‑Token SPAs</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview">BFF Overview (docs)</a>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="index.html" style="color:#00E7F6">← Back to Standards</a>
+      <a href="../../index.html" style="color:#00E7F6">Back to site</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+
