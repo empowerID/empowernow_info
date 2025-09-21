@@ -1,9 +1,15 @@
 import type { APIContext } from 'astro';
 
-const paths = [
-	'/solutions/',
-	'/solutions/zero-token-spas/',
-];
+function toRoutePath(filePath: string): string {
+	const normalized = filePath.replace(/\\/g, '/');
+	const withoutSrc = normalized.replace(/^.*\/src\/pages\//, '/');
+	const withoutExt = withoutSrc.replace(/\.(astro|md|mdx)$/i, '');
+	const route = withoutExt.endsWith('/index') ? withoutExt.replace(/\/index$/, '/') : `${withoutExt}/`;
+	return route;
+}
+
+const solutionFiles = Object.keys(import.meta.glob('/src/pages/solutions/**/*.{astro,md,mdx}', { eager: true }));
+const paths = Array.from(new Set(solutionFiles.map(toRoutePath)));
 
 export async function GET({ request }: APIContext) {
 	const origin = new URL(request.url).origin;

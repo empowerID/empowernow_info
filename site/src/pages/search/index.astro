@@ -10,20 +10,19 @@ const canonical = '/search/';
 		<input id="q" type="search" placeholder="Search..." style="width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:#fff" />
 		<div id="results" style="margin-top:16px"></div>
 	</section>
+	<script src="/pagefind/pagefind.js"></script>
 	<script>
 		(async () => {
 			try {
-				// Load Pagefind JS bundle if available
-				const mod = await import('https://cdn.jsdelivr.net/npm/pagefind@1/dist/pagefind.js');
-				const pagefind = await (mod as any).default();
-				const input = document.getElementById('q') as HTMLInputElement;
-				const results = document.getElementById('results')!;
+				const input = document.getElementById('q');
+				const results = document.getElementById('results');
+				if (!input || !results || !(window).pagefind) return;
 				input.addEventListener('input', async () => {
 					const q = input.value.trim();
 					if (!q) { results.innerHTML = ''; return; }
-					const res = await pagefind.search(q);
-					const items = await Promise.all(res.results.slice(0, 20).map((r: any) => r.data()));
-					results.innerHTML = items.map((it: any) => `<a class="btn" href="${it.url}">${it.meta?.title || it.url}</a>`).join('');
+					const res = await (window).pagefind.search(q);
+					const items = await Promise.all(res.results.slice(0, 20).map(r => r.data()));
+					results.innerHTML = items.map(it => `<a class=\"btn\" href=\"${it.url}\">${(it.meta && it.meta.title) || it.url}</a>`).join('');
 				});
 			} catch {}
 		})();

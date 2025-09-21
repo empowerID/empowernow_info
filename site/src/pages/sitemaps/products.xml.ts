@@ -1,9 +1,15 @@
 import type { APIContext } from 'astro';
 
-const paths = [
-	'/products/',
-	'/products/aria-shield/',
-];
+function toRoutePath(filePath: string): string {
+	const normalized = filePath.replace(/\\/g, '/');
+	const withoutSrc = normalized.replace(/^.*\/src\/pages\//, '/');
+	const withoutExt = withoutSrc.replace(/\.(astro|md|mdx)$/i, '');
+	const route = withoutExt.endsWith('/index') ? withoutExt.replace(/\/index$/, '/') : `${withoutExt}/`;
+	return route;
+}
+
+const productFiles = Object.keys(import.meta.glob('/src/pages/products/**/*.{astro,md,mdx}', { eager: true }));
+const paths = Array.from(new Set(productFiles.map(toRoutePath)));
 
 export async function GET({ request }: APIContext) {
 	const origin = new URL(request.url).origin;
