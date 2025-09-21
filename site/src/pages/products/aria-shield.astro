@@ -5,14 +5,17 @@ import LogoWall from '../../components/LogoWall.astro';
 import PricingCTA from '../../components/PricingCTA.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import { getVariant } from '../../lib/experiments';
 const title = 'ARIA Shield — Agent & LLM Guardrails';
 const description = 'Application-aware BFF that enforces AuthZEN constraints, stream-time caps, and cryptographic receipts.';
 const canonical = '/products/aria-shield/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"ARIA Shield","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+const variant = getVariant('aria-hero-cta', Astro.url.pathname);
+const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
+	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: primaryCtaLabel, href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
