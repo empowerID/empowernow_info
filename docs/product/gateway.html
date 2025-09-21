@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARIA Gateway — MCP PEP</title>
+  <meta name="description" content="Policy enforcement at the agent→tool boundary. Verifies ARIA Passports, enforces policy before execution, and emits signed receipts." />
   <link rel="stylesheet" href="../css/fabric.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Product","name":"ARIA Gateway — MCP PEP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":"Policy enforcement at the agent→tool boundary. Verifies ARIA Passports, enforces policy before execution, and emits signed receipts.","url":"https://empowerid.github.io/empowernow_info/docs/product/gateway.html"}
+  </script>
 </head>
 <body>
   <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
@@ -23,10 +27,31 @@
     </div>
   </nav>
 
-  <section class="container" style="padding:48px 0 16px">
-    <h1>ARIA Gateway — MCP PEP</h1>
-    <p style="color:#9ba3b7;max-width:860px">Policy enforcement at the agent→tool boundary. Verifies ARIA Passports, enforces policy before execution, and emits receipts on permit.</p>
-  </section>
+  <header class="container" style="padding:72px 0 32px">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">MCP Gateway</h1>
+        <p class="lead">Guardrails at the agent→tool boundary. Verify passports, enforce policy before execution, and prove it with signed receipts.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="../resources/index.html#demo">Watch demo</a>
+          <a class="btn" href="../product/aria.html">See ARIA Shield</a>
+          <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md">Read docs</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glass-card" style="padding:24px">
+          <h3 style="margin:0 0 8px">What it enforces</h3>
+          <ul class="bullets-small">
+            <li>Schema pins and rollout windows</li>
+            <li>Plan contracts (steps, params, limits)</li>
+            <li>Params & egress allowlists</li>
+            <li>PDP authorization per call</li>
+            <li>Signed receipts for auditability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <section class="container" style="padding-bottom:16px">
     <h2>Overview</h2>
@@ -77,8 +102,10 @@
   </section>
 
   <section class="container" style="padding-bottom:48px">
-    <a href="../docs/index.html" class="btn">Read docs</a>
-    <a href="../resources/index.html#demo" class="btn" style="margin-left:12px">Watch the demo</a>
+    <div class="grid-2">
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md"><div class="card"><h3>Gateway deep dive</h3><p>Mapping requests to policy and enforcing constraints.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/receipt-chains.md"><div class="card"><h3>Receipts</h3><p>Tamper‑evident JWS with policy snapshots and hashes.</p></div></a>
+    </div>
   </section>
     <script src="../js/pages-fix.js"></script></body>
 </html>
