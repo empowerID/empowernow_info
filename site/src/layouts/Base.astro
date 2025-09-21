@@ -22,6 +22,7 @@ import '../styles/utilities.css';
 			main{min-height:60vh}
 			footer{border-top:1px solid rgba(255,255,255,.1);padding:32px 0;margin-top:48px}
 			nav{position:sticky;top:0;z-index:1000}
+			.consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1100}
 		</style>
 	</head>
 	<body>
@@ -48,13 +49,32 @@ import '../styles/utilities.css';
 				<div style="display:flex;gap:16px"><a href="/trust/">Trust</a><a href="/resources/">Resources</a></div>
 			</div>
 		</footer>
+		<div id="consent" class="consent" hidden>
+			<div class="glass-card" style="padding:12px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+				<div style="color:#9ba3b7">We use analytics to improve your experience.</div>
+				<div style="display:flex;gap:8px">
+					<button id="consent-accept" class="btn btn-primary">Allow</button>
+					<button id="consent-decline" class="btn">Decline</button>
+				</div>
+			</div>
+		</div>
 		<script>
 			(function(){
 				try{
+					const consentKey = 'analytics_consent';
+					const consentEl = document.getElementById('consent');
+					const acceptBtn = document.getElementById('consent-accept');
+					const declineBtn = document.getElementById('consent-decline');
+					const has = localStorage.getItem(consentKey);
+					if(!has && consentEl){ consentEl.hidden = false; }
+					function setConsent(val){ localStorage.setItem(consentKey, val); if(consentEl) consentEl.hidden = true; }
+					acceptBtn && acceptBtn.addEventListener('click', function(){ setConsent('yes'); });
+					declineBtn && declineBtn.addEventListener('click', function(){ setConsent('no'); });
 					document.addEventListener('click', function(e){
 						const t = e.target as HTMLElement;
 						const el = t && (t.closest('[data-ev]') as HTMLElement | null);
 						if(!el) return;
+						if(localStorage.getItem(consentKey) !== 'yes') return;
 						const type = el.getAttribute('data-ev');
 						const label = el.getAttribute('data-label') || '';
 						const position = el.getAttribute('data-position') || '';
