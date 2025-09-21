@@ -8,6 +8,6 @@ const p = Astro.props as Props;
 			<h3 style="margin:0 0 6px">{p.title}</h3>
 			{p.sub && <p style="color:#9ba3b7;margin:0">{p.sub}</p>}
 		</div>
-		<a class="btn btn-primary" href={p.primaryHref}>{p.primaryLabel}</a>
+		<a class="btn btn-primary" href={p.primaryHref} aria-label={`Primary: ${p.primaryLabel}`} data-ev="cta_click" data-label={p.primaryLabel} data-position="cta_bar">{p.primaryLabel}</a>
 	</div>
 </section>
