@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent‑Safe Tools — Guardrails at the MCP Boundary</title>
+  <meta name="description" content="Make AI agents safe by design. Our MCP Gateway + ARIA Shield enforce schema pins, plan contracts, egress allowlists, and signed receipts on every tool call." />
+  <link rel="stylesheet" href="../css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../product/index.html">Product</a>
+        <a href="../product/aria.html">ARIA Shield</a>
+        <a href="../solutions/index.html">Solutions</a>
+        <a href="../deep-dives/index.html">Deep Dives</a>
+        <a href="../docs/index.html">Docs</a>
+        <a href="../resources/index.html">Resources</a>
+        <a href="../pricing/index.html">Pricing</a>
+        <a href="../about/index.html">Company</a>
+        <a href="../demo/index.html" class="btn btn-primary">Book a Demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container" style="padding:72px 0 32px">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">Agent‑Safe Tools</h1>
+        <p class="lead">Let agents use tools without fear. The MCP Gateway + ARIA Shield enforce schema pins, plan contracts, parameter allowlists, and egress controls—then prove it with signed receipts.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="../product/gateway.html">Explore MCP Gateway</a>
+          <a class="btn" href="../product/aria.html">Explore ARIA Shield</a>
+          <a class="btn" href="../resources/index.html#demo">Watch demo</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="glass-card" style="padding:24px">
+          <h3 style="margin:0 0 8px">Controls at a glance</h3>
+          <ul class="bullets-small">
+            <li>Schema pins (version/hash) with safe rollout window</li>
+            <li>Plan contracts — bind steps, params, and per‑step limits</li>
+            <li>Egress allowlists + redirect re‑checks</li>
+            <li>Param allowlists and server‑side data scopes</li>
+            <li>Signed, hash‑chained receipts for every call</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="container" style="padding:24px 0">
+    <h2 class="section-title">Outcomes</h2>
+    <div class="grid-3">
+      <div class="card"><h3>Stop breakage</h3><p>Schema pins catch tool drift before agents hit runtime errors.</p></div>
+      <div class="card"><h3>Reduce exfiltration</h3><p>Egress allowlists and redirect re‑checks cut off risky destinations.</p></div>
+      <div class="card"><h3>Prove compliance</h3><p>Receipts make decisions and actions tamper‑evident for audits.</p></div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">How it works</h2>
+    <div class="glass-card" style="padding:24px">
+      <ol class="numbered">
+        <li>IdP issues an ARIA Passport with pairwise binding, schema pins, and optional plan contract.</li>
+        <li>Gateway verifies pins, enforces the current plan step, and evaluates PDP for policy.</li>
+        <li>Request is shaped by parameter allowlists and data scopes; egress is pinned.</li>
+        <li>On success, a signed receipt records the policy snapshot, hashes, and lineage.</li>
+      </ol>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md">Gateway deep dive</a>
+        <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/receipt-chains.md">Receipts</a>
+        <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/mcp">MCP Primer</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 16px">
+    <h2 class="section-title">Standards we follow</h2>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/rar">RAR</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/oauth">OAuth</a>
+      <a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/oidc">OIDC</a>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© 2025 EmpowerNow</div>
+      <div style="display:flex;gap:16px">
+        <a href="agent-safe-tools-tech.html">How we built it</a>
+        <a href="../product/gateway.html">MCP Gateway</a>
+        <a href="../product/aria.html">ARIA Shield</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/pages-fix.js"></script>
+</body>
+</html>
+

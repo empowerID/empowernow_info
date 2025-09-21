@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent‑Safe Tools — Technical Deep Dive</title>
+  <meta name="description" content="Implementation details for agent‑safe tools at the MCP boundary: passports, schema pins, plan contracts, PDP constraints, egress, and receipts." />
+  <link rel="stylesheet" href="../css/fabric.css" />
+</head>
+<body>
+  <nav style="padding:16px 0;border-bottom:1px solid rgba(0,231,246,.3)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <a href="../index.html" style="color:#00E7F6;text-decoration:none;font-weight:700">EmpowerNow</a>
+      <div style="display:flex;gap:24px">
+        <a href="../solutions/agent-safe-tools.html">Marketing intro</a>
+        <a href="../product/gateway.html">MCP Gateway</a>
+        <a href="../product/aria.html">ARIA Shield</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container" style="padding:48px 0 16px">
+    <h1>Agent‑Safe Tools — How we built it</h1>
+    <p style="color:#9ba3b7;max-width:900px">Use this technical map to dive into passports, plan contracts, policy enforcement, receipts, and analytics. Links route to our canonical documentation.</p>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <div class="grid-2">
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway.md"><div class="card"><h3>Gateway enforcement</h3><p>Policy mapping, resource/action resolution, SSE checks.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway_technical.md"><div class="card"><h3>Authorization & audit</h3><p>Kafka business events, deny paths, metrics, and SLOs.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/mcp"><div class="card"><h3>MCP Primer</h3><p>Why MCP matters for safe agent tooling.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/website_copy/standards/rar"><div class="card"><h3>Rich Authorization Requests</h3><p>Structured permissions beyond scopes.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/receipt-chains.md"><div class="card"><h3>Receipts</h3><p>Signed JWS with policy snapshot and hash‑chained lineage.</p></div></a>
+      <a class="card-link" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/reference/pdp-mapping.md"><div class="card"><h3>Policy mapping</h3><p>Resource/action mapping to PDP inputs.</p></div></a>
+    </div>
+  </section>
+
+  <footer style="padding:32px 0;border-top:1px solid rgba(255,255,255,.1)">
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© 2025 EmpowerNow</div>
+      <div style="display:flex;gap:16px">
+        <a href="agent-safe-tools.html">Marketing intro</a>
+        <a href="../product/gateway.html">MCP Gateway</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/pages-fix.js"></script>
+</body>
+</html>
+
