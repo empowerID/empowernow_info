@@ -1,6 +1,18 @@
 ---
-const slug = Astro.params.slug as string;
-const map: Record<string,string> = {
+export function getStaticPaths() {
+	const map: Record<string,string> = {
+		'aria': '/products/aria-shield/',
+		'gateway': '/products/gateway/',
+		'pdp': '/products/pdp/',
+		'idp': '/products/idp/',
+		'registry': '/products/registry/',
+		'receipts': '/products/receipts/',
+		'membership': '/products/membership/',
+		'orchestration': '/products/orchestration/',
+	};
+	return Object.keys(map).map((slug) => ({ params: { slug } }));
+}
+const mapping: Record<string,string> = {
 	'aria': '/products/aria-shield/',
 	'gateway': '/products/gateway/',
 	'pdp': '/products/pdp/',
@@ -10,7 +22,8 @@ const map: Record<string,string> = {
 	'membership': '/products/membership/',
 	'orchestration': '/products/orchestration/',
 };
-const to = map[slug] || '/products/';
+const slug = Astro.params.slug as string;
+const to = mapping[slug] || '/products/';
 ---
 <html>
 	<head>

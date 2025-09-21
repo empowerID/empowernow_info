@@ -3,6 +3,10 @@ import Base from '../../layouts/Base.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
 import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
 import ArticleJsonLd from '../../components/ArticleJsonLd.astro';
+export const getStaticPaths = () => {
+	const competitors = ['curity', 'ping', 'alternative'];
+	return competitors.map((c) => ({ params: { competitor: c } }));
+};
 const competitor = (Astro.params.competitor as string) || 'alternative';
 const title = `EmpowerNow vs ${competitor}`;
 const description = `Compare EmpowerNow with ${competitor}: depth of authorization, agent safety, and outcomes.`;

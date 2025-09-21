@@ -21,6 +21,12 @@ const faqJson = p.faq && p.faq.length ? {
 	"@type": "FAQPage",
 	mainEntity: p.faq.map(f => ({"@type":"Question", name: f.q, acceptedAnswer: {"@type":"Answer", text: f.a}}))
 } : null;
+import Base from './Base.astro';
+import CrossSiteLinks from '../components/CrossSiteLinks.astro';
+import RelatedContent from '../components/RelatedContent.astro';
+import { relatedFor } from '../lib/keywords';
+import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro';
+const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 ---
 <html lang="en">
 	<head>
@@ -30,11 +36,6 @@ const faqJson = p.faq && p.faq.length ? {
 		{faqJson && <script type="application/ld+json">{JSON.stringify(faqJson)}</script>}
 	</head>
 	<body>
-		<import Base from './Base.astro' />
-		<import CrossSiteLinks from '../components/CrossSiteLinks.astro' />
-		<import RelatedContent from '../components/RelatedContent.astro' />
-		<import { relatedFor } from '../lib/keywords' />
-		<import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro' />
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
 			<BreadcrumbsJsonLd items={[
 				{ name: 'Home', item: new URL('/', Astro.site).toString() },
@@ -60,7 +61,7 @@ const faqJson = p.faq && p.faq.length ? {
 			<slot name="standards" />
 			<slot name="related" />
 			{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
-			{p.keywords && relatedFor(p.keywords).length > 0 && <RelatedContent internalLinks={relatedFor(p.keywords)} />}
+			{relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
 		</Base>
 	</body>
 </html>

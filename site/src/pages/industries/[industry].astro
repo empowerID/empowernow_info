@@ -2,6 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
 import ArticleJsonLd from '../../components/ArticleJsonLd.astro';
+export const getStaticPaths = () => {
+	const industries = ['saas','regulated','enterprise'];
+	return industries.map((i) => ({ params: { industry: i } }));
+};
 const industry = (Astro.params.industry as string) || 'industry';
 const title = `${industry.charAt(0).toUpperCase()+industry.slice(1)} — EmpowerNow`;
 const description = `Solutions for ${industry}: secure agents, govern access, and audit.`;
