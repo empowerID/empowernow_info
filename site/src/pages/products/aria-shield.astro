@@ -6,6 +6,7 @@ import PricingCTA from '../../components/PricingCTA.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import { getVariant } from '../../lib/experiments';
+import CrossSiteLinks from '../../components/CrossSiteLinks.astro';
 const title = 'ARIA Shield — Agent & LLM Guardrails';
 const description = 'Application-aware BFF that enforces AuthZEN constraints, stream-time caps, and cryptographic receipts.';
 const canonical = '/products/aria-shield/';
@@ -33,6 +34,13 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 		</fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'},{href:'/resources/',label:'Resources'}]} />
+			<CrossSiteLinks docsLinks={[
+				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' },
+				{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }
+			]} wwwLinks={[
+				{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' },
+				{ href: '/deep-dives/', label: 'Deep Dives' }
+			]} />
 		</fragment>
 	</Product>
 </Base>
