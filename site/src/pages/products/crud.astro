@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'CRUD Service — Secure Data APIs';
+const description = 'Rapidly expose secure CRUD APIs with built‑in policy checks and audit receipts.';
+const canonical = '/products/crud/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"CRUD Service","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Secure CRUD APIs, fast" subhead="Define models, get CRUD endpoints with AuthZEN checks and signed receipts out of the box." targetICP={[ 'Platform Teams', 'Developers' ]} keyBenefits={[ 'Scaffold secure APIs quickly', 'AuthZEN checks per operation', 'Receipts for audit' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' }, { href: '/products/receipts/', label: 'Receipt Vault' } ]}>
+	</Product>
+</Base>

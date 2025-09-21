@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'Orchestration — Hybrid Connectivity & Flows';
+const description = 'Connect on-prem and cloud systems with governed, observable flows that respect policy.';
+const canonical = '/products/orchestration/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Orchestration","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Orchestrate secure flows across clouds and data centers" subhead="Design and run flows with policy‑aware steps, observability, and fail‑secure behavior." targetICP={[ 'Platform Teams' ]} keyBenefits={[ 'Policy‑aware steps', 'Hybrid connectors', 'End‑to‑end observability' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/solutions/hybrid-connectivity/', label: 'Hybrid Connectivity' } ]}>
+	</Product>
+</Base>

@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'Membership — Relationships & Delegations';
+const description = 'Manage orgs, teams, roles, and delegations used by PDP decisions and enforcement.';
+const canonical = '/products/membership/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Membership","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Relationships that decisions can trust" subhead="Represent organizations, teams, roles, and delegations; feed PDP with authoritative relationships." targetICP={[ 'Platform Teams', 'IAM' ]} keyBenefits={[ 'Delegations captured as first‑class data', 'Consistent across enforcement points', 'Scales with complex orgs' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' } ]} keywords={[ 'authzen' ]}>
+	</Product>
+</Base>

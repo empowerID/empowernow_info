@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'Receipt Vault — Tamper‑Evident Audit';
+const description = 'Sign and hash-chain high‑value logs and decisions. Produce verifiable receipts for every critical action.';
+const canonical = '/products/receipts/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Receipt Vault","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Prove what happened, when, and why" subhead="Hash‑chain and sign critical events and decisions, with contextual metadata for audit and forensics." targetICP={[ 'Security', 'Compliance', 'Platform Teams' ]} keyBenefits={[ 'Tamper‑evident receipts', 'Contextual decision metadata', 'Independent verification' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent‑Safe Tools' }, { href: '/solutions/zero-token-spas/', label: 'Zero‑Token SPAs' } ]} keywords={[ 'authzen' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<p style="color:#9ba3b7">Each high‑value action emits a signed receipt that includes subject, action, resource, and policy context. Receipts are hash‑chained for integrity.</p>
+			</section>
+		</fragment>
+	</Product>
+</Base>
