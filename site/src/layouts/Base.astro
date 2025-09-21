@@ -48,5 +48,21 @@ import '../styles/utilities.css';
 				<div style="display:flex;gap:16px"><a href="/trust/">Trust</a><a href="/resources/">Resources</a></div>
 			</div>
 		</footer>
+		<script>
+			(function(){
+				try{
+					document.addEventListener('click', function(e){
+						const t = e.target as HTMLElement;
+						const el = t && (t.closest('[data-ev]') as HTMLElement | null);
+						if(!el) return;
+						const type = el.getAttribute('data-ev');
+						const label = el.getAttribute('data-label') || '';
+						const position = el.getAttribute('data-position') || '';
+						(window as any).dataLayer = (window as any).dataLayer || [];
+						(window as any).dataLayer.push({ event: type, label, position, page: location.pathname });
+					});
+				}catch{}
+			})();
+		</script>
 	</body>
 </html>

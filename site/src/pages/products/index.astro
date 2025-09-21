@@ -1,26 +1,33 @@
 ---
 import Base from '../../layouts/Base.astro';
-const title = 'Products — EmpowerNow ARIA';
-const description = 'Explore ARIA Shield, MCP Gateway, BFF, PDP, IdP, Registry, Receipts, and more.';
+const title = 'Products — EmpowerNow';
+const description = 'ARIA Shield, MCP Gateway, PDP, IdP, Receipts, Membership, Orchestration, Registry, Data Collector, CRUD Service.';
 const canonical = '/products/';
-const products = [
-	{ href: '/products/aria-shield/', title: 'ARIA Shield', desc: 'Agent & LLM guardrails with receipts' },
-	{ href: '/products/gateway/', title: 'MCP Gateway', desc: 'Agent-to-tool enforcement & schema pins' },
-	{ href: '/products/bff/', title: 'BFF', desc: 'Stream-time enforcement & spend control' },
-	{ href: '/products/pdp/', title: 'PDP', desc: 'AuthZEN decisions with constraints & obligations' },
-	{ href: '/products/idp/', title: 'IdP', desc: 'Passports, RAR/PAR/JARM, FAPI 2.0' },
-];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:48px 0 24px">
-		<h1>Products</h1>
+	<section class="container" style="padding:56px 0 24px">
+		<h1 class="display">Products</h1>
 		<div class="grid-3">
-			{products.map(p => (
-				<a href={p.href} class="glass-card" style="padding:16px">
-					<h3 style="margin:0 0 8px">{p.title}</h3>
-					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
-				</a>
-			))}
+			<a class="glass-card" href="/products/aria-shield/" style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="aria-shield">
+				<h3>ARIA Shield</h3>
+				<p style="color:#9ba3b7">Application-aware BFF and governance</p>
+			</a>
+			<a class="glass-card" href="/products/gateway/" style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="gateway">
+				<h3>MCP Gateway</h3>
+				<p style="color:#9ba3b7">Agent/tool policy enforcement</p>
+			</a>
+			<a class="glass-card" href="/products/pdp/" style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="pdp">
+				<h3>AuthZEN PDP</h3>
+				<p style="color:#9ba3b7">Fine-grained authorization</p>
+			</a>
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Deep technical docs</h2>
+		<div style="display:flex;gap:12px;flex-wrap:wrap">
+			<a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/">BFF Overview</a>
+			<a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/">ARIA Shield Docs</a>
+			<a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/">PDP Reference</a>
 		</div>
 	</section>
 </Base>
