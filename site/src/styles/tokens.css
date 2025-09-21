@@ -1,0 +1,12 @@
+/* NeonFlux tokens */
+:root{
+	--color-bg:#0E0E10;
+	--color-primary:#6C4CFF;
+	--color-secondary:#B326FF;
+	--color-accent:#00E7F6;
+	--color-success:#B6FF3C;
+	--color-warning:#FFC266;
+	--color-surface:rgba(255,255,255,.06);
+	--navy:#0B1C3D;
+	--spacing-1:8px;--radius-card:12px;
+}
