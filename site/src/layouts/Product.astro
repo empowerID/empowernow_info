@@ -15,6 +15,7 @@ interface Props {
 	proofTitle?: string;
 	docsLinks?: Link[];
 	wwwLinks?: Link[];
+	keywords?: string[];
 }
 const p = Astro.props as Props;
 ---
@@ -28,6 +29,8 @@ const p = Astro.props as Props;
 	<body>
 		<import Base from './Base.astro' />
 		<import CrossSiteLinks from '../components/CrossSiteLinks.astro' />
+		<import RelatedContent from '../components/RelatedContent.astro' />
+		<import { relatedFor } from '../lib/keywords' />
 		<Base title={p.title} description={p.description} canonical={p.canonical}>
 			<section class="container" style="padding:72px 0 32px">
 				<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
@@ -53,6 +56,7 @@ const p = Astro.props as Props;
 			<slot name="proof" />
 			<slot name="related" />
 			{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
+			{p.keywords && relatedFor(p.keywords).length > 0 && <RelatedContent internalLinks={relatedFor(p.keywords)} />}
 		</Base>
 	</body>
 </html>
