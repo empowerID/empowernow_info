@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'IdP — Agent Passports & Consent';
+const description = 'Issue ARIA Passports that bind an agent to a user, capture consent with obligations, and enable budget envelopes.';
+const canonical = '/products/idp/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"IdP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Bind agents to users and capture consent up front" subhead="Issue ARIA Passports, collect explicit user consent, and attach obligations that downstream services enforce." targetICP={[ 'Platform Teams', 'Security', 'Compliance' ]} keyBenefits={[ 'Strong agent binding to user identity', 'Pre‑issuance consent with obligations', 'Budget envelopes for spend governance' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/', label: 'IdP Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp', 'authzen' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<p style="color:#9ba3b7">Users grant consent at issuance time; obligations are carried on the ARIA Passport and enforced by Gateway and BFF.</p>
+			</section>
+		</fragment>
+	</Product>
+</Base>

@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'AuthZEN PDP — Policy Decision Service';
+const description = 'Centralized, fine-grained authorization with constraints and obligations. Evaluates resource/action decisions for every call.';
+const canonical = '/products/pdp/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"AuthZEN PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Make correct allow/deny decisions with business context" subhead="Evaluate resource, action, and attributes; apply constraints and obligations; return auditable decisions used across BFF and Gateway." targetICP={[ 'Platform Teams', 'Security', 'IAM' ]} keyBenefits={[ 'Centralized, explainable authorization', 'Constraints & obligations for safe enforcement', 'Consistent across products and services' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' } ]} keywords={[ 'authzen' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<p style="color:#9ba3b7">Services call PDP with subject, resource, action, and context. PDP evaluates policy and returns a decision with constraints/obligations.</p>
+			</section>
+		</fragment>
+	</Product>
+</Base>
