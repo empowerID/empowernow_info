@@ -1,0 +1,9 @@
+---
+interface Props { items: Array<{ label: string }> }
+const p = Astro.props as Props;
+---
+<div class="container" style="padding:8px 0 24px">
+	<div style="display:flex;gap:12px;flex-wrap:wrap">
+		{p.items.map(i => <span class="a-chip">{i.label}</span>)}
+	</div>
+</div>

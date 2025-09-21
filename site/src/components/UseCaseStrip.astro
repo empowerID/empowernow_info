@@ -1,0 +1,9 @@
+---
+interface Props { items: Array<{ title: string; description: string }> }
+const p = Astro.props as Props;
+---
+<section class="container" style="padding:8px 0 16px">
+	<div class="grid-3">
+		{p.items.map(u => <div class="glass-card" style="padding:16px"><h3 style="margin:0 0 8px">{u.title}</h3><p style="color:#9ba3b7">{u.description}</p></div>)}
+	</div>
+</section>

@@ -1,0 +1,13 @@
+---
+interface Props { title: string; sub?: string; primaryHref: string; primaryLabel: string }
+const p = Astro.props as Props;
+---
+<section class="container" style="padding:24px 0">
+	<div class="glass-card" style="padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px">
+		<div>
+			<h3 style="margin:0 0 6px">{p.title}</h3>
+			{p.sub && <p style="color:#9ba3b7;margin:0">{p.sub}</p>}
+		</div>
+		<a class="btn btn-primary" href={p.primaryHref}>{p.primaryLabel}</a>
+	</div>
+</section>

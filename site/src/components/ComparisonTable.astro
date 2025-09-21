@@ -1,0 +1,23 @@
+---
+interface Row { feature: string; us: string; them: string }
+interface Props { rows: Row[]; ourLabel?: string; theirLabel?: string }
+const p = Astro.props as Props;
+---
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+	<thead>
+		<tr>
+			<th style="text-align:left;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 6px">Feature</th>
+			<th style="text-align:left;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 6px">{p.ourLabel || 'EmpowerNow'}</th>
+			<th style="text-align:left;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 6px">{p.theirLabel || 'Alternative'}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{p.rows.map(r => (
+			<tr>
+				<td style="border-bottom:1px solid rgba(255,255,255,.06);padding:8px 6px">{r.feature}</td>
+				<td style="border-bottom:1px solid rgba(255,255,255,.06);padding:8px 6px">{r.us}</td>
+				<td style="border-bottom:1px solid rgba(255,255,255,.06);padding:8px 6px">{r.them}</td>
+			</tr>
+		))}
+	</tbody>
+</table>
