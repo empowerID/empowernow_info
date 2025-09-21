@@ -6,5 +6,14 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://empowerid.github.io/empowernow_info',
-	integrations: [mdx(), sitemap()],
+	trailingSlash: 'always',
+	integrations: [
+		mdx(),
+		sitemap({
+			filter: (page) => !page.includes('/drafts/'),
+			serialize(item) {
+				return { ...item, changefreq: 'weekly', priority: 0.7 };
+			},
+		}),
+	],
 });

@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import PricingCTA from '../../components/PricingCTA.astro';
+import RelatedContent from '../../components/RelatedContent.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'ARIA Shield — Agent & LLM Guardrails';
+const description = 'Application-aware BFF that enforces AuthZEN constraints, stream-time caps, and cryptographic receipts.';
+const canonical = '/products/aria-shield/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"ARIA Shield","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<ol class="numbered">
+					<li>Edge authenticates SPA with HTTP-only cookies, not tokens.</li>
+					<li>BFF validates session and requests PDP decision per route.</li>
+					<li>On allow, BFF brokers per-service tokens and applies constraints.</li>
+					<li>Receipts are signed and chained; budgets settle to actuals.</li>
+				</ol>
+			</section>
+		</fragment>
+		<fragment slot="proof">
+			<LogoWall logos={[{alt:'Example',src:'/favicon.svg'}]} title="Trusted by" />
+			<PricingCTA title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref="/demo/" primaryLabel="Book demo" />
+		</fragment>
+		<fragment slot="related">
+			<RelatedContent internalLinks={[{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'},{href:'/resources/',label:'Resources'}]} />
+		</fragment>
+	</Product>
+</Base>
