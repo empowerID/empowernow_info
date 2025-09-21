@@ -1,18 +1,52 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ComparisonTable from '../../components/ComparisonTable.astro';
-const competitor = Astro.params.competitor || 'alternative';
+import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
+import ArticleJsonLd from '../../components/ArticleJsonLd.astro';
+const competitor = (Astro.params.competitor as string) || 'alternative';
 const title = `EmpowerNow vs ${competitor}`;
-const description = `Compare EmpowerNow with ${competitor}: capabilities and outcomes.`;
+const description = `Compare EmpowerNow with ${competitor}: depth of authorization, agent safety, and outcomes.`;
 const canonical = `/comparisons/${competitor}/`;
 const rows = [
-	{ feature: 'AuthZ depth', us: 'AuthZEN PDP with constraints', them: 'Scopes and gateway policies' },
-	{ feature: 'Agent safety', us: 'MCP Gateway + ARIA receipts', them: 'Limited/unspecified' },
+	{ feature: 'Authorization depth', us: 'AuthZEN PDP with constraints & obligations', them: 'Scopes/gateway rules' },
+	{ feature: 'Agent safety', us: 'MCP Gateway enforcement + ARIA receipts', them: 'Unspecified/limited' },
+	{ feature: 'Auditability', us: 'Tamper-evident receipts + metrics', them: 'Basic logs' },
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:48px 0 24px">
-		<h1>{title}</h1>
+	<BreadcrumbsJsonLd items={[
+		{ name: 'Home', item: new URL('/', Astro.site).toString() },
+		{ name: 'Comparisons', item: new URL('/comparisons/', Astro.site).toString() },
+		{ name: `vs ${competitor}`, item: new URL(canonical, Astro.site).toString() },
+	]} />
+	<ArticleJsonLd type="Article" title={title} description={description} url={new URL(canonical, Astro.site).toString()} />
+	<section class="container" style="padding:56px 0 24px">
+		<div class="glass-card" style="padding:24px">
+			<h1 class="display" style="margin:0 0 8px">{title}</h1>
+			<p style="color:#9ba3b7;margin:0">Objective capability comparison focused on buyer outcomes.</p>
+			<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+				<a class="btn btn-primary" href="/products/">Explore products</a>
+				<a class="btn" href="/solutions/">See solutions</a>
+			</div>
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Feature comparison</h2>
 		<ComparisonTable rows={rows} ourLabel="EmpowerNow" theirLabel={competitor} />
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Highlights</h2>
+		<div class="grid-3">
+			<div class="glass-card" style="padding:16px">Central PDP decisions with constraints ensure least privilege by design.</div>
+			<div class="glass-card" style="padding:16px">Agent policy enforcement at the tool boundary with MCP Gateway.</div>
+			<div class="glass-card" style="padding:16px">Tamper-evident receipts and rich metrics for audit and compliance.</div>
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Next steps</h2>
+		<div style="display:flex;gap:12px;flex-wrap:wrap">
+			<a class="btn btn-primary" href="/demo/">Book a demo</a>
+			<a class="btn" href="/deep-dives/">Read deep dives</a>
+		</div>
 	</section>
 </Base>
