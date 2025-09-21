@@ -12,7 +12,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
+	<Product title={title} description={description} canonical={canonical} headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview' }}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

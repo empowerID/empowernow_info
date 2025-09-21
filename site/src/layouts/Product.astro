@@ -7,6 +7,7 @@ interface Props {
 	headline: string;
 	subhead?: string;
 	keyBenefits?: string[];
+	targetICP?: string[];
 	primaryCTA?: CTA;
 	secondaryCTA?: CTA;
 	jsonLdProduct?: Record<string, any>;
@@ -26,7 +27,10 @@ const p = Astro.props as Props;
 			<section class="container" style="padding:72px 0 32px">
 				<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 				{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
-				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+				{p.targetICP && p.targetICP.length>0 && (
+					<p style="color:#9ba3b7;margin:8px 0 0">For: {p.targetICP.join(', ')}</p>
+				)}
+				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
 					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href}>{p.primaryCTA.label}</a>}
 					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href}>{p.secondaryCTA.label}</a>}
 				</div>
