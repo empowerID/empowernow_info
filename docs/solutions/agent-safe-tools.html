@@ -6,6 +6,13 @@
   <title>Agent‑Safe Tools — Guardrails at the MCP Boundary</title>
   <meta name="description" content="Make AI agents safe by design. Our MCP Gateway + ARIA Shield enforce schema pins, plan contracts, egress allowlists, and signed receipts on every tool call." />
   <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/solutions/agent-safe-tools.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do you stop tool breakage?","acceptedAnswer":{"@type":"Answer","text":"Schema pins (version/hash) are verified on every call. If a tool drifts, the gateway denies until a safe rollout window updates pins."}},
+    {"@type":"Question","name":"How do you prevent data exfiltration?","acceptedAnswer":{"@type":"Answer","text":"Egress allowlists and redirect re‑checks pin outbound hosts. Parameter allowlists and server‑side data scopes further reduce risk."}},
+    {"@type":"Question","name":"What proof do you provide?","acceptedAnswer":{"@type":"Answer","text":"Signed, hash‑chained receipts record policy snapshots, schema/param hashes, and lineage for every permitted call."}}
+  ]}
+  </script>
   <link rel="stylesheet" href="../css/fabric.css" />
 </head>
 <body>

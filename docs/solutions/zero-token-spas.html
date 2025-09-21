@@ -6,6 +6,13 @@
   <title>Zero‑Token SPAs — Secure by Design</title>
   <meta name="description" content="Move tokens out of the browser. Our BFF pattern delivers Zero‑Token SPAs with session UX, PDP enforcement, stream‑time controls, and signed receipts." />
   <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/solutions/zero-token-spas.html" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"What is a Zero‑Token SPA?","acceptedAnswer":{"@type":"Answer","text":"A Zero‑Token SPA keeps OAuth/OIDC tokens out of the browser entirely. The BFF holds tokens server‑side and authenticates the SPA with HTTP‑only cookies, reducing token theft and replay risks."}},
+    {"@type":"Question","name":"Does this work with OAuth, OIDC, and PKCE?","acceptedAnswer":{"@type":"Answer","text":"Yes. OAuth/OIDC flows (including PKCE) terminate at the BFF. The SPA uses a SameSite, HTTP‑only session cookie; the BFF exchanges and brokers tokens per upstream service."}},
+    {"@type":"Question","name":"What is the performance impact?","acceptedAnswer":{"@type":"Answer","text":"Minimal. The BFF cache and connection reuse keep latency low. PDP checks and constraints are scoped per route, and streaming enforcement runs inline without changing client SSE shape."}}
+  ]}
+  </script>
   <link rel="stylesheet" href="../css/fabric.css" />
 </head>
 <body>

@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spend Governance for GenAI — Control Cost, Prove Value</title>
   <meta name="description" content="Stop overruns and prove value. Our BFF + Receipts deliver budget holds, stream‑time caps, and tamper‑evident usage to power real‑time FinOps dashboards." />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"How do budgets prevent overruns?","acceptedAnswer":{"@type":"Answer","text":"The BFF places a hold based on PDP policy before execution and caps tokens during streaming. On completion, the hold settles to actual usage."}},
+    {"@type":"Question","name":"What’s included in receipts?","acceptedAnswer":{"@type":"Answer","text":"Signed JWS include a policy snapshot, schema and parameter hashes, call identifiers, and a prev_hash to form a tamper‑evident chain."}},
+    {"@type":"Question","name":"Can you route to cheaper models?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dynamic model routing selects allowed, affordable models under policy and budget constraints."}}
+  ]}
+  </script>
   <link rel="canonical" href="https://empowerid.github.io/empowernow_info/docs/solutions/spend-governance.html" />
   <link rel="stylesheet" href="../css/fabric.css" />
 </head>
