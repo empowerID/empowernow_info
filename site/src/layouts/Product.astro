@@ -30,12 +30,12 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
 	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
 ]} />
-<section class="container section-spine" style="padding:72px 0 32px;border-radius:12px">
+<section class="container" style="padding:72px 0 24px">
 	<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
 	{p.targetICP && p.targetICP.length>0 && (
 		<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
-			{p.targetICP.map((t) => <span class="chip chip--violet chip--spec">{t}</span>)}
+			{p.targetICP.map((t) => <span class="chip chip--outline-violet">{t}</span>)}
 		</div>
 	)}
 	<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
@@ -45,16 +45,16 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	</div>
 </section>
 {p.keyBenefits && p.keyBenefits.length > 0 && (
-	<section class="container section-spine surface-2" style="padding:16px 0 24px;border-radius:12px">
+	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Why it wins</h2>
 		<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
 			{p.keyBenefits.map((b) => <div class="glass-card card-glow" style="padding:16px">{b}</div>)}
 		</div>
 	</section>
 )}
-<section class="container section-spine bg-conic-cyan surface-3" style="padding:16px 0 24px;border-radius:12px"><slot name="how" /></section>
+<section class="container" style="padding:8px 0 24px"><slot name="how" /></section>
 {p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
-<section class="container section-spine surface-2" style="padding:8px 0 24px;border-radius:12px"><slot name="proof" /></section>
+<section class="container" style="padding:8px 0 24px"><slot name="proof" /></section>
 <slot name="related" />
 {(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
 {relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}

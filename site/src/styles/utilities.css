@@ -82,6 +82,8 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .chip--violet{background:rgba(108,76,255,.08);border-color:rgba(108,76,255,.45);color:var(--on-surface)}
 .chip--cyan{background:rgba(0,231,246,.08);border-color:rgba(0,231,246,.45);color:var(--on-surface)}
 .chip--spec{border-color:var(--color-accent)}
+.chip--outline-violet{background:transparent;border-color:rgba(108,76,255,.55);color:var(--on-surface)}
+.chip--outline-cyan{background:transparent;border-color:rgba(0,231,246,.55);color:var(--on-surface)}
 
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
