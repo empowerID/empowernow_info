@@ -29,29 +29,17 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 			</section>
 		</fragment>
 		<fragment slot="proof">
-			<LogoWall logos={[{alt:'Example',src:'/favicon.svg'}]} title="Trusted by" />
+			<LogoWall logos={[{alt:'Example',src:`${import.meta.env.BASE_URL}favicon.svg`}]} title="Trusted by" />
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Videos</h2>
 				<div class="card-grid">
 					<div class="ns-card">
 						<h3>The Unlikely Hero of AI Security</h3>
-						<MediaVideo
-							src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/The_Unlikely_Hero_of_AI_Security.mp4` }}
-							poster={`${import.meta.env.BASE_URL}images/products/aria/hero-poster.jpg`}
-							aspect="16/9"
-							title="The Unlikely Hero of AI Security"
-							defer
-						/>
+						<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/The_Unlikely_Hero_of_AI_Security.mp4` }} aspect="16/9" title="The Unlikely Hero of AI Security" defer />
 					</div>
 					<div class="ns-card">
 						<h3>Onboarding Your AI</h3>
-						<MediaVideo
-							src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/Onboarding_Your_AI.mp4` }}
-							poster={`${import.meta.env.BASE_URL}images/products/aria/hero-poster.jpg`}
-							aspect="16/9"
-							title="Onboarding Your AI"
-							defer
-						/>
+						<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/Onboarding_Your_AI.mp4` }} aspect="16/9" title="Onboarding Your AI" defer />
 					</div>
 				</div>
 			</section>

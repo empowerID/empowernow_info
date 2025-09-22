@@ -48,7 +48,16 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
 ---
 <figure class={`mv-wrap ${cls}`} style={`--mv-aspect:${aspect};${st}`}>
   {p.defer ? (
-    <button class="mv-defer" type="button" aria-label={p.title ? `Play: ${p.title}` : 'Play video'}>
+    <button
+      class="mv-defer"
+      type="button"
+      aria-label={p.title ? `Play: ${p.title}` : 'Play video'}
+      data-mp4={sources.mp4}
+      data-webm={sources.webm}
+      data-autoplay={autoplay ? '1' : '0'}
+      data-muted={muted ? '1' : '0'}
+      data-poster={p.poster}
+    >
       {p.poster && <img src={p.poster} alt="" loading="lazy" />}
       <span class="mv-play" aria-hidden="true">▶</span>
     </button>
@@ -72,19 +81,20 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
 
 {p.defer && (
   <script>
-    const __conf = JSON.parse('{JSON.stringify({ mp4: sources.mp4 ?? null, webm: sources.webm ?? null, autoplay, muted, poster: p.poster ?? null })}');
-    document.currentScript?.previousElementSibling?.querySelector('.mv-defer')?.addEventListener('click', (e) => {
-      const btn = e.currentTarget;
-      const wrap = btn.closest('.mv-wrap');
+    const btn = document.currentScript?.previousElementSibling?.querySelector('.mv-defer');
+    btn?.addEventListener('click', (e) => {
+      const el = e.currentTarget;
+      const wrap = el.closest('.mv-wrap');
       if (!wrap) return;
       const video = document.createElement('video');
+      const ds = el.dataset;
       video.setAttribute('playsinline','');
       video.setAttribute('controls','');
-      if (__conf.poster) video.setAttribute('poster', __conf.poster);
-      if (__conf.autoplay) { video.setAttribute('autoplay',''); video.muted = true; }
-      if (__conf.muted) { video.muted = true; }
-      if (__conf.webm) { const s = document.createElement('source'); s.src = __conf.webm; s.type = 'video/webm'; video.appendChild(s); }
-      if (__conf.mp4) { const s = document.createElement('source'); s.src = __conf.mp4; s.type = 'video/mp4'; video.appendChild(s); }
+      if (ds.poster) video.setAttribute('poster', ds.poster);
+      if (ds.autoplay === '1') { video.setAttribute('autoplay',''); video.muted = true; }
+      if (ds.muted === '1') { video.muted = true; }
+      if (ds.webm) { const s = document.createElement('source'); s.src = ds.webm; s.type = 'video/webm'; video.appendChild(s); }
+      if (ds.mp4) { const s = document.createElement('source'); s.src = ds.mp4; s.type = 'video/mp4'; video.appendChild(s); }
       wrap.replaceChildren(video);
     });
   </script>
