@@ -14,6 +14,20 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Services call PDP with subject, resource, action, and context. PDP evaluates policy and returns a decision with constraints/obligations.</p>
+				<div class="diagram vignette" style="margin-top:12px">
+					<div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px;position:relative;z-index:1">
+						<div class="node">Subject</div>
+						<div class="flow"></div>
+						<div class="node">Resource</div>
+						<div class="flow"></div>
+						<div class="node">Action</div>
+					</div>
+					<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-top:10px;position:relative;z-index:1">
+						<div class="node">Context</div>
+						<div class="node pdp">PDP</div>
+						<div class="node">Decision</div>
+					</div>
+				</div>
 			</section>
 		</fragment>
 	</Product>
