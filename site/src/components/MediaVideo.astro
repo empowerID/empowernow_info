@@ -57,6 +57,7 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
       data-autoplay={autoplay ? '1' : '0'}
       data-muted={muted ? '1' : '0'}
       data-poster={p.poster}
+      onclick="(function(btn){var ds=btn.dataset;var wrap=btn.closest('.mv-wrap');if(!wrap)return;var v=document.createElement('video');v.setAttribute('playsinline','');v.setAttribute('controls','');if(ds.poster)v.setAttribute('poster',ds.poster);if(ds.autoplay==='1'){v.setAttribute('autoplay','');v.muted=true;}if(ds.muted==='1'){v.muted=true;}if(ds.webm){var s=document.createElement('source');s.src=ds.webm;s.type='video/webm';v.appendChild(s);}if(ds.mp4){var s2=document.createElement('source');s2.src=ds.mp4;s2.type='video/mp4';v.appendChild(s2);}wrap.replaceChildren(v);})(this)"
     >
       {p.poster && <img src={p.poster} alt="" loading="lazy" />}
       <span class="mv-play" aria-hidden="true">▶</span>
@@ -79,27 +80,7 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
   {Astro.slots.has('caption') && <figcaption><slot name="caption" /></figcaption>}
 </figure>
 
-{p.defer && (
-  <script>
-    const figure = document.currentScript?.previousElementSibling;
-    figure?.addEventListener('click', (evt) => {
-      const btn = (evt.target as HTMLElement).closest?.('.mv-defer');
-      if (!btn) return;
-      const wrap = (btn as HTMLElement).closest('.mv-wrap');
-      if (!wrap) return;
-      const ds = (btn as HTMLElement).dataset;
-      const video = document.createElement('video');
-      video.setAttribute('playsinline','');
-      video.setAttribute('controls','');
-      if (ds.poster) video.setAttribute('poster', ds.poster);
-      if (ds.autoplay === '1') { video.setAttribute('autoplay',''); video.muted = true; }
-      if (ds.muted === '1') { video.muted = true; }
-      if (ds.webm) { const s = document.createElement('source'); s.src = ds.webm; s.type = 'video/webm'; video.appendChild(s); }
-      if (ds.mp4) { const s = document.createElement('source'); s.src = ds.mp4; s.type = 'video/mp4'; video.appendChild(s); }
-      wrap.replaceChildren(video);
-    });
-  </script>
-)}
+{false && (<script></script>)}
 
 <style>
   .mv-wrap{position:relative;display:block}
