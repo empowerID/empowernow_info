@@ -61,3 +61,27 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
   .parallax-glow::before{display:none}
   .parallax-glow img{transition:none}
 }
+
+/* Section spine and alternates */
+.section-spine{position:relative;padding-left:14px}
+.section-spine::before{content:'';position:absolute;left:0;top:.2em;bottom:.2em;width:3px;background:linear-gradient(180deg, rgba(108,76,255,.22), rgba(179,38,255,.18));border-radius:3px}
+.surface-2{background:var(--surface-2)}
+.surface-3{background:var(--surface-3)}
+
+/* Card title hairline */
+.card-title{position:relative}
+.card-title::after{content:'';position:absolute;left:0;bottom:-6px;width:76px;height:2px;background:linear-gradient(90deg, var(--color-primary), rgba(179,38,255,.6));opacity:.7}
+
+/* Corner glow for cards */
+.card-glow{position:relative}
+.card-glow::before{content:'';position:absolute;right:-10%;top:-10%;width:220px;height:180px;background:radial-gradient(180px 120px at 80% 20%, rgba(179,38,255,.14), transparent 60%);filter:blur(18px);pointer-events:none}
+
+/* Chips */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;border:1px solid var(--border-soft);font-size:13px}
+.chip--success{background:rgba(182,255,60,.10);border-color:rgba(182,255,60,.55);color:#B6FF3C}
+.chip--violet{background:rgba(108,76,255,.08);border-color:rgba(108,76,255,.45);color:var(--on-surface)}
+.chip--cyan{background:rgba(0,231,246,.08);border-color:rgba(0,231,246,.45);color:var(--on-surface)}
+
+/* Nav active and footer underline */
+.nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
+footer a:hover{background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat;background-image:linear-gradient(90deg,var(--color-secondary),var(--color-accent))}
