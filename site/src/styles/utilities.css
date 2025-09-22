@@ -131,7 +131,7 @@ filter:blur(20px);pointer-events:none}
 .diagram .flow{height:2px;background:linear-gradient(90deg, var(--color-accent), transparent);opacity:.7}
 
 /* Footer (sitewide) */
-.site-footer{background:linear-gradient(180deg, rgba(11,28,61,.92), rgba(11,28,61,.98));border-top:1px solid var(--border-soft);padding:40px 0;margin-top:48px}
+.site-footer{background:var(--surface-2);border-top:1px solid var(--border-soft);padding:40px 0;margin-top:48px}
 .footer-top{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1.2fr 1.2fr;gap:24px}
 .footer-brand{display:flex;flex-direction:column;gap:10px}
 .footer-col h4{color:var(--on-surface);margin:0 0 8px;font-size:16px}
