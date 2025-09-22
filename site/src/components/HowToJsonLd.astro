@@ -1,7 +1,0 @@
----
-interface Step { name: string; text: string }
-interface Props { name: string; description?: string; steps: Step[] }
-const p = Astro.props as Props;
-const data = {"@context":"https://schema.org","@type":"HowTo",name:p.name,description:p.description,step:p.steps.map(s=>({"@type":"HowToStep",name:s.name,text:s.text}))};
----
-<script type="application/ld+json">{JSON.stringify(data)}</script>

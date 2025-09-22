@@ -1,6 +1,0 @@
----
-interface Props { src: string; alt: string; width?: number; height?: number; sizes?: string; class?: string; style?: string }
-const p = Astro.props as Props;
-const sizes = p.sizes || '(min-width: 960px) 960px, 100vw';
----
-<img src={p.src} alt={p.alt} loading="lazy" decoding="async" width={p.width} height={p.height} sizes={sizes} class={p.class} style={p.style} />
