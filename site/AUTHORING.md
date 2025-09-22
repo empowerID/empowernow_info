@@ -75,6 +75,8 @@ Decision rules (updates vs new page):
 ## 4) NeonFlux styling
 - Use layout defaults and utilities in `src/styles/tokens.css` and `src/styles/utilities.css`
 - Prefer `.glass-card`, `.btn`, `.btn-primary`, `.grid-3`, `.container`
+- For homepage/hero, wrap with `.hero-ambient` to add subtle layered gradients.
+- Use `.section-divider` between major sections to create rhythm without heavy borders.
 - Avoid inline colors; when needed use `color:#9ba3b7` for secondary text
 
 ## 5) SEO and structured data

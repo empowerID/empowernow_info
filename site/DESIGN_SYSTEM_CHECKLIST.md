@@ -18,6 +18,8 @@ Use this to review any www page before publish.
 - [ ] Glass cards `rgba(11,28,61,.85)` + 12px blur + white border
 - [ ] Top hairline gradient present (subtle)
 - [ ] Section spacing 40–96px; grid gaps 16–24px
+ - [ ] Ambient glow on hero via `.hero-ambient` (optional, AA-safe)
+ - [ ] Section dividers present via `.section-divider` where helpful
 
 ## Images
 - [ ] Use `ResponsiveImg` with `loading="lazy"` and `sizes/srcset`

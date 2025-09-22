@@ -46,6 +46,11 @@ Accessibility rules (WCAG AA):
 - Focus visible ring: 3px `--color-accent` with 2px offset
 - Cyan is not used for long paragraphs; use `--on-bg` and `--on-muted`
 
+## NeonFlux layering (homepage)
+- Ambient glows: apply `.hero-ambient` to the hero container; gradients use violet/cyan/magenta at low opacity for depth (AA-safe).
+- Dividers: use `.section-divider` between sections to create rhythm.
+- Buttons: `.btn-primary` includes a subtle inner shine via a masked gradient border.
+
 ## Components (web)
 
 - Base layout `Base.astro` exposes: navbar, footer, consent, analytics. Use base-aware URLs via `import.meta.env.BASE_URL`.

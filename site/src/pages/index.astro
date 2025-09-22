@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import LogoWall from '../components/LogoWall.astro';
 ---
 <Base title="EmpowerNow – Identity & Authorization Fabric" description="AI-native identity orchestration and AuthZEN-compliant authorization platform" canonical="/">
-    <section class="container hero-ambient" style="padding:200px 0 80px">
+	<section class="container hero-ambient" style="padding:200px 0 80px">
 		<div style="display:flex;gap:64px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 420px;min-width:320px;max-width:560px">
 				<div style="display:inline-block;padding:8px 24px;border:1px solid var(--border-strong);border-radius:999px;color:var(--on-surface);background:var(--surface-2);font-weight:600;margin-bottom:32px">Designed for AI, by AI</div>
@@ -13,41 +14,40 @@ import Base from '../layouts/Base.astro';
 					<li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Policy‑gated AI workflows with spend limits</li>
 					<li style="display:flex;gap:8px"><span style="color:var(--color-accent)">•</span> Tamper‑evident receipts and full observability</li>
 				</ul>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
+				<div style="display:flex;gap:12px;flex-wrap:wrap">
 					<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
 					<a class="btn" href={`${import.meta.env.BASE_URL}products/`}>Explore Products</a>
 				</div>
-                <div style="margin-top:8px"><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} style="color:var(--color-primary);text-decoration:none">See how it works →</a></div>
+				<div style="margin-top:8px"><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} style="color:var(--color-primary);text-decoration:none">See how it works →</a></div>
 			</div>
 			<div style="flex:1 1 420px;min-width:320px;max-width:520px">
 				<img src={`${import.meta.env.BASE_URL}images/login-background.jpg`} alt="Platform preview" loading="lazy" style="width:100%;height:auto;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.4)" />
 			</div>
 		</div>
-    </section>
-    <div class="section-divider"></div>
-
-    <section class="container" style="padding:40px 0">
+	</section>
+	<LogoWall title="Trusted by" logos={[{alt:'Acme',src:'/favicon.svg'},{alt:'Globex',src:'/favicon.svg'},{alt:'Initech',src:'/favicon.svg'}]} />
+	<div class="section-divider"></div>
+	<section class="container" style="padding:40px 0">
 		<div style="text-align:center;margin-bottom:32px">
 			<h2 style="font-size:40px;margin:0 0 8px">Plug • Protect • Propel</h2>
 			<p style="color:#9ba3b7">Outcome‑focused capabilities delivered by EmpowerNow.</p>
 		</div>
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
 			<div class="glass-card" style="padding:28px;text-align:center">
-                <h3 style="margin:0 0 8px;color:var(--color-primary)">Plug</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)">🔌 Plug</h3>
 				<p style="color:#9ba3b7">Zero‑code connectors light up any system in minutes.</p>
 			</div>
 			<div class="glass-card" style="padding:28px;text-align:center">
-                <h3 style="margin:0 0 8px;color:var(--color-primary)">Protect</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)">🛡️ Protect</h3>
 				<p style="color:#9ba3b7">Graph‑anchored policies redact and revoke in real time.</p>
 			</div>
 			<div class="glass-card" style="padding:28px;text-align:center">
-                <h3 style="margin:0 0 8px;color:var(--color-primary)">Propel</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)">🚀 Propel</h3>
 				<p style="color:#9ba3b7">AI agents execute workflows safely at machine speed.</p>
 			</div>
 		</div>
 	</section>
-    <div class="section-divider"></div>
-
+	<div class="section-divider"></div>
 	<section class="container" style="padding:60px 0">
 		<div style="text-align:center;margin-bottom:40px">
 			<h2 style="font-size:40px;margin:0 0 8px">Our Products</h2>
@@ -56,66 +56,44 @@ import Base from '../layouts/Base.astro';
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
 			<a href={`${import.meta.env.BASE_URL}products/pdp/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
 				<div style="font-weight:700;font-size:14px;color:#9ba3b7;margin-bottom:8px">Lead Engine</div>
-				<h3 style="margin:0 0 8px">Authorization Studio</h3>
+				<h3 style="margin:0 0 8px;position:relative">Authorization Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">OpenID AuthZEN PDP</p>
 				<p style="color:#9ba3b7">Industry‑standard policy decision point with delegation graphs, batch evaluation, and explainable decisions.</p>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/orchestration/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
 				<div style="font-weight:700;font-size:14px;color:#9ba3b7;margin-bottom:8px">Lead Engine</div>
-				<h3 style="margin:0 0 8px">Automation Studio</h3>
+				<h3 style="margin:0 0 8px;position:relative">Automation Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">AI‑Powered Orchestrator</p>
 				<p style="color:#9ba3b7">Drag, drop, deploy AI workflows—identity‑secured and policy‑gated.</p>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/idp/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
-				<h3 style="margin:0 0 8px">Authentication Studio</h3>
+				<h3 style="margin:0 0 8px;position:relative">Authentication Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">FAPI 2.0‑Ready IdP</p>
 				<p style="color:#9ba3b7">Passkeys, OIDC, adaptive risk; issue FAPI‑profiled tokens and fine‑grained on‑behalf‑of credentials for agents.</p>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/registry/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
-				<h3 style="margin:0 0 8px">Inventory Studio</h3>
+				<h3 style="margin:0 0 8px;position:relative">Inventory Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">Universal Collector</p>
 				<p style="color:#9ba3b7">Discover, diff, and reconcile identities at scale with policy‑gated writes.</p>
 			</a>
 		</div>
 	</section>
-
 	<section class="container" style="padding:40px 0">
 		<h2 style="font-size:32px;margin:0 0 12px">Standards & Interop</h2>
-		<ul style="color:#9ba3b7;line-height:1.8;margin:0">
-			<li>OpenID Authorization API (AuthZEN) — evaluation endpoints</li>
-			<li>OAuth Token Exchange (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449)</li>
-			<li>Model Context Protocol (MCP) for agent‑tool calls</li>
-			<li>Signed, hash‑chained receipts for auditability</li>
+		<ul style="color:#9ba3b7;line-height:1.8;margin:0;columns:2;column-gap:24px">
+			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">AuthZEN</span> OpenID Authorization API — evaluation endpoints</li>
+			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">OAuth</span> Token Exchange (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449)</li>
+			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">MCP</span> Model Context Protocol for agent‑tool calls</li>
+			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">Receipts</span> Signed, hash‑chained receipts for auditability</li>
 		</ul>
 	</section>
-
-	<section class="container" style="padding:60px 0">
-		<div style="text-align:center;margin-bottom:40px">
-			<h2 style="font-size:40px;margin:0 0 8px">Why EmpowerNow?</h2>
-			<p style="color:#9ba3b7">Modern identity and authorization infrastructure for AI‑era workloads.</p>
-		</div>
-		<div class="grid-3" style="gap:24px">
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px">AI‑Native Design</h3>
-				<p style="color:#9ba3b7">Built for people, services, and AI agents as first‑class identities.</p>
-			</div>
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px">Zero Trust Ready</h3>
-				<p style="color:#9ba3b7">Continuous verification and dynamic, explainable policies.</p>
-			</div>
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px">Full Observability</h3>
-				<p style="color:#9ba3b7">Every decision explained; complete, tamper‑evident audit trails.</p>
-			</div>
-		</div>
-	</section>
-
-	<section class="container" style="padding:80px 0 120px;text-align:center">
+	<section class="container" style="padding:60px 0 120px;text-align:center;position:relative">
+		<div style="position:absolute;top:-24px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent)"></div>
 		<h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
 		<p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">Join teams using EmpowerNow for identity orchestration and AuthZEN‑compliant authorization.</p>
 		<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
 			<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
-			<a class="btn" href={`${import.meta.env.BASE_URL}demo/`}>Book a Demo</a>
+			<a class="btn" style="border-color:var(--color-accent);color:var(--color-accent);background:transparent" href={`${import.meta.env.BASE_URL}demo/`}>Book a Demo</a>
 		</div>
 	</section>
 </Base>
