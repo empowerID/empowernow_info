@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Resources — Standards, Demos, Guides';
+const description = 'Explore standards primers, product demos, and guides to get started.';
+const canonical = '/resources/';
+const base = import.meta.env.BASE_URL;
+const cards = [
+	{ href: `${base}resources/standards/`, title: 'Standards (Primers)', sub: 'OAuth, OIDC, PKCE, RAR, PAR, JARM, FAPI 2.0, SCIM, CIBA, MCP, CAEP' },
+	{ href: `${base}search/`, title: 'Search', sub: 'Find pages across the site' },
+	{ href: `${base}trust/`, title: 'Trust Center', sub: 'Security, Compliance, Privacy' },
+];
+---
+<Base title={title} description={description} canonical={canonical}>
+	<section class="container" style="padding:96px 0 24px">
+		<h1 class="display" style="margin:0 0 8px">Resources</h1>
+		<p style="color:#9ba3b7;max-width:860px">Standards primers, demos, and helpful links.</p>
+	</section>
+	<section class="container" style="padding:8px 0 80px">
+		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+			{cards.map(c => (
+				<a href={c.href} class="glass-card" style="padding:20px;text-decoration:none;color:inherit">
+					<h3 style="margin:0 0 6px">{c.title}</h3>
+					<p style="color:#9ba3b7;margin:0">{c.sub}</p>
+				</a>
+			))}
+		</div>
+	</section>
+</Base>
+
+

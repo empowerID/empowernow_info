@@ -1,0 +1,22 @@
+---
+export async function getStaticPaths() {
+	const slugs = ['oauth','oidc','pkce','rar','par','jarm','fapi-2-0','scim','ciba','mcp','caep'];
+	return slugs.map((slug) => ({ params: { slug } }));
+}
+const { slug } = Astro.params as { slug: string };
+import Base from '../../../layouts/Base.astro';
+const title = `${slug.toUpperCase()} — Primer`;
+const description = 'What it is, why it matters, and how it works.';
+const canonical = `/resources/standards/${slug}/`;
+---
+<Base title={title} description={description} canonical={canonical}>
+	<section class="container" style="padding:96px 0 24px">
+		<h1 class="display" style="margin:0 0 8px">{title}</h1>
+		<p style="color:#9ba3b7">Short, factual overview. Links to docs where relevant.</p>
+	</section>
+	<section class="container" style="padding:8px 0 80px">
+		<p style="color:#9ba3b7">Content coming soon.</p>
+	</section>
+</Base>
+
+
