@@ -81,13 +81,14 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
 
 {p.defer && (
   <script>
-    const btn = document.currentScript?.previousElementSibling?.querySelector('.mv-defer');
-    btn?.addEventListener('click', (e) => {
-      const el = e.currentTarget;
-      const wrap = el.closest('.mv-wrap');
+    const figure = document.currentScript?.previousElementSibling;
+    figure?.addEventListener('click', (evt) => {
+      const btn = (evt.target as HTMLElement).closest?.('.mv-defer');
+      if (!btn) return;
+      const wrap = (btn as HTMLElement).closest('.mv-wrap');
       if (!wrap) return;
+      const ds = (btn as HTMLElement).dataset;
       const video = document.createElement('video');
-      const ds = el.dataset;
       video.setAttribute('playsinline','');
       video.setAttribute('controls','');
       if (ds.poster) video.setAttribute('poster', ds.poster);
