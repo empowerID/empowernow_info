@@ -45,12 +45,46 @@ import '../styles/utilities.css';
 		<main>
 			<slot />
 		</main>
-		<footer>
-			<div class="container" style="display:flex;justify-content:space-between;align-items:center">
-				<div>© {new Date().getFullYear()} EmpowerNow</div>
-				<div style="display:flex;gap:16px"><a href={`${import.meta.env.BASE_URL}trust/`}>Trust</a><a href={`${import.meta.env.BASE_URL}resources/`}>Resources</a><a href="https://github.com/empowerID/empowernow_info/blob/main/site/AUTHORING.md" target="_blank" rel="noopener">Authoring Guide</a></div>
-			</div>
-		</footer>
+        <footer class="site-footer">
+            <div class="container footer-top">
+                <div class="footer-brand">
+                    <img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" style="height:22px;width:auto" />
+                    <div style="color:#9ba3b7;max-width:340px">Identity & Authorization Fabric for people, services, and AI agents.</div>
+                    <div class="footer-trust">
+                        <span class="chip chip--success">AA compliant</span>
+                        <span class="chip chip--outline-cyan">Receipts</span>
+                    </div>
+                </div>
+                <div class="footer-col"><h4>Product</h4><ul>
+                    <li><a href={`${import.meta.env.BASE_URL}products/aria-shield/`}>ARIA Shield</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}products/gateway/`}>MCP Gateway</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}products/idp/`}>IdP</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Solutions</h4><ul>
+                    <li><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Zero‑token SPAs</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Agent‑safe tools</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Delegated auth</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Resources</h4><ul>
+                    <li><a href={`${import.meta.env.BASE_URL}resources/`}>Overview</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}resources/standards/`}>Standards</a></li>
+                    <li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs ↗</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Company</h4><ul>
+                    <li><a href={`${import.meta.env.BASE_URL}company/`}>About</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}contact/`}>Contact</a></li>
+                    <li><a href="https://github.com/empowerID/empowernow_info/blob/main/site/AUTHORING.md" target="_blank" rel="noopener">Authoring guide ↗</a></li>
+                </ul></div>
+            </div>
+            <div class="container footer-bottom">
+                <div>© {new Date().getFullYear()} EmpowerNow</div>
+                <div style="display:flex;gap:12px">
+                    <a class="btn" style="border-color:var(--color-accent);color:var(--color-accent)" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+                    <a class="btn" href={`${import.meta.env.BASE_URL}resources/standards/`}>Explore standards</a>
+                </div>
+            </div>
+        </footer>
 		<div id="consent" class="consent" hidden>
 			<div class="glass-card" style="padding:12px;display:flex;justify-content:space-between;align-items:center;gap:12px">
 				<div style="color:#9ba3b7">We use analytics to improve your experience.</div>

@@ -55,7 +55,13 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
         <div class="row-hairline"></div>
 	</section>
 )}
-<section class="container" style="padding:8px 0 24px"><slot name="how" /></section>
+<section class="container" style="padding:8px 0 16px"><slot name="how" /></section>
+<section class="container" style="padding:0 0 24px">
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+        {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="mid_primary">See it live</a>}
+        {p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="mid_secondary">Read docs</a>}
+    </div>
+    </section>
 {p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
 <section class="container" style="padding:8px 0 24px"><slot name="proof" /></section>
 <slot name="related" />
