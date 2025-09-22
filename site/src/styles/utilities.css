@@ -43,3 +43,20 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 /* Card inline CTA */
 .card-cta{color:var(--color-accent);text-decoration:none}
 .card-cta:hover{text-decoration:underline}
+
+/* Desktop-only parallax glow for hero image */
+@media (hover:hover) and (pointer:fine) and (min-width: 1024px){
+  .parallax-glow{position:relative;isolation:isolate}
+  .parallax-glow::before{
+    content:'';position:absolute;inset:-8%;
+    background:
+      radial-gradient(420px 220px at calc(50% + (var(--mx,0px)*.1)) calc(50% + (var(--my,0px)*.1)), rgba(108,76,255,.22), transparent 60%),
+      radial-gradient(360px 180px at calc(50% - (var(--mx,0px)*.08)) calc(50% - (var(--my,0px)*.08)), rgba(0,231,246,.14), transparent 60%);
+    filter:blur(26px);z-index:0;pointer-events:none
+  }
+  .parallax-glow img{position:relative;z-index:1;will-change:transform;transition:transform .2s ease}
+}
+@media (prefers-reduced-motion: reduce){
+  .parallax-glow::before{display:none}
+  .parallax-glow img{transition:none}
+}
