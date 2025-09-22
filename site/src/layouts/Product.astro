@@ -31,7 +31,8 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
 ]} />
 <section class="container hero-plate" style="padding:72px 0 24px">
-	<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
+    <div class="eyebrow">AuthZEN PDP</div>
+    <h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
 	{p.targetICP && p.targetICP.length>0 && (
 		<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
@@ -51,6 +52,7 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 		<div class="benefit-row">
 			{p.keyBenefits.map((b) => <div class="glass-card card-glow benefit-card"><span class="benefit-bullet" aria-hidden="true"></span><div>{b}</div></div>)}
 		</div>
+        <div class="row-hairline"></div>
 	</section>
 )}
 <section class="container" style="padding:8px 0 24px"><slot name="how" /></section>
