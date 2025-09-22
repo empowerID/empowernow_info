@@ -1,6 +1,14 @@
-# EmpowerNow Marketing Site (Astro)
+# EmpowerNow Web (Astro)
 
-This is the EmpowerNow marketing site built with Astro, using NeonFlux styles and reusable layouts for Products, Solutions, Primers, and more. It includes dynamic sitemaps, JSON‑LD, consent‑gated analytics, Pagefind search, simple experiments, and CI (Lighthouse + Pa11y).
+This is the marketing site built with Astro and NeonFlux styling.
+
+## Design & Authoring Docs
+- [Design System](./DESIGN_SYSTEM.md)
+- [Design Checklist](./DESIGN_SYSTEM_CHECKLIST.md)
+- [Patterns](./PATTERNS.md)
+- [Quick Start](./QUICK_START.md)
+- [Analyzer (console)](./design-system-analyzer.js)
+- See also authoring guide: [AUTHORING.md](./AUTHORING.md)
 
 ## Quick start
 - Install: `npm ci`
