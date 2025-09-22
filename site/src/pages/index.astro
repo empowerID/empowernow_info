@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import LogoWall from '../components/LogoWall.astro';
 ---
 <Base title="EmpowerNow – Identity & Authorization Fabric" description="AI-native identity orchestration and AuthZEN-compliant authorization platform" canonical="/">
-	<section class="container hero-ambient" style="padding:200px 0 80px">
+    <section class="container hero-ambient" style="padding:120px 0 80px">
 		<div style="display:flex;gap:64px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 420px;min-width:320px;max-width:560px">
 				<div style="display:inline-block;padding:8px 24px;border:1px solid var(--border-strong);border-radius:999px;color:var(--on-surface);background:var(--surface-2);font-weight:600;margin-bottom:32px">Designed for AI, by AI</div>
@@ -20,7 +20,7 @@ import LogoWall from '../components/LogoWall.astro';
 				</div>
 				<div style="margin-top:8px"><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} style="color:var(--color-primary);text-decoration:none">See how it works →</a></div>
 			</div>
-			<div class="parallax-glow" style="flex:1 1 420px;min-width:320px;max-width:520px">
+            <div class="parallax-glow" style="flex:1 1 420px;min-width:320px;max-width:520px;margin-top:-12px">
 				<img id="heroImg" src={`${import.meta.env.BASE_URL}images/login-background.jpg`} alt="Platform preview" loading="lazy" style="width:100%;height:auto;border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.4)" />
 			</div>
 		</div>
@@ -39,7 +39,9 @@ import LogoWall from '../components/LogoWall.astro';
 			}
 		}
 	</script>
-	<LogoWall title="Trusted by" logos={[{alt:'Acme',src:'/favicon.svg'},{alt:'Globex',src:'/favicon.svg'},{alt:'Initech',src:'/favicon.svg'}]} />
+    <!-- LogoWall hidden until real logos are provided
+    <LogoWall title="Trusted by" logos={[{alt:'Acme',src:'/favicon.svg'},{alt:'Globex',src:'/favicon.svg'},{alt:'Initech',src:'/favicon.svg'}]} />
+    -->
 	<div class="section-divider"></div>
 	<section class="container" style="padding:40px 0">
 		<div style="text-align:center;margin-bottom:32px">
