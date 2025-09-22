@@ -28,7 +28,9 @@ import '../styles/utilities.css';
 	<body>
 		<nav>
 			<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
-				<a href={import.meta.env.BASE_URL} style="color:var(--color-accent);font-weight:700;text-decoration:none">EmpowerNow</a>
+				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" style="height:24px;width:auto" />
+				</a>
 				<ul class="nav-links">
 					<li><a href={`${import.meta.env.BASE_URL}products/`}>Products</a></li>
 					<li><a href={`${import.meta.env.BASE_URL}solutions/`}>Solutions</a></li>
