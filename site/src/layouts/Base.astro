@@ -12,7 +12,7 @@ import '../styles/utilities.css';
 		<meta name="description" content={description} />
 		<link rel="canonical" href={new URL(canonical, Astro.site)} />
 		{hreflangs && hreflangs.map((h: { href: string; lang: string }) => <link rel="alternate" hrefLang={h.lang} href={h.href} />)}
-		<link rel="icon" href={new URL('/favicon.svg', Astro.site)} />
+		<link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 		{ogImage && <meta property="og:image" content={ogImage} />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,15 +28,15 @@ import '../styles/utilities.css';
 	<body>
 		<nav>
 			<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
-				<a href={new URL('/', Astro.site).pathname} style="color:var(--color-accent);font-weight:700;text-decoration:none">EmpowerNow</a>
+				<a href={import.meta.env.BASE_URL} style="color:var(--color-accent);font-weight:700;text-decoration:none">EmpowerNow</a>
 				<ul class="nav-links">
-					<li><a href={new URL('/products/', Astro.site).pathname}>Products</a></li>
-					<li><a href={new URL('/solutions/', Astro.site).pathname}>Solutions</a></li>
-					<li><a href={new URL('/resources/', Astro.site).pathname}>Resources</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}products/`}>Products</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}solutions/`}>Solutions</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}resources/`}>Resources</a></li>
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
-					<li><a href={new URL('/pricing/', Astro.site).pathname}>Pricing</a></li>
-					<li><a href={new URL('/company/', Astro.site).pathname}>Company</a></li>
-					<li><a class="btn btn-primary" href={new URL('/demo/', Astro.site).pathname} data-ev="cta_click" data-label="nav_demo">Book Demo</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}pricing/`}>Pricing</a></li>
+					<li><a href={`${import.meta.env.BASE_URL}company/`}>Company</a></li>
+					<li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo">Book Demo</a></li>
 				</ul>
 			</div>
 		</nav>
