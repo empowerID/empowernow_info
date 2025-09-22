@@ -17,7 +17,7 @@
 	--on-surface:#F4F7FF;
 
 	/* Borders & layers */
-	--border-soft:rgba(255,255,255,.12);
+	--border-soft:rgba(255,255,255,.18);
 	--border-strong:rgba(255,255,255,.28);
 	--surface-1:rgba(255,255,255,.06);
 	--surface-2:rgba(255,255,255,.09);
