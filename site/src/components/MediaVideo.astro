@@ -72,18 +72,19 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
 
 {p.defer && (
   <script>
+    const __conf = JSON.parse('{JSON.stringify({ mp4: sources.mp4 ?? null, webm: sources.webm ?? null, autoplay, muted, poster: p.poster ?? null })}');
     document.currentScript?.previousElementSibling?.querySelector('.mv-defer')?.addEventListener('click', (e) => {
-      const btn = e.currentTarget as HTMLButtonElement;
-      const wrap = btn.closest('.mv-wrap') as HTMLElement;
+      const btn = e.currentTarget;
+      const wrap = btn.closest('.mv-wrap');
       if (!wrap) return;
       const video = document.createElement('video');
       video.setAttribute('playsinline','');
       video.setAttribute('controls','');
-      if ({autoplay}) { video.setAttribute('autoplay',''); video.muted = true; }
-      if ({muted}) { video.muted = true; }
-      if ({p.poster}) video.setAttribute('poster', {p.poster});
-      {sources.webm ? `video.innerHTML += \`<source src="${sources.webm}" type="video/webm"/>\`` : ''}
-      {sources.mp4 ? `video.innerHTML += \`<source src="${sources.mp4}" type="video/mp4"/>\`` : ''}
+      if (__conf.poster) video.setAttribute('poster', __conf.poster);
+      if (__conf.autoplay) { video.setAttribute('autoplay',''); video.muted = true; }
+      if (__conf.muted) { video.muted = true; }
+      if (__conf.webm) { const s = document.createElement('source'); s.src = __conf.webm; s.type = 'video/webm'; video.appendChild(s); }
+      if (__conf.mp4) { const s = document.createElement('source'); s.src = __conf.mp4; s.type = 'video/mp4'; video.appendChild(s); }
       wrap.replaceChildren(video);
     });
   </script>
