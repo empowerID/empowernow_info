@@ -19,51 +19,39 @@ interface Props {
 }
 const p = Astro.props as Props;
 import { relatedFor } from '../lib/keywords';
-import Base from './Base.astro';
 import CrossSiteLinks from '../components/CrossSiteLinks.astro';
 import RelatedContent from '../components/RelatedContent.astro';
 import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro';
 const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 ---
-<html lang="en">
-	<head>
-		<title>{p.title}</title>
-		<meta name="description" content={p.description} />
-		<link rel="canonical" href={new URL(p.canonical, Astro.site)} />
-		{p.jsonLdProduct && <script type="application/ld+json">{JSON.stringify(p.jsonLdProduct)}</script>}
-	</head>
-	<body>
-		<Base title={p.title} description={p.description} canonical={p.canonical}>
-			<BreadcrumbsJsonLd items={[
-				{ name: 'Home', item: new URL('/', Astro.site).toString() },
-				{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
-				{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
-			]} />
-			<section class="container" style="padding:72px 0 32px">
-				<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
-				{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
-				{p.targetICP && p.targetICP.length>0 && (
-					<p style="color:#9ba3b7;margin:8px 0 0">For: {p.targetICP.join(', ')}</p>
-				)}
-				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
-					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
-				</div>
-			</section>
-			{p.keyBenefits && p.keyBenefits.length > 0 && (
-				<section class="container" style="padding:8px 0 24px">
-					<h2 class="section-title">Why it wins</h2>
-					<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-						{p.keyBenefits.map((b) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{b}</div>)}
-					</div>
-				</section>
-			)}
-			<slot name="how" />
-			{p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
-			<slot name="proof" />
-			<slot name="related" />
-			{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
-			{relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
-		</Base>
-	</body>
-</html>
+{p.jsonLdProduct && <script type="application/ld+json">{JSON.stringify(p.jsonLdProduct)}</script>}
+<BreadcrumbsJsonLd items={[
+	{ name: 'Home', item: new URL('/', Astro.site).toString() },
+	{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
+	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
+]} />
+<section class="container" style="padding:72px 0 32px">
+	<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
+	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
+	{p.targetICP && p.targetICP.length>0 && (
+		<p style="color:#9ba3b7;margin:8px 0 0">For: {p.targetICP.join(', ')}</p>
+	)}
+	<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+		{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
+		{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
+	</div>
+</section>
+{p.keyBenefits && p.keyBenefits.length > 0 && (
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Why it wins</h2>
+		<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+			{p.keyBenefits.map((b) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{b}</div>)}
+		</div>
+	</section>
+)}
+<slot name="how" />
+{p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
+<slot name="proof" />
+<slot name="related" />
+{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
+{relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
