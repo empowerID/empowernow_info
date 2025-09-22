@@ -8,6 +8,7 @@ nav{background:rgba(11,28,61,.8);backdrop-filter:blur(20px);border-bottom:1px so
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--border-soft);text-decoration:none;color:var(--on-bg);background:var(--surface-1)}
 .btn:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .btn-primary{background:var(--color-accent);color:var(--on-accent);box-shadow:0 6px 22px rgba(0,231,246,.25)}
+.btn-primary:visited{color:var(--on-accent)}
 .btn-primary:hover{filter:brightness(1.05)}
 .glass-card{background:rgba(11,28,61,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.35);border:1px solid var(--border-soft);position:relative;overflow:hidden;color:var(--on-bg);text-decoration:none;display:block}
 .glass-card:hover{border-color:var(--color-accent)}
