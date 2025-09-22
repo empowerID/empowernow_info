@@ -29,8 +29,8 @@ const rows = [
 			<h1 class="display" style="margin:0 0 8px">{title}</h1>
 			<p style="color:#9ba3b7;margin:0">Objective capability comparison focused on buyer outcomes.</p>
 			<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
-				<a class="btn btn-primary" href="/products/">Explore products</a>
-				<a class="btn" href="/solutions/">See solutions</a>
+				<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/`}>Explore products</a>
+				<a class="btn" href={`${import.meta.env.BASE_URL}solutions/`}>See solutions</a>
 			</div>
 		</div>
 	</section>
@@ -49,8 +49,8 @@ const rows = [
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Next steps</h2>
 		<div style="display:flex;gap:12px;flex-wrap:wrap">
-			<a class="btn btn-primary" href="/demo/">Book a demo</a>
-			<a class="btn" href="/deep-dives/">Read deep dives</a>
+			<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book a demo</a>
+			<a class="btn" href={`${import.meta.env.BASE_URL}deep-dives/`}>Read deep dives</a>
 		</div>
 	</section>
 </Base>
