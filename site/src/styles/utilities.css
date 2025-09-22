@@ -16,8 +16,8 @@ nav{background:rgba(11,28,61,.8);backdrop-filter:blur(20px);border-bottom:1px so
 .btn-primary::before{content:'';position:absolute;inset:0;border-radius:10px;padding:1px;background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.1));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .glass-card{background:rgba(11,28,61,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 4px 20px rgba(0,0,0,.35);border:1px solid var(--border-soft);position:relative;overflow:hidden;color:var(--on-bg);text-decoration:none;display:block;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
 .glass-card:hover{border-color:rgba(0,231,246,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 10px 28px rgba(0,0,0,.45)}
-.glass-card h1,.glass-card h2,.glass-card h3{color:var(--color-primary)}
-.glass-card h3{font-weight:700;font-size:19px}
+.glass-card h1,.glass-card h2{color:var(--color-primary)}
+.glass-card h3{color:var(--on-surface);font-weight:700;font-size:19px}
 .glass-card p{color:var(--on-muted)}
 .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(0,231,246,.4),transparent)}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
