@@ -28,6 +28,7 @@ interface Props {
   muted?: boolean;
   playsInline?: boolean;
   defer?: boolean;
+  mode?: 'inline' | 'modal';
   captions?: Array<Track>;
   class?: string;
   style?: string;
@@ -42,12 +43,29 @@ const controls = p.controls !== false;
 const autoplay = !!p.autoPlay;
 const muted = p.muted || autoplay; // ensure muted when autoplay
 const aria = p.title ? undefined : 'Video content';
+const mode = p.mode || 'modal';
 
 function isMap(x: unknown): x is SourceMap { return typeof x === 'object' && x !== null && ('mp4' in (x as any) || 'webm' in (x as any)); }
 const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
 ---
 <figure class={`mv-wrap ${cls}`} style={`--mv-aspect:${aspect};${st}`}>
-  {p.defer ? (
+  {mode === 'modal' ? (
+    <button
+      class="mv-defer"
+      type="button"
+      aria-label={p.title ? `Play: ${p.title}` : 'Play video'}
+      data-mp4={sources.mp4}
+      data-webm={sources.webm}
+      data-autoplay={autoplay ? '1' : '0'}
+      data-muted={muted ? '1' : '0'}
+      data-poster={p.poster}
+      data-title={p.title}
+      onclick="window.__mvOpen && window.__mvOpen(this)"
+    >
+      {p.poster && <img src={p.poster} alt="" loading="lazy" />}
+      <span class="mv-play" aria-hidden="true">▶</span>
+    </button>
+  ) : p.defer ? (
     <button
       class="mv-defer"
       type="button"
@@ -80,11 +98,60 @@ const sources = isMap(p.src) ? p.src : ({ mp4: p.src } as SourceMap);
   {Astro.slots.has('caption') && <figcaption><slot name="caption" /></figcaption>}
 </figure>
 
-{false && (<script></script>)}
+<dialog class="mv-dialog" aria-label={p.title || 'Video player'}></dialog>
+
+<script>
+  if (!window.__mvOpen) {
+    window.__mvOpen = function(btn){
+      var ds = btn.dataset;
+      var root = btn.closest('.mv-wrap');
+      if (!root) return;
+      var dlg = root.nextElementSibling;
+      if (!(dlg && dlg.tagName === 'DIALOG')) return;
+      // Build video
+      dlg.innerHTML = '';
+      var frame = document.createElement('div');
+      frame.className = 'mv-frame';
+      var close = document.createElement('button');
+      close.className = 'mv-close';
+      close.type = 'button';
+      close.setAttribute('aria-label','Close');
+      close.textContent = '×';
+      var video = document.createElement('video');
+      video.setAttribute('playsinline','');
+      video.setAttribute('controls','');
+      if (ds.poster) video.setAttribute('poster', ds.poster);
+      if (ds.autoplay === '1') { video.setAttribute('autoplay',''); video.muted = true; }
+      if (ds.muted === '1') { video.muted = true; }
+      if (ds.webm) { var s = document.createElement('source'); s.src = ds.webm; s.type = 'video/webm'; video.appendChild(s); }
+      if (ds.mp4) { var s2 = document.createElement('source'); s2.src = ds.mp4; s2.type = 'video/mp4'; video.appendChild(s2); }
+      frame.appendChild(close);
+      frame.appendChild(video);
+      dlg.appendChild(frame);
+      dlg.addEventListener('cancel', function(ev){ ev.preventDefault(); __mvClose(dlg); });
+      close.addEventListener('click', function(){ __mvClose(dlg); });
+      dlg.addEventListener('click', function(e){ if (e.target === dlg) { __mvClose(dlg); } });
+      document.documentElement.style.overflow = 'hidden';
+      dlg.showModal();
+      close.focus();
+    };
+    window.__mvClose = function(dlg){
+      try { dlg.close(); } catch {}
+      dlg.innerHTML = '';
+      document.documentElement.style.overflow = '';
+    };
+  }
+</script>
 
 <style>
   .mv-wrap{position:relative;display:block;width:100%;max-width:100%;aspect-ratio:var(--mv-aspect);overflow:hidden}
   .mv-wrap>video,.mv-wrap>.mv-defer{position:absolute;inset:0;width:100%;max-width:100%;height:100%;border:0;border-radius:12px;background:var(--surface-2);object-fit:cover}
+  .mv-dialog{padding:0;border:0;background:transparent}
+  .mv-dialog::backdrop{background:rgba(0,0,0,.6)}
+  .mv-frame{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(960px,92vw);height:min(540px,52vw);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .mv-frame>video{width:100%;height:100%;display:block;background:#000;object-fit:contain}
+  .mv-close{position:absolute;right:8px;top:8px;width:36px;height:36px;border-radius:999px;border:1px solid var(--border-soft);background:rgba(0,0,0,.45);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+  .mv-close:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
   .mv-defer{padding:0;cursor:pointer;border:1px solid var(--border-soft);overflow:hidden}
   .mv-defer img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9)}
   .mv-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-grid;place-items:center;width:64px;height:64px;border-radius:999px;background:rgba(0,0,0,.45);box-shadow:0 10px 30px rgba(0,0,0,.35);color:#fff;font-size:28px}
