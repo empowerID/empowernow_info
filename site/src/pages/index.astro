@@ -64,7 +64,7 @@ import LogoWall from '../components/LogoWall.astro';
 		</div>
 	</section>
 	<div class="section-divider"></div>
-    <section class="container section-spine bg-grid surface-3" style="padding:60px 0;border-radius:12px">
+    <section class="container section-spine bg-grid bg-conic-cyan surface-3" style="padding:60px 0;border-radius:12px">
 		<div style="text-align:center;margin-bottom:40px">
             <h2 class="section-title" style="font-size:40px;margin:0 0 8px">Our Products</h2>
 			<p style="color:#9ba3b7">Enterprise‑grade identity orchestration and authorization infrastructure.</p>
@@ -86,7 +86,7 @@ import LogoWall from '../components/LogoWall.astro';
 			</a>
             <a href={`${import.meta.env.BASE_URL}products/idp/`} class="glass-card card-glow" style="padding:28px;text-decoration:none;color:inherit">
                 <h3 class="card-title" style="margin:0 0 8px">Authentication Studio</h3>
-                <p class="chip chip--success" style="margin:0 0 8px;display:inline-flex">FAPI 2.0‑Ready</p>
+                <p class="chip chip--success" style="margin:0 0 8px;display:inline-flex">FAPI 2.0‑Ready</p> <span class="chip chip--violet chip--spec" style="margin-left:8px">New</span>
 				<p style="color:#9ba3b7">Passkeys, OIDC, adaptive risk; issue FAPI‑profiled tokens and fine‑grained on‑behalf‑of credentials for agents.</p>
 				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/idp/" target="_blank" rel="noopener" aria-label="IdP Docs (opens in new tab)">Docs ↗</a></div>
 			</a>
@@ -100,20 +100,21 @@ import LogoWall from '../components/LogoWall.astro';
 	</section>
     <section class="container section-spine" style="padding:40px 0">
 		<h2 style="font-size:32px;margin:0 0 12px">Standards & Interop</h2>
-		<ul style="color:#9ba3b7;line-height:1.8;margin:0;columns:2;column-gap:24px">
-			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">AuthZEN</span> OpenID Authorization API — evaluation endpoints</li>
-			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">OAuth</span> Token Exchange (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449)</li>
-			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">MCP</span> Model Context Protocol for agent‑tool calls</li>
-			<li><span style="display:inline-block;border:1px solid var(--color-accent);border-radius:999px;padding:2px 8px;margin-right:8px;color:var(--on-surface);background:var(--surface-1)">Receipts</span> Signed, hash‑chained receipts for auditability</li>
+        <ul style="color:#9ba3b7;line-height:1.8;margin:0;columns:2;column-gap:24px">
+            <li><span class="chip chip--violet chip--spec" style="margin-right:8px">AuthZEN</span> OpenID Authorization API — evaluation endpoints</li>
+            <li><span class="chip chip--violet chip--spec" style="margin-right:8px">OAuth</span> Token Exchange (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449)</li>
+            <li><span class="chip chip--cyan" style="margin-right:8px">MCP</span> Model Context Protocol for agent‑tool calls</li>
+            <li><span class="chip chip--success" style="margin-right:8px">Receipts</span> Signed, hash‑chained receipts for auditability</li>
 		</ul>
 	</section>
-	<section class="container" style="padding:60px 0 120px;text-align:center;position:relative">
+    <section class="container surface-2" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
 		<div style="position:absolute;top:-24px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent)"></div>
 		<h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
 		<p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">Join teams using EmpowerNow for identity orchestration and AuthZEN‑compliant authorization.</p>
 		<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
 			<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
-			<a class="btn" style="border-color:var(--color-accent);color:var(--color-accent);background:transparent" href={`${import.meta.env.BASE_URL}demo/`}>Book a Demo</a>
+            <a class="btn" style="border-color:var(--color-accent);color:var(--color-accent);background:transparent" href={`${import.meta.env.BASE_URL}demo/`}>Book a Demo</a>
+            <span class="chip chip--success" style="align-self:center">AA compliant</span>
 		</div>
 	</section>
 </Base>

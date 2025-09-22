@@ -81,7 +81,12 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .chip--success{background:rgba(182,255,60,.10);border-color:rgba(182,255,60,.55);color:#B6FF3C}
 .chip--violet{background:rgba(108,76,255,.08);border-color:rgba(108,76,255,.45);color:var(--on-surface)}
 .chip--cyan{background:rgba(0,231,246,.08);border-color:rgba(0,231,246,.45);color:var(--on-surface)}
+.chip--spec{border-color:var(--color-accent)}
 
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
 footer a:hover{background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat;background-image:linear-gradient(90deg,var(--color-secondary),var(--color-accent))}
+
+/* Conic background accent */
+.bg-conic-cyan{position:relative}
+.bg-conic-cyan::before{content:'';position:absolute;inset:-8% -8% -8% -8%;background:conic-gradient(from 180deg at 50% 50%, rgba(0,231,246,.08), transparent 20%, rgba(0,231,246,.06) 40%, transparent 60%, rgba(0,231,246,.08) 80%, transparent);filter:blur(12px);pointer-events:none;z-index:0}
