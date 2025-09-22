@@ -57,5 +57,27 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 {p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
 <section class="container" style="padding:8px 0 24px"><slot name="proof" /></section>
 <slot name="related" />
+
+<!-- Read more band (curated) -->
+<section class="container" style="padding:16px 0 40px">
+	<h2 class="section-title">Read more</h2>
+	<div class="card-grid">
+		<div class="ns-card"><h3>What is AuthZEN?</h3><p>Understand decisions, constraints and obligations.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
+		<div class="ns-card"><h3>Constraints & Obligations</h3><p>How PDP returns enforceable constraints with decisions.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
+		<div class="ns-card"><h3>Explainability</h3><p>Expose why a decision happened for audits and UX.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
+		<div class="ns-card"><h3>Delegated Authorization</h3><p>Model relationships and delegations for business context.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_info/solutions/delegated-authorization/">Explore →</a></div>
+	</div>
+</section>
+
+<!-- Next steps grid -->
+<section class="container" style="padding:24px 0 48px">
+	<h2 class="section-title">What’s next?</h2>
+	<div class="card-grid">
+		<div class="ns-card"><h3>Book a demo</h3><p>See decisions and constraints live.</p><a class="btn btn-primary" href="/empowernow_info/demo/">Book demo</a></div>
+		<div class="ns-card"><h3>Talk to a specialist</h3><p>Map decisions to your domain model.</p><a class="btn" style="border-color:var(--color-accent);color:var(--color-accent)" href="/empowernow_info/contact/">Contact</a></div>
+		<div class="ns-card"><h3>Read the docs</h3><p>Dive into PDP API and examples.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Docs ↗</a></div>
+		<div class="ns-card"><h3>Explore standards</h3><p>AuthZEN, OAuth, DPoP and more.</p><a class="card-cta" href="/empowernow_info/resources/standards/">Standards →</a></div>
+	</div>
+</section>
 {(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
 {relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}

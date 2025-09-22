@@ -106,3 +106,9 @@ filter:blur(22px);pointer-events:none}
 .benefit-card{padding:16px;display:flex;align-items:flex-start;gap:10px}
 .benefit-bullet{width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg,var(--color-secondary),var(--color-primary));box-shadow:0 0 8px rgba(179,38,255,.5);
   flex:0 0 8px;margin-top:6px}
+
+/* Card grids */
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ns-card{border:1px solid var(--border-soft);border-radius:12px;padding:16px;background:rgba(11,28,61,.75)}
+.ns-card h3{margin:0 0 6px;color:var(--on-surface);font-size:18px}
+.ns-card p{margin:0 0 8px;color:var(--on-muted)}
