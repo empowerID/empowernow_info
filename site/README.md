@@ -31,5 +31,23 @@ See `AUTHORING.md` for step‑by‑step instructions for developers, marketing, 
 - `src/lib/` url, analytics, experiments, keywords
 - `public/` static assets
 
+## Components
+- `LogoWall.astro` – responsive, simple logo strip
+- `NotebookLMVideo.astro` – responsive embed for Google NotebookLM Video Overviews
+
+Usage:
+```astro
+---
+import NotebookLMVideo from '../src/components/NotebookLMVideo.astro';
+---
+<NotebookLMVideo
+  url="https://notebooklm.google.com/share/your-video-overview-link"
+  title="NotebookLM: Intro walkthrough"
+  poster={`${import.meta.env.BASE_URL}images/notebooklm-poster.jpg`}
+  defer={true}
+  aspect="16/9"
+/>
+```
+
 ## License
 Internal EmpowerNow project.
