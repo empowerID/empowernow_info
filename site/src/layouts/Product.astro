@@ -30,12 +30,13 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
 	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
 ]} />
-<section class="container" style="padding:72px 0 24px">
+<section class="container hero-plate" style="padding:72px 0 24px">
 	<h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
 	{p.targetICP && p.targetICP.length>0 && (
 		<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
-			{p.targetICP.map((t) => <span class="chip chip--outline-violet">{t}</span>)}
+			{p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet">{t}</span>)}
+			{p.targetICP.length>2 && <span class="chip chip--more">+{p.targetICP.length-2} more</span>}
 		</div>
 	)}
 	<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
@@ -47,8 +48,8 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 {p.keyBenefits && p.keyBenefits.length > 0 && (
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Why it wins</h2>
-		<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-			{p.keyBenefits.map((b) => <div class="glass-card card-glow" style="padding:16px">{b}</div>)}
+		<div class="benefit-row">
+			{p.keyBenefits.map((b) => <div class="glass-card card-glow benefit-card"><span class="benefit-bullet" aria-hidden="true"></span><div>{b}</div></div>)}
 		</div>
 	</section>
 )}

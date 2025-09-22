@@ -84,6 +84,7 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .chip--spec{border-color:var(--color-accent)}
 .chip--outline-violet{background:transparent;border-color:rgba(108,76,255,.55);color:var(--on-surface)}
 .chip--outline-cyan{background:transparent;border-color:rgba(0,231,246,.55);color:var(--on-surface)}
+.chip--more{background:transparent;border-color:var(--border-soft);color:var(--on-muted)}
 
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
@@ -92,3 +93,16 @@ footer a:hover{background:linear-gradient(currentColor,currentColor) left bottom
 /* Conic background accent */
 .bg-conic-cyan{position:relative}
 .bg-conic-cyan::before{content:'';position:absolute;inset:-8% -8% -8% -8%;background:conic-gradient(from 180deg at 50% 50%, rgba(0,231,246,.08), transparent 20%, rgba(0,231,246,.06) 40%, transparent 60%, rgba(0,231,246,.08) 80%, transparent);filter:blur(12px);pointer-events:none;z-index:0}
+
+/* Product hero plate */
+.hero-plate{position:relative}
+.hero-plate::before{content:'';position:absolute;left:0;right:40%;top:0;height:220px;background:
+  radial-gradient(360px 180px at 20% 40%, rgba(108,76,255,.18), transparent 60%),
+  radial-gradient(300px 160px at 35% 35%, rgba(179,38,255,.14), transparent 60%);
+filter:blur(22px);pointer-events:none}
+
+/* Benefit bullet */
+.benefit-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.benefit-card{padding:16px;display:flex;align-items:flex-start;gap:10px}
+.benefit-bullet{width:8px;height:8px;border-radius:50%;background:linear-gradient(180deg,var(--color-secondary),var(--color-primary));box-shadow:0 0 8px rgba(179,38,255,.5);
+  flex:0 0 8px;margin-top:6px}
