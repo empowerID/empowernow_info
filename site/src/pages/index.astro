@@ -50,15 +50,15 @@ import LogoWall from '../components/LogoWall.astro';
 		</div>
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
 			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)">🔌 Plug</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🔌</span> Plug</h3>
 				<p style="color:#9ba3b7">Zero‑code connectors light up any system in minutes.</p>
 			</div>
 			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)">🛡️ Protect</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🛡️</span> Protect</h3>
 				<p style="color:#9ba3b7">Graph‑anchored policies redact and revoke in real time.</p>
 			</div>
 			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)">🚀 Propel</h3>
+				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🚀</span> Propel</h3>
 				<p style="color:#9ba3b7">AI agents execute workflows safely at machine speed.</p>
 			</div>
 		</div>
@@ -75,26 +75,26 @@ import LogoWall from '../components/LogoWall.astro';
 				<h3 style="margin:0 0 8px;position:relative">Authorization Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">OpenID AuthZEN PDP</p>
 				<p style="color:#9ba3b7">Industry‑standard policy decision point with delegation graphs, batch evaluation, and explainable decisions.</p>
-				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/pdp/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Docs ↗</a></div>
+				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/pdp/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener" aria-label="PDP Docs (opens in new tab)">Docs ↗</a></div>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/orchestration/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
 				<div style="font-weight:700;font-size:14px;color:#9ba3b7;margin-bottom:8px">Lead Engine</div>
 				<h3 style="margin:0 0 8px;position:relative">Automation Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">AI‑Powered Orchestrator</p>
 				<p style="color:#9ba3b7">Drag, drop, deploy AI workflows—identity‑secured and policy‑gated.</p>
-				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/orchestration/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/orchestration/" target="_blank" rel="noopener">Docs ↗</a></div>
+				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/orchestration/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/orchestration/" target="_blank" rel="noopener" aria-label="Orchestration Docs (opens in new tab)">Docs ↗</a></div>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/idp/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
 				<h3 style="margin:0 0 8px;position:relative">Authentication Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">FAPI 2.0‑Ready IdP</p>
 				<p style="color:#9ba3b7">Passkeys, OIDC, adaptive risk; issue FAPI‑profiled tokens and fine‑grained on‑behalf‑of credentials for agents.</p>
-				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/idp/" target="_blank" rel="noopener">Docs ↗</a></div>
+				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/idp/" target="_blank" rel="noopener" aria-label="IdP Docs (opens in new tab)">Docs ↗</a></div>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/registry/`} class="glass-card" style="padding:28px;text-decoration:none;color:inherit">
 				<h3 style="margin:0 0 8px;position:relative">Inventory Studio<span style="position:absolute;left:0;right:0;bottom:-4px;height:2px;background:linear-gradient(90deg, transparent, var(--color-secondary), transparent)"></span></h3>
 				<p style="color:var(--color-accent);margin:0 0 8px">Universal Collector</p>
 				<p style="color:#9ba3b7">Discover, diff, and reconcile identities at scale with policy‑gated writes.</p>
-				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/registry/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/registry/" target="_blank" rel="noopener">Docs ↗</a></div>
+				<div style="display:flex;gap:12px;align-items:center;margin-top:6px"><a class="card-cta" href={`${import.meta.env.BASE_URL}products/registry/`}>Learn more →</a><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/registry/" target="_blank" rel="noopener" aria-label="Registry Docs (opens in new tab)">Docs ↗</a></div>
 			</a>
 		</div>
 	</section>
