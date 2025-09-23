@@ -43,23 +43,31 @@ import LogoWall from '../components/LogoWall.astro';
     <LogoWall title="Trusted by" logos={[{alt:'Acme',src:'/favicon.svg'},{alt:'Globex',src:'/favicon.svg'},{alt:'Initech',src:'/favicon.svg'}]} />
     -->
 	<div class="section-divider"></div>
-    <section class="container section-spine surface-2" style="padding:40px 0;border-radius:12px">
+	<section class="container section-spine surface-2" style="padding:40px 0;border-radius:12px">
 		<div style="text-align:center;margin-bottom:32px">
-			<h2 style="font-size:40px;margin:0 0 8px">Plug • Protect • Propel</h2>
-			<p style="color:#9ba3b7">Outcome‑focused capabilities delivered by EmpowerNow.</p>
+			<h2 style="font-size:40px;margin:0 0 8px">What you get</h2>
+			<p style="color:#9ba3b7">Five building blocks that work together — adopt one or all.</p>
 		</div>
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🔌</span> Plug</h3>
-				<p style="color:#9ba3b7">Zero‑code connectors light up any system in minutes.</p>
+			<div class="glass-card" style="padding:28px">
+				<h3 style="margin:0 0 6px">ARIA Shield (Gateway)</h3>
+				<p style="color:#9ba3b7">One secure front door; allow/deny with reasons; budget checks; SIEM logs; no browser tokens.</p>
 			</div>
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🛡️</span> Protect</h3>
-				<p style="color:#9ba3b7">Graph‑anchored policies redact and revoke in real time.</p>
+			<div class="glass-card" style="padding:28px">
+				<h3 style="margin:0 0 6px">Authorization (PDP)</h3>
+				<p style="color:#9ba3b7">OpenID AuthZEN; obligations & budgets; break‑glass and kill switches.</p>
 			</div>
-			<div class="glass-card" style="padding:28px;text-align:center">
-				<h3 style="margin:0 0 8px;color:var(--color-primary)"><span aria-hidden="true">🚀</span> Propel</h3>
-				<p style="color:#9ba3b7">AI agents execute workflows safely at machine speed.</p>
+			<div class="glass-card" style="padding:28px">
+				<h3 style="margin:0 0 6px">Authentication (IdP)</h3>
+				<p style="color:#9ba3b7">Short‑lived, scoped tokens; works with Okta & Microsoft Entra ID; simple header integration.</p>
+			</div>
+			<div class="glass-card" style="padding:28px">
+				<h3 style="margin:0 0 6px">Automation Studio</h3>
+				<p style="color:#9ba3b7">No‑code connectors as MCP Tools; per‑run policy; approvals, budgets, receipts; secrets via CyberArk/Vault.</p>
+			</div>
+			<div class="glass-card" style="padding:28px">
+				<h3 style="margin:0 0 6px">Inventory</h3>
+				<p style="color:#9ba3b7">No‑code inventory connectors; continuous discovery; feeds SailPoint/EmpowerID.</p>
 			</div>
 		</div>
 	</section>
