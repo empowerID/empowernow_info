@@ -1,0 +1,62 @@
+---
+const {
+  title = 'Secure every human, service, and AI agent',
+  subtitle = 'One Identity & Authorization Fabric—same policy at the gateway, in services, and for AI tools/models.',
+  bullets = [
+    'Real-time authorization on every request',
+    'Policy-enforced budgets & spend limits',
+    'Guardrails to reduce data exfiltration',
+    'Audit receipts to satisfy compliance'
+  ],
+  primaryCtaHref = '/resources/demo/',
+  primaryCtaText = 'Watch the 10‑min Demo',
+  secondaryCtaHref = '/products/aria-shield/',
+  secondaryCtaText = 'See ARIA Shield in action'
+} = Astro.props;
+---
+<section class="neon-hero" style="position:relative;padding:80px 0">
+  <div class="glow-bg" aria-hidden="true"></div>
+  <div class="container" style="position:relative;z-index:2;display:grid;gap:60px;grid-template-columns:1.1fr 0.9fr;align-items:center">
+    <div>
+      <h1 class="display" style="margin:0 0 12px">{title}</h1>
+      <p style="color:#C8C8CC;margin:0 0 20px">{subtitle}</p>
+      <ul style="display:grid;gap:10px;color:#9ba3b7;padding:0;margin:0;list-style:none;grid-template-columns:1fr 1fr">
+        {bullets.map((b) => (
+          <li style="display:flex;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#B8FF5E;margin-top:7px"></span><span>{b}</span></li>
+        ))}
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px">
+        <a class="btn btn-primary" href={primaryCtaHref}>{primaryCtaText}</a>
+        <a class="btn" href={secondaryCtaHref}>{secondaryCtaText}</a>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <svg role="img" aria-label="Identity & Authorization halo" width="100%" viewBox="0 0 520 420">
+        <defs>
+          <linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#7A2CF0" />
+            <stop offset="100%" stop-color="#20E0FF" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <circle cx="260" cy="180" r="130" stroke="url(#ringGrad)" stroke-width="3" fill="none" filter="url(#glow)" class="ring" />
+        <circle cx="260" cy="180" r="96" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none" />
+        <rect x="190" y="130" rx="12" width="140" height="90" fill="rgba(255,255,255,0.06)" stroke="#7A2CF0" stroke-width="1.2" />
+        <text x="260" y="152" text-anchor="middle" font-size="14" font-weight="700" fill="#20E0FF">ARIA Shield</text>
+        <text x="260" y="170" text-anchor="middle" font-size="11" fill="#C8C8CC">Session · AuthZEN checks</text>
+        <text x="260" y="188" text-anchor="middle" font-size="11" fill="#B7BDC6">Budgets · Receipts</text>
+      </svg>
+    </div>
+  </div>
+  <style>
+    .neon-hero{isolation:isolate}
+    .glow-bg{position:absolute;inset:0;filter:blur(60px);opacity:.6;background:radial-gradient(50% 50% at 35% 30%, rgba(122,44,240,.35) 0%, rgba(122,44,240,0) 60%), radial-gradient(40% 40% at 75% 60%, rgba(32,224,255,.35) 0%, rgba(32,224,255,0) 60%)}
+    @media (prefers-reduced-motion: reduce){ .ring{animation:none!important} }
+    .ring{animation:spin 26s linear infinite; transform-origin: 260px 180px}
+    @keyframes spin{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+  </style>
+</section>
+
