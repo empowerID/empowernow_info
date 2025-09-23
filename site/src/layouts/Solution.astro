@@ -21,47 +21,35 @@ const faqJson = p.faq && p.faq.length ? {
 	"@type": "FAQPage",
 	mainEntity: p.faq.map(f => ({"@type":"Question", name: f.q, acceptedAnswer: {"@type":"Answer", text: f.a}}))
 } : null;
-import Base from './Base.astro';
 import CrossSiteLinks from '../components/CrossSiteLinks.astro';
 import RelatedContent from '../components/RelatedContent.astro';
 import { relatedFor } from '../lib/keywords';
 import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro';
 const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 ---
-<html lang="en">
-	<head>
-		<title>{p.title}</title>
-		<meta name="description" content={p.description} />
-		<link rel="canonical" href={new URL(p.canonical, Astro.site)} />
-		{faqJson && <script type="application/ld+json">{JSON.stringify(faqJson)}</script>}
-	</head>
-	<body>
-		<Base title={p.title} description={p.description} canonical={p.canonical}>
-			<BreadcrumbsJsonLd items={[
-				{ name: 'Home', item: new URL('/', Astro.site).toString() },
-				{ name: 'Solutions', item: new URL('/solutions/', Astro.site).toString() },
-				{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
-			]} />
-			<header class="container" style="padding:72px 0 24px">
-				<h1 class="display">{p.headline}</h1>
-				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-					{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
-					{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
-				</div>
-			</header>
-			{p.outcomes && p.outcomes.length > 0 && (
-				<section class="container" style="padding:8px 0 24px">
-					<h2 class="section-title">Outcomes</h2>
-					<div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-						{p.outcomes.map((o) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{o}</div>)}
-					</div>
-				</section>
-			)}
-			<slot name="how" />
-			<slot name="standards" />
-			<slot name="related" />
-			{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
-			{relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
-		</Base>
-	</body>
-</html>
+<BreadcrumbsJsonLd items={[
+    { name: 'Home', item: new URL('/', Astro.site).toString() },
+    { name: 'Solutions', item: new URL('/solutions/', Astro.site).toString() },
+    { name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
+]} />
+{faqJson && <script type="application/ld+json">{JSON.stringify(faqJson)}</script>}
+<header class="container" style="padding:72px 0 24px">
+    <h1 class="display">{p.headline}</h1>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
+        {p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
+    </div>
+</header>
+{p.outcomes && p.outcomes.length > 0 && (
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Outcomes</h2>
+        <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+            {p.outcomes.map((o) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{o}</div>)}
+        </div>
+    </section>
+)}
+<slot name="how" />
+<slot name="standards" />
+<slot name="related" />
+{(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
+{relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
