@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://empowerid.github.io/products/aria-shield/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/crud/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/data-collector/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/gateway/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/idp/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/membership/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/orchestration/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/pdp/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/receipts/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://empowerid.github.io/products/registry/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/aria-shield/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/crud/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/data-collector/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/gateway/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/idp/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/membership/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/orchestration/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/pdp/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/receipts/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.empowernow.ai/products/registry/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
