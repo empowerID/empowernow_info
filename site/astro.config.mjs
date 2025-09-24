@@ -5,8 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://empowerid.github.io/empowernow_info',
-	base: '/empowernow_info/',
+	site: 'https://www.empowernow.ai',
+	base: '/',
 	trailingSlash: 'always',
 	outDir: '../docs',
 	integrations: [
