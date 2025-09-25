@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<sitemap><loc>https://www.empowernow.ai/sitemaps/products.xml</loc></sitemap>
-	<sitemap><loc>https://www.empowernow.ai/sitemaps/solutions.xml</loc></sitemap>
-	<sitemap><loc>https://www.empowernow.ai/sitemaps/comparisons.xml</loc></sitemap>
-	<sitemap><loc>https://www.empowernow.ai/sitemaps/industries.xml</loc></sitemap>
+	<sitemap><loc>https://empowerid.github.io/sitemaps/products.xml</loc></sitemap>
+	<sitemap><loc>https://empowerid.github.io/sitemaps/solutions.xml</loc></sitemap>
+	<sitemap><loc>https://empowerid.github.io/sitemaps/comparisons.xml</loc></sitemap>
+	<sitemap><loc>https://empowerid.github.io/sitemaps/industries.xml</loc></sitemap>
 </sitemapindex>
