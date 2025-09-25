@@ -6,8 +6,8 @@ import { EnumChangefreq } from 'sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://www.empowernow.ai',
-	base: '/',
+	site: 'https://empowerid.github.io/empowernow_info',
+	base: '/empowernow_info/',
 	trailingSlash: 'always',
 	outDir: '../docs',
 	integrations: [
