@@ -5,8 +5,19 @@ export async function getStaticPaths() {
 }
 const { slug } = Astro.params as { slug: string };
 import Base from '../../../layouts/Base.astro';
-const title = `${slug.toUpperCase()} — Primer`;
-const description = 'What it is, why it matters, and how it works.';
+const pretty = slug
+  .replace('oidc','OpenID Connect (OIDC)')
+  .replace('rar','Rich Authorization Requests (RAR)')
+  .replace('par','Pushed Authorization Requests (PAR)')
+  .replace('jarm','JARM')
+  .replace('fapi-2-0','FAPI 2.0')
+  .replace('scim','SCIM')
+  .replace('ciba','CIBA')
+  .replace('mcp','Model Context Protocol (MCP)')
+  .replace('caep','CAEP')
+  .replace('oauth','OAuth 2.0');
+const title = `${pretty} — Primer`;
+const description = 'What it is, why it matters, enforcement points, and how it works.';
 const canonical = `/resources/standards/${slug}/`;
 ---
 <Base title={title} description={description} canonical={canonical}>
@@ -14,9 +25,25 @@ const canonical = `/resources/standards/${slug}/`;
 		<h1 class="display" style="margin:0 0 8px">{title}</h1>
 		<p style="color:#9ba3b7">Short, factual overview. Links to docs where relevant.</p>
 	</section>
-	<section class="container" style="padding:8px 0 80px">
-		<p style="color:#9ba3b7">Content coming soon.</p>
-	</section>
+    <section class="container" style="padding:8px 0 80px">
+        <div class="glass-card" style="padding:20px;margin-bottom:16px">
+            <h2 class="section-title" style="margin:0 0 8px">Why it matters</h2>
+            <p style="color:#9ba3b7;margin:0">Standards reduce risk and vendor lock‑in. We implement this spec across our Studios and runtime so policy is portable.</p>
+        </div>
+        <div class="glass-card" style="padding:20px;margin-bottom:16px">
+            <h2 class="section-title" style="margin:0 0 8px">Where it’s enforced</h2>
+            <ul style="color:#9ba3b7;line-height:1.8;margin:0">
+                <li><strong>Gateway</strong>: pre‑execution gating (plan/schema pins, params/egress)</li>
+                <li><strong>Shield</strong>: inline budgets/stream caps/content checks</li>
+                <li><strong>PDP</strong>: decisions with constraints/obligations/TTL</li>
+                <li><strong>IdP</strong>: passports, token exchange, consent/DPoP</li>
+            </ul>
+        </div>
+        <div class="glass-card" style="padding:20px">
+            <h2 class="section-title" style="margin:0 0 8px">How it works (high level)</h2>
+            <p style="color:#9ba3b7;margin:0">See our Docs for deep dives and reference.</p>
+        </div>
+    </section>
 </Base>
 
 

@@ -6,12 +6,22 @@ const description = 'Use AuthZEN PDP + Membership to represent roles and delegat
 const canonical = '/solutions/delegated-authorization/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<Solution title={title} description={description} canonical={canonical} headline="Delegated Authorization" outcomes={[ 'Principled delegation', 'Per‑action constraints', 'Auditable access' ]} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' } ]} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' }, { href: '/products/membership/', label: 'Membership' } ]} keywords={[ 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline="Delegated Authorization" outcomes={[ 'Principled delegation', 'Per‑action constraints', 'Auditable access' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' } ]} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' }, { href: '/products/membership/', label: 'Membership' } ]} keywords={[ 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Membership models orgs, teams, roles, and delegations. PDP evaluates each request with these relationships and policy to return decisions.</p>
 			</section>
 		</fragment>
+        <fragment slot="standards">
+            <section class="container" style="padding:8px 0 24px">
+                <h2 class="section-title">Standards</h2>
+                <ul style="color:#9ba3b7;line-height:1.8">
+                    <li>OpenID AuthZEN decisions with obligations/TTL</li>
+                    <li>Token Exchange (RFC 8693) for on‑behalf‑of</li>
+                    <li>SCIM for membership synchronization</li>
+                </ul>
+            </section>
+        </fragment>
 	</Solution>
 </Base>

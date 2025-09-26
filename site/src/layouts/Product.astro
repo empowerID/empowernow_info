@@ -6,6 +6,7 @@ interface Props {
 	description: string;
 	canonical: string;
 	headline: string;
+    eyebrow?: string;
 	subhead?: string;
 	keyBenefits?: string[];
 	targetICP?: string[];
@@ -31,7 +32,7 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
 ]} />
 <section class="container hero-plate" style="padding:72px 0 24px">
-    <div class="eyebrow">AuthZEN PDP</div>
+    {p.eyebrow && <div class="eyebrow">{p.eyebrow}</div>}
     <h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
 	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
 	{p.targetICP && p.targetICP.length>0 && (

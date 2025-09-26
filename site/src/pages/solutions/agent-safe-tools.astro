@@ -6,7 +6,7 @@ const description = 'Use MCP Gateway + ARIA Shield to verify agents, enforce con
 const canonical = '/solutions/agent-safe-tools/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<Solution title={title} description={description} canonical={canonical} headline="Agent‑Safe Tools" outcomes={[ 'Verified agents', 'Constrained tools', 'Auditable calls' ]} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/gateway/', label: 'Gateway Docs' } ]} wwwLinks={[ { href: '/products/gateway/', label: 'MCP Gateway' }, { href: '/products/aria-shield/', label: 'ARIA Shield' } ]} keywords={[ 'mcp', 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline="Agent‑Safe Tools" outcomes={[ 'Verified agents', 'Constrained tools', 'Auditable calls' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'Gateway Docs' } ]} wwwLinks={[ { href: '/products/gateway/', label: 'MCP Gateway' }, { href: '/products/aria-shield/', label: 'ARIA Shield' } ]} keywords={[ 'mcp', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -18,5 +18,15 @@ const canonical = '/solutions/agent-safe-tools/';
 				</ol>
 			</section>
 		</fragment>
+        <fragment slot="standards">
+            <section class="container" style="padding:8px 0 24px">
+                <h2 class="section-title">Standards</h2>
+                <ul style="color:#9ba3b7;line-height:1.8">
+                    <li>OpenID AuthZEN obligations/constraints</li>
+                    <li>RAR (RFC 9396), DPoP (RFC 9449)</li>
+                    <li>MCP model/tool schema pins</li>
+                </ul>
+            </section>
+        </fragment>
 	</Solution>
 </Base>
