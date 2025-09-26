@@ -7,7 +7,7 @@ const description = 'Move tokens out of the browser. Use a BFF to deliver sessio
 const canonical = '/solutions/zero-token-spas/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<Solution title={title} description={description} canonical={canonical} headline="Zero‑Token SPAs" outcomes={[ 'Eliminate token theft', 'Policy on every call', 'Audit‑ready proof' ]} faq={[ { q:'What is a Zero‑Token SPA?', a:'A SPA that never stores OAuth/OIDC tokens in the browser. The BFF holds tokens server‑side and authenticates via HTTP‑only cookies.' }, { q:'Does this work with OAuth/OIDC/PKCE?', a:'Yes. OAuth/OIDC flows terminate at the BFF with PKCE; the SPA uses a SameSite, HTTP‑only session cookie.' } ]} docsLinks={[
+    <Solution title={title} description={description} canonical={canonical} headline="Zero‑Token SPAs" outcomes={[ 'Eliminate token theft', 'Policy on every call', 'Audit‑ready proof' ]} faq={[ { q:'What is a Zero‑Token SPA?', a:'A SPA that never stores OAuth/OIDC tokens in the browser. The BFF holds tokens server‑side and authenticates via HTTP‑only cookies.' }, { q:'Does this work with OAuth/OIDC/PKCE?', a:'Yes. OAuth/OIDC flows terminate at the BFF with PKCE; the SPA uses a SameSite, HTTP‑only session cookie.' } ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[
 		{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' },
 		{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway/', label: 'BFF Gateway' }
 	]} wwwLinks={[
@@ -25,6 +25,16 @@ const canonical = '/solutions/zero-token-spas/';
 				</ol>
 			</section>
 		</fragment>
+        <fragment slot="standards">
+            <section class="container" style="padding:8px 0 24px">
+                <h2 class="section-title">Standards</h2>
+                <ul style="color:#9ba3b7;line-height:1.8">
+                    <li>OIDC + OAuth 2.0 (Auth Code + PKCE)</li>
+                    <li>OpenID AuthZEN decisions at the BFF</li>
+                    <li>DPoP and RFC 8693 Token Exchange (optional)</li>
+                </ul>
+            </section>
+        </fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/products/aria-shield/',label:'ARIA Shield'},{href:'/resources/',label:'Resources'}]} />
 		</fragment>

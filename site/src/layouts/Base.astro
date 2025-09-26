@@ -11,9 +11,22 @@ import '../styles/utilities.css';
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={new URL(canonical, Astro.site)} />
+		<meta name="theme-color" content="#0B1C3D" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={new URL(canonical, Astro.site)} />
+		{(ogImage
+			? <meta property="og:image" content={ogImage} />
+			: <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}images/en-logo-dark.png`, Astro.site)} />)}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{(ogImage
+			? <meta name="twitter:image" content={ogImage} />
+			: <meta name="twitter:image" content={new URL(`${import.meta.env.BASE_URL}images/en-logo-dark.png`, Astro.site)} />)}
 		{hreflangs && hreflangs.map((h: { href: string; lang: string }) => <link rel="alternate" hrefLang={h.lang} href={h.href} />)}
 		<link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-		{ogImage && <meta property="og:image" content={ogImage} />}
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -120,6 +133,26 @@ import '../styles/utilities.css';
 						(window as any).dataLayer = (window as any).dataLayer || [];
 						(window as any).dataLayer.push({ event: type, label, position, page: location.pathname });
 					});
+				}catch{}
+			})();
+		</script>
+		<script>
+			(function(){
+				try{
+					const UTM = new URLSearchParams({ utm_source:'www', utm_medium:'cta', utm_campaign: (document.querySelector('[data-position]')?.getAttribute('data-position') || 'site') });
+					function appendUtm(a){
+						try{
+							const href = a.getAttribute('href');
+							if(!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+							const url = new URL(href, location.origin);
+							if(url.origin !== location.origin) return; // keep internal only
+							const q = new URLSearchParams(url.search);
+							UTM.forEach((v,k)=>{ if(!q.has(k)) q.set(k,v); });
+							url.search = q.toString();
+							a.setAttribute('href', url.pathname + (url.search ? ('?' + url.search) : '') + (url.hash||''));
+						}catch{}
+					}
+					document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
 				}catch{}
 			})();
 		</script>

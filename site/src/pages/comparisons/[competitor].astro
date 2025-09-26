@@ -4,24 +4,123 @@ import ComparisonTable from '../../components/ComparisonTable.astro';
 import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
 import ArticleJsonLd from '../../components/ArticleJsonLd.astro';
 export const getStaticPaths = () => {
-	const competitors = ['curity', 'ping', 'alternative'];
+    const competitors = [
+        // PDP/authorization engines
+        'opa','cerbos','aws-verified-permissions',
+        // iPaaS / workflow
+        'zapier','make','n8n','workato','servicenow-flow-designer',
+        // AI gateways / platforms
+        'cloudflare-ai-gateway','portkey','helicone','amazon-bedrock',
+        // Gateways/token-handlers
+        'kong','nginx','curity-token-handler',
+        // Fallback/alt
+        'alternative'
+    ];
 	return competitors.map((c) => ({ params: { competitor: c } }));
 };
-const competitor = (Astro.params.competitor as string) || 'alternative';
-const title = `EmpowerNow vs ${competitor}`;
-const description = `Compare EmpowerNow with ${competitor}: depth of authorization, agent safety, and outcomes.`;
-const canonical = `/comparisons/${competitor}/`;
-const rows = [
-	{ feature: 'Authorization depth', us: 'AuthZEN PDP with constraints & obligations', them: 'Scopes/gateway rules' },
-	{ feature: 'Agent safety', us: 'MCP Gateway enforcement + ARIA receipts', them: 'Unspecified/limited' },
-	{ feature: 'Auditability', us: 'Tamper-evident receipts + metrics', them: 'Basic logs' },
-];
+const key = (Astro.params.competitor as string) || 'alternative';
+const pretty: Record<string,string> = {
+    // PDP/authorization
+    'opa':'Open Policy Agent (OPA)','cerbos':'Cerbos','aws-verified-permissions':'AWS Verified Permissions',
+    // iPaaS
+    'zapier':'Zapier','make':'Make (Integromat)','n8n':'n8n','workato':'Workato','servicenow-flow-designer':'ServiceNow Flow Designer',
+    // AI gateways/platform
+    'cloudflare-ai-gateway':'Cloudflare AI Gateway','portkey':'Portkey','helicone':'Helicone','amazon-bedrock':'Amazon Bedrock',
+    // Gateways/token handlers
+    'kong':'Kong Gateway','nginx':'NGINX','curity-token-handler':'Curity Token Handler',
+    // fallback
+    'alternative':'Alternative'
+};
+const label = pretty[key] || key;
+const title = `EmpowerNow vs ${label}`;
+const description = `Compare EmpowerNow with ${label}: depth of authorization, agent safety, budgets, and auditability.`;
+const canonical = `/comparisons/${key}/`;
+
+function category(k: string): 'pdp'|'ipaas'|'ai-gateway'|'gateway'|'platform'|'other' {
+    if (['opa','cerbos','aws-verified-permissions'].includes(k)) return 'pdp';
+    if (['zapier','make','n8n','workato','servicenow-flow-designer'].includes(k)) return 'ipaas';
+    if (['cloudflare-ai-gateway','portkey','helicone'].includes(k)) return 'ai-gateway';
+    if (['kong','nginx','curity-token-handler'].includes(k)) return 'gateway';
+    if (['amazon-bedrock'].includes(k)) return 'platform';
+    return 'other';
+}
+
+const cat = category(key);
+const baseRows: { feature: string; us: string; them: string }[] = {
+    pdp: [
+        { feature: 'Decision model', us: 'AuthZEN decisions with constraints/obligations/TTL', them: 'Policy → allow/deny; constraints limited' },
+        { feature: 'Explainability', us: 'Reasons + receipt linkage', them: 'Limited' },
+        { feature: 'Context (PIP)', us: 'Inventory freshness/lineage feeds PDP', them: 'DIY' },
+        { feature: 'Standards', us: 'AuthZEN, RAR, DPoP, Token Exchange', them: 'Partial' },
+    ],
+    ipaas: [
+        { feature: 'Tool/connectors', us: 'Code‑free MCP tools from CRUD Service', them: 'Vendor‑specific actions' },
+        { feature: 'Governance', us: 'Per‑run policy, approvals, budgets, receipts', them: 'Basic run logs' },
+        { feature: 'Reliability', us: 'Idempotency + retries/SLOs', them: 'Varies by step' },
+        { feature: 'Publish many', us: 'MCP/Functions/Copilot adapters', them: 'Single platform' },
+    ],
+    'ai-gateway': [
+        { feature: 'Enforcement', us: 'Pre‑exec deny (schema pins) + inline caps', them: 'Observability/proxy only' },
+        { feature: 'Budgets', us: 'Per‑route/model budgets with 402 over‑cap', them: 'Not native' },
+        { feature: 'Receipts', us: 'Cryptographic, hash‑chained', them: 'Logs/metrics' },
+    ],
+    gateway: [
+        { feature: 'Web app model', us: 'Zero‑token SPA with BFF', them: 'Token-in-browser patterns' },
+        { feature: 'AuthZ depth', us: 'PDP constraints/obligations per route', them: 'Path/regex rules' },
+        { feature: 'Budgets/egress', us: 'Inline spend + egress controls', them: 'Plugins/DIY' },
+    ],
+    platform: [
+        { feature: 'Scope', us: 'Neutral governance across platforms', them: 'AI platform, not governance' },
+        { feature: 'Tool boundary', us: 'MCP Gateway schema pins', them: 'N/A' },
+        { feature: 'Receipts', us: 'Tamper‑evident receipts', them: 'N/A' },
+    ],
+    other: [
+        { feature: 'Authorization', us: 'AuthZEN PDP + constraints', them: 'Basic' },
+        { feature: 'Agent safety', us: 'MCP Gateway + Shield', them: 'Limited' },
+        { feature: 'Auditability', us: 'Receipts', them: 'Logs' },
+    ],
+}[cat];
+
+const rows = baseRows;
+
+const highlights: string[] = {
+    pdp: [
+        'Explainable AuthZEN decisions with enforceable constraints',
+        'Budgets/content/params enforced consistently at runtime',
+        'Receipts link decisions → enforcement → audit',
+    ],
+    ipaas: [
+        'Author once → publish to MCP/Functions/Copilot',
+        'Per‑run policy with approvals, retries, and receipts',
+        'Idempotent runs with SLOs prevent duplicate actions',
+    ],
+    'ai-gateway': [
+        'Pre‑execution deny (schema pins) prevents off‑policy calls',
+        'Budgets at route/model level with 402 over‑cap',
+        'Receipts and PDP decisions provide audit‑ready proof',
+    ],
+    gateway: [
+        'Zero‑token SPA pattern removes tokens from the browser',
+        'Route‑level PDP constraints/obligations, not regex rules',
+        'Inline spend and egress controls with receipts',
+    ],
+    platform: [
+        'Neutral governance across AI providers and tools',
+        'MCP Gateway enforces tool boundaries before execution',
+        'Signed receipts for finance, security, and audit',
+    ],
+    other: [
+        'Unified Gate → Decide → Enforce → Prove flow',
+        'Constraints/obligations carry through runtime',
+        'Receipts provide defensible evidence',
+    ],
+}[cat];
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<BreadcrumbsJsonLd items={[
 		{ name: 'Home', item: new URL('/', Astro.site).toString() },
-		{ name: 'Comparisons', item: new URL('/comparisons/', Astro.site).toString() },
-		{ name: `vs ${competitor}`, item: new URL(canonical, Astro.site).toString() },
+    { name: 'Comparisons', item: new URL('/comparisons/', Astro.site).toString() },
+    { name: `vs ${label}`, item: new URL(canonical, Astro.site).toString() },
 	]} />
 	<ArticleJsonLd type="Article" title={title} description={description} url={new URL(canonical, Astro.site).toString()} />
 	<section class="container" style="padding:56px 0 24px">
@@ -36,16 +135,14 @@ const rows = [
 	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Feature comparison</h2>
-		<ComparisonTable rows={rows} ourLabel="EmpowerNow" theirLabel={competitor} />
+        <ComparisonTable rows={rows} ourLabel="EmpowerNow" theirLabel={label} />
 	</section>
-	<section class="container" style="padding:8px 0 24px">
-		<h2 class="section-title">Highlights</h2>
-		<div class="grid-3">
-			<div class="glass-card" style="padding:16px">Central PDP decisions with constraints ensure least privilege by design.</div>
-			<div class="glass-card" style="padding:16px">Agent policy enforcement at the tool boundary with MCP Gateway.</div>
-			<div class="glass-card" style="padding:16px">Tamper-evident receipts and rich metrics for audit and compliance.</div>
-		</div>
-	</section>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Highlights</h2>
+        <div class="grid-3">
+            {highlights.map(h => <div class="glass-card" style="padding:16px">{h}</div>)}
+        </div>
+    </section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Next steps</h2>
 		<div style="display:flex;gap:12px;flex-wrap:wrap">
