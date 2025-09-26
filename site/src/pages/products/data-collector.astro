@@ -2,13 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'Data Collector — Spend & Usage Analytics';
-const description = 'Capture model usage, costs, and outcomes in real time. Drive budgets and optimizations.';
+const title = 'Inventory Studio — Data Collector & Lineage';
+const description = 'Continuous identity inventory and AI usage signals with lineage and freshness — power PDP context and spend governance.';
 const canonical = '/products/data-collector/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Data Collector","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Know your AI spend and outcomes" subhead="Collect model usage and cost signals; feed budgets, alerts, and optimization decisions." targetICP={[ 'FinOps', 'Platform Teams' ]} keyBenefits={[ 'Per‑request cost telemetry', 'Budget thresholds & alerts', 'Dashboards and export' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/solutions/spend-governance/', label: 'Spend Governance' } ]}>
+    <Product title={title} description={description} canonical={canonical} headline="Keep PDP context fresh. See spend in real time." subhead="Collect identities/entitlements with lineage + model usage/cost signals; feed PDP PIPs and budget decisions." targetICP={[ 'FinOps', 'Platform Teams', 'IAM' ]} keyBenefits={[ 'Freshness + lineage for identity context', 'Per‑request cost telemetry for budgets', 'Export to SIEM/BI; receipts linkage' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/', label: 'Collector/Registry Docs' } ]} wwwLinks={[ { href: '/solutions/spend-governance/', label: 'Spend Governance' } ]} keywords={[ 'inventory','lineage','finops' ]}>
 	</Product>
 </Base>
