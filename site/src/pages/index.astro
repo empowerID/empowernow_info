@@ -9,15 +9,16 @@ import LogoWall from '../components/LogoWall.astro';
 				<div style="display:inline-block;padding:8px 24px;border:1px solid var(--border-strong);border-radius:999px;color:var(--on-surface);background:var(--surface-2);font-weight:600;margin-bottom:32px">Designed with AI, for AI</div>
 				<h1 class="display" style="font-size:60px;line-height:1.1;margin:0 0 12px">Secure every human, service, and AI agent with one <span style="background:linear-gradient(135deg,var(--color-accent),var(--color-primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Identity & Authorization Fabric</span></h1>
 				<p style="color:#9ba3b7;max-width:720px;margin:0 0 20px">Real‑time authorization, budgets, and audit across ARIA Shield (gateway), Authentication, Authorization, Automation Studio, and Inventory.</p>
-				<ul style="list-style:none;padding:0;margin:18px 0 28px;max-width:640px;color:#9ba3b7">
-					<li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Real‑time authorization</li>
-					<li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Spend controls (budgets & limits)</li>
-					<li style="display:flex;gap:8px"><span style="color:var(--color-accent)">•</span> Audited receipts</li>
-				</ul>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
-					<a class="btn" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>See ARIA Shield in action</a>
-				</div>
+                <ul style="list-style:none;padding:0;margin:18px 0 28px;max-width:640px;color:#9ba3b7">
+                    <li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Real‑time authorization on every request</li>
+                    <li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Policy‑enforced budgets and spend limits</li>
+                    <li style="display:flex;gap:8px;margin-bottom:8px"><span style="color:var(--color-accent)">•</span> Guardrails to reduce data exfiltration risk</li>
+                    <li style="display:flex;gap:8px"><span style="color:var(--color-accent)">•</span> Cryptographic receipts for audit and compliance</li>
+                </ul>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a class="btn btn-primary" data-ev="cta" data-label="hero-demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
+                    <a class="btn" data-ev="cta" data-label="hero-quickstart" data-position="hero" href={`${import.meta.env.BASE_URL}docs/`}>Open Quickstart</a>
+                </div>
 				<div style="margin-top:8px"><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} style="color:var(--color-primary);text-decoration:none">See how it works →</a></div>
 			</div>
             <div class="parallax-glow" style="flex:1 1 420px;min-width:320px;max-width:520px;margin-top:-12px">
@@ -43,6 +44,39 @@ import LogoWall from '../components/LogoWall.astro';
     <LogoWall title="Trusted by" logos={[{alt:'Acme',src:'/favicon.svg'},{alt:'Globex',src:'/favicon.svg'},{alt:'Initech',src:'/favicon.svg'}]} />
     -->
 	<div class="section-divider"></div>
+    <section class="container surface-2" style="padding:40px 0;border-radius:12px">
+        <div style="text-align:center;margin-bottom:28px">
+            <h2 style="font-size:40px;margin:0 0 8px">Outcomes that matter</h2>
+            <p style="color:#9ba3b7">Audit you can prove. Spend you can control. Ship with confidence.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+            <div class="glass-card" style="padding:24px">
+                <h3 style="margin:0 0 8px">AI you can audit</h3>
+                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                    <li>Authorization on every request</li>
+                    <li>Guardrails for egress/content</li>
+                    <li>Signed, hash‑chained receipts</li>
+                </ul>
+            </div>
+            <div class="glass-card" style="padding:24px">
+                <h3 style="margin:0 0 8px">Spend under control</h3>
+                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                    <li>Budgets and per‑route caps</li>
+                    <li>Over‑cap returns 402 (pre‑exec)</li>
+                    <li>Usage by model, tool, team</li>
+                </ul>
+            </div>
+            <div class="glass-card" style="padding:24px">
+                <h3 style="margin:0 0 8px">Ship with confidence</h3>
+                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                    <li>Config‑as‑code, PR‑gated</li>
+                    <li>SaaS, private cloud, self‑host</li>
+                    <li>Adopt incrementally</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
 	<section class="container section-spine surface-2" style="padding:40px 0;border-radius:12px">
 		<div style="text-align:center;margin-bottom:32px">
 			<h2 style="font-size:40px;margin:0 0 8px">What you get</h2>
