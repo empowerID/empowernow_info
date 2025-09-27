@@ -5,7 +5,7 @@ const description = 'IdP, PDP, ARIA MCP Gateway, ARIA Shield, Data Collector, CR
 const canonical = '/products/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="hero-plate" style="padding:56px 0 16px">
+    <section class="hero-plate" style="padding:120px 0 64px">
         <div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
             <div style="flex:1 1 520px;min-width:300px">
                 <h1 class="display" style="margin:0 0 8px">The Platform That Makes AI Agents Actually Work</h1>
@@ -18,7 +18,7 @@ const canonical = '/products/';
             <div style="flex:1 1 380px;min-width:280px"><div style="color:#9ba3b7">API → CRUD Service → MCP/Copilot/Functions</div></div>
         </div>
     </section>
-    <section class="container" style="padding:8px 0 8px">
+    <section class="container" style="padding:64px 0">
         <div class="glass-card" style="padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0">
             <button class="btn" data-tab="build" aria-pressed="true">Build</button>
             <button class="btn" data-tab="secure">Secure</button>
@@ -62,7 +62,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Stop data exfiltration & cap AI spend (402); params/egress allow‑lists</li>
                     <li><strong>Buyer:</strong> CISO / SecOps</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">MCP Gateway</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
@@ -71,7 +71,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Block prompt‑injection/tool overreach pre‑execution; validate plan & schema pins</li>
                     <li><strong>Buyer:</strong> AI Platform / AppSec</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a></div>
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
@@ -80,7 +80,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL → consistent enforcement across agents</li>
                     <li><strong>Buyer:</strong> IAM / Identity Architecture</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open Reference</a><a class="btn" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open Reference</a><a class="btn" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
             </div>
             <div class="glass-card" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">IdP</h3><span class="chip chip--success">GA</span></div>
@@ -89,7 +89,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows — no long‑lived secrets</li>
                     <li><strong>Buyer:</strong> IAM / AppSec</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
             </div>
             <div id="vds" class="glass-card" data-cat="build" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">VDS (Virtual Directory Server)</h3><span class="chip" data-badge-info="Coming soon">Coming soon</span></div>
@@ -103,7 +103,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps — attribute dollars to policy, user, and tool</li>
                     <li><strong>Buyer:</strong> FinOps / Audit</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
             </div>
             <div class="glass-card" data-cat="audit" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Receipt Vault</h3></div>
@@ -122,7 +122,7 @@ const canonical = '/products/';
 `}</code></pre>
                 <div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-                    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/receipts/`}>Open Receipt Vault</a>
+                    <a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>Open Receipt Vault</a>
                     <a class="btn" data-ev="artifact_view" data-label="receipt-min" href={`${import.meta.env.BASE_URL}resources/artifacts/receipt-min.json`} download>Download sample</a>
                 </div>
             </div>
@@ -165,7 +165,7 @@ const canonical = '/products/';
             <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
         </div>
     </section>
-    <section class="container" id="products-status" data-section="status" style="padding:8px 0 24px">
+    <section class="container" id="products-status" data-section="status" style="padding:64px 0">
         <h2 class="section-title">Status</h2>
         <div class="glass-card" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
             <span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Platform: <strong>LIVE</strong></span>
@@ -174,13 +174,13 @@ const canonical = '/products/';
             <span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Docs: <strong>COMPLETE</strong></span>
         </div>
     </section>
-    <section class="container" style="padding:8px 0 4px">
+    <section class="container" style="padding:64px 0">
         <h2 class="section-title">Works with</h2>
         <div class="chip-row" style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
             <span class="chip">Anthropic MCP</span><span class="chip">Microsoft Copilot</span><span class="chip">OpenAI Functions</span><span class="chip">Google Vertex (Q1)</span><span class="chip">AWS Bedrock (Q1)</span><span class="chip">LangChain/LangGraph</span>
         </div>
     </section>
-    <section class="container" style="padding:8px 0 24px">
+    <section class="container" style="padding:64px 0">
         <h2 class="section-title">Included by tier</h2>
         <div class="glass-card" style="padding:16px">
             <div style="display:grid;grid-template-columns:180px repeat(3,140px);gap:8px;align-items:center">
@@ -195,14 +195,14 @@ const canonical = '/products/';
             </div>
         </div>
     </section>
-    <section class="container" style="padding:8px 0 24px">
+    <section class="container" style="padding:64px 0">
         <h2 class="section-title">Pricing</h2>
         <div class="glass-card" style="padding:16px">
             <p style="color:#9ba3b7;margin:0 0 10px"><strong>Starting at $500 / governed endpoint / month</strong> · usage (decisions/receipts) · author seats</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}pricing/`}>Compare tiers</a><a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Contact sales</a><a class="btn" href={`${import.meta.env.BASE_URL}docs/self-host/`}>Self‑host install</a></div>
         </div>
     </section>
-	<section class="container" style="padding:8px 0 24px">
+	<section class="container" style="padding:64px 0">
 		<h2 class="section-title">Deep technical docs</h2>
 		<div style="display:flex;gap:12px;flex-wrap:wrap">
 			<a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/">ARIA Shield Overview</a>
