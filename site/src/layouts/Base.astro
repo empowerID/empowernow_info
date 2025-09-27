@@ -51,7 +51,7 @@ import '../styles/utilities.css';
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
 					<li><a href={`${import.meta.env.BASE_URL}pricing/`}>Pricing</a></li>
 					<li><a href={`${import.meta.env.BASE_URL}trust/`}>Company</a></li>
-					<li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo">Book Demo</a></li>
+                    <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -122,20 +122,64 @@ import '../styles/utilities.css';
 					function setConsent(val){ localStorage.setItem(consentKey, val); if(consentEl) consentEl.hidden = true; }
 					acceptBtn && acceptBtn.addEventListener('click', function(){ setConsent('yes'); });
 					declineBtn && declineBtn.addEventListener('click', function(){ setConsent('no'); });
-					document.addEventListener('click', function(e){
+                    document.addEventListener('click', function(e){
 						const t = e.target as HTMLElement;
 						const el = t && (t.closest('[data-ev]') as HTMLElement | null);
 						if(!el) return;
 						if(localStorage.getItem(consentKey) !== 'yes') return;
-						const type = el.getAttribute('data-ev');
-						const label = el.getAttribute('data-label') || '';
-						const position = el.getAttribute('data-position') || '';
-						(window as any).dataLayer = (window as any).dataLayer || [];
-						(window as any).dataLayer.push({ event: type, label, position, page: location.pathname });
+                        const type = el.getAttribute('data-ev') || 'event';
+                        const label = el.getAttribute('data-label') || '';
+                        const position = el.getAttribute('data-position') || '';
+                        const cta_level = el.getAttribute('data-cta-level') || 'soft';
+                        const product = el.getAttribute('data-product') || 'na';
+                        const persona = el.getAttribute('data-persona') || 'na';
+                        const stage = el.getAttribute('data-stage') || 'na';
+                        const url = new URL(location.href);
+                        const utm_campaign = url.searchParams.get('utm_campaign') || '';
+                        const utm_persona = url.searchParams.get('utm_persona') || '';
+                        const utm_stage = url.searchParams.get('utm_stage') || '';
+                        const record = {
+                            timestamp: new Date().toISOString(),
+                            event: type,
+                            cta_level,
+                            page: location.pathname,
+                            product,
+                            persona,
+                            stage,
+                            utm_campaign,
+                            utm_persona,
+                            utm_stage,
+                            metadata: { label, position }
+                        };
+                        (window as any).dataLayer = (window as any).dataLayer || [];
+                        (window as any).dataLayer.push(record);
+                        try {
+                            const key = 'marketing_events_jsonl';
+                            const prev = localStorage.getItem(key) || '';
+                            const line = JSON.stringify(record);
+                            localStorage.setItem(key, prev ? (prev + '\n' + line) : line);
+                        } catch {}
 					});
 				}catch{}
 			})();
 		</script>
+        <script>
+            (function(){
+                try{
+                    (window as any).metrics = (window as any).metrics || {};
+                    (window as any).metrics.exportJSONL = function(){
+                        try{
+                            const key = 'marketing_events_jsonl';
+                            const blob = new Blob([localStorage.getItem(key) || ''], { type: 'application/jsonl' });
+                            const a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = 'events.jsonl';
+                            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                        }catch{}
+                    };
+                }catch{}
+            })();
+        </script>
 		<script>
 			(function(){
 				try{

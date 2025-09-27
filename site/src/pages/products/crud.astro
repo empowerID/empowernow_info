@@ -1,6 +1,67 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'CRUD Service — Identity Operations (Automation Studio)';
+const description = 'Ship reliable identity workflows with idempotency, approvals, retries/SLOs, and provable receipts. Author once → publish across agent platforms.';
+const canonical = '/products/crud/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"CRUD Service","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product
+		title={title}
+		description={description}
+		canonical={canonical}
+		eyebrow="Automation Studio"
+		headline="Ship reliable identity workflows with idempotency and approvals"
+		subhead="A no-code operations plane for identity objects and workflows—idempotent, auditable, observable, and policy-ready for agents."
+		targetICP={[ 'Platform Engineering', 'DevOps', 'App Teams', 'Security' ]}
+		keyBenefits={[
+			'Idempotent operations with event_id dedupe',
+			'Policy-linked approvals with auditable paths',
+			'Retries and SLOs with circuit breakers',
+			'Connectors to APIs/DBs for quick tool creation',
+			'Cryptographic receipts for every critical step'
+		]}
+		primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }}
+		secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/' }}
+		docsLinks={[
+			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/', label: 'CRUD Service Docs' },
+			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/explanation/idempotency/', label: 'Idempotency' },
+			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/explanation/approvals-overview/', label: 'Approvals' }
+		]}
+		wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' } ]}
+		keywords={[ 'automation', 'idempotency', 'approvals', 'workflows' ]}
+	>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<ol class="numbered">
+					<li>Receive operation → dedupe by <code>event_id</code> → persist.</li>
+					<li>Orchestrate approvals and execute with retries/SLOs.</li>
+					<li>Emit events and signed receipts; stream to analytics.</li>
+				</ol>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Author once → publish many</h2>
+				<p style="color:#9ba3b7">Turn any API/DB into agent‑safe tools and publish across platforms with policy hooks: Anthropic MCP, OpenAI Functions, Microsoft Copilot, Google Vertex, AWS Bedrock, LangChain/LangGraph.</p>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Proof</h2>
+				<ul style="color:#9ba3b7;line-height:1.8">
+					<li>Idempotency quickstart</li>
+					<li>Approval path options</li>
+					<li>Receipt excerpt linked from reference</li>
+				</ul>
+			</section>
+		</fragment>
+	</Product>
+</Base>
+
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
 import PricingCTA from '../../components/PricingCTA.astro';
 import JsonLd from '../../components/JsonLd.astro';
 const title = 'CRUD Service — Governed automation & connectors';

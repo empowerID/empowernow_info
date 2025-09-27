@@ -9,7 +9,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} eyebrow="ARIA MCP Gateway" headline="Deny unsafe calls before the model runs" subhead="Validate ARIA Passports, pin schemas, and enforce budgets/params/egress at the tool boundary; emit tamper‑evident receipts for every call." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Passport validation (identity/consent)', 'Schema pins and params/egress allowlists', 'Pre‑execution deny with cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]}>
+    <Product title={title} description={description} canonical={canonical} eyebrow="Runtime Studio — ARIA MCP Gateway" headline="Deny unsafe calls before the model runs" subhead="Validate ARIA Passports, pin schemas, and enforce budgets/params/egress at the tool boundary; emit tamper‑evident receipts for every call." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Passport validation (identity/consent)', 'Schema pins and params/egress allowlists', 'Pre‑execution deny with cryptographic receipts' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -19,6 +19,30 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					<li>Enforce constraints and obligations; call tool.</li>
 					<li>Write a signed, hash‑chained receipt.</li>
 				</ol>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Plan JWS (per step)</h2>
+				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "step": 3,
+  "tool": "billing.export",
+  "params_fingerprint": "sha256-...",
+  "schema_hash": "sha256-...",
+  "iat": 1738020000
+}
+`}</code></pre>
+				<p style="color:#9ba3b7">Gateway verifies the JWS signature and payload fields to ensure the call matches the planned step.</p>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Schema pins & allowlists</h2>
+				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "schema": { "id": "billing.export", "version": "2.3.1", "hash": "sha256-..." },
+  "params_allow": ["account_id", "month"],
+  "egress_allow": ["https://api.example.com"]
+}
+`}</code></pre>
+				<p style="color:#9ba3b7">Pins prevent drift; parameters and egress are enforced at the boundary with PDP constraints.</p>
 			</section>
 		</fragment>
 	</Product>

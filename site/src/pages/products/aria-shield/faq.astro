@@ -1,0 +1,27 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'FAQ — ARIA Shield (Zero‑Token SPA & Budgets)';
+const description = 'Answers to common questions about zero‑token SPAs, budget 402 semantics, and streaming caps.';
+const canonical = '/products/aria-shield/faq/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 8px">
+        <h1>ARIA Shield — FAQ</h1>
+        <div itemscope itemtype="https://schema.org/FAQPage">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">What is a zero‑token SPA?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">The SPA uses httpOnly cookies for session; the BFF (Shield) holds and brokers tokens per service. No tokens reside in the browser.</p></div>
+            </div>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">How do budget 402 responses work?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">On exceed, Shield returns HTTP 402 with <code>call_id</code>, policy, remaining budget, and retry guidance. On permit, a hold is placed and then settled to actuals in the receipt.</p></div>
+            </div>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">Can I cap streaming output?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">Yes. PDP can return constraints (e.g., <code>stream_tokens_max</code>, <code>duration_ms_max</code>) which Shield enforces by early‑stopping the stream.</p></div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+

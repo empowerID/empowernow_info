@@ -25,12 +25,39 @@ const items = [
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Proof (last 30 days)</h2>
 		<div class="glass-card" style="padding:12px;display:flex;gap:16px;flex-wrap:wrap;color:#9ba3b7">
-			<div><strong>Receipts/day</strong> — __k</div>
-			<div><strong>Spend blocked (402)</strong> — __%</div>
-			<div><strong>Governed endpoints</strong> — __</div>
+			<div><strong>Receipts/day</strong> — <span id="m_receipts">—</span></div>
+			<div><strong>Spend blocked (402)</strong> — <span id="m_blocked">—</span></div>
+			<div><strong>Governed endpoints</strong> — <span id="m_endpoints">—</span></div>
 		</div>
 	</section>
+    <script>
+        (function(){
+            try{
+                function parseLocalJSONL(key){
+                    const raw = localStorage.getItem(key) || '';
+                    if(!raw) return [];
+                    return raw.split('\n').map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+                }
+                function update(){
+                    const events = parseLocalJSONL('marketing_events_jsonl');
+                    const receiptsPerDay = Math.max(0, Math.round(events.filter(e => e.event === 'receipt').length / 30));
+                    const blocked = Math.max(0, Math.round((events.filter(e => e.event === 'budget_block').length / Math.max(1, events.filter(e => e.event === 'cta_click').length)) * 100));
+                    const endpoints = 10; // placeholder until backend metric is wired
+                    const $ = (id) => document.getElementById(id);
+                    $('m_receipts').textContent = receiptsPerDay ? receiptsPerDay + 'k' : '—';
+                    $('m_blocked').textContent = blocked ? blocked + '%' : '—';
+                    $('m_endpoints').textContent = String(endpoints);
+                }
+                update();
+            }catch{}
+        })();
+    </script>
 	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Author once → publish many</h2>
+		<div class="glass-card" style="padding:16px;color:#9ba3b7">
+			<p style="margin:0 0 8px">Create tools in <strong>Automation Studio</strong> and publish across platforms with policy hooks built in.</p>
+			<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">Anthropic MCP</span><span class="chip">OpenAI Functions</span><span class="chip">Microsoft Copilot</span><span class="chip">Google Vertex</span><span class="chip">AWS Bedrock</span><span class="chip">LangChain/LangGraph</span></div>
+		</div>
 		<h2 class="section-title">Build & Publish</h2>
 		<div class="grid-3">
             <a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">

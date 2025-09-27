@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'FAQ — Data Collector (Inventory & Usage)';
+const description = 'Answers about lineage, freshness SLAs, and analytics.';
+const canonical = '/products/data-collector/faq/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 8px">
+        <h1>Data Collector — FAQ</h1>
+        <div itemscope itemtype="https://schema.org/FAQPage">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">What is lineage?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">A record of source → transform → sink with timestamps and integrity markers so you can prove where facts came from.</p></div>
+            </div>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">How do freshness SLAs work?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">Connectors emit deltas; we track last-seen and enforce refresh windows. Stale context can trigger re-evaluation by the PDP.</p></div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+

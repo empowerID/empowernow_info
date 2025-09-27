@@ -1,5 +1,101 @@
 ---
 import Base from '../layouts/Base.astro';
+const title = 'Pricing & ROI — EmpowerNow';
+const description = 'Simple, credible pricing with a lightweight ROI calculator to estimate savings and payback.';
+const canonical = '/pricing/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 8px">
+        <h1>Pricing</h1>
+        <p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Start small and expand as you govern more endpoints and agents.</p>
+        <div class="glass-card" style="padding:16px;color:#9ba3b7">
+            <ul style="margin:0;line-height:1.8">
+                <li><strong>$500 / governed endpoint / month</strong> (typical)</li>
+                <li><strong>Decisions</strong> priced per 100k</li>
+                <li><strong>Receipts</strong> priced per 10k</li>
+                <li><strong>Author seats</strong> for Automation/Studios (optional)</li>
+                <li><strong>OEM/white‑label</strong> and volume tiers available</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Quick ROI estimate</h2>
+        <div class="glass-card" style="padding:16px">
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+                <div>
+                    <label>Product</label>
+                    <select id="roi_product" class="input" style="width:100%">
+                        <option value="pdp">PDP</option>
+                        <option value="shield">ARIA Shield</option>
+                        <option value="idp">IdP</option>
+                        <option value="crud">CRUD Service</option>
+                        <option value="collector">Data Collector</option>
+                        <option value="mcp">MCP Gateway</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Monthly governed calls</label>
+                    <input id="roi_calls" class="input" type="number" value="200000" min="0" style="width:100%" />
+                </div>
+                <div>
+                    <label>Average cost per call (USD)</label>
+                    <input id="roi_cost" class="input" type="number" value="0.01" step="0.001" min="0" style="width:100%" />
+                </div>
+                <div>
+                    <label>Rogue/off‑policy call rate (%)</label>
+                    <input id="roi_rogue" class="input" type="number" value="0.5" step="0.1" min="0" max="100" style="width:100%" />
+                </div>
+                <div>
+                    <label>Audit events per year</label>
+                    <input id="roi_audit" class="input" type="number" value="8" min="0" style="width:100%" />
+                </div>
+                <div>
+                    <label>Hours saved per audit (assumption)</label>
+                    <input id="roi_audit_hours" class="input" type="number" value="30" min="0" style="width:100%" />
+                </div>
+            </div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:#9ba3b7">
+                <div class="glass-chip"><strong>Spend saved / month</strong>: <span id="out_spend">$0</span></div>
+                <div class="glass-chip"><strong>Audit hours saved / year</strong>: <span id="out_audit">0 h</span></div>
+                <div class="glass-chip"><strong>Indicative license</strong>: <span id="out_license">$4,600/mo</span></div>
+                <div class="glass-chip"><strong>Payback (rough)</strong>: <span id="out_payback">—</span></div>
+            </div>
+            <p style="color:#9ba3b7;margin-top:8px">Estimates are illustrative; exact pricing and ROI depend on scope and volumes.</p>
+        </div>
+    </section>
+
+    <script>
+        const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+        function fmtUSD(n: number): string { return n.toLocaleString(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }); }
+        function recalc() {
+            const calls = Number($("roi_calls").value || 0);
+            const cost = Number($("roi_cost").value || 0);
+            const rogue = Number($("roi_rogue").value || 0) / 100;
+            const auditEvents = Number($("roi_audit").value || 0);
+            const auditHours = Number($("roi_audit_hours").value || 0);
+            const spendSaved = calls * cost * rogue; // monthly
+            const auditSaved = auditEvents * auditHours; // yearly hours
+            const indicativeLicense = 500 * 10 + 600; // 10 endpoints example + infra (illustrative)
+            const paybackMonths = spendSaved > 0 ? Math.max(1, Math.round(indicativeLicense / Math.max(1, spendSaved))) : Infinity;
+            (document.getElementById('out_spend') as HTMLElement).textContent = fmtUSD(spendSaved);
+            (document.getElementById('out_audit') as HTMLElement).textContent = `${auditSaved} h`;
+            (document.getElementById('out_license') as HTMLElement).textContent = fmtUSD(indicativeLicense);
+            (document.getElementById('out_payback') as HTMLElement).textContent = isFinite(paybackMonths) ? `${paybackMonths} mo` : '—';
+        }
+        ['roi_product','roi_calls','roi_cost','roi_rogue','roi_audit','roi_audit_hours'].forEach(id => $(id).addEventListener('input', recalc));
+        recalc();
+    </script>
+    <style>
+        .glass-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px }
+        .glass-chip { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 999px; padding: 8px 12px }
+        .input { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.08); color: inherit; padding: 8px 10px; border-radius: 8px }
+        label { display:block; font-size:.9rem; color:#9ba3b7; margin:0 0 6px }
+    </style>
+</Base>
+
+---
+import Base from '../layouts/Base.astro';
 const title = 'Packaging & Pricing — Studios and meters';
 const description = 'Simple tiers with clear meters across Studios (Authentication, Authorization, Automation, Inventory, Governance).';
 const canonical = '/pricing/';

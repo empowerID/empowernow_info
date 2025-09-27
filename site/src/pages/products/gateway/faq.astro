@@ -1,0 +1,27 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'FAQ — ARIA MCP Gateway (Tool‑Boundary Enforcement)';
+const description = 'Answers about plan JWS, schema pins, and params/egress allowlists.';
+const canonical = '/products/gateway/faq/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 8px">
+        <h1>ARIA MCP Gateway — FAQ</h1>
+        <div itemscope itemtype="https://schema.org/FAQPage">
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">What is plan JWS?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">Each planned tool step is signed (JWS) with fingerprints for parameters and schema; Gateway verifies it before execution.</p></div>
+            </div>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">How do schema pins work?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">Pins include version/hash with optional grace window; any mismatch yields a deny until the pin is updated.</p></div>
+            </div>
+            <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" class="glass-card" style="padding:16px;margin:0 0 12px">
+                <h2 itemprop="name" class="section-title">Params and egress allowlists?</h2>
+                <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" style="color:#9ba3b7">Gateway admits only approved parameters and outbound domains. The PDP may further constrain values.</p></div>
+            </div>
+        </div>
+    </section>
+</Base>
+
+

@@ -9,7 +9,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} eyebrow="Authentication Studio" headline="Bind agents to users and capture consent up front" subhead="Issue ARIA Passports, collect explicit user consent, and attach obligations that downstream services enforce." targetICP={[ 'Platform Teams', 'Security', 'Compliance' ]} keyBenefits={[ 'Strong agent binding to user identity', 'Pre‑issuance consent with obligations', 'Budget envelopes for spend governance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/', label: 'IdP Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp', 'authzen' ]}>
+    <Product title={title} description={description} canonical={canonical} eyebrow="Authentication Studio" headline="Bind agents to users and capture consent up front" subhead="Issue purpose‑bound ARIA Passports (TE + RAR + optional DPoP), collect explicit user consent, and attach obligations that downstream services enforce." targetICP={[ 'Platform Teams', 'Security', 'Compliance' ]} keyBenefits={[ 'Strong agent binding to user identity', 'Pre‑issuance consent with obligations', 'Budget envelopes for spend governance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/', label: 'IdP Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -39,6 +39,20 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</ul>
 				<h3>OAuth/OIDC features</h3>
 				<p style="color:#9ba3b7">Auth Code + PKCE, Refresh, Client Credentials, Introspection. Optional: PAR, JARM‑style JWT responses, CIBA, DPoP, RFC 8693 Token Exchange, JWE/JWS. Discovery advertises supported grants/algorithms; middleware can enforce FAPI‑style rigor.</p>
+				<h3>Minimal RAR object</h3>
+				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "authorization_details": [
+    {
+      "type": "tool",
+      "actions": ["invoke"],
+      "resource": "billing.export",
+      "locations": ["https://api.example.com"],
+      "dat": { "purpose": "monthly_report" }
+    }
+  ]
+}
+`}</code></pre>
 				<h3>Claims & scopes</h3>
 				<ul>
 					<li>Canonical identity‑first claims with provenance (`orig_iss`, `orig_sub`)</li>
@@ -64,4 +78,13 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			</section>
 		</fragment>
 	</Product>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Compare</h2>
+        <div class="glass-card" style="padding:16px;color:#9ba3b7">
+            <ul style="margin:0;line-height:1.8">
+                <li><strong>Microsoft Entra/Okta/Auth0</strong>: OAuth/OIDC for apps; agent Passports require TE + RAR + chain/pins + receipts → <a href="https://learn.microsoft.com/entra/identity-platform/dpop-proof-of-possession">evidence</a></li>
+                <li><strong>Keys/Vaults</strong>: rotate/seal keys but no pairwise identity, plan/schema pins, or receipts → standards TE/RAR/DPoP close gaps</li>
+            </ul>
+        </div>
+    </section>
 </Base>

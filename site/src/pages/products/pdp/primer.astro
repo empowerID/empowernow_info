@@ -1,0 +1,30 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'Primer — AuthZEN & Conservative Merge';
+const description = 'What AuthZEN is, how conservative merge works, PIP enrichment, and TTL.';
+const canonical = '/products/pdp/primer/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 8px">
+        <h1>AuthZEN & Conservative Merge</h1>
+        <p style="color:#9ba3b7;max-width:860px">AuthZEN standardizes the decision envelope (allow/deny + constraints/obligations/TTL + reasons). Conservative merge intersects constraints across layers to avoid over‑grant.</p>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Decision envelope</h2>
+        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "decision": "Permit",
+  "constraints": [{ "id": "stream_tokens_max", "value": 2048 }],
+  "obligations": [{ "id": "step_up_mfa" }],
+  "ttl_ms": 5000,
+  "reasons": ["policy:agent.tools.invoke"]
+}
+`}</code></pre>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Conservative merge</h2>
+        <p style="color:#9ba3b7">Given multiple applicable policies, compute the minimum/most restrictive outcome per constraint category, never a union that over‑grants.</p>
+    </section>
+</Base>
+
+
