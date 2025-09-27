@@ -89,6 +89,49 @@ import PinPlan from '../components/icons/PinPlan.astro';
             </div>
         </div>
     </section>
+    <section class="container" style="padding:24px 0">
+        <div class="glass-card" style="padding:20px">
+            <h2 style="font-size:36px;margin:0 0 10px">How we’re different</h2>
+            <div style="overflow:auto">
+                <table style="width:100%;border-collapse:separate;border-spacing:0 8px">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">What you need</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Others (typical)</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">EmpowerNow</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Working tools <strong>today</strong></td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">“Coming soon” or DIY</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><a href={`${import.meta.env.BASE_URL}products/crud/`}>Live demo: create a tool in &lt; 5 min</a></td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Cross‑platform enforcement</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Logs/observability</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Pre‑exec pins + runtime budgets/egress</td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Standardized decisions</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">App‑specific rules</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OpenID AuthZEN (constraints/obligations/TTL)</td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Proof for audit & FinOps</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Unstructured logs</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Cryptographic receipts (decision/policy/schema/cost)</td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Identity propagation</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Ad‑hoc JWT passing</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OAuth 2.1 + RFC 8693 Token Exchange</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
     <section class="container" style="padding:8px 0 24px">
         <div class="glass-card" style="padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;color:#9ba3b7">
             <span class="chip chip--outline-cyan">Neutral by design</span>
