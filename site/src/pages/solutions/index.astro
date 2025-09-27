@@ -13,7 +13,7 @@ const items = [
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Zone A: Hero (full-bleed) -->
-    <section class="hero-plate" data-section="hero" style="padding:56px 0 16px">
+    <section class="hero-plate cv-auto" data-section="hero" style="padding:56px 0 16px">
 		<div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 520px;min-width:300px">
 				<h1 class="display" style="margin:0 0 8px">Create. Control. Prove.</h1>
@@ -38,7 +38,7 @@ const items = [
 	</section>
 
     <!-- Zone B: Problem cards -->
-    <section class="container" data-section="problems" style="padding:40px 0 16px">
+    <section class="container cv-auto" data-section="problems" style="padding:40px 0 16px">
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
 			<div class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">Spend is unpredictable</h3>
@@ -59,7 +59,7 @@ const items = [
 	</section>
 
     <!-- Zone C.1: Create — CRUD Service with comparison -->
-    <section class="container" data-section="create" style="padding:16px 0 24px">
+    <section class="container cv-auto" data-section="create" style="padding:16px 0 24px">
 		<h2 class="section-title">Create tools in minutes (CRUD Service)</h2>
 		<p style="color:#9ba3b7;max-width:70ch;margin:6px 0 12px">Turn any API/DB into agent‑safe tools with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
 		<div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -90,20 +90,20 @@ const items = [
 	</section>
 
 	<!-- Zone C.2: Control stack -->
-    <section class="container" data-section="control" style="padding:24px 0">
+    <section class="container cv-auto" data-section="control" style="padding:24px 0">
 		<h2 class="section-title">Control: Complete Enforcement Stack</h2>
 		<div class="glass-card" style="padding:16px">
 			<ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
-				<li><strong>Pre‑exec (MCP Gateway)</strong> <span class="chip chip--success">GA</span>: validate <strong>plan & schema pins</strong>, block off‑policy before model.</li>
-				<li><strong>Authorization (AuthZEN PDP)</strong> <span class="chip chip--success">GA</span>: who/what/for‑whom/constraints (+ obligations/TTL).</li>
-				<li><strong>Runtime (ARIA Shield)</strong> <span class="chip">Beta</span>: <strong>budgets (HTTP 402)</strong>, params allow‑lists, egress filters; cost attribution.</li>
+				<li><strong>Pre‑exec (MCP Gateway)</strong> <span class="badge badge--ga">GA</span>: validate <strong>plan & schema pins</strong>, block off‑policy before model.</li>
+				<li><strong>Authorization (AuthZEN PDP)</strong> <span class="badge badge--ga">GA</span>: who/what/for‑whom/constraints (+ obligations/TTL).</li>
+				<li><strong>Runtime (ARIA Shield)</strong> <span class="badge badge--beta">Beta</span>: <strong>budgets (HTTP 402)</strong>, params allow‑lists, egress filters; cost attribution.</li>
 			</ul>
 			<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
 		</div>
 	</section>
 
 	<!-- Zone C.3: Prove receipts -->
-    <section class="container" data-section="prove" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="prove" style="padding:8px 0 24px">
 		<h2 class="section-title">Prove: Receipts</h2>
 		<div class="glass-card" style="padding:16px">
 			<div style="opacity:.8;margin-bottom:6px">Receipt (6 lines)</div>
@@ -122,26 +122,29 @@ const items = [
 	</section>
 
 	<!-- Zone D: Role paths -->
-    <section class="container" data-section="role-paths" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="role-paths" style="padding:8px 0 24px">
 		<h2 class="section-title">Choose your path</h2>
 		<div class="grid-3">
-            <a class="glass-card" data-ev="role_path_click" data-label="build" href={`${import.meta.env.BASE_URL}products/crud/`} style="padding:16px">
+			<a class="glass-card role-link" data-ev="role_path_click" data-label="build" href={`${import.meta.env.BASE_URL}products/crud/`} style="padding:16px;position:relative">
 				<h3 style="margin:0 0 8px">Build tools</h3>
 				<p style="color:#9ba3b7;margin:0">Create secure agent tools in minutes.</p>
+				<span class="arrow" aria-hidden="true" style="position:absolute;right:12px;bottom:12px;color:var(--color-accent)">→</span>
 			</a>
-            <a class="glass-card" data-ev="role_path_click" data-label="control" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`} style="padding:16px">
+			<a class="glass-card role-link" data-ev="role_path_click" data-label="control" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`} style="padding:16px;position:relative">
 				<h3 style="margin:0 0 8px">Control spend</h3>
 				<p style="color:#9ba3b7;margin:0">Budgets, caps, and receipts per call.</p>
+				<span class="arrow" aria-hidden="true" style="position:absolute;right:12px;bottom:12px;color:var(--color-accent)">→</span>
 			</a>
-            <a class="glass-card" data-ev="role_path_click" data-label="audit" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`} style="padding:16px">
+			<a class="glass-card role-link" data-ev="role_path_click" data-label="audit" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`} style="padding:16px;position:relative">
 				<h3 style="margin:0 0 8px">Pass audit</h3>
 				<p style="color:#9ba3b7;margin:0">Evidence mapped to controls, ready to share.</p>
+				<span class="arrow" aria-hidden="true" style="position:absolute;right:12px;bottom:12px;color:var(--color-accent)">→</span>
 			</a>
 		</div>
 	</section>
 
 	<!-- Zone E: Works with & Deployment -->
-    <section class="container" data-section="capabilities" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="capabilities" style="padding:8px 0 24px">
 		<h2 class="section-title">Author once → publish many</h2>
 		<div class="glass-card" style="padding:16px;color:#9ba3b7">
 			<p style="margin:0 0 8px">Create tools in <strong>Automation Studio</strong> and publish across platforms with policy hooks built in.</p>
@@ -164,7 +167,7 @@ const items = [
 	</section>
 
 	<!-- Zone F: Status / Velocity -->
-    <section class="container" id="solutions-status" data-section="status" style="padding:8px 0 24px">
+    <section class="container cv-auto" id="solutions-status" data-section="status" style="padding:8px 0 24px">
 		<h2 class="section-title">Status</h2>
 		<div class="glass-card" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Platform: LIVE</span>
