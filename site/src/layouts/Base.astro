@@ -186,6 +186,14 @@ import '../styles/utilities.css';
 		<script>
 			(function(){
 				try{
+					// Mark current nav link for a11y
+					const navLinks = document.querySelectorAll('nav .nav-links a[href^="/"]');
+					navLinks.forEach((a)=>{
+						try{
+							const url = new URL((a as HTMLAnchorElement).href, location.origin);
+							if(url.pathname === location.pathname){ (a as HTMLElement).setAttribute('aria-current','page'); }
+						}catch{}
+					});
 					const run = () => {
 						const UTM = new URLSearchParams({ utm_source:'www', utm_medium:'cta', utm_campaign: (document.querySelector('[data-position]')?.getAttribute('data-position') || 'site') });
 						function appendUtm(a){
