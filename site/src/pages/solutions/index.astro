@@ -13,7 +13,7 @@ const items = [
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Zone A: Hero (full-bleed) -->
-    <section class="hero-plate cv-auto" data-section="hero" style="padding:56px 0 16px">
+    <section class="hero-plate cv-auto" data-section="hero" style="padding:120px 0 64px">
 		<div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 520px;min-width:300px">
 				<h1 class="display" style="margin:0 0 8px">Create. Control. Prove.</h1>
@@ -38,7 +38,7 @@ const items = [
 	</section>
 
     <!-- Zone B: Problem cards -->
-    <section class="container cv-auto" data-section="problems" style="padding:40px 0 16px">
+    <section class="container cv-auto" data-section="problems" style="padding:64px 0">
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
 			<div class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">Spend is unpredictable</h3>
@@ -59,7 +59,7 @@ const items = [
 	</section>
 
     <!-- Zone C.1: Create — CRUD Service with comparison -->
-    <section class="container cv-auto" data-section="create" style="padding:16px 0 24px">
+    <section class="container cv-auto" data-section="create" style="padding:64px 0">
 		<h2 class="section-title">Create tools in minutes (CRUD Service)</h2>
 		<p style="color:#9ba3b7;max-width:70ch;margin:6px 0 12px">Turn any API/DB into agent‑safe tools with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
 		<div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -90,7 +90,7 @@ const items = [
 	</section>
 
 	<!-- Zone C.2: Control stack -->
-    <section class="container cv-auto" data-section="control" style="padding:24px 0">
+    <section class="container cv-auto" data-section="control" style="padding:64px 0">
 		<h2 class="section-title">Control: Complete Enforcement Stack</h2>
 		<div class="glass-card" style="padding:16px">
 			<ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
@@ -103,7 +103,7 @@ const items = [
 	</section>
 
 	<!-- Zone C.3: Prove receipts -->
-    <section class="container cv-auto" data-section="prove" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="prove" style="padding:64px 0">
 		<h2 class="section-title">Prove: Receipts</h2>
 		<div class="glass-card" style="padding:16px">
 			<div style="opacity:.8;margin-bottom:6px">Receipt (6 lines)</div>
@@ -122,7 +122,7 @@ const items = [
 	</section>
 
 	<!-- Zone D: Role paths -->
-    <section class="container cv-auto" data-section="role-paths" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="role-paths" style="padding:64px 0">
 		<h2 class="section-title">Choose your path</h2>
 		<div class="grid-3">
 			<a class="glass-card role-link" data-ev="role_path_click" data-label="build" href={`${import.meta.env.BASE_URL}products/crud/`} style="padding:16px;position:relative">
@@ -144,7 +144,7 @@ const items = [
 	</section>
 
 	<!-- Zone E: Works with & Deployment -->
-    <section class="container cv-auto" data-section="capabilities" style="padding:8px 0 24px">
+    <section class="container cv-auto" data-section="capabilities" style="padding:64px 0">
 		<h2 class="section-title">Author once → publish many</h2>
 		<div class="glass-card" style="padding:16px;color:#9ba3b7">
 			<p style="margin:0 0 8px">Create tools in <strong>Automation Studio</strong> and publish across platforms with policy hooks built in.</p>
@@ -156,7 +156,7 @@ const items = [
             <a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
                 <h3 style="margin:0 0 8px">No‑Code Connectors (<abbr title="Anthropic's Model Context Protocol">MCP</abbr> Tools)</h3>
                 <p style="color:#9ba3b7;margin:0 8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Turn any API/DB into agent‑safe tools in minutes, safely — schema‑pinned, auth‑aware, policy‑ready.</p>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/`}>Adapter catalog</a></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/`}>Adapter catalog</a></div>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">No‑Code Workflows for Agents</h3>
@@ -167,7 +167,7 @@ const items = [
 	</section>
 
 	<!-- Zone F: Status / Velocity -->
-    <section class="container cv-auto" id="solutions-status" data-section="status" style="padding:8px 0 24px">
+    <section class="container cv-auto" id="solutions-status" data-section="status" style="padding:64px 0">
 		<h2 class="section-title">Status</h2>
 		<div class="glass-card" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Platform: LIVE</span>
@@ -176,7 +176,7 @@ const items = [
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Docs: COMPLETE</span>
 		</div>
 	</section>
-	<section class="container" style="padding:8px 0 24px">
+    <section class="container" style="padding:64px 0">
 		<h2 class="section-title">Identity & Access for Agents</h2>
 		<div class="grid-3">
 			{[items[3], items[0], items[4]].map(p => (
@@ -187,10 +187,10 @@ const items = [
 			))}
 		</div>
 	</section>
-	<section class="container" style="padding:8px 0 24px">
+    <section class="container" style="padding:64px 0">
 		<h2 class="section-title">Works with</h2>
-		<div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
-			<span class="chip">Anthropic MCP</span><span class="chip">Microsoft Copilot</span><span class="chip">OpenAI Functions</span><span class="chip">AWS Bedrock</span><span class="chip">Google Vertex</span><span class="chip">LangChain/LangGraph</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+            <span class="chip">Anthropic MCP</span><span class="chip">Microsoft Copilot</span><span class="chip">OpenAI Functions</span><span class="chip">Google Vertex (Q1)</span><span class="chip">AWS Bedrock (Q1)</span><span class="chip">LangChain/LangGraph</span>
 		</div>
 	</section>
     <style>
