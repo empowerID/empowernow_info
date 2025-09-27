@@ -140,30 +140,24 @@ const canonical = '/products/';
             try{
                 const def=(location.hash?location.hash.substring(1):'build').toLowerCase();
                 const buttons=[...document.querySelectorAll('button[role="tab"][data-tab]')];
-                const panels={
-                    build: document.getElementById('panel-build'),
-                    secure: document.getElementById('panel-secure'),
-                    audit: document.getElementById('panel-audit'),
-                    all: document.getElementById('panel-all'),
-                } as Record<string, HTMLElement|null>;
+                const cards=[...document.querySelectorAll('.grid-3 [data-cat]')];
                 function setTab(tab){
                     buttons.forEach(b=>{
                         const selected = b.getAttribute('data-tab')===tab;
                         b.setAttribute('aria-selected', String(selected));
-                        b.tabIndex = selected ? 0 : -1 as any;
+                        b.tabIndex = selected ? 0 : -1;
                         if(selected){ b.classList.add('tab-active'); } else { b.classList.remove('tab-active'); }
                     });
-                    Object.entries(panels).forEach(([key,p])=>{
-                        if(!p) return;
-                        if(key===tab){ p.hidden=false; } else { p.hidden=true; }
+                    cards.forEach((el)=>{
+                        const cat=el.getAttribute('data-cat');
+                        const show = tab==='all' ? true : cat===tab;
+                        (el).hidden = !show;
                     });
                     (window).dataLayer=(window).dataLayer||[];
                     (window).dataLayer.push({event:'tab_select', tab});
                     history.replaceState(null, '', '#'+tab);
-                    if(tab==='build'){
-                        const crud = document.querySelector('[data-cat="build"]');
-                        if(crud){ crud.scrollIntoView({behavior:'smooth', block:'start'}); }
-                    }
+                    const grid = document.getElementById('panel-build');
+                    if(grid){ grid.scrollIntoView({behavior:'smooth', block:'start'}); }
                 }
                 buttons.forEach(b=> b.addEventListener('click', ()=>{ const t=b.getAttribute('data-tab'); if(t){ setTab(t); } }));
                 // Keyboard navigation for tabs
