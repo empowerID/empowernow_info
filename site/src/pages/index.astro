@@ -1,6 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import LogoWall from '../components/LogoWall.astro';
+import HeroComposite from '../components/HeroComposite.astro';
+import Passport from '../components/icons/Passport.astro';
+import AuthZEN from '../components/icons/AuthZEN.astro';
+import PinPlan from '../components/icons/PinPlan.astro';
 ---
 <Base title="EmpowerNow – Identity & Authorization Fabric" description="AI-native identity orchestration and AuthZEN-compliant authorization platform" canonical="/">
     <section class="container hero-ambient" style="padding:120px 0 80px">
@@ -26,7 +30,7 @@ import LogoWall from '../components/LogoWall.astro';
 				<div style="margin-top:8px"><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} style="color:var(--color-primary);text-decoration:none">See how it works →</a></div>
 			</div>
             <div class="parallax-glow" style="flex:1 1 420px;min-width:320px;max-width:520px;margin-top:-12px">
-                {(await import('../components/HeroComposite.astro')).default({})}
+                <HeroComposite />
             </div>
 		</div>
 	</section>
@@ -110,9 +114,9 @@ import LogoWall from '../components/LogoWall.astro';
         </div>
         <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center">
             <div>
-                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px">{await (await import('../components/icons/Passport.astro')).default({})}ARIA Shield (Gateway)</h3>
+                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px"><Passport />ARIA Shield (Gateway)</h3>
                 <p style="color:#9ba3b7;margin:0 0 14px">One secure front door; allow/deny with reasons; budget checks; no browser tokens.</p>
-                <h3 style="margin:16px 0 6px;display:flex;align-items:center;gap:10px">{await (await import('../components/icons/AuthZEN.astro')).default({})}Authorization (PDP)</h3>
+                <h3 style="margin:16px 0 6px;display:flex;align-items:center;gap:10px"><AuthZEN />Authorization (PDP)</h3>
                 <p style="color:#9ba3b7;margin:0">OpenID AuthZEN decisions with constraints, obligations, and TTL.</p>
             </div>
             <div class="glass-card" style="padding:20px;min-height:140px">
@@ -126,7 +130,7 @@ import LogoWall from '../components/LogoWall.astro';
                 <p style="color:#9ba3b7;margin:0">No‑code MCP tools; per‑run policy; approvals, retries, and receipts.</p>
             </div>
             <div>
-                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px">{await (await import('../components/icons/PinPlan.astro')).default({})}Inventory</h3>
+                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px"><PinPlan />Inventory</h3>
                 <p style="color:#9ba3b7;margin:0">Fresh identity & usage with lineage; feeds PDP PIPs and analytics.</p>
             </div>
         </div>
