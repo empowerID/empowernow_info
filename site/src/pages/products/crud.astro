@@ -58,33 +58,3 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		</fragment>
 	</Product>
 </Base>
-
----
-import Base from '../../layouts/Base.astro';
-import Product from '../../layouts/Product.astro';
-import PricingCTA from '../../components/PricingCTA.astro';
-import JsonLd from '../../components/JsonLd.astro';
-const title = 'CRUD Service — Governed automation & connectors';
-const description = 'Generate code‑free connectors and MCP tools; author once → publish to MCP/Functions/Copilot. Per‑run policy, approvals, budgets, retries, and receipts built‑in.';
-const canonical = '/products/crud/';
-const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"CRUD Service","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
----
-<Base title={title} description={description} canonical={canonical}>
-	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} eyebrow="Automation Studio" headline="Tools = Work. Ship agent‑safe tools fast." subhead="Generate code‑free connectors and MCP tools; author once → publish to MCP/Functions/Copilot. Per‑run policy, approvals, budgets, retries, and receipts built‑in." targetICP={[ 'Platform Teams', 'Developers' ]} keyBenefits={[ 'No‑code connectors + MCP tools', 'Idempotent runs with approvals/retries/SLOs', 'Per‑run policy with receipts (audit/attribution)' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud/', label: 'CRUD Service Docs' } ]} wwwLinks={[ { href: '/products/pdp/', label: 'Authorization Studio' }, { href: '/products/gateway/', label: 'MCP Gateway' } ]} keywords={[ 'mcp','crud','automation','connectors' ]}>
-        <fragment slot="proof">
-            <PricingCTA title="Ready to ship tools safely?" sub="Ship fast with approvals, retries/SLOs, and receipts." primaryHref={`${import.meta.env.BASE_URL}demo/`} primaryLabel="Book demo" />
-        </fragment>
-        <fragment slot="how">
-            <section class="container" style="padding:8px 0 24px">
-                <h2 class="section-title">How it works</h2>
-                <ol class="numbered">
-                    <li>Point at an API/DB → generate connector & MCP tool schema.</li>
-                    <li>Attach per‑run policy: approvals, budgets, params allowlist.</li>
-                    <li>Publish to MCP/Functions/Copilot; PDP decisions applied.</li>
-                    <li>Runs are idempotent; receipts link to policy snapshot.</li>
-                </ol>
-            </section>
-        </fragment>
-	</Product>
-</Base>
