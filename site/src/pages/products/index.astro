@@ -7,7 +7,26 @@ const canonical = '/products/';
 <Base title={title} description={description} canonical={canonical}>
     <section class="container" style="padding:56px 0 16px">
         <h1 class="display">Products</h1>
-        <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px">Create agent tools once, <strong>enforce</strong> policy and budgets across any agent platform, and <strong>prove</strong> every action with cryptographic receipts.</p>
+        <div id="hero-a" aria-label="Hero Variant A" style="display:block">
+            <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px"><strong>The Platform That Makes AI Agents Actually Work.</strong> Turn any API into a secure agent tool in <strong>5 minutes</strong>. Then <strong>enforce</strong> policy and <strong>prove</strong> every action.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" data-ev="cta_click" data-label="products-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a><a class="btn" data-ev="cta_click" data-label="products-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></div>
+        </div>
+        <div id="hero-b" aria-label="Hero Variant B" style="display:none">
+            <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px"><strong>Build Secure Agent Tools in 5 Minutes.</strong> <strong>Create</strong> tools fast. <strong>Control</strong> how they run. <strong>Prove</strong> every action with receipts.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" data-ev="cta_click" data-label="products-quickstart-b" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a><a class="btn" data-ev="cta_click" data-label="products-demo-b" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></div>
+        </div>
+        <script>
+            (function(){
+                try{
+                    const v=(new URLSearchParams(location.search).get('ab')||'A').toUpperCase();
+                    const a=document.getElementById('hero-a');
+                    const b=document.getElementById('hero-b');
+                    if(v==='B'&&a&&b){ a.style.display='none'; b.style.display='block'; }
+                    (window).dataLayer=(window).dataLayer||[];
+                    (window).dataLayer.push({ event:'hero_variant_view', variant: v });
+                }catch{}
+            })();
+        </script>
         <div style="color:#9ba3b7;margin-bottom:16px">
             Flow: <a class="chip" href={`${import.meta.env.BASE_URL}products/crud/`}>Design</a>
             <span>→</span>
@@ -70,12 +89,31 @@ const canonical = '/products/';
             </div>
             <div class="glass-card" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUDService</h3><span class="chip chip--success">GA</span></div>
-                <div style="color:#9ba3b7;margin:6px 0 10px">No‑code connectors → MCP tools</div>
-                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Turn APIs/DBs into agent‑safe tools; publish once to MCP/Copilot/Functions with policy hooks</li>
-                    <li><strong>Buyer:</strong> AI Platform / Integrations</li>
-                </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">5‑minute Tool Factory</div>
+                <div class="glass-card" style="padding:12px">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                        <div>
+                            <div style="font-weight:700;margin-bottom:4px;color:#9ba3b7">Without CRUD Service</div>
+                            <ul style="color:#9ba3b7;line-height:1.7;margin:0;padding-left:18px">
+                                <li>~6 weeks per API integration</li>
+                                <li>Custom code, per platform</li>
+                                <li>One stack at a time</li>
+                                <li>Unclear guardrails</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div style="font-weight:700;margin-bottom:4px;color:var(--color-accent)">With CRUD Service</div>
+                            <ul style="color:#9ba3b7;line-height:1.7;margin:0;padding-left:18px">
+                                <li><strong>~5 minutes</strong> from API to tool</li>
+                                <li><strong>No code</strong>, publish once</li>
+                                <li><strong>MCP, Copilot, OpenAI Functions</strong></li>
+                                <li><strong>Schema pins + policy hooks built‑in</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top:8px;color:#9ba3b7;font-size:.85rem">Times are representative; shown live in demo.</div>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
             </div>
         </div>
     </section>
