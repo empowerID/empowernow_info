@@ -178,5 +178,30 @@ const canonical = '/products/';
         .container a:link, .container a:visited { color: var(--color-primary); text-decoration: none; }
         .container a:hover { text-decoration: underline; }
     </style>
+    <script>
+        (function(){
+            try{
+                (window).dataLayer=(window).dataLayer||[];
+                const compare=document.querySelector('#products-crud-compare')||document.querySelector('div.glass-card h3:nth-child(1)');
+                if(compare && 'IntersectionObserver' in window){
+                    const io=new IntersectionObserver((entries)=>{
+                        entries.forEach(e=>{ if(e.isIntersecting){ (window).dataLayer.push({event:'crud_compare_view'}); io.disconnect(); } });
+                    },{threshold:.35});
+                    io.observe(compare as Element);
+                }
+                const crudCard=document.querySelector('h3:contains("CRUDService")')?.parentElement?.parentElement;
+                let t0=0; let sent=false;
+                function onIn(){ if(!sent){ t0=performance.now(); } }
+                function onOut(){ if(!sent && t0){ const ms=Math.round(performance.now()-t0); (window).dataLayer.push({event:'section_time', section:'crud_service', ms}); sent=true; } }
+                if(crudCard && 'IntersectionObserver' in window){
+                    const io2=new IntersectionObserver((entries)=>{ entries.forEach(e=> e.isIntersecting ? onIn() : onOut()); },{threshold:.6});
+                    io2.observe(crudCard);
+                }
+                document.querySelectorAll('[data-badge-info]')?.forEach(el=>{
+                    el.addEventListener('mouseenter', ()=>{ (window).dataLayer.push({event:'badge_info_open', badge: el.getAttribute('data-badge-info')}); });
+                });
+            }catch{}
+        })();
+    </script>
 
 </Base>
