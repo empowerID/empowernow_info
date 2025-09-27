@@ -13,6 +13,10 @@
 - `.glass-card` for any elevated surface.
 - Grid: `display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:16px`.
 
+### Product rails & icons
+- Use `.product-rail` with `.rail--crud|gateway|pdp|shield|idp|receipts|collector` at the top of product cards/sections for identity.
+- Use `.icon-accent.icon--{product}` for 24–32px pictograms. Do not use accents for body copy.
+
 ## Links & Buttons
 - Links default to `--on-bg`; on hover/focus switch to accent cyan and underline.
 - Primary button uses cyan with `--on-accent` text; secondary is glass with accent border.

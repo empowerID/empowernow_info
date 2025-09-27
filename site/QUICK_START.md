@@ -30,8 +30,18 @@ const canonical = '/products/example/';
 ```
 
 ## Styling
-- Use `.glass-card`, `.btn`, and token colors from `src/styles/*`
-- Headings violet, CTAs cyan, body text `--on-bg`
+- Use NeonFlux surfaces and utilities from `src/styles/*`:
+  - Surfaces: `.panel-glow` (hero/primary), `.panel-glass` (content), `.block-ghost` (low‑emphasis rails)
+  - Stage: `.page-stage` on hero sections
+  - Cards: `.glass-card` for interactive/content blocks
+- CTA discipline:
+  - Exactly one `.btn.btn-primary` (Pulse Cyan) per section
+  - All other links/buttons use `.btn.btn-ghost`
+  - Do not change button fills per product
+- Product accents (for identity, not CTAs):
+  - Tokens in `src/styles/tokens.css` (`--accent-crud`, `--accent-gateway`, `--accent-pdp`, `--accent-shield`, `--accent-idp`, `--accent-receipts`, `--accent-collector`)
+  - Helpers in `src/styles/utilities.css`: `.product-rail.rail--{product}` and `.icon-accent.icon--{product}`
+  - Use accents for top rails, small icons, and badges only; avoid long text/body
 
 ## SEO
 - Use `SeoHead.astro` via `Base.astro`
@@ -39,6 +49,8 @@ const canonical = '/products/example/';
 
 ## Accessibility
 - Ensure contrast AA; focus outlines; alt text; single H1
+- Rails are decorative: keep `.product-rail{ pointer-events:none }`
+- Tabs: use ARIA roles (`role="tablist"`, `role="tab"`, `role="tabpanel"`); update `aria-selected` and hash; support arrow keys
 
 ## Build & Deploy
 ```bash

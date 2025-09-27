@@ -19,6 +19,8 @@ Use this to review any www page before publish.
 - [ ] Exactly one cyan `.btn-primary` per section; others `.btn-ghost`
 - [ ] Active tab uses neon underline (`.tab-active`), not filled box
 - [ ] “Works with” rails and Status are Ghost (no heavy fill)
+ - [ ] Product rails present where relevant (CRUD/Gateway/PDP/Shield/IdP/Receipts/Collector)
+ - [ ] Rails/icons use product accents; buttons remain cyan/ghost
 
 ## Cards & Surfaces
 - [ ] Glass cards `rgba(11,28,61,.85)` + 12px blur + white border
