@@ -112,6 +112,24 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .badge--ga{color:var(--ion-lime);border-color:rgba(182,255,60,.55)}
 .badge--beta{color:var(--signal-amber);border-color:rgba(255,193,59,.55)}
 
+/* Product accent helpers (rails/icons/badges) */
+.product-rail{height:2px;border-radius:2px;opacity:.8;margin-bottom:10px}
+.rail--crud{background:linear-gradient(90deg,var(--accent-crud),transparent)}
+.rail--gateway{background:linear-gradient(90deg,var(--accent-gateway),transparent)}
+.rail--pdp{background:linear-gradient(90deg,var(--accent-pdp),transparent)}
+.rail--shield{background:linear-gradient(90deg,var(--accent-shield),transparent)}
+.rail--idp{background:linear-gradient(90deg,var(--accent-idp),transparent)}
+.rail--receipts{background:linear-gradient(90deg,var(--accent-receipts),transparent)}
+.rail--collector{background:linear-gradient(90deg,var(--accent-collector),transparent)}
+.icon-accent{stroke-width:1.8;fill:none}
+.icon--crud{stroke:var(--accent-crud)}
+.icon--gateway{stroke:var(--accent-gateway)}
+.icon--pdp{stroke:var(--accent-pdp)}
+.icon--shield{stroke:var(--accent-shield)}
+.icon--idp{stroke:var(--accent-idp)}
+.icon--receipts{stroke:var(--accent-receipts)}
+.icon--collector{stroke:var(--accent-collector)}
+
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
 /* Inline link accessibility on dark surfaces */

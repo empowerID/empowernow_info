@@ -30,6 +30,15 @@
 	--void-black:#0E0E10; /* stage background */
 	--glass-frost:rgba(255,255,255,.04); /* frosted panel fill */
 
+	/* Product accent tokens (identity, non-CTA) */
+	--accent-crud: var(--color-accent);
+	--accent-gateway: var(--color-primary);
+	--accent-pdp: var(--color-secondary);
+	--accent-shield: #5A84FF; /* violet-cyan blend */
+	--accent-idp: #C245FF; /* softened magenta */
+	--accent-receipts: #5F89FF; /* blue-violet trust */
+	--accent-collector: #6EF2F2; /* aqua tint */
+
 	/* Borders & layers */
 	--border-soft:rgba(255,255,255,.18);
 	--border-strong:rgba(255,255,255,.28);

@@ -13,15 +13,15 @@ const items = [
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Zone A: Hero (full-bleed) -->
-    <section class="hero-plate cv-auto" data-section="hero" style="padding:120px 0 64px">
+    <section class="hero-plate page-stage cv-auto" data-section="hero" style="padding:120px 0 64px">
 		<div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 520px;min-width:300px">
 				<h1 class="display" style="margin:0 0 8px">Create. Control. Prove.</h1>
 				<p style="color:#9ba3b7;max-width:70ch;margin:0 0 14px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Enforce policy and budgets across platforms. <strong>Prove</strong> every action with receipts.</p>
-				<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-					<a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
-					<a class="btn" data-ev="cta_click" data-label="solutions-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a>
-				</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+                    <a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
+                    <a class="btn btn-ghost" data-ev="cta_click" data-label="solutions-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a>
+                </div>
 			</div>
 			<figure style="flex:1 1 380px;min-width:280px;margin:0" aria-label="API to CRUD Service to Platforms diagram">
 				<div class="diagram vignette" style="margin:0">
@@ -40,20 +40,20 @@ const items = [
     <!-- Zone B: Problem cards -->
     <section class="container cv-auto" data-section="problems" style="padding:64px 0">
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-			<div class="glass-card" style="padding:16px">
+            <div class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">Spend is unpredictable</h3>
 				<p style="color:#9ba3b7;margin:0 0 10px">Agent calls have no caps; costs drift with prompts and retries.</p>
-				<a class="btn" data-ev="cta_click" data-label="problem-spend" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Control spend →</a>
+                <a class="btn btn-ghost" data-ev="cta_click" data-label="problem-spend" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Control spend →</a>
 			</div>
 			<div class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">Tools are fragmented</h3>
 				<p style="color:#9ba3b7;margin:0 0 10px">Each platform wants its own adapters and rules; governance falls behind.</p>
-				<a class="btn" data-ev="cta_click" data-label="problem-tools" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Unify tools →</a>
+                <a class="btn btn-ghost" data-ev="cta_click" data-label="problem-tools" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Unify tools →</a>
 			</div>
 			<div class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">Audit needs proof</h3>
 				<p style="color:#9ba3b7;margin:0 0 10px">Logs aren’t enough; auditors need decisions, policies, and receipts.</p>
-				<a class="btn" data-ev="cta_click" data-label="problem-audit" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`}>See evidence →</a>
+                <a class="btn btn-ghost" data-ev="cta_click" data-label="problem-audit" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`}>See evidence →</a>
 			</div>
 		</div>
 	</section>
@@ -62,8 +62,9 @@ const items = [
     <section class="container cv-auto" data-section="create" style="padding:64px 0">
 		<h2 class="section-title">Create tools in minutes (CRUD Service)</h2>
 		<p style="color:#9ba3b7;max-width:70ch;margin:6px 0 12px">Turn any API/DB into agent‑safe tools with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
-		<div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-			<div class="glass-card" style="padding:16px">
+        <div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="glass-card" style="padding:16px">
+                <div class="product-rail rail--crud" aria-hidden="true"></div>
 				<h3 class="nf-h3" style="margin:0 0 8px">Without CRUD Service</h3>
 				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
 					<li>~6 weeks per API integration</li>
@@ -72,7 +73,8 @@ const items = [
 					<li>Unclear guardrails</li>
 				</ul>
 			</div>
-			<div class="glass-card" style="padding:16px;border-color:var(--color-accent);box-shadow:0 0 24px rgba(0,231,246,.25)">
+            <div class="glass-card" style="padding:16px;border-color:var(--color-accent);box-shadow:0 0 24px rgba(0,231,246,.25)">
+                <div class="product-rail rail--crud" aria-hidden="true"></div>
 				<h3 class="nf-h3" style="margin:0 0 8px">With CRUD Service</h3>
 				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
 					<li><strong>~5 minutes</strong> from API to tool</li>
@@ -84,21 +86,22 @@ const items = [
 		</div>
 		<p style="opacity:.7;margin-top:8px;font-size:14px"><em>Times are representative; shown live in demo.</em></p>
 		<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-			<a class="btn btn-primary" data-ev="cta_click" data-label="crud_qs" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
-			<a class="btn" data-ev="cta_click" data-label="crud_catalog" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
+            <a class="btn btn-primary" data-ev="cta_click" data-label="crud_qs" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
+            <a class="btn btn-ghost" data-ev="cta_click" data-label="crud_catalog" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
 		</div>
 	</section>
 
 	<!-- Zone C.2: Control stack -->
     <section class="container cv-auto" data-section="control" style="padding:64px 0">
 		<h2 class="section-title">Control: Complete Enforcement Stack</h2>
-		<div class="glass-card" style="padding:16px">
+        <div class="glass-card" style="padding:16px">
+            <div class="product-rail rail--gateway" aria-hidden="true"></div>
 			<ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
 				<li><strong>Pre‑exec (MCP Gateway)</strong> <span class="badge badge--ga">GA</span>: validate <strong>plan & schema pins</strong>, block off‑policy before model.</li>
 				<li><strong>Authorization (AuthZEN PDP)</strong> <span class="badge badge--ga">GA</span>: who/what/for‑whom/constraints (+ obligations/TTL).</li>
 				<li><strong>Runtime (ARIA Shield)</strong> <span class="badge badge--beta">Beta</span>: <strong>budgets (HTTP 402)</strong>, params allow‑lists, egress filters; cost attribution.</li>
 			</ul>
-			<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
 		</div>
 	</section>
 
@@ -117,7 +120,7 @@ const items = [
 }
 `}</code></pre>
 			<div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
-			<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>View sample receipts</a></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/receipts/`}>View sample receipts</a></div>
 		</div>
 	</section>
 
@@ -156,12 +159,12 @@ const items = [
             <a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
                 <h3 style="margin:0 0 8px">No‑Code Connectors (<abbr title="Anthropic's Model Context Protocol">MCP</abbr> Tools)</h3>
                 <p style="color:#9ba3b7;margin:0 8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Turn any API/DB into agent‑safe tools in minutes, safely — schema‑pinned, auth‑aware, policy‑ready.</p>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/`}>Adapter catalog</a></div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/`}>Adapter catalog</a></div>
 			</a>
-			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
+            <a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">No‑Code Workflows for Agents</h3>
                 <p style="color:#9ba3b7;margin:0 8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Orchestrate multi‑step agent actions with approvals, retries, and obligations — without code.</p>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Ops</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Workflow Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}products/crud/`}>Examples</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Ops</span><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/crud/`}>Workflow Quickstart</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/crud/`}>Examples</a></div>
 			</a>
 		</div>
 	</section>
@@ -169,7 +172,7 @@ const items = [
 	<!-- Zone F: Status / Velocity -->
     <section class="container cv-auto" id="solutions-status" data-section="status" style="padding:64px 0">
 		<h2 class="section-title">Status</h2>
-		<div class="glass-card" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
+        <div class="block-ghost" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Platform: LIVE</span>
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Demo: ACTIVE</span>
 			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Create first tool: &lt;5 MIN</span>
