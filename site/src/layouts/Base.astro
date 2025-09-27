@@ -38,6 +38,10 @@ import '../styles/utilities.css';
 			nav{position:sticky;top:0;z-index:1000}
 			.consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1100}
 			.sr-only-focusable{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+			/* Global link styles: avoid purple visited, underline only on hover */
+			a{color:var(--on-bg);text-decoration:none}
+			a:hover{color:var(--color-accent);text-decoration:underline}
+			a:visited{color:var(--on-bg)}
 		</style>
 	</head>
     <body>
