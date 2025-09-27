@@ -7,6 +7,12 @@ const canonical = '/products/';
 <Base title={title} description={description} canonical={canonical}>
     <section class="container" style="padding:56px 0 16px">
         <h1 class="display">Products</h1>
+        <div class="glass-card" style="padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0">
+            <button class="btn" data-tab="build" aria-pressed="true">Build</button>
+            <button class="btn" data-tab="secure">Secure</button>
+            <button class="btn" data-tab="audit">Audit</button>
+            <button class="btn" data-tab="all">All Products</button>
+        </div>
         <div id="hero-a" aria-label="Hero Variant A" style="display:block">
             <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px"><strong>The Platform That Makes AI Agents Actually Work.</strong> Turn any API into a secure agent tool in <strong>5 minutes</strong>. Then <strong>enforce</strong> policy and <strong>prove</strong> every action.</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" data-ev="cta_click" data-label="products-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a><a class="btn" data-ev="cta_click" data-label="products-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></div>
@@ -37,7 +43,7 @@ const canonical = '/products/';
             <a class="chip" href={`${import.meta.env.BASE_URL}products/receipts/`}>Prove</a>
         </div>
         <div class="grid-3">
-            <div class="glass-card" style="padding:16px">
+            <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -46,7 +52,7 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
             </div>
-            <div class="glass-card" style="padding:16px">
+            <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">MCP Gateway</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Cross‑platform policy gate (Anthropic MCP)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -55,7 +61,7 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a></div>
             </div>
-            <div class="glass-card" style="padding:16px">
+            <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Decisions in milliseconds (OpenID AuthZEN)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -73,12 +79,12 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
             </div>
-            <div id="vds" class="glass-card" style="padding:16px">
+            <div id="vds" class="glass-card" data-cat="build" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">VDS (Virtual Directory Server)</h3><span class="chip" data-badge-info="Coming soon">Coming soon</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Directory abstraction for IGA scenarios</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Join waitlist</a></div>
             </div>
-            <div class="glass-card" style="padding:16px">
+            <div class="glass-card" data-cat="audit" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Spend & usage with receipts</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -87,7 +93,7 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
             </div>
-            <div class="glass-card" style="padding:16px">
+            <div class="glass-card" data-cat="build" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUDService</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">5‑minute Tool Factory</div>
                 <div class="glass-card" id="products-crud-compare" style="padding:12px">
@@ -117,6 +123,26 @@ const canonical = '/products/';
             </div>
         </div>
     </section>
+    <script>
+        (function(){
+            try{
+                const qs=new URLSearchParams(location.search); const def=(qs.get('tab')||'build').toLowerCase();
+                const buttons=[...document.querySelectorAll('button[data-tab]')];
+                const cards=[...document.querySelectorAll('[data-cat]')];
+                function setTab(tab){
+                    buttons.forEach(b=> b.setAttribute('aria-pressed', String(b.getAttribute('data-tab')===tab)));
+                    cards.forEach(c=>{
+                        const cat=c.getAttribute('data-cat');
+                        (c).style.display = (tab==='all' || tab===cat) ? '' : 'none';
+                    });
+                    (window).dataLayer=(window).dataLayer||[];
+                    (window).dataLayer.push({event:'tab_select', tab});
+                }
+                buttons.forEach(b=> b.addEventListener('click', ()=>{ const t=b.getAttribute('data-tab'); if(t){ setTab(t); } }));
+                setTab(def);
+            }catch{}
+        })();
+    </script>
     <section class="container" style="padding:8px 0 16px">
         <h2 class="section-title">Complete Control Stack</h2>
         <div class="glass-card" style="padding:16px">
