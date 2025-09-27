@@ -5,43 +5,27 @@ const description = 'IdP, PDP, ARIA MCP Gateway, ARIA Shield, Data Collector, CR
 const canonical = '/products/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="container" style="padding:56px 0 16px">
-        <h1 class="display">Products</h1>
+    <section class="hero-plate" style="padding:56px 0 16px">
+        <div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1 1 520px;min-width:300px">
+                <h1 class="display" style="margin:0 0 8px">The Platform That Makes AI Agents Actually Work</h1>
+                <p style="color:#9ba3b7;max-width:70ch;margin:12px 0 18px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Then enforce policy and prove every action.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="btn btn-primary" data-ev="cta_click" data-label="products-hero-quickstart">Start Quickstart</a>
+                    <a href={`${import.meta.env.BASE_URL}resources/demo/`} class="btn" data-ev="cta_click" data-label="products-hero-demo">Watch 90‑sec demo</a>
+                </div>
+            </div>
+            <div style="flex:1 1 380px;min-width:280px"><div style="color:#9ba3b7">API → CRUD Service → MCP/Copilot/Functions</div></div>
+        </div>
+    </section>
+    <section class="container" style="padding:8px 0 8px">
         <div class="glass-card" style="padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0">
             <button class="btn" data-tab="build" aria-pressed="true">Build</button>
             <button class="btn" data-tab="secure">Secure</button>
             <button class="btn" data-tab="audit">Audit</button>
             <button class="btn" data-tab="all">All Products</button>
         </div>
-        <div id="hero-a" aria-label="Hero Variant A" style="display:block">
-            <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px"><strong>The Platform That Makes AI Agents Actually Work.</strong> Turn any API into a secure agent tool in <strong>5 minutes</strong>. Then <strong>enforce</strong> policy and <strong>prove</strong> every action.</p>
-            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" data-ev="cta_click" data-label="products-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a><a class="btn" data-ev="cta_click" data-label="products-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></div>
-        </div>
-        <div id="hero-b" aria-label="Hero Variant B" style="display:none">
-            <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px"><strong>Build Secure Agent Tools in 5 Minutes.</strong> <strong>Create</strong> tools fast. <strong>Control</strong> how they run. <strong>Prove</strong> every action with receipts.</p>
-            <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-primary" data-ev="cta_click" data-label="products-quickstart-b" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a><a class="btn" data-ev="cta_click" data-label="products-demo-b" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></div>
-        </div>
-        <script>
-            (function(){
-                try{
-                    const v=(new URLSearchParams(location.search).get('ab')||'A').toUpperCase();
-                    const a=document.getElementById('hero-a');
-                    const b=document.getElementById('hero-b');
-                    if(v==='B'&&a&&b){ a.style.display='none'; b.style.display='block'; }
-                    (window).dataLayer=(window).dataLayer||[];
-                    (window).dataLayer.push({ event:'hero_variant_view', variant: v });
-                }catch{}
-            })();
-        </script>
-        <div style="color:#9ba3b7;margin-bottom:16px">
-            Flow: <a class="chip" href={`${import.meta.env.BASE_URL}products/crud/`}>Design</a>
-            <span>→</span>
-            <a class="chip" href={`${import.meta.env.BASE_URL}products/pdp/`}>Decide</a>
-            <span>→</span>
-            <a class="chip" href={`${import.meta.env.BASE_URL}products/gateway/`}>Enforce</a>
-            <span>→</span>
-            <a class="chip" href={`${import.meta.env.BASE_URL}products/receipts/`}>Prove</a>
-        </div>
+    </section>
         <div class="grid-3">
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
@@ -159,6 +143,10 @@ const canonical = '/products/';
                     (window).dataLayer=(window).dataLayer||[];
                     (window).dataLayer.push({event:'tab_select', tab});
                     history.replaceState(null, '', '#'+tab);
+                    if(tab==='build'){
+                        const crud = document.querySelector('[data-cat="build"]');
+                        if(crud){ crud.scrollIntoView({behavior:'smooth', block:'start'}); }
+                    }
                 }
                 buttons.forEach(b=> b.addEventListener('click', ()=>{ const t=b.getAttribute('data-tab'); if(t){ setTab(t); } }));
                 window.addEventListener('hashchange', ()=>{ const h=(location.hash||'#build').substring(1); setTab(h); });
