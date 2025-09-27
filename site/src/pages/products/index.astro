@@ -56,13 +56,14 @@ const canonical = '/products/';
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px" id="panel-secure" role="tabpanel" aria-labelledby="tab-secure" hidden>
+                <div class="product-rail rail--shield" aria-hidden="true"></div>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Stop data exfiltration & cap AI spend (402); params/egress allow‑lists</li>
                     <li><strong>Buyer:</strong> CISO / SecOps</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Open product</a></div>
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div class="product-rail rail--gateway" aria-hidden="true"></div>
@@ -72,7 +73,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Block prompt‑injection/tool overreach pre‑execution; validate plan & schema pins</li>
                     <li><strong>Buyer:</strong> AI Platform / AppSec</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/gateway/`}>Open product</a></div>
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div class="product-rail rail--pdp" aria-hidden="true"></div>
@@ -82,7 +83,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL → consistent enforcement across agents</li>
                     <li><strong>Buyer:</strong> IAM / Identity Architecture</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open Reference</a><a class="btn btn-ghost" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open Reference</a><a class="btn btn-ghost" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open product</a></div>
             </div>
             <div class="glass-card" style="padding:16px">
                 <div class="product-rail rail--idp" aria-hidden="true"></div>
@@ -92,7 +93,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows — no long‑lived secrets</li>
                     <li><strong>Buyer:</strong> IAM / AppSec</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/idp/`}>Open product</a></div>
             </div>
             <div id="vds" class="glass-card" data-cat="build" style="padding:16px">
                 <div class="product-rail rail--collector" aria-hidden="true"></div>
@@ -108,7 +109,7 @@ const canonical = '/products/';
                     <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps — attribute dollars to policy, user, and tool</li>
                     <li><strong>Buyer:</strong> FinOps / Audit</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/data-collector/`}>Open product</a></div>
             </div>
             <div class="glass-card" data-cat="audit" style="padding:16px" id="panel-all" role="tabpanel" aria-labelledby="tab-all" hidden>
                 <div class="product-rail rail--receipts" aria-hidden="true"></div>
