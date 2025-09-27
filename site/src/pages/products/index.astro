@@ -173,14 +173,15 @@ const canonical = '/products/';
         })();
     </script>
     <section class="container" data-section="control" style="padding:8px 0 16px">
-        <h2 class="section-title">Complete Control Stack</h2>
-        <div class="glass-card" style="padding:16px">
+        <div class="panel-glass" style="padding:16px">
+            <h2 class="section-title" style="margin-top:0">Complete Control Stack</h2>
+            <div aria-hidden="true" class="section-rail" style="margin:-2px 0 10px"></div>
             <ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
                 <li><strong>Pre‑execution (MCP Gateway)</strong> <span class="badge badge--ga">GA</span>: validate <em>plan & schema pins</em>; block off‑policy <em>before</em> models run.</li>
                 <li><strong>Authorization (AuthZEN PDP)</strong> <span class="badge badge--ga">GA</span>: standardized <em>who/what/for whom/constraints</em> (+ obligations/TTL).</li>
                 <li><strong>Runtime (ARIA Shield)</strong> <span class="badge badge--beta">Beta</span>: <em>budgets (HTTP 402)</em>, parameter allow‑lists, egress filters; cost attribution.</li>
             </ul>
-            <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
         </div>
     </section>
     <section class="container" id="products-status" data-section="status" style="padding:64px 0">
