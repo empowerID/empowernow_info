@@ -93,6 +93,27 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
             </div>
+            <div class="glass-card" data-cat="audit" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Receipt Vault</h3></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Proof / non‑repudiation (hash‑chained receipts)</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Verifiable evidence: decision, policy hash, schema pin, cost</li>
+                    <li><strong>Buyer:</strong> Audit / Compliance</li>
+                </ul>
+                <div style="opacity:.8;margin-bottom:6px">Receipt sample (6 lines)</div>
+                <pre id="receipt-sample" class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{ "decision_id":"d-9f2",
+  "policy_hash":"…a1c",
+  "tool_schema_hash":"…7b9",
+  "cost_usd":0.012,
+  "ttl_ms":5000 }
+`}</code></pre>
+                <div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+                    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/receipts/`}>Open Receipt Vault</a>
+                    <a class="btn" data-ev="artifact_view" data-label="receipt-min" href={`${import.meta.env.BASE_URL}resources/artifacts/receipt-min.json`} download>Download sample</a>
+                </div>
+            </div>
             <div class="glass-card" data-cat="build" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUDService</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">5‑minute Tool Factory</div>
@@ -126,7 +147,7 @@ const canonical = '/products/';
     <script>
         (function(){
             try{
-                const qs=new URLSearchParams(location.search); const def=(qs.get('tab')||'build').toLowerCase();
+                const def=(location.hash?location.hash.substring(1):'build').toLowerCase();
                 const buttons=[...document.querySelectorAll('button[data-tab]')];
                 const cards=[...document.querySelectorAll('[data-cat]')];
                 function setTab(tab){
@@ -137,8 +158,10 @@ const canonical = '/products/';
                     });
                     (window).dataLayer=(window).dataLayer||[];
                     (window).dataLayer.push({event:'tab_select', tab});
+                    history.replaceState(null, '', '#'+tab);
                 }
                 buttons.forEach(b=> b.addEventListener('click', ()=>{ const t=b.getAttribute('data-tab'); if(t){ setTab(t); } }));
+                window.addEventListener('hashchange', ()=>{ const h=(location.hash||'#build').substring(1); setTab(h); });
                 setTab(def);
             }catch{}
         })();
@@ -208,6 +231,13 @@ const canonical = '/products/';
         (function(){
             try{
                 (window).dataLayer=(window).dataLayer||[];
+                const sample=document.getElementById('receipt-sample');
+                if(sample && 'IntersectionObserver' in window){
+                    const io=new IntersectionObserver((entries)=>{
+                        entries.forEach(e=>{ if(e.isIntersecting){ (window).dataLayer.push({event:'receipt_sample_view'}); io.disconnect(); } });
+                    },{threshold:.6});
+                    io.observe(sample);
+                }
                 const compare=document.querySelector('#products-crud-compare')||document.querySelector('div.glass-card h3:nth-child(1)');
                 if(compare && 'IntersectionObserver' in window){
                     const io=new IntersectionObserver((entries)=>{
