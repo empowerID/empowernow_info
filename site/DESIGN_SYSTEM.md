@@ -31,6 +31,77 @@ nav { background: rgba(11,28,61,.8); border-bottom: 1px solid rgba(0,231,246,.2)
 .btn-primary { background: var(--color-accent); color: var(--navy) }
 ```
 
+## Neon‑Flux Re‑Art Direction
+
+North star: Neon instruments on a dark stage. The dark background is the stage, neon elements are the instruments that guide attention (hero, CRUD Service, primary CTAs, proof atoms).
+
+### Palette & Roles
+
+| Role | Token | Usage |
+| --- | --- | --- |
+| Primary action | `--color-accent` (pulse cyan) | Filled buttons, active tab underline, key callouts |
+| Secondary accents | `--color-primary` (violet), `--color-secondary` (magenta) | Section rails, gradients, ambient halos |
+| Positive/Warning | `--ion-lime`, `--signal-amber` | Success/limit states, receipts |
+| Surfaces | Stage: `--color-bg` • Glass: `--surface-1/2` • Ghost: transparent + subtle border | Panels & dividers |
+
+Accessibility rule: cyan on dark must meet AA; avoid thin cyan body text on pure black. Use `--on-bg` for paragraphs and `--on-muted` for secondary text.
+
+### Surface System (Depth)
+
+Use three variants consistently:
+
+- Glow Panel (hero highlights / CRUD Service)
+  - Soft radial halo + thin neon edge → primary attention.
+- Glass Panel (secondary sections / control stack)
+  - Frosted dark with 1px soft border.
+- Ghost Block (supporting text, chip rails)
+  - No fill; subtle top border or rail.
+
+### CSS Patterns (drop‑in)
+
+```css
+/* Ambient stage */
+.page-stage {
+  background: radial-gradient(40% 30% at 15% 8%, rgba(108,76,255,.20), transparent 60%),
+              radial-gradient(35% 30% at 85% 12%, rgba(0,231,246,.14), transparent 60%),
+              radial-gradient(25% 20% at 70% 80%, rgba(179,38,255,.12), transparent 70%),
+              var(--color-bg);
+}
+
+/* Glow panel */
+.panel-glow { position:relative; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04)); border:1px solid rgba(0,231,246,.25); border-radius:16px; box-shadow:0 0 0 1px rgba(0,231,246,.12) inset, 0 20px 60px rgba(0,231,246,.15), 0 10px 30px rgba(108,76,255,.10); }
+.panel-glow::before { content:""; position:absolute; left:12px; right:12px; top:0; height:2px; border-radius:2px; background:linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-secondary)); opacity:.7; }
+
+/* Glass panel */
+.panel-glass { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+
+/* Ghost block */
+.block-ghost { border-top:1px solid rgba(255,255,255,.12); padding-top:16px; }
+
+/* Section rail */
+.section-rail { border-top:2px solid rgba(108,76,255,.25); box-shadow:0 1px 0 0 rgba(0,231,246,.18) inset; }
+
+/* Buttons */
+.btn-primary { background:var(--color-accent); color:var(--on-accent); border-radius:12px; box-shadow:0 8px 24px rgba(0,231,246,.25); }
+.btn-ghost { border:1px solid rgba(255,255,255,.18); color:var(--on-bg); background:transparent; border-radius:12px; }
+
+/* Tabs */
+.tab-active { border-bottom:2px solid var(--color-accent); color:#fff; }
+
+/* Code proof atom */
+.code-proof { background:#0A0B0D; border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:16px; box-shadow:0 0 0 1px rgba(0,231,246,.12) inset; font:500 14px/1.6 ui-monospace,Menlo,Consolas,monospace; color:#E6E6E6; }
+```
+
+### Hierarchy Guidelines
+
+- Glow: hero headline, CRUD Service panel, one control highlight.
+- Glass: control stack, role paths, pricing anchor.
+- Ghost: “Works with” rails, status strip, section intros.
+
+### CTA Discipline
+
+Exactly one cyan `.btn-primary` per section; all other actions are `.btn-ghost`. Tabs use neon underline (`.tab-active`) rather than filled backgrounds.
+
 ## Color roles
 
 - Brand primary (violet): headings, key dividers, selected tabs

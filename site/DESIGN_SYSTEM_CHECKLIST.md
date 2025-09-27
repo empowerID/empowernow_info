@@ -14,6 +14,12 @@ Use this to review any www page before publish.
 - [ ] CTAs are cyan with `--on-accent` text
 - [ ] No long cyan paragraphs; links underlined on hover/focus
 
+## Surfaces & Hierarchy
+- [ ] Use one of: Glow panel (primary), Glass panel (secondary), Ghost block (supporting)
+- [ ] Exactly one cyan `.btn-primary` per section; others `.btn-ghost`
+- [ ] Active tab uses neon underline (`.tab-active`), not filled box
+- [ ] “Works with” rails and Status are Ghost (no heavy fill)
+
 ## Cards & Surfaces
 - [ ] Glass cards `rgba(11,28,61,.85)` + 12px blur + white border
 - [ ] Top hairline gradient present (subtle)
@@ -30,6 +36,7 @@ Use this to review any www page before publish.
 - [ ] Focus outline visible for links/buttons
 - [ ] Semantic headings (single H1 per page)
 - [ ] ARIA labels where needed
+- [ ] Tabs use ARIA roles/keyboard (tablist/tab/tabpanel; Arrow/Home/End)
 
 ## Links & URLs
 - [ ] All internal links/assets use `import.meta.env.BASE_URL`
