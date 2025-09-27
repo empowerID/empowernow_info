@@ -45,7 +45,7 @@ import '../styles/utilities.css';
         <nav aria-label="Primary navigation">
 			<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
 				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
-					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" style="height:28px;width:auto" />
+					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:28px;width:auto" />
 				</a>
 				<ul class="nav-links">
 					<li><a href={`${import.meta.env.BASE_URL}products/`}>Products</a></li>
@@ -186,20 +186,23 @@ import '../styles/utilities.css';
 		<script>
 			(function(){
 				try{
-					const UTM = new URLSearchParams({ utm_source:'www', utm_medium:'cta', utm_campaign: (document.querySelector('[data-position]')?.getAttribute('data-position') || 'site') });
-					function appendUtm(a){
-						try{
-							const href = a.getAttribute('href');
-							if(!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
-							const url = new URL(href, location.origin);
-							if(url.origin !== location.origin) return; // keep internal only
-							const q = new URLSearchParams(url.search);
-							UTM.forEach((v,k)=>{ if(!q.has(k)) q.set(k,v); });
-							url.search = q.toString();
-							a.setAttribute('href', url.pathname + (url.search ? ('?' + url.search) : '') + (url.hash||''));
-						}catch{}
-					}
-					document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
+					const run = () => {
+						const UTM = new URLSearchParams({ utm_source:'www', utm_medium:'cta', utm_campaign: (document.querySelector('[data-position]')?.getAttribute('data-position') || 'site') });
+						function appendUtm(a){
+							try{
+								const href = a.getAttribute('href');
+								if(!href || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+								const url = new URL(href, location.origin);
+								if(url.origin !== location.origin) return; // keep internal only
+								const q = new URLSearchParams(url.search);
+								UTM.forEach((v,k)=>{ if(!q.has(k)) q.set(k,v); });
+								url.search = q.toString();
+								a.setAttribute('href', url.pathname + (url.search ? ('?' + url.search) : '') + (url.hash||''));
+							}catch{}
+						}
+						document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
+					};
+					if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
 				}catch{}
 			})();
 		</script>
