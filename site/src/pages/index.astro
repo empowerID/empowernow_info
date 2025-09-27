@@ -7,7 +7,7 @@ import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
 ---
 <Base title="EmpowerNow – Identity & Authorization Fabric" description="AI-native identity orchestration and AuthZEN-compliant authorization platform" canonical="/">
-    <section class="container hero-ambient reveal-on-scroll" data-section="hero" style="padding:120px 0 80px">
+    <section class="container hero-ambient reveal-on-scroll cv-auto" data-section="hero" style="padding:120px 0 80px">
 		<div style="display:flex;gap:64px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 420px;min-width:320px;max-width:560px">
 				<div style="display:inline-block;padding:8px 24px;border:1px solid var(--border-strong);border-radius:999px;color:var(--on-surface);background:var(--surface-2);font-weight:600;margin-bottom:32px">Designed with AI, for AI</div>
@@ -140,7 +140,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
         </div>
     </section>
 	<div class="section-divider"></div>
-    <section class="container surface-2 reveal-on-scroll" data-section="outcomes" style="padding:40px 0;border-radius:12px">
+    <section class="container surface-2 reveal-on-scroll cv-auto" data-section="outcomes" style="padding:40px 0;border-radius:12px">
         <div style="text-align:center;margin-bottom:28px">
             <h2 style="font-size:42px;margin:0 0 6px">Outcomes that matter</h2>
             <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Audit you can prove. Spend you can control. Ship with confidence. These are the measurable advantages teams report in the first 90 days.</p>
@@ -188,7 +188,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
             </div>
         </div>
     </section>
-    <section class="container reveal-on-scroll" data-section="security-stack" style="padding:8px 0 24px">
+    <section class="container reveal-on-scroll cv-auto" data-section="security-stack" style="padding:8px 0 24px">
         <div class="glass-card" style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div>
                 <h2 style="font-size:36px;margin:0 0 6px">Pre‑exec → Decide → Runtime → Identity → Prove</h2>
@@ -223,7 +223,7 @@ call_id: "abc-123"
             </div>
         </div>
     </section>
-    <section class="container section-spine surface-2 reveal-on-scroll" data-section="what-you-get" style="padding:40px 0;border-radius:12px">
+    <section class="container section-spine surface-2 reveal-on-scroll cv-auto" data-section="what-you-get" style="padding:40px 0;border-radius:12px">
         <div style="text-align:center;margin-bottom:24px">
             <h2 style="font-size:42px;margin:0 0 6px">What you get</h2>
             <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Five building blocks that interlock. Start with one, or deploy the full fabric as your platform standard.</p>
@@ -273,7 +273,7 @@ call_id: "abc-123"
         </div>
     </section>
 	<div class="section-divider"></div>
-    <section class="container section-spine bg-grid bg-conic-cyan surface-3 reveal-on-scroll" data-section="products" style="padding:60px 0;border-radius:12px">
+    <section class="container section-spine bg-grid bg-conic-cyan surface-3 reveal-on-scroll cv-auto" data-section="products" style="padding:60px 0;border-radius:12px">
 		<div style="text-align:center;margin-bottom:40px">
             <h2 class="section-title" style="font-size:40px;margin:0 0 8px">Our Products</h2>
 			<p style="color:#9ba3b7">Enterprise‑grade identity orchestration and authorization infrastructure.</p>
@@ -410,34 +410,37 @@ call_id: "abc-123"
     <script>
         (function(){
             try{
-                if('IntersectionObserver' in window){
-                    const els=[...document.querySelectorAll('.reveal-on-scroll')];
-                    const io=new IntersectionObserver((entries)=>{
-                        entries.forEach(e=>{ if(e.isIntersecting){ (e.target as HTMLElement).classList.add('is-visible'); io.unobserve(e.target); } });
-                    },{threshold:.25});
-                    els.forEach(el=> io.observe(el));
-                }
-                (window).dataLayer=(window).dataLayer||[];
-                if('IntersectionObserver' in window){
-                    const sections=[...document.querySelectorAll('[data-section]')];
-                    const t0=new Map();
-                    const io=new IntersectionObserver((entries)=>{
-                        entries.forEach(e=>{
-                            const id=(e.target as HTMLElement).getAttribute('data-section')||'unknown';
-                            if(e.isIntersecting){
-                                (window).dataLayer.push({event:'section_view', id});
-                                if(!t0.has(id)) t0.set(id, performance.now());
-                            } else {
-                                if(t0.has(id)){
-                                    const ms=Math.round(performance.now()-t0.get(id));
-                                    (window).dataLayer.push({event:'section_time', id, ms});
-                                    t0.delete(id);
+                const init = () => {
+                    if('IntersectionObserver' in window){
+                        const els=[...document.querySelectorAll('.reveal-on-scroll')];
+                        const io1=new IntersectionObserver((entries)=>{
+                            entries.forEach(e=>{ if(e.isIntersecting){ (e.target as HTMLElement).classList.add('is-visible'); io1.unobserve(e.target); } });
+                        },{threshold:.25});
+                        els.forEach(el=> io1.observe(el));
+                    }
+                    (window).dataLayer=(window).dataLayer||[];
+                    if('IntersectionObserver' in window){
+                        const sections=[...document.querySelectorAll('[data-section]')];
+                        const t0=new Map();
+                        const io2=new IntersectionObserver((entries)=>{
+                            entries.forEach(e=>{
+                                const id=(e.target as HTMLElement).getAttribute('data-section')||'unknown';
+                                if(e.isIntersecting){
+                                    (window).dataLayer.push({event:'section_view', id});
+                                    if(!t0.has(id)) t0.set(id, performance.now());
+                                } else {
+                                    if(t0.has(id)){
+                                        const ms=Math.round(performance.now()-t0.get(id));
+                                        (window).dataLayer.push({event:'section_time', id, ms});
+                                        t0.delete(id);
+                                    }
                                 }
-                            }
-                        });
-                    },{threshold:.5});
-                    sections.forEach(s=> io.observe(s));
-                }
+                            });
+                        },{threshold:.5});
+                        sections.forEach(s=> io2.observe(s));
+                    }
+                };
+                if('requestIdleCallback' in window){ (window as any).requestIdleCallback(init); } else { setTimeout(init, 0); }
                 function t(n){ return n>=1000 ? (Math.round(n/100)/10)+'k' : String(n); }
                 function run(){
                     const raw = localStorage.getItem('marketing_events_jsonl')||'';

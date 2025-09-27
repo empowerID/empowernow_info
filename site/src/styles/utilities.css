@@ -150,3 +150,5 @@ filter:blur(20px);pointer-events:none}
   .hover-rise{transition:transform .18s ease}
   .hover-rise:hover{transform:translateY(-2px)}
 }
+/* Content visibility for perf */
+.cv-auto{content-visibility:auto;contain-intrinsic-size:1000px}
