@@ -23,6 +23,13 @@
 	--link-color:#00E7F6; /* accessible inline link color */
 	--link-visited:#00E7F6; /* avoid purple visited on dark */
 
+	/* NeonFlux theme aliases */
+	--pulse-cyan:#00E7F6; /* primary action */
+	--quantum-violet:#6C4CFF; /* secondary accent */
+	--ultraviolet-magenta:#B326FF; /* secondary accent */
+	--void-black:#0E0E10; /* stage background */
+	--glass-frost:rgba(255,255,255,.04); /* frosted panel fill */
+
 	/* Borders & layers */
 	--border-soft:rgba(255,255,255,.18);
 	--border-strong:rgba(255,255,255,.28);
