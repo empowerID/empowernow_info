@@ -9,7 +9,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Prove what happened, when, and why" subhead="Hash‑chain and sign critical events and decisions, with contextual metadata for audit and forensics." targetICP={[ 'Security', 'Compliance', 'Platform Teams' ]} keyBenefits={[ 'Tamper‑evident receipts', 'Contextual decision metadata', 'Independent verification' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent‑Safe Tools' }, { href: '/solutions/zero-token-spas/', label: 'Zero‑Token SPAs' } ]} keywords={[ 'authzen' ]}>
+	<Product title={title} description={description} canonical={canonical} headline="Prove what happened, when, and why" subhead="Hash‑chain and sign critical events and decisions, with contextual metadata for audit and forensics." targetICP={[ 'Security', 'Compliance', 'Platform Teams' ]} keyBenefits={[ 'Tamper‑evident receipts', 'Contextual decision metadata', 'Independent verification' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent‑Safe Tools' }, { href: '/solutions/zero-token-spas/', label: 'Zero‑Token SPAs' } ]} keywords={[ 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

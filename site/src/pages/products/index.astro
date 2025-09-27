@@ -5,48 +5,96 @@ const description = 'IdP, PDP, ARIA MCP Gateway, ARIA Shield, Data Collector, CR
 const canonical = '/products/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:56px 0 24px">
-		<h1 class="display">Products</h1>
-		<div class="grid-3">
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/aria-shield/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="aria-shield">
-				<h3>ARIA Shield</h3>
-				<p style="color:#9ba3b7">Application-aware BFF and governance</p>
-			</a>
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/gateway/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="gateway">
-				<h3>MCP Gateway</h3>
-				<p style="color:#9ba3b7">Agent/tool policy enforcement</p>
-			</a>
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/pdp/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="pdp">
-				<h3>AuthZEN PDP</h3>
-				<p style="color:#9ba3b7">Fine-grained authorization</p>
-			</a>
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/idp/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="idp">
-				<h3>IdP</h3>
-				<p style="color:#9ba3b7">Agent Passports & Consent</p>
-			</a>
-			<!-- Bundled components moved below -->
-			<a class="glass-card" href="#vds" style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="vds">
-				<h3>VDS (Virtual Directory Server)</h3>
-				<p style="color:#9ba3b7">Coming soon</p>
-			</a>
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/data-collector/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="data-collector">
-				<h3>Data Collector</h3>
-				<p style="color:#9ba3b7">Spend & usage analytics</p>
-			</a>
-			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/crud/`} style="padding:16px" data-ev="cta_click" data-label="product_card" data-position="crud">
-				<h3>CRUD Service</h3>
-				<p style="color:#9ba3b7">Secure data APIs</p>
-			</a>
-		</div>
-	</section>
-	<section class="container" style="padding:8px 0 24px">
-		<h2 class="section-title">Bundled components</h2>
-		<ul>
-			<li>Tool Registry — included with ARIA MCP Gateway</li>
-			<li>Membership Graph — included with PDP</li>
-			<li>Receipt Vault — included in Pro/Enterprise tiers</li>
-		</ul>
-	</section>
+    <section class="container" style="padding:56px 0 16px">
+        <h1 class="display">Products</h1>
+        <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px">
+            EmpowerNow is the neutral layer that lets you <strong>create agent tools once</strong>,
+            <strong>enforce policy and budgets everywhere</strong>, and <strong>prove every action</strong> with cryptographic receipts.
+        </p>
+        <div style="color:#9ba3b7;margin-bottom:16px">Flow: <strong>Design</strong> (Automation/CRUDService) → <strong>Decide</strong> (Authorization/PDP) → <strong>Enforce</strong> (MCP Gateway/ARIA Shield) → <strong>Prove</strong> (Receipt Vault/Data Collector)</div>
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Stop data exfiltration & cap spend (402), params/egress allow‑lists</li>
+                    <li><strong>Buyer:</strong> CISO / SecOps</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">MCP Gateway</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Cross‑platform policy gate (Anthropic MCP)</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Block prompt‑injection/tool overreach pre‑execution; validate plan & schema pins</li>
+                    <li><strong>Buyer:</strong> AI Platform / AppSec</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/gateway/`}>Quickstart</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/" target="_blank" rel="noopener">Docs ↗</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Fine‑grained authorization (OpenID AuthZEN)</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL</li>
+                    <li><strong>Buyer:</strong> IAM / Identity Architecture</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP Reference</a><a class="btn" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">IdP</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Agent Passports & Consent</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows</li>
+                    <li><strong>Buyer:</strong> IAM / AppSec</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
+            </div>
+            <div id="vds" class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">VDS (Virtual Directory Server)</h3><span class="chip">Coming soon</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Directory abstraction for IGA scenarios</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Join waitlist</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Spend & usage analytics</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps</li>
+                    <li><strong>Buyer:</strong> FinOps / Audit</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>See Receipts</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUDService</h3><span class="chip chip--success">GA</span></div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">No‑code connectors → MCP tools</div>
+                <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
+                    <li><strong>Outcome:</strong> Turn APIs/DBs into agent‑safe tools; publish once to MCP/Copilot/Functions</li>
+                    <li><strong>Buyer:</strong> AI Platform / Integrations</li>
+                </ul>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a></div>
+            </div>
+        </div>
+    </section>
+    <section class="container" style="padding:8px 0 4px">
+        <h2 class="section-title">Works with</h2>
+        <div class="chip-row" style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+            <span class="chip">Anthropic MCP</span><span class="chip">Microsoft Copilot</span><span class="chip">OpenAI Functions</span><span class="chip">AWS Bedrock</span><span class="chip">Google Vertex</span><span class="chip">LangChain/LangGraph</span>
+        </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Included by tier</h2>
+        <div class="glass-card" style="padding:16px">
+            <div style="display:grid;grid-template-columns:180px repeat(3,140px);gap:8px;align-items:center">
+                <div></div><div><strong>Starter</strong></div><div><strong>Pro</strong></div><div><strong>Enterprise</strong></div>
+                <div>Tool Registry</div><div>✔</div><div>✔</div><div>✔</div>
+                <div>MCP Gateway</div><div>✔</div><div>✔</div><div>✔</div>
+                <div>CRUDService</div><div>✔</div><div>✔</div><div>✔</div>
+                <div>AuthZEN PDP (core)</div><div>✔</div><div>✔</div><div>✔</div>
+                <div>ARIA Shield</div><div></div><div>✔</div><div>✔</div>
+                <div>Receipt Vault</div><div></div><div>✔</div><div>✔</div>
+                <div>Data Collector</div><div></div><div>✔</div><div>✔</div>
+            </div>
+        </div>
+    </section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Deep technical docs</h2>
 		<div style="display:flex;gap:12px;flex-wrap:wrap">

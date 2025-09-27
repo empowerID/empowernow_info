@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 const title = 'Solutions — EmpowerNow';
-const description = 'Outcome-focused solutions for agent security, zero-token SPAs, spend governance, delegated authorization, and hybrid connectivity.';
+const description = 'Create tools once, enforce policy & budgets everywhere, and prove every action with receipts—across MCP, Copilot, Bedrock, Vertex, and OpenAI Functions.';
 const canonical = '/solutions/';
 const items = [
 	{ href: '/solutions/zero-token-spas/', title: 'Zero‑Token SPAs', desc: 'Session UX with BFF + AuthZEN decisions' },
@@ -12,15 +12,51 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:48px 0 24px">
+	<section class="container" style="padding:48px 0 8px">
 		<h1>Solutions</h1>
+		<p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Create tools once, enforce policy & budgets everywhere, and <strong>prove</strong> every action with receipts—across MCP, Copilot, Bedrock, Vertex, and OpenAI Functions.</p>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Build & Publish</h2>
 		<div class="grid-3">
-            {items.map(p => (
-                <a href={`${import.meta.env.BASE_URL}${p.href.replace(/^\//,'')}`} class="glass-card" style="padding:16px">
+			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
+				<h3 style="margin:0 0 8px">No‑Code Connectors (MCP Tools)</h3>
+				<p style="color:#9ba3b7;margin:0 8px 10px 0">Turn any API/DB into agent‑safe tools in minutes—schema‑pinned, auth‑aware, policy‑ready.</p>
+				<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">AI Platform</span><span class="chip">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a></div>
+			</a>
+			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
+				<h3 style="margin:0 0 8px">No‑Code Workflows for Agents</h3>
+				<p style="color:#9ba3b7;margin:0 8px 10px 0">Orchestrate multi‑step agent actions with approvals, retries, and obligations—without code.</p>
+				<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">AI Platform</span><span class="chip">Ops</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Build your first workflow</a></div>
+			</a>
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Secure Execution & Spend Control</h2>
+		<div class="grid-3">
+			{items.slice(1,3).map(p => (
+				<a href={`${import.meta.env.BASE_URL}${p.href.replace(/^\//,'')}`} class="glass-card" style="padding:16px">
 					<h3 style="margin:0 0 8px">{p.title}</h3>
 					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
 				</a>
 			))}
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Identity & Access for Agents</h2>
+		<div class="grid-3">
+			{[items[3], items[0], items[4]].map(p => (
+				<a href={`${import.meta.env.BASE_URL}${p.href.replace(/^\//,'')}`} class="glass-card" style="padding:16px">
+					<h3 style="margin:0 0 8px">{p.title}</h3>
+					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
+				</a>
+			))}
+		</div>
+	</section>
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Works with</h2>
+		<div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+			<span class="chip">Anthropic MCP</span><span class="chip">Microsoft Copilot</span><span class="chip">OpenAI Functions</span><span class="chip">AWS Bedrock</span><span class="chip">Google Vertex</span><span class="chip">LangChain/LangGraph</span>
 		</div>
 	</section>
 </Base>

@@ -1,22 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
-import LogoWall from '../../components/LogoWall.astro';
 import PricingCTA from '../../components/PricingCTA.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import MediaVideo from '../../components/MediaVideo.astro';
+import LogoWall from '../../components/LogoWall.astro';
 import { getVariant } from '../../lib/experiments';
-const title = 'ARIA Shield — Agent & LLM Guardrails';
-const description = 'Application-aware BFF that enforces AuthZEN constraints, stream-time caps, and cryptographic receipts.';
+const title = 'ARIA Shield — Zero‑Token SPA + Stream Controls';
+const description = 'Keep tokens out of the browser. Enforce policy on every call with per‑route AuthZEN decisions and stream‑time caps.';
 const canonical = '/products/aria-shield/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"ARIA Shield","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
-const variant = getVariant('aria-hero-cta', Astro.url.pathname);
+const variant = 'A';
 const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} eyebrow="ARIA Shield" headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: primaryCtaLabel, href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/' }} docsLinks={[{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }]} wwwLinks={[{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' }, { href: '/deep-dives/', label: 'Deep Dives' }]} keywords={[ 'bff', 'authzen' ]}>
+    <Product title={title} description={description} canonical={canonical} eyebrow="ARIA Shield" headline="Keep tokens out of the browser. Enforce policy on every call." subhead="An application-aware BFF that brokers tokens per service, evaluates PDP decisions, applies stream-time caps, and emits signed receipts." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA sessions with HTTP-only cookies', 'Per-route AuthZEN decisions with constraints & obligations', 'Budget holds, stream caps, and cryptographic receipts' ]} primaryCTA={{ label: primaryCtaLabel, href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/' }} docsLinks={[{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }]} wwwLinks={[{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' }, { href: '/deep-dives/', label: 'Deep Dives' }]} keywords={[ 'bff', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -43,7 +43,7 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 					</div>
 				</div>
 			</section>
-			<PricingCTA title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref="/demo/" primaryLabel="Book demo" />
+			<PricingCTA title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref={`${import.meta.env.BASE_URL}demo/`} primaryLabel="Book demo" />
 		</fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'},{href:'/resources/',label:'Resources'}]} />

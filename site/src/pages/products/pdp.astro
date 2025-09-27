@@ -2,14 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'Authorization Studio — OpenID AuthZEN PDP';
-const description = 'Standardized allow/deny decisions with constraints, obligations, TTL, and explainability. Budgets/content/params enforced consistently across services and AI.';
+const title = 'AuthZEN PDP — Explainable, enforceable decisions';
+const description = 'Standardized allow/deny with constraints, obligations, TTL, and reasons. Built to be enforced by Gateway and Shield.';
 const canonical = '/products/pdp/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"AuthZEN PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} eyebrow="AuthZEN PDP" headline="Author once, decide everywhere" subhead="OpenID AuthZEN contracts return allow/deny + constraints/obligations/TTL with explanations — used by Gateway and Shield to enforce budgets, params, and content." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'Standardized, explainable decisions (AuthZEN)', 'Constraints/obligations for budgets, params, egress', 'Batch and graph‑aware evaluation; consistent across stacks' ]} primaryCTA={{ label: 'Book demo', href: '/demo/' }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','pdp','authorization' ]}>
+    <Product title={title} description={description} canonical={canonical} eyebrow="AuthZEN PDP" headline="Author once, decide everywhere" subhead="OpenID AuthZEN contracts return allow/deny + constraints/obligations/TTL with explanations — used by Gateway and Shield to enforce budgets, params, and content." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'Standardized, explainable decisions (AuthZEN)', 'Constraints/obligations for budgets, params, egress', 'Batch and graph‑aware evaluation; consistent across stacks' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','pdp','authorization' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
