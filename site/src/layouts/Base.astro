@@ -10,12 +10,12 @@ import '../styles/utilities.css';
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<link rel="canonical" href={new URL(canonical, Astro.site)} />
+        <link rel="canonical" href={new URL(`${import.meta.env.BASE_URL}${String(canonical||'').replace(/^\//,'')}`, Astro.site)} />
 		<meta name="theme-color" content="#0B1C3D" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content={new URL(canonical, Astro.site)} />
+        <meta property="og:url" content={new URL(`${import.meta.env.BASE_URL}${String(canonical||'').replace(/^\//,'')}`, Astro.site)} />
 		{(ogImage
 			? <meta property="og:image" content={ogImage} />
 			: <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}images/en-logo-dark.png`, Astro.site)} />)}

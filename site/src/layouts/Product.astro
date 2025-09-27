@@ -27,9 +27,9 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 ---
 {p.jsonLdProduct && <script type="application/ld+json">{JSON.stringify(p.jsonLdProduct)}</script>}
 <BreadcrumbsJsonLd items={[
-	{ name: 'Home', item: new URL('/', Astro.site).toString() },
-	{ name: 'Products', item: new URL('/products/', Astro.site).toString() },
-	{ name: p.headline, item: new URL(p.canonical, Astro.site).toString() },
+	{ name: 'Home', item: new URL(import.meta.env.BASE_URL || '/', Astro.site).toString() },
+	{ name: 'Products', item: new URL(`${import.meta.env.BASE_URL}products/`, Astro.site).toString() },
+	{ name: p.headline, item: new URL(`${import.meta.env.BASE_URL}${String(p.canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
 ]} />
 <section class="container hero-plate" style="padding:72px 0 24px">
     {p.eyebrow && <div class="eyebrow">{p.eyebrow}</div>}
@@ -74,7 +74,7 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 		<div class="ns-card"><h3>What is AuthZEN?</h3><p>Understand decisions, constraints and obligations.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
 		<div class="ns-card"><h3>Constraints & Obligations</h3><p>How PDP returns enforceable constraints with decisions.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
 		<div class="ns-card"><h3>Explainability</h3><p>Expose why a decision happened for audits and UX.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Read →</a></div>
-		<div class="ns-card"><h3>Delegated Authorization</h3><p>Model relationships and delegations for business context.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_info/solutions/delegated-authorization/">Explore →</a></div>
+		<div class="ns-card"><h3>Delegated Authorization</h3><p>Model relationships and delegations for business context.</p><a class="card-cta" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Explore →</a></div>
 	</div>
 </section>
 
@@ -82,10 +82,10 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 <section class="container" style="padding:24px 0 48px">
 	<h2 class="section-title">What’s next?</h2>
 	<div class="card-grid">
-		<div class="ns-card"><h3>Book a demo</h3><p>See decisions and constraints live.</p><a class="btn btn-primary" href="/empowernow_info/demo/">Book demo</a></div>
-		<div class="ns-card"><h3>Talk to a specialist</h3><p>Map decisions to your domain model.</p><a class="btn" style="border-color:var(--color-accent);color:var(--color-accent)" href="/empowernow_info/contact/">Contact</a></div>
+		<div class="ns-card"><h3>Book a demo</h3><p>See decisions and constraints live.</p><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a></div>
+		<div class="ns-card"><h3>Talk to a specialist</h3><p>Map decisions to your domain model.</p><a class="btn" style="border-color:var(--color-accent);color:var(--color-accent)" href={`${import.meta.env.BASE_URL}contact/`}>Contact</a></div>
 		<div class="ns-card"><h3>Read the docs</h3><p>Dive into PDP API and examples.</p><a class="card-cta" href="https://empowerid.github.io/empowernow_docs/docs/services/pdp/" target="_blank" rel="noopener">Docs ↗</a></div>
-		<div class="ns-card"><h3>Explore standards</h3><p>AuthZEN, OAuth, DPoP and more.</p><a class="card-cta" href="/empowernow_info/resources/standards/">Standards →</a></div>
+		<div class="ns-card"><h3>Explore standards</h3><p>AuthZEN, OAuth, DPoP and more.</p><a class="card-cta" href={`${import.meta.env.BASE_URL}resources/standards/`}>Standards →</a></div>
 	</div>
 </section>
 {(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}

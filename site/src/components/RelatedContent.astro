@@ -5,6 +5,6 @@ const p = Astro.props as Props;
 <section class="container" style="padding:8px 0 24px">
 	<h2 class="section-title">Related reading</h2>
 	<div style="display:flex;gap:12px;flex-wrap:wrap">
-		{p.internalLinks.map(l => <a class="btn" href={l.href}>{l.label}</a>)}
+		{p.internalLinks.map(l => <a class="btn" href={`${import.meta.env.BASE_URL}${l.href.replace(/^\//,'')}`}>{l.label}</a>)}
 	</div>
 </section>

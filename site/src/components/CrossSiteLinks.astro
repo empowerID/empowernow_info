@@ -2,6 +2,9 @@
 interface Link { href: string; label: string }
 interface Props { docsLinks?: Link[]; wwwLinks?: Link[] }
 const p = Astro.props as Props;
+function hrefFor(href: string): string {
+  return href.startsWith('/') ? `${import.meta.env.BASE_URL}${href.replace(/^\//,'')}` : href;
+}
 ---
 {(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? (
 	<section class="container" style="padding:8px 0 24px">
@@ -19,7 +22,7 @@ const p = Astro.props as Props;
 				<div class="glass-card" style="padding:16px">
 					<h3 style="margin:0 0 8px">Marketing site</h3>
 					<div style="display:flex;gap:12px;flex-wrap:wrap">
-						{p.wwwLinks.map(l => <a class="btn" href={l.href}>{l.label}</a>)}
+						{p.wwwLinks.map(l => <a class="btn" href={hrefFor(l.href)}>{l.label}</a>)}
 					</div>
 				</div>
 			)}

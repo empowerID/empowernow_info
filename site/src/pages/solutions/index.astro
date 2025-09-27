@@ -15,8 +15,8 @@ const items = [
 	<section class="container" style="padding:48px 0 24px">
 		<h1>Solutions</h1>
 		<div class="grid-3">
-			{items.map(p => (
-				<a href={p.href} class="glass-card" style="padding:16px">
+            {items.map(p => (
+                <a href={`${import.meta.env.BASE_URL}${p.href.replace(/^\//,'')}`} class="glass-card" style="padding:16px">
 					<h3 style="margin:0 0 8px">{p.title}</h3>
 					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
 				</a>
