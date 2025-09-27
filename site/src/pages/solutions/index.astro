@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 const title = 'Solutions — EmpowerNow';
-const description = 'Create tools once, enforce policy & budgets everywhere, and prove every action with receipts—across MCP, Copilot, Bedrock, Vertex, and OpenAI Functions.';
+const description = 'Create tools once. Enforce policy and budgets across any agent platform. Prove every action with receipts.';
 const canonical = '/solutions/';
 const items = [
 	{ href: '/solutions/zero-token-spas/', title: 'Zero‑Token SPAs', desc: 'Session UX with BFF + AuthZEN decisions' },
@@ -12,35 +12,45 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:48px 0 8px">
+    <section class="container" style="padding:48px 0 8px">
 		<h1>Solutions</h1>
-		<p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Create tools once, enforce policy & budgets everywhere, and <strong>prove</strong> every action with receipts—across MCP, Copilot, Bedrock, Vertex, and OpenAI Functions.</p>
+        <p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Create tools once. <strong>Enforce</strong> policy and budgets across any agent platform. <strong>Prove</strong> every action with receipts.</p>
+        <p style="color:#9ba3b7;max-width:900px;margin:0 0 8px">
+            Flow: <strong><a href={`${import.meta.env.BASE_URL}products/crud/`}>Design</a></strong> (Automation/CRUDService) →
+            <strong><a href={`${import.meta.env.BASE_URL}products/pdp/`}>Decide</a></strong> (Authorization/PDP) →
+            <strong><a href={`${import.meta.env.BASE_URL}products/gateway/`}>Enforce</a></strong> (MCP Gateway/<a href={`${import.meta.env.BASE_URL}products/aria-shield/`}>ARIA Shield</a>) →
+            <strong><a href={`${import.meta.env.BASE_URL}products/receipts/`}>Prove</a></strong> (Receipt Vault/<a href={`${import.meta.env.BASE_URL}products/data-collector/`}>Data Collector</a>)
+        </p>
 	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Build & Publish</h2>
 		<div class="grid-3">
-			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
-				<h3 style="margin:0 0 8px">No‑Code Connectors (MCP Tools)</h3>
-				<p style="color:#9ba3b7;margin:0 8px 10px 0">Turn any API/DB into agent‑safe tools in minutes—schema‑pinned, auth‑aware, policy‑ready.</p>
-				<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">AI Platform</span><span class="chip">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a></div>
+            <a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px">No‑Code Connectors (<abbr title="Anthropic's Model Context Protocol">MCP</abbr> Tools)</h3>
+                <p style="color:#9ba3b7;margin:0 8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Turn any API/DB into agent‑safe tools in minutes — schema‑pinned, auth‑aware, policy‑ready.</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Integrations</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}products/crud/`}>Examples</a></div>
 			</a>
 			<a href={`${import.meta.env.BASE_URL}products/crud/`} class="glass-card" style="padding:16px">
 				<h3 style="margin:0 0 8px">No‑Code Workflows for Agents</h3>
-				<p style="color:#9ba3b7;margin:0 8px 10px 0">Orchestrate multi‑step agent actions with approvals, retries, and obligations—without code.</p>
-				<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">AI Platform</span><span class="chip">Ops</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Build your first workflow</a></div>
+                <p style="color:#9ba3b7;margin:0 8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Orchestrate multi‑step agent actions with approvals, retries, and obligations — without code.</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">Ops</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Workflow Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}products/crud/`}>Examples</a></div>
 			</a>
 		</div>
 	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Secure Execution & Spend Control</h2>
-		<div class="grid-3">
-			{items.slice(1,3).map(p => (
-				<a href={`${import.meta.env.BASE_URL}${p.href.replace(/^\//,'')}`} class="glass-card" style="padding:16px">
-					<h3 style="margin:0 0 8px">{p.title}</h3>
-					<p style="color:#9ba3b7;margin:0">{p.desc}</p>
-				</a>
-			))}
-		</div>
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px">Agent‑Safe Tools</h3>
+                <p style="color:#9ba3b7;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Block prompt‑injection and tool overreach before execution; enforce budgets, params, and egress at runtime.</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">AppSec</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/gateway/`}>See Gateway</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>Receipt example</a></div>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px">Spend Governance</h3>
+                <p style="color:#9ba3b7;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Cap per‑call/agent spend; attribute every dollar to policy, user, and tool with receipts and analytics.</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">FinOps</span><span class="chip chip--outline">CISO</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>FinOps guide</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>Receipts schema</a></div>
+            </div>
+        </div>
 	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Identity & Access for Agents</h2>
