@@ -12,46 +12,82 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="container" style="padding:48px 0 8px">
-		<h1>Solutions</h1>
-		<p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Create agent tools once, <strong>enforce</strong> policy and budgets across any agent platform, and <strong>prove</strong> every action with receipts.</p>
-        <p style="color:#9ba3b7;max-width:900px;margin:0 0 8px">
-			Flow: <strong><a href={`${import.meta.env.BASE_URL}products/crud/`}>Design</a></strong> (Automation/CRUDService) →
-			<strong><a href={`${import.meta.env.BASE_URL}products/pdp/`}>Decide</a></strong> (Authorization/PDP, OpenID AuthZEN) →
-			<strong><a href={`${import.meta.env.BASE_URL}products/gateway/`}>Enforce</a></strong> (MCP Gateway/<a href={`${import.meta.env.BASE_URL}products/aria-shield/`}>ARIA Shield</a>) →
-			<strong><a href={`${import.meta.env.BASE_URL}products/receipts/`}>Prove</a></strong> (Receipt Vault/<a href={`${import.meta.env.BASE_URL}products/data-collector/`}>Data Collector</a>)
-        </p>
-	</section>
-	<section class="container" style="padding:8px 0 24px">
-		<h2 class="section-title">Proof (last 30 days)</h2>
-		<div class="glass-card" style="padding:12px;display:flex;gap:16px;flex-wrap:wrap;color:#9ba3b7">
-			<div><strong>Receipts/day</strong> — <span id="m_receipts">—</span></div>
-			<div><strong>Spend blocked (402)</strong> — <span id="m_blocked">—</span></div>
-			<div><strong>Governed endpoints</strong> — <span id="m_endpoints">—</span></div>
+    <!-- Zone A: Hero (full-bleed) -->
+    <section class="hero-plate" style="padding:56px 0 16px">
+		<div class="container" style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+			<div style="flex:1 1 520px;min-width:300px">
+				<h1 class="display" style="margin:0 0 8px">Create. Control. Prove.</h1>
+				<p style="color:#9ba3b7;max-width:70ch;margin:0 0 14px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Enforce policy and budgets across platforms. <strong>Prove</strong> every action with receipts.</p>
+				<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+					<a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
+					<a class="btn" data-ev="cta_click" data-label="solutions-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a>
+				</div>
+			</div>
+			<figure style="flex:1 1 380px;min-width:280px;margin:0" aria-label="API to CRUD Service to Platforms diagram">
+				<div class="diagram vignette" style="margin:0">
+					<div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px">
+						<div class="node">API</div>
+						<div class="flow"></div>
+						<div class="node">CRUD<br/>Service</div>
+						<div class="flow"></div>
+						<div class="node">Platforms</div>
+					</div>
+				</div>
+			</figure>
 		</div>
 	</section>
-    <script>
-        (function(){
-            try{
-                function parseLocalJSONL(key){
-                    const raw = localStorage.getItem(key) || '';
-                    if(!raw) return [];
-                    return raw.split('\n').map(l => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
-                }
-                function update(){
-                    const events = parseLocalJSONL('marketing_events_jsonl');
-                    const receiptsPerDay = Math.max(0, Math.round(events.filter(e => e.event === 'receipt').length / 30));
-                    const blocked = Math.max(0, Math.round((events.filter(e => e.event === 'budget_block').length / Math.max(1, events.filter(e => e.event === 'cta_click').length)) * 100));
-                    const endpoints = 10; // placeholder until backend metric is wired
-                    const $ = (id) => document.getElementById(id);
-                    $('m_receipts').textContent = receiptsPerDay ? receiptsPerDay + 'k' : '—';
-                    $('m_blocked').textContent = blocked ? blocked + '%' : '—';
-                    $('m_endpoints').textContent = String(endpoints);
-                }
-                update();
-            }catch{}
-        })();
-    </script>
+
+    <!-- Zone B: Problem cards -->
+    <section class="container" style="padding:40px 0 16px">
+		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+			<div class="glass-card" style="padding:16px">
+				<h3 style="margin:0 0 8px">Spend is unpredictable</h3>
+				<p style="color:#9ba3b7;margin:0 0 10px">Agent calls have no caps; costs drift with prompts and retries.</p>
+				<a class="btn" data-ev="cta_click" data-label="problem-spend" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Control spend →</a>
+			</div>
+			<div class="glass-card" style="padding:16px">
+				<h3 style="margin:0 0 8px">Tools are fragmented</h3>
+				<p style="color:#9ba3b7;margin:0 0 10px">Each platform wants its own adapters and rules; governance falls behind.</p>
+				<a class="btn" data-ev="cta_click" data-label="problem-tools" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Unify tools →</a>
+			</div>
+			<div class="glass-card" style="padding:16px">
+				<h3 style="margin:0 0 8px">Audit needs proof</h3>
+				<p style="color:#9ba3b7;margin:0 0 10px">Logs aren’t enough; auditors need decisions, policies, and receipts.</p>
+				<a class="btn" data-ev="cta_click" data-label="problem-audit" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`}>See evidence →</a>
+			</div>
+		</div>
+	</section>
+
+    <!-- Zone C.1: Create — CRUD Service with comparison -->
+    <section class="container" style="padding:16px 0 24px">
+		<h2 class="section-title">Create tools in minutes (CRUD Service)</h2>
+		<p style="color:#9ba3b7;max-width:70ch;margin:6px 0 12px">Turn any API/DB into agent‑safe tools with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
+		<div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+			<div class="glass-card" style="padding:16px">
+				<h3 class="nf-h3" style="margin:0 0 8px">Without CRUD Service</h3>
+				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+					<li>~6 weeks per API integration</li>
+					<li>Custom code, per platform</li>
+					<li>One stack at a time</li>
+					<li>Unclear guardrails</li>
+				</ul>
+			</div>
+			<div class="glass-card" style="padding:16px;border-color:var(--color-accent);box-shadow:0 0 24px rgba(0,231,246,.25)">
+				<h3 class="nf-h3" style="margin:0 0 8px">With CRUD Service</h3>
+				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+					<li><strong>~5 minutes</strong> from API to tool</li>
+					<li><strong>No code</strong>, publish once</li>
+					<li><strong>MCP, Copilot, OpenAI Functions</strong></li>
+					<li><strong>Schema pins + policy hooks built‑in</strong></li>
+				</ul>
+			</div>
+		</div>
+		<p style="opacity:.7;margin-top:8px;font-size:14px"><em>Times are representative; shown live in demo.</em></p>
+		<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+			<a class="btn btn-primary" data-ev="cta_click" data-label="crud_qs" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
+			<a class="btn" data-ev="cta_click" data-label="crud_catalog" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
+		</div>
+	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Author once → publish many</h2>
 		<div class="glass-card" style="padding:16px;color:#9ba3b7">
