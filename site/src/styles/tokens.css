@@ -16,6 +16,13 @@
 	--on-accent:#0B1C3D;
 	--on-surface:#F4F7FF;
 
+	/* Additional semantic tokens (NeonFlux accents) */
+	--ion-lime:#B6FF3C; /* GA / success accents */
+	--signal-amber:#FFC107; /* Beta / warning accents */
+	--focus-ring:#00E7F6; /* high-contrast focus outline */
+	--link-color:#00E7F6; /* accessible inline link color */
+	--link-visited:#00E7F6; /* avoid purple visited on dark */
+
 	/* Borders & layers */
 	--border-soft:rgba(255,255,255,.18);
 	--border-strong:rgba(255,255,255,.28);

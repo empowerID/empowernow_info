@@ -19,15 +19,15 @@ const canonical = '/products/';
         </div>
     </section>
     <section class="container" style="padding:64px 0">
-        <div class="glass-card" style="padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0">
-            <button class="btn" data-tab="build" aria-pressed="true">Build</button>
-            <button class="btn" data-tab="secure">Secure</button>
-            <button class="btn" data-tab="audit">Audit</button>
-            <button class="btn" data-tab="all">All Products</button>
+        <div class="glass-card" style="padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0" role="tablist" aria-label="Products categories">
+            <button class="btn" role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" data-tab="build">Build</button>
+            <button class="btn" role="tab" id="tab-secure" aria-controls="panel-secure" aria-selected="false" data-tab="secure">Secure</button>
+            <button class="btn" role="tab" id="tab-audit" aria-controls="panel-audit" aria-selected="false" data-tab="audit">Audit</button>
+            <button class="btn" role="tab" id="tab-all" aria-controls="panel-all" aria-selected="false" data-tab="all">All Products</button>
         </div>
     </section>
     <section class="container" style="padding:64px 0">
-        <div class="grid-3">
+        <div class="grid-3" id="panel-build" role="tabpanel" aria-labelledby="tab-build">
             <div class="glass-card" data-cat="build" style="padding:16px; grid-column: span 2">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUD Service</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Turn any API/DB into agent‑safe tools (schema pins + policy hooks). Publish once to MCP / Copilot / OpenAI Functions.</div>
@@ -56,7 +56,7 @@ const canonical = '/products/';
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
             </div>
-            <div class="glass-card" data-cat="secure" style="padding:16px">
+            <div class="glass-card" data-cat="secure" style="padding:16px" id="panel-secure" role="tabpanel" aria-labelledby="tab-secure" hidden>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -97,7 +97,7 @@ const canonical = '/products/';
                 <div style="color:#9ba3b7;margin:6px 0 10px">Directory abstraction for IGA scenarios</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Join waitlist</a></div>
             </div>
-            <div class="glass-card" data-cat="audit" style="padding:16px">
+            <div class="glass-card" data-cat="audit" style="padding:16px" id="panel-audit" role="tabpanel" aria-labelledby="tab-audit" hidden>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Spend & usage with receipts</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -106,7 +106,7 @@ const canonical = '/products/';
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
             </div>
-            <div class="glass-card" data-cat="audit" style="padding:16px">
+            <div class="glass-card" data-cat="audit" style="padding:16px" id="panel-all" role="tabpanel" aria-labelledby="tab-all" hidden>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Receipt Vault</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Proof / non‑repudiation (hash‑chained receipts)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
@@ -133,13 +133,22 @@ const canonical = '/products/';
         (function(){
             try{
                 const def=(location.hash?location.hash.substring(1):'build').toLowerCase();
-                const buttons=[...document.querySelectorAll('button[data-tab]')];
-                const cards=[...document.querySelectorAll('[data-cat]')];
+                const buttons=[...document.querySelectorAll('button[role="tab"][data-tab]')];
+                const panels={
+                    build: document.getElementById('panel-build'),
+                    secure: document.getElementById('panel-secure'),
+                    audit: document.getElementById('panel-audit'),
+                    all: document.getElementById('panel-all'),
+                } as Record<string, HTMLElement|null>;
                 function setTab(tab){
-                    buttons.forEach(b=> b.setAttribute('aria-pressed', String(b.getAttribute('data-tab')===tab)));
-                    cards.forEach(c=>{
-                        const cat=c.getAttribute('data-cat');
-                        (c).style.display = (tab==='all' || tab===cat) ? '' : 'none';
+                    buttons.forEach(b=>{
+                        const selected = b.getAttribute('data-tab')===tab;
+                        b.setAttribute('aria-selected', String(selected));
+                        b.tabIndex = selected ? 0 : -1 as any;
+                    });
+                    Object.entries(panels).forEach(([key,p])=>{
+                        if(!p) return;
+                        if(key===tab){ p.hidden=false; } else { p.hidden=true; }
                     });
                     (window).dataLayer=(window).dataLayer||[];
                     (window).dataLayer.push({event:'tab_select', tab});
@@ -150,6 +159,16 @@ const canonical = '/products/';
                     }
                 }
                 buttons.forEach(b=> b.addEventListener('click', ()=>{ const t=b.getAttribute('data-tab'); if(t){ setTab(t); } }));
+                // Keyboard navigation for tabs
+                document.querySelector('[role="tablist"]').addEventListener('keydown', (e)=>{
+                    const order=['build','secure','audit','all'];
+                    const current = (document.activeElement as HTMLElement)?.getAttribute('data-tab')||'build';
+                    let idx = order.indexOf(current);
+                    if(e.key==='ArrowRight'){ idx=(idx+1)%order.length; setTab(order[idx]); (document.getElementById('tab-'+order[idx]) as HTMLElement)?.focus(); e.preventDefault(); }
+                    if(e.key==='ArrowLeft'){ idx=(idx-1+order.length)%order.length; setTab(order[idx]); (document.getElementById('tab-'+order[idx]) as HTMLElement)?.focus(); e.preventDefault(); }
+                    if(e.key==='Home'){ setTab(order[0]); (document.getElementById('tab-'+order[0]) as HTMLElement)?.focus(); e.preventDefault(); }
+                    if(e.key==='End'){ setTab(order[order.length-1]); (document.getElementById('tab-'+order[order.length-1]) as HTMLElement)?.focus(); e.preventDefault(); }
+                });
                 window.addEventListener('hashchange', ()=>{ const h=(location.hash||'#build').substring(1); setTab(h); });
                 setTab(def);
             }catch{}

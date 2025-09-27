@@ -12,7 +12,7 @@ nav{background:rgba(11,28,61,.8);backdrop-filter:blur(20px);border-bottom:1px so
 .nav-links a.btn-primary:visited{color:var(--on-accent)!important}
 .nav-links a.btn-primary:hover{filter:brightness(1.1);text-decoration:none}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--border-soft);text-decoration:none;color:var(--on-bg);background:var(--surface-1)}
-.btn:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+.btn:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px}
 .btn-primary{background:var(--color-accent);color:var(--on-accent);box-shadow:0 6px 22px rgba(0,231,246,.25);position:relative;isolation:isolate}
 .btn-primary:hover{filter:brightness(1.05)}
 .btn-primary::before{content:'';position:absolute;inset:0;border-radius:10px;padding:1px;background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.1));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
@@ -96,6 +96,16 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}
+/* Inline link accessibility on dark surfaces */
+.container p a,.container li a{color:var(--link-color);text-decoration:underline;text-underline-offset:2px}
+.container p a:visited{color:var(--link-visited)}
+.container p a:hover,.container p a:focus{filter:brightness(1.15)}
+
+/* ARIA Tabs (Products) */
+[role="tablist"]{display:flex;gap:8px;flex-wrap:wrap}
+[role="tab"]{border-radius:10px;padding:8px 12px;border:1px solid var(--border-soft);background:var(--surface-1);color:var(--on-bg)}
+[role="tab"][aria-selected="true"]{outline:2px solid var(--color-accent);outline-offset:2px;background:rgba(0,231,246,.12)}
+[role="tabpanel"]{margin-top:12px}
 footer a:hover{background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat;background-image:linear-gradient(90deg,var(--color-secondary),var(--color-accent))}
 
 /* Role link focus ring */
