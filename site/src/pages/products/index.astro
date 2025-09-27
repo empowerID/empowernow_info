@@ -7,17 +7,22 @@ const canonical = '/products/';
 <Base title={title} description={description} canonical={canonical}>
     <section class="container" style="padding:56px 0 16px">
         <h1 class="display">Products</h1>
-        <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px">
-            EmpowerNow is the neutral layer that lets you <strong>create agent tools once</strong>,
-            <strong>enforce policy and budgets everywhere</strong>, and <strong>prove every action</strong> with cryptographic receipts.
-        </p>
-        <div style="color:#9ba3b7;margin-bottom:16px">Flow: <strong>Design</strong> (Automation/CRUDService) → <strong>Decide</strong> (Authorization/PDP) → <strong>Enforce</strong> (MCP Gateway/ARIA Shield) → <strong>Prove</strong> (Receipt Vault/Data Collector)</div>
+        <p style="color:#9ba3b7;max-width:900px;margin:6px 0 12px">Create agent tools once, <strong>enforce</strong> policy and budgets across any agent platform, and <strong>prove</strong> every action with cryptographic receipts.</p>
+        <div style="color:#9ba3b7;margin-bottom:16px">
+            Flow: <a class="chip" href={`${import.meta.env.BASE_URL}products/crud/`}>Design</a>
+            <span>→</span>
+            <a class="chip" href={`${import.meta.env.BASE_URL}products/pdp/`}>Decide</a>
+            <span>→</span>
+            <a class="chip" href={`${import.meta.env.BASE_URL}products/gateway/`}>Enforce</a>
+            <span>→</span>
+            <a class="chip" href={`${import.meta.env.BASE_URL}products/receipts/`}>Prove</a>
+        </div>
         <div class="grid-3">
             <div class="glass-card" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Stop data exfiltration & cap spend (402), params/egress allow‑lists</li>
+                    <li><strong>Outcome:</strong> Stop data exfiltration & cap AI spend (402); params/egress allow‑lists</li>
                     <li><strong>Buyer:</strong> CISO / SecOps</li>
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Book Demo</a><a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/" target="_blank" rel="noopener">Docs ↗</a></div>
@@ -35,16 +40,16 @@ const canonical = '/products/';
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3><span class="chip chip--success">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Fine‑grained authorization (OpenID AuthZEN)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL</li>
+                    <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL → consistent enforcement across agents</li>
                     <li><strong>Buyer:</strong> IAM / Identity Architecture</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP Reference</a><a class="btn" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/pdp/`}>Open Reference</a><a class="btn" href="https://openid.net/wg/azn/" target="_blank" rel="noopener">AuthZEN ↗</a></div>
             </div>
             <div class="glass-card" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">IdP</h3><span class="chip chip--success">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Agent Passports & Consent</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows</li>
+                    <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows — no long‑lived secrets</li>
                     <li><strong>Buyer:</strong> IAM / AppSec</li>
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/idp/`}>Open Docs</a></div>
@@ -58,20 +63,28 @@ const canonical = '/products/';
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3><span class="chip chip--success">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Spend & usage analytics</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps</li>
+                    <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps — attribute dollars to policy, user, and tool</li>
                     <li><strong>Buyer:</strong> FinOps / Audit</li>
                 </ul>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>See Receipts</a></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/data-collector/`}>View Receipts</a></div>
             </div>
             <div class="glass-card" style="padding:16px">
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUDService</h3><span class="chip chip--success">GA</span></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">No‑code connectors → MCP tools</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
-                    <li><strong>Outcome:</strong> Turn APIs/DBs into agent‑safe tools; publish once to MCP/Copilot/Functions</li>
+                    <li><strong>Outcome:</strong> Turn APIs/DBs into agent‑safe tools; publish once to MCP/Copilot/Functions with policy hooks</li>
                     <li><strong>Buyer:</strong> AI Platform / Integrations</li>
                 </ul>
                 <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a></div>
             </div>
+        </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Proof (last 30 days)</h2>
+        <div class="glass-card" style="padding:12px;display:flex;gap:16px;flex-wrap:wrap;color:#9ba3b7">
+            <div><strong>Receipts/day</strong> — __k</div>
+            <div><strong>Spend blocked (402)</strong> — __%</div>
+            <div><strong>Governed endpoints</strong> — __</div>
         </div>
     </section>
     <section class="container" style="padding:8px 0 4px">
@@ -105,4 +118,9 @@ const canonical = '/products/';
 			<a class="btn" href="https://empowerid.github.io/empowernow_docs/docs/services/idp/">IdP Docs</a>
 		</div>
 	</section>
+    <style>
+        .container a:link, .container a:visited { color: var(--color-primary); text-decoration: none; }
+        .container a:hover { text-decoration: underline; }
+    </style>
+
 </Base>
