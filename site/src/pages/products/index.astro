@@ -143,6 +143,7 @@ const canonical = '/products/';
                         const selected = b.getAttribute('data-tab')===tab;
                         b.setAttribute('aria-selected', String(selected));
                         b.tabIndex = selected ? 0 : -1 as any;
+                        if(selected){ b.classList.add('tab-active'); } else { b.classList.remove('tab-active'); }
                     });
                     Object.entries(panels).forEach(([key,p])=>{
                         if(!p) return;
