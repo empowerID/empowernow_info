@@ -88,11 +88,65 @@ const items = [
 			<a class="btn" data-ev="cta_click" data-label="crud_catalog" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
 		</div>
 	</section>
+
+	<!-- Zone C.2: Control stack -->
+	<section class="container" style="padding:24px 0">
+		<h2 class="section-title">Control: Complete Enforcement Stack</h2>
+		<div class="glass-card" style="padding:16px">
+			<ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
+				<li><strong>Pre‑exec (MCP Gateway)</strong> <span class="chip chip--success">GA</span>: validate <strong>plan & schema pins</strong>, block off‑policy before model.</li>
+				<li><strong>Authorization (AuthZEN PDP)</strong> <span class="chip chip--success">GA</span>: who/what/for‑whom/constraints (+ obligations/TTL).</li>
+				<li><strong>Runtime (ARIA Shield)</strong> <span class="chip">Beta</span>: <strong>budgets (HTTP 402)</strong>, params allow‑lists, egress filters; cost attribution.</li>
+			</ul>
+			<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
+		</div>
+	</section>
+
+	<!-- Zone C.3: Prove receipts -->
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Prove: Receipts</h2>
+		<div class="glass-card" style="padding:16px">
+			<div style="opacity:.8;margin-bottom:6px">Receipt (6 lines)</div>
+			<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "decision_id": "d-9f2",
+  "policy_hash": "sha256:a1c",
+  "tool_schema": "mcp_v2.1",
+  "cost_usd": 0.012,
+  "timestamp": "2025-01-27T10:23:45Z"
+}
+`}</code></pre>
+			<div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
+			<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>View sample receipts</a></div>
+		</div>
+	</section>
+
+	<!-- Zone D: Role paths -->
+	<section class="container" style="padding:8px 0 24px">
+		<h2 class="section-title">Choose your path</h2>
+		<div class="grid-3">
+			<a class="glass-card" href={`${import.meta.env.BASE_URL}products/crud/`} style="padding:16px">
+				<h3 style="margin:0 0 8px">Build tools</h3>
+				<p style="color:#9ba3b7;margin:0">Create secure agent tools in minutes.</p>
+			</a>
+			<a class="glass-card" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`} style="padding:16px">
+				<h3 style="margin:0 0 8px">Control spend</h3>
+				<p style="color:#9ba3b7;margin:0">Budgets, caps, and receipts per call.</p>
+			</a>
+			<a class="glass-card" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`} style="padding:16px">
+				<h3 style="margin:0 0 8px">Pass audit</h3>
+				<p style="color:#9ba3b7;margin:0">Evidence mapped to controls, ready to share.</p>
+			</a>
+		</div>
+	</section>
+
+	<!-- Zone E: Works with & Deployment -->
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Author once → publish many</h2>
 		<div class="glass-card" style="padding:16px;color:#9ba3b7">
 			<p style="margin:0 0 8px">Create tools in <strong>Automation Studio</strong> and publish across platforms with policy hooks built in.</p>
-			<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">Anthropic MCP</span><span class="chip">OpenAI Functions</span><span class="chip">Microsoft Copilot</span><span class="chip">Google Vertex</span><span class="chip">AWS Bedrock</span><span class="chip">LangChain/LangGraph</span></div>
+			<div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">Anthropic MCP</span><span class="chip">OpenAI Functions</span><span class="chip">Microsoft Copilot</span><span class="chip">Google Vertex (Q1)</span><span class="chip">AWS Bedrock (Q1)</span><span class="chip">LangChain/LangGraph</span></div>
+			<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><span class="chip">Cloud SaaS</span><span class="chip">Self‑hosted</span><span class="chip">Hybrid (NowConnect)</span></div>
 		</div>
 		<h2 class="section-title">Build & Publish</h2>
 		<div class="grid-3">
@@ -108,20 +162,16 @@ const items = [
 			</a>
 		</div>
 	</section>
+
+	<!-- Zone F: Status / Velocity -->
 	<section class="container" style="padding:8px 0 24px">
-		<h2 class="section-title">Secure Execution & Spend Control</h2>
-        <div class="grid-3">
-            <div class="glass-card" style="padding:16px">
-                <h3 style="margin:0 0 8px">Agent‑Safe Tools</h3>
-                <p style="color:#9ba3b7;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Block prompt‑injection and tool overreach before execution; enforce budgets, params, and egress at runtime.</p>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">AI Platform</span><span class="chip chip--outline">AppSec</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/gateway/`}>Try Gateway</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>View a receipt</a></div>
-            </div>
-            <div class="glass-card" style="padding:16px">
-                <h3 style="margin:0 0 8px">Spend Governance</h3>
-                <p style="color:#9ba3b7;margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">Cap per‑call/agent spend; attribute every dollar to policy, user, and tool <strong>with receipts</strong>.</p>
-                <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip chip--outline">FinOps</span><span class="chip chip--outline">CISO</span><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>FinOps guide</a><a class="btn" href={`${import.meta.env.BASE_URL}resources/proof-roi/`}>Receipts schema</a></div>
-            </div>
-        </div>
+		<h2 class="section-title">Status</h2>
+		<div class="glass-card" style="padding:12px;display:flex;gap:12px;flex-wrap:wrap;color:#9ba3b7">
+			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Platform: LIVE</span>
+			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Demo: ACTIVE</span>
+			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Create first tool: &lt;5 MIN</span>
+			<span class="pill" style="border:1px solid var(--border-soft);padding:4px 10px;border-radius:999px">Docs: COMPLETE</span>
+		</div>
 	</section>
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Identity & Access for Agents</h2>
