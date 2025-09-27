@@ -273,6 +273,48 @@ call_id: "abc-123"
             <li><span class="chip chip--success" style="margin-right:8px">Receipts</span> Signed, hash‑chained receipts for auditability</li>
 		</ul>
 	</section>
+    <section class="container" style="padding:24px 0">
+        <div class="glass-card" style="padding:20px">
+            <h2 style="font-size:36px;margin:0 0 10px">Calculate your potential savings</h2>
+            <p style="color:#9ba3b7;margin:0 0 10px">Based on your inputs and published industry averages; adjust assumptions.</p>
+            <form id="roi-form" class="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0">
+                <label> # tools<br/><input id="roi-tools" type="number" min="1" value="50" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
+                <label> weeks per tool<br/><input id="roi-weeks" type="number" min="1" value="6" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
+                <label> loaded eng cost ($)<br/><input id="roi-cost" type="number" min="100000" step="10000" value="200000" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
+                <label> # platforms<br/><input id="roi-platforms" type="number" min="1" value="2" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
+            </form>
+            <div class="glass-card" style="padding:12px;background:rgba(255,255,255,.04);color:#9ba3b7">
+                <div><strong>DIY:</strong> <span id="diy-val">$11,500,000</span> — tools × weeks × eng_cost × platforms</div>
+                <div><strong>EmpowerNow (Y1):</strong> <span id="enow-val">$120,000 – $300,000 + usage</span> — endpoints × $500 × 12</div>
+            </div>
+            <div style="margin-top:10px">
+                <a class="btn btn-primary" id="roi-cta" data-ev="roi_submit" data-label="roi-calc" href={`${import.meta.env.BASE_URL}pricing/`}>Estimate my savings</a>
+            </div>
+        </div>
+        <script>
+        (function(){
+            try{
+                const t=document.getElementById('roi-tools') as HTMLInputElement;
+                const w=document.getElementById('roi-weeks') as HTMLInputElement;
+                const c=document.getElementById('roi-cost') as HTMLInputElement;
+                const p=document.getElementById('roi-platforms') as HTMLInputElement;
+                const diy=document.getElementById('diy-val');
+                const enow=document.getElementById('enow-val');
+                function fmt(n:number){ return n.toLocaleString(undefined,{ style:'currency', currency:'USD', maximumFractionDigits:0 }); }
+                function recalc(){
+                    const T=Number(t.value)||0, W=Number(w.value)||0, C=Number(c.value)||0, P=Number(p.value)||0;
+                    const diyCost=T*W*C*P;
+                    if(diy) diy.textContent = fmt(diyCost);
+                    const endpoints=Math.max(1, Math.round(T*0.4));
+                    const low=endpoints*500*12, high=Math.round(low*2.5);
+                    if(enow) enow.textContent = `${fmt(low)} – ${fmt(high)} + usage`;
+                }
+                [t,w,c,p].forEach(i=> i && i.addEventListener('input', recalc));
+                recalc();
+            }catch{}
+        })();
+        </script>
+    </section>
     <section class="container surface-2" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
 		<div style="position:absolute;top:-24px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent)"></div>
 		<h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
