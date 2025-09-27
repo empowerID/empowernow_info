@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Controls & Evidence — EmpowerNow';
+const description = 'Controls mapped to audit objectives, with evidence and current status.';
+const canonical = '/resources/controls-evidence/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:40px 0 24px">
+        <h1 class="display" style="margin:0 0 12px">Controls & Evidence</h1>
+        <p style="color:#9ba3b7;max-width:880px;margin:0 0 16px">Controls mapped to audit objectives, with evidence and current status.</p>
+        <div class="glass-card" style="padding:16px">
+            <div style="overflow:auto">
+                <table style="width:100%;border-collapse:separate;border-spacing:0 8px">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Audit objective</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Control</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Where</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Evidence</th>
+                            <th style="text-align:left;color:#9ba3b7;padding:6px 10px">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Identity propagation</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OAuth 2.1 + RFC 8693 Token Exchange</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">IdP / Auth Studio</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Short‑lived token + TE assertion</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><span class="chip chip--success">Implemented</span></td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Pre‑execution validation</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">MCP Gateway plan & schema pins</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Gateway</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Blocked call (402) + policy hash</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><span class="chip">Demo available</span></td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Runtime guardrails</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Budgets, params, egress filters</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">ARIA Shield</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Budget event + route config</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><span class="chip">In testing</span></td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Decision consistency</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OpenID AuthZEN PDP</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">PDP</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Decision log (constraints/obligations/TTL)</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><span class="chip chip--success">Implemented</span></td>
+                        </tr>
+                        <tr>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Proof / non‑repudiation</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Hash‑chained receipts</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Receipt Vault</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Receipt (production format, test data)</td>
+                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><span class="chip">Prototype</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p style="opacity:.8;margin-top:10px"><em>No scare stories—just controls and evidence. Want to see this with your API? We can do it live.</em></p>
+    </section>
+</Base>
+
+
