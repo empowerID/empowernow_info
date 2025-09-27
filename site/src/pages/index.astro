@@ -7,7 +7,7 @@ import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
 ---
 <Base title="EmpowerNow – Identity & Authorization Fabric" description="AI-native identity orchestration and AuthZEN-compliant authorization platform" canonical="/">
-    <section class="container hero-ambient" data-section="hero" style="padding:120px 0 80px">
+    <section class="container hero-ambient reveal-on-scroll" data-section="hero" style="padding:120px 0 80px">
 		<div style="display:flex;gap:64px;align-items:center;flex-wrap:wrap">
 			<div style="flex:1 1 420px;min-width:320px;max-width:560px">
 				<div style="display:inline-block;padding:8px 24px;border:1px solid var(--border-strong);border-radius:999px;color:var(--on-surface);background:var(--surface-2);font-weight:600;margin-bottom:32px">Designed with AI, for AI</div>
@@ -21,8 +21,8 @@ import PinPlan from '../components/icons/PinPlan.astro';
                     <li style="display:flex;gap:8px"><span style="color:var(--color-accent)">•</span> Cryptographic receipts for audit and compliance</li>
                 </ul>
                 <div style="display:flex;gap:12px;flex-wrap:wrap">
-                    <a class="btn btn-primary" data-ev="cta_click" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na" data-label="hero-demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
-                    <a class="btn" data-ev="cta_click" data-cta-level="soft" data-product="na" data-persona="na" data-stage="awareness" data-label="hero-quickstart" data-position="hero" href={`${import.meta.env.BASE_URL}docs/`}>Open Quickstart</a>
+                    <a class="btn btn-primary hover-rise" data-ev="cta_click" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na" data-label="hero-demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the 10‑min Demo</a>
+                    <a class="btn hover-rise" data-ev="cta_click" data-cta-level="soft" data-product="na" data-persona="na" data-stage="awareness" data-label="hero-quickstart" data-position="hero" href={`${import.meta.env.BASE_URL}docs/`}>Open Quickstart</a>
                 </div>
                 <div style="margin-top:12px;color:#9ba3b7">Built on standards you trust:</div>
                 <div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
@@ -71,7 +71,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
 			}
 		}
 	</script>
-    <LogoWall title="Trusted by" logos={[
+    <LogoWall class="reveal-on-scroll" title="Trusted by" logos={[
         {alt:'ExampleCo',src:`${import.meta.env.BASE_URL}favicon.svg`},
         {alt:'Contoso',src:`${import.meta.env.BASE_URL}favicon.svg`},
         {alt:'Fabrikam',src:`${import.meta.env.BASE_URL}favicon.svg`},
@@ -140,7 +140,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
         </div>
     </section>
 	<div class="section-divider"></div>
-    <section class="container surface-2" data-section="outcomes" style="padding:40px 0;border-radius:12px">
+    <section class="container surface-2 reveal-on-scroll" data-section="outcomes" style="padding:40px 0;border-radius:12px">
         <div style="text-align:center;margin-bottom:28px">
             <h2 style="font-size:42px;margin:0 0 6px">Outcomes that matter</h2>
             <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Audit you can prove. Spend you can control. Ship with confidence. These are the measurable advantages teams report in the first 90 days.</p>
@@ -173,7 +173,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
         </div>
     </section>
     <div class="section-divider"></div>
-    <section class="container" data-section="tool-factory" style="padding:24px 0">
+    <section class="container reveal-on-scroll" data-section="tool-factory" style="padding:24px 0">
         <div class="glass-card" style="padding:20px">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
                 <div>
@@ -188,7 +188,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
             </div>
         </div>
     </section>
-    <section class="container" data-section="security-stack" style="padding:8px 0 24px">
+    <section class="container reveal-on-scroll" data-section="security-stack" style="padding:8px 0 24px">
         <div class="glass-card" style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
             <div>
                 <h2 style="font-size:36px;margin:0 0 6px">Pre‑exec → Decide → Runtime → Identity → Prove</h2>
@@ -223,7 +223,7 @@ call_id: "abc-123"
             </div>
         </div>
     </section>
-    <section class="container section-spine surface-2" data-section="what-you-get" style="padding:40px 0;border-radius:12px">
+    <section class="container section-spine surface-2 reveal-on-scroll" data-section="what-you-get" style="padding:40px 0;border-radius:12px">
         <div style="text-align:center;margin-bottom:24px">
             <h2 style="font-size:42px;margin:0 0 6px">What you get</h2>
             <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Five building blocks that interlock. Start with one, or deploy the full fabric as your platform standard.</p>
@@ -251,7 +251,7 @@ call_id: "abc-123"
             </div>
         </div>
     </section>
-    <section class="container" data-section="journey-band" style="padding:24px 0 8px">
+    <section class="container reveal-on-scroll" data-section="journey-band" style="padding:24px 0 8px">
         <div class="glass-card" style="padding:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
             <strong style="color:#9ba3b7">Create</strong>
             <span class="chip">→</span>
@@ -273,7 +273,7 @@ call_id: "abc-123"
         </div>
     </section>
 	<div class="section-divider"></div>
-    <section class="container section-spine bg-grid bg-conic-cyan surface-3" data-section="products" style="padding:60px 0;border-radius:12px">
+    <section class="container section-spine bg-grid bg-conic-cyan surface-3 reveal-on-scroll" data-section="products" style="padding:60px 0;border-radius:12px">
 		<div style="text-align:center;margin-bottom:40px">
             <h2 class="section-title" style="font-size:40px;margin:0 0 8px">Our Products</h2>
 			<p style="color:#9ba3b7">Enterprise‑grade identity orchestration and authorization infrastructure.</p>
@@ -307,7 +307,7 @@ call_id: "abc-123"
 			</div>
 		</div>
 	</section>
-    <section class="container section-spine" data-section="standards" style="padding:40px 0">
+    <section class="container section-spine reveal-on-scroll" data-section="standards" style="padding:40px 0">
 		<h2 style="font-size:32px;margin:0 0 12px">Standards & Interop</h2>
         <ul style="color:#9ba3b7;line-height:1.8;margin:0;columns:2;column-gap:24px">
             <li><span class="chip chip--violet chip--spec" data-tip="OpenID Authorization API" style="margin-right:8px">AuthZEN</span> OpenID Authorization API — evaluation endpoints</li>
@@ -320,7 +320,7 @@ call_id: "abc-123"
             .chip[data-tip]:hover::after{ content:attr(data-tip); position:absolute; left:0; top:calc(100% + 6px); white-space:nowrap; background:rgba(0,0,0,.8); color:#e6e6e6; border:1px solid rgba(255,255,255,.15); border-radius:8px; padding:6px 8px; font-size:12px; }
         </style>
 	</section>
-    <section class="container" data-section="roi" style="padding:24px 0">
+    <section class="container reveal-on-scroll" data-section="roi" style="padding:24px 0">
         <div class="glass-card" style="padding:20px">
             <h2 style="font-size:36px;margin:0 0 10px">Calculate your potential savings</h2>
             <p style="color:#9ba3b7;margin:0 0 10px">Based on your inputs and published industry averages; adjust assumptions.</p>
@@ -362,7 +362,7 @@ call_id: "abc-123"
         })();
         </script>
     </section>
-    <section class="container surface-2" data-section="cta" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
+    <section class="container surface-2 reveal-on-scroll" data-section="cta" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
 		<div style="position:absolute;top:-24px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent)"></div>
 		<h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
 		<p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">Join teams using EmpowerNow for identity orchestration and AuthZEN‑compliant authorization.</p>
@@ -410,6 +410,13 @@ call_id: "abc-123"
     <script>
         (function(){
             try{
+                if('IntersectionObserver' in window){
+                    const els=[...document.querySelectorAll('.reveal-on-scroll')];
+                    const io=new IntersectionObserver((entries)=>{
+                        entries.forEach(e=>{ if(e.isIntersecting){ (e.target as HTMLElement).classList.add('is-visible'); io.unobserve(e.target); } });
+                    },{threshold:.25});
+                    els.forEach(el=> io.observe(el));
+                }
                 (window).dataLayer=(window).dataLayer||[];
                 if('IntersectionObserver' in window){
                     const sections=[...document.querySelectorAll('[data-section]')];

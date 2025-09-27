@@ -142,3 +142,11 @@ filter:blur(20px);pointer-events:none}
 .footer-col a:hover{color:var(--color-accent);text-decoration:underline}
 .footer-trust{display:flex;gap:12px;align-items:center;margin-top:16px}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:12px;border-top:1px solid var(--border-soft)}
+
+/* Reveal-on-scroll + micro-interactions */
+@media (prefers-reduced-motion: no-preference){
+  .reveal-on-scroll{opacity:0;transform:translateY(16px);transition:opacity .6s ease-out, transform .6s ease-out}
+  .reveal-on-scroll.is-visible{opacity:1;transform:none}
+  .hover-rise{transition:transform .18s ease}
+  .hover-rise:hover{transform:translateY(-2px)}
+}
