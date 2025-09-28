@@ -1,0 +1,12 @@
+{
+  "status": 402,
+  "title": "Budget Required",
+  "error": "budget_exceeded",
+  "detail": "Maximum tokens for this request would exceed allocated budget.",
+  "retry_after_seconds": 300,
+  "decision_id": "d-abc123",
+  "policy_hash": "sha256-3a1c...",
+  "trace_id": "tr-9f2e7",
+  "timestamp": "2025-09-27T12:00:00Z"
+}
+

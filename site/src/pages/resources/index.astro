@@ -53,10 +53,9 @@ const allResources: ResItem[] = [
                             <span class="chev" aria-hidden="true">→</span>
                         </div>
                         <p style="margin:6px 0 0;color:#9db4cf;font-size:14px">{r.summary}</p>
-                        {(() => {
-                            const days = Math.floor((Date.now() - Date.parse(r.updated_at)) / 86400000);
-                            if(days <= 30) return <span class="chip" style="margin-top:8px;background:rgba(0,229,255,.15);color:#0E1726">NEW</span>;
-                        })()}
+                        { ((Date.now() - Date.parse(r.updated_at)) / 86400000) <= 30
+                            ? <span class="chip" style="margin-top:8px;background:rgba(0,229,255,.15);color:#0E1726">NEW</span>
+                            : null }
                     </div>
 				</a>
 			))}
