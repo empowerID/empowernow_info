@@ -52,6 +52,13 @@ import '../styles/utilities.css';
 			/* Nav underline grow */
 			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px}
 			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
+			/* Mega menu */
+			.nav-group{position:relative}
+			.mega{position:absolute;left:0;right:0;top:100%; background:#0F1B33; border-bottom-left-radius:16px;border-bottom-right-radius:16px;box-shadow:0 12px 50px rgba(0,0,0,.35); border-top:1px solid rgba(255,255,255,.06)}
+			.mega-inner{display:grid;grid-template-columns:4fr 8fr;gap:16px;padding:16px 0}
+			.mega-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:12px}
+			.mega-card{display:block;background:rgba(255,255,255,.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.06)}
+			.mega-card:hover{background:rgba(255,255,255,.06)}
 		</style>
 	</head>
     <body>
@@ -62,7 +69,37 @@ import '../styles/utilities.css';
 					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:28px;width:auto" />
 				</a>
                 <ul class="nav-links">
-                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}products/`} data-ev="nav_click" data-label="Products">Products</a></li>
+                    <li>
+                        <div class="nav-group">
+                            <button class="nav-link" id="btn-products" aria-haspopup="true" aria-expanded="false" aria-controls="menu-products" data-ev="nav_click" data-label="Products">Products</button>
+                            <div id="menu-products" role="menu" aria-labelledby="btn-products" hidden class="mega" data-menu>
+                                <div class="mega-inner container">
+                                    <div class="mega-left">
+                                        <div class="h3" style="margin:0 0 6px">Explore products</div>
+                                        <div class="body">Create tools once, enforce policy everywhere, prove every action.</div>
+                                    </div>
+                                    <div class="mega-grid">
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/pdp/`} class="mega-card">
+                                            <div class="h3">Authorization Studio</div>
+                                            <div class="body">AuthZEN PDP • decisions you can audit.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="mega-card">
+                                            <div class="h3">Automation Studio</div>
+                                            <div class="body">CRUD Service • tools for MCP/Functions/Copilot.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/idp/`} class="mega-card">
+                                            <div class="h3">Authentication Studio</div>
+                                            <div class="body">IdP • brokering and token exchange.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/aria-shield/`} class="mega-card">
+                                            <div class="h3">Runtime & Gateway</div>
+                                            <div class="body">ARIA Shield • MCP Gateway • budgets & content controls.</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}solutions/`} data-ev="nav_click" data-label="Solutions">Solutions</a></li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}resources/`} data-ev="nav_click" data-label="Resources">Resources</a></li>
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
@@ -219,7 +256,7 @@ import '../styles/utilities.css';
 							if(url.pathname === location.pathname){ (a as HTMLElement).setAttribute('aria-current','page'); }
 						}catch{}
 					});
-					const run = () => {
+                    const run = () => {
 						const UTM = new URLSearchParams({ utm_source:'www', utm_medium:'cta', utm_campaign: (document.querySelector('[data-position]')?.getAttribute('data-position') || 'site') });
 						function appendUtm(a){
 							try{
@@ -233,7 +270,25 @@ import '../styles/utilities.css';
 								a.setAttribute('href', url.pathname + (url.search ? ('?' + url.search) : '') + (url.hash||''));
 							}catch{}
 						}
-						document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
+                        document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
+                        // Mega menu interactions (Products)
+                        const consentKey='analytics_consent';
+                        const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+                        function pl(ev:any){ if(dnt || localStorage.getItem(consentKey)!=='yes') return; (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push(ev);}
+                        const trigger = document.getElementById('btn-products') as HTMLButtonElement | null;
+                        const menu = document.getElementById('menu-products') as HTMLDivElement | null;
+                        if(trigger && menu){
+                            let hoverTimer:any=null;
+                            function open(){ trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:'products'}); }
+                            function close(){ trigger.setAttribute('aria-expanded','false'); menu.hidden=true; }
+                            trigger.addEventListener('mouseenter', ()=> { clearTimeout(hoverTimer); hoverTimer=setTimeout(open,120); });
+                            trigger.addEventListener('mouseleave', ()=> { clearTimeout(hoverTimer); });
+                            trigger.addEventListener('click', (e)=>{ e.preventDefault(); const ex = trigger.getAttribute('aria-expanded')==='true'; ex?close():open(); });
+                            menu.addEventListener('mouseleave', close);
+                            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+                            document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group')) close(); });
+                            menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:'products', item:(a as HTMLElement).textContent?.trim()||''})));
+                        }
 					};
                     if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
                     // Sticky mobile CTA after ~20% scroll
