@@ -28,34 +28,38 @@ const allResources: ResItem[] = [
 <Base title={title} description={description} canonical={canonical}>
     <!-- Hero with Global Search -->
     <section class="container page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
+        <nav aria-label="Breadcrumb" class="meta" style="margin:0 0 6px;color:#9db4cf"><a href={base}>Home</a> / <span aria-current="page">Resources</span></nav>
         <p class="meta" style="color:var(--color-accent);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px">Resources</p>
 		<h1 class="display" style="margin:0 0 8px">Resources</h1>
         <p style="color:#9ba3b7;max-width:860px;margin:0 0 16px">Standards primers, demos, and helpful links.</p>
-        <div style="max-width:640px">
+		<div style="max-width:640px">
             <label for="gsearch" class="sr-only">Search resources</label>
             <div class="glass-card" style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px">
                 <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
                 <button id="gsubmit" class="btn">Search</button>
             </div>
-            <ul id="gsuggestions" role="listbox" aria-label="Search suggestions" class="glass-card" style="margin:6px 0 0;padding:0;list-style:none;display:none"></ul>
+			<ul id="gsuggestions" role="listbox" aria-label="Search suggestions" class="glass-card" style="margin:6px 0 0;padding:0;list-style:none;display:none;max-height:280px;overflow:auto"></ul>
+			<div id="gskel" class="glass-card" style="display:none;margin-top:6px;padding:8px">
+				<div class="skeleton" style="height:14px;margin:6px 0"></div>
+				<div class="skeleton" style="height:14px;margin:6px 0"></div>
+				<div class="skeleton" style="height:14px;margin:6px 0"></div>
+				<div class="skeleton" style="height:14px;margin:6px 0"></div>
+			</div>
         </div>
 	</section>
 
     <!-- Featured Row -->
-    <section class="container reveal-on-scroll" style="padding:24px 0 8px;content-visibility:auto">
+    <section class="container" style="padding:24px 0 8px;content-visibility:auto">
         <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Featured</h2>
         <div class="grid-12" style="gap:16px">
             {allResources.filter(r=>r.featured).slice(0,6).map(r => (
-                <a href={r.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={r.id} aria-label={`Open ${r.title}`} style="grid-column: span 4;min-width:220px">
+                <a href={r.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={r.id} aria-label="Open resource" style="grid-column: span 4;min-width:220px">
                     <div class="gradient-card__inner">
                         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
                             <h3 style="margin:0;color:#fff;font-size:18px">{r.title}</h3>
                             <span class="chev" aria-hidden="true">→</span>
                         </div>
                         <p style="margin:6px 0 0;color:#9db4cf;font-size:14px">{r.summary}</p>
-                        { ((Date.now() - Date.parse(r.updated_at)) / 86400000) <= 30
-                            ? <span class="chip" style="margin-top:8px;background:rgba(0,229,255,.15);color:#0E1726">NEW</span>
-                            : null }
                     </div>
 				</a>
 			))}
@@ -63,11 +67,11 @@ const allResources: ResItem[] = [
 	</section>
 
     <!-- Collections Grid -->
-    <section class="container reveal-on-scroll" style="padding:24px 0;content-visibility:auto">
+    <section class="container" style="padding:24px 0;content-visibility:auto">
         <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Collections</h2>
         <div style="display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:20px" class="collections-grid">
             {collections.map(c => (
-                <a href={c.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={`col_${c.id}`} aria-label={`Open ${c.title} collection`}>
+                <a href={c.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={"col_" + c.id} aria-label="Open collection">
                     <div class="gradient-card__inner">
                         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
                             <h3 style="margin:0;color:#fff;font-size:20px">{c.title}</h3>
@@ -89,8 +93,8 @@ const allResources: ResItem[] = [
     </section>
 
     <!-- All Resources with Filters -->
-    <section class="container reveal-on-scroll" style="padding:24px 0;content-visibility:auto">
-        <div id="filters" class="glass-card" style="position:sticky;top:56px;z-index:10;padding:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+    <section class="container" style="padding:24px 0;content-visibility:auto">
+        <nav aria-label="Filters" id="filters" class="glass-card" style="position:sticky;top:56px;z-index:10;padding:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;overflow:auto;scrollbar-width:none">
             <input id="fsearch" type="search" placeholder="Search within resources…" aria-label="Search within resources" style="flex:1;min-width:180px;background:transparent;border:1px solid var(--border-strong);border-radius:10px;padding:8px;color:var(--on-bg)" />
             <div id="type-pills" style="display:flex;gap:6px;flex-wrap:wrap">
                 <button class="pill" data-type="primer">Primers</button>
@@ -105,18 +109,27 @@ const allResources: ResItem[] = [
                     <button class="chip" data-chip={t}>{t}</button>
                 ))}
             </div>
-        </div>
-        <ul id="res-list" style="list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px"></ul>
+        </nav>
+		<ul id="res-list" style="list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px"></ul>
+		<div id="res-skel" class="glass-card" style="padding:12px;margin-top:8px;display:none">
+			<div class="skeleton" style="height:14px;margin:6px 0"></div>
+			<div class="skeleton" style="height:14px;margin:6px 0"></div>
+			<div class="skeleton" style="height:14px;margin:6px 0"></div>
+		</div>
         <div id="empty" class="glass-card" style="display:none;padding:16px;color:#9db4cf">No results. Try <a href={`${base}resources/standards/`}>Standards</a> or <a href={`${base}search/`}>site search</a>.</div>
         <style>
             .pill{ padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:transparent; color:var(--on-bg) }
             .pill.active{ background:rgba(0,229,255,.12); border-color:rgba(0,229,255,.55); color:#b9f6ff }
             #res-list .item{ display:block; text-decoration:none; color:inherit }
+			#filters{ -ms-overflow-style: none; }
+			#filters::-webkit-scrollbar{ display:none }
+			.skeleton{ background:linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.08), rgba(255,255,255,.04)); background-size:200% 100%; animation:shimmer 1.2s infinite; border-radius:6px }
+			@keyframes shimmer{ 0%{ background-position:200% 0 } 100%{ background-position:-200% 0 } }
         </style>
     </section>
 
     <!-- CTA Footer -->
-    <section class="container surface-2 reveal-on-scroll" style="padding:40px 0 80px;border-radius:12px;text-align:center;content-visibility:auto">
+    <section class="container surface-2" style="padding:40px 0 80px;border-radius:12px;text-align:center;content-visibility:auto">
         <h2 style="margin:0 0 10px;font-size:32px">Ready to try it?</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
             <a class="btn btn-primary" data-ev="cta_click" data-label="quickstart_resources" href={`${base}docs/crud-service/quickstart`}>Open Quickstart</a>
@@ -133,25 +146,44 @@ const allResources: ResItem[] = [
         const qsel = (s)=> document.querySelector(s);
 
         // Hero global search with suggestions
-        const gi = qsel('#gsearch');
-        const gs = qsel('#gsuggestions');
+		const gi = qsel('#gsearch');
+		const gs = qsel('#gsuggestions');
+		const gsk = qsel('#gskel');
         const sb = qsel('#gsubmit');
-        function buildSuggestions(term){
+        let sTimer=0; let activeIndex=-1;
+        function buildSuggestionsNow(term){
             const t = (term||'').trim().toLowerCase();
             if(!t){ gs.style.display='none'; gs.innerHTML=''; return; }
             const pool = allResources.slice(0,50);
             const matches = pool.filter(r=> (r.title+" "+r.summary+" "+r.tags.join(' ')).toLowerCase().includes(t)).slice(0,8);
-            gs.innerHTML = matches.map((r,i)=> `<li role="option" id="opt-${i}"><a href="${r.href}" class="item glass-card" data-ev="resources_tile_click" data-label="${r.id}" style="display:block;padding:8px 10px;color:inherit;text-decoration:none">${r.title}<span style='color:#9db4cf'> — ${r.summary}</span></a></li>`).join('');
+            gs.innerHTML = matches.map((r,i)=> `<li role="option" id="opt-${i}" aria-selected="${i===0}"><a href="${r.href}" class="item glass-card" data-ev="resources_tile_click" data-label="${r.id}" style="display:block;padding:8px 10px;color:inherit;text-decoration:none">${r.title}<span style='color:#9db4cf'> — ${r.summary}</span></a></li>`).join('');
+            activeIndex = matches.length?0:-1;
             gs.style.display = matches.length ? 'block' : 'none';
+			gsk && (gsk as HTMLElement).style.display = 'none';
         }
-        gi && gi.addEventListener('input', ()=> buildSuggestions(gi.value));
-        gi && gi.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); const term=(gi.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); } });
+        function buildSuggestions(term){ clearTimeout(sTimer); sTimer = window.setTimeout(()=> buildSuggestionsNow(term), 250); }
+		gi && gi.addEventListener('input', ()=> { if((gi as HTMLInputElement).value.trim()){ gsk && ((gsk as HTMLElement).style.display='block'); gs && ((gs as HTMLElement).style.display='none'); } buildSuggestions((gi as HTMLInputElement).value); });
+        gi && gi.addEventListener('keydown', (e)=>{
+            const items = Array.from(gs?.querySelectorAll('li')||[]);
+            if(e.key==='ArrowDown'){ e.preventDefault(); if(items.length){ activeIndex = (activeIndex+1)%items.length; items.forEach((li,i)=> li.setAttribute('aria-selected', String(i===activeIndex))); liFocus(); } }
+            else if(e.key==='ArrowUp'){ e.preventDefault(); if(items.length){ activeIndex = (activeIndex-1+items.length)%items.length; items.forEach((li,i)=> li.setAttribute('aria-selected', String(i===activeIndex))); liFocus(); } }
+            else if(e.key==='Escape'){ gs.style.display='none'; }
+            else if(e.key==='Enter'){
+                e.preventDefault();
+                const term=(gi.value||'').trim();
+                pl({event:'resources_search', term, results_count: (gs?.children?.length||0)});
+                if(activeIndex>=0 && items[activeIndex]){ const a = items[activeIndex].querySelector('a') as HTMLAnchorElement; a && a.click(); return; }
+                location.href = `${base}search/?q=`+encodeURIComponent(term);
+            }
+            function liFocus(){ const it = items[activeIndex]; it && (it.querySelector('a') as HTMLAnchorElement)?.focus(); }
+        });
         sb && sb.addEventListener('click', ()=>{ const term=(gi?.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); });
 
         // All resources list with filters
         const list = qsel('#res-list');
         const empty = qsel('#empty');
-        const fs = qsel('#fsearch');
+		const fs = qsel('#fsearch');
+		const rsk = qsel('#res-skel');
         const typePills = Array.from(document.querySelectorAll('#type-pills .pill'));
         const tagChips = Array.from(document.querySelectorAll('#tag-chips .chip'));
         const state = { term:'', types:new Set(), tags:new Set() };
@@ -165,7 +197,7 @@ const allResources: ResItem[] = [
             history.replaceState(null,'', u.pathname + (u.search?u.search:'') + (u.hash||''));
         }
 
-        function render(){
+		function render(){
             const term = state.term.toLowerCase();
             const out = allResources.filter(r=> {
                 if(state.types.size && !state.types.has(r.type)) return false;
@@ -174,6 +206,7 @@ const allResources: ResItem[] = [
                 return true;
             });
             if(!list) return;
+			rsk && ((rsk as HTMLElement).style.display='none');
             list.innerHTML = out.map(r=>{
                 const date = new Date(r.updated_at).toLocaleDateString();
                 const typeLabel = r.type.toUpperCase();
@@ -210,7 +243,8 @@ const allResources: ResItem[] = [
         }
         typePills.forEach(p=> p.addEventListener('click', ()=> applyType(p.getAttribute('data-type'))));
         tagChips.forEach(b=> b.addEventListener('click', ()=> applyTag(b.getAttribute('data-chip'))));
-        fs && fs.addEventListener('input', ()=> { state.term = (fs as HTMLInputElement).value; render(); syncURL(); });
+		let fTimer=0;
+		fs && fs.addEventListener('input', ()=> { rsk && ((rsk as HTMLElement).style.display='block'); state.term = (fs as HTMLInputElement).value; clearTimeout(fTimer); fTimer = window.setTimeout(()=> { render(); syncURL(); }, 250); });
 
         // Initialize from URL
         try{
