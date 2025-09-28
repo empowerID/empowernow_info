@@ -1,4 +1,55 @@
 ---
+export interface Row { need: string; others: string; us: string }
+export interface Props { rows: Row[] }
+const { rows } = Astro.props as Props;
+---
+<div class="desktop-only" style="overflow:auto">
+  <table style="width:100%;border-collapse:separate;border-spacing:0 8px">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">What you need</th>
+        <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">Others (typical)</th>
+        <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">EmpowerNow</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r)=> (
+        <tr>
+          <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.need}</th>
+          <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.others}</td>
+          <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.us}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <script>
+    (function(){
+      try{
+        let seen=false;
+        if('IntersectionObserver' in window){
+          const el=(Astro as any).root as HTMLElement;
+          const io=new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{
+              if(e.isIntersecting && !seen){ seen=true; (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push({event:'crud_compare_view', firstView:true}); io.disconnect(); }
+            });
+          },{threshold:.4});
+          io.observe(el);
+        }
+      }catch{}
+    })();
+  </script>
+</div>
+<div class="mobile-only" style="display:grid;gap:10px">
+  {rows.map((r)=> (
+    <details class="glass-card" style="padding:10px">
+      <summary><strong>{r.need}</strong></summary>
+      <div style="color:#9ba3b7;margin-top:6px">Others: {r.others}</div>
+      <div style="color:#9ba3b7;margin-top:2px">EmpowerNow: {r.us}</div>
+    </details>
+  ))}
+</div>
+
+---
 interface Row { feature: string; us: string; them: string }
 interface Props { rows: Row[]; ourLabel?: string; theirLabel?: string }
 const p = Astro.props as Props;

@@ -5,6 +5,7 @@ import DemoTile from '../components/DemoTile.astro';
 import ProofChip from '../components/ProofChip.astro';
 import StatusPills from '../components/StatusPills.astro';
 import CodeCard from '../components/CodeCard.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
 import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
@@ -66,75 +67,13 @@ import PinPlan from '../components/icons/PinPlan.astro';
     <section class="container" data-section="diff-grid" style="padding:24px 0">
         <div class="glass-card" style="padding:20px">
             <h2 style="font-size:36px;margin:0 0 10px">How we’re different</h2>
-            <div class="desktop-only" style="overflow:auto">
-                <table style="width:100%;border-collapse:separate;border-spacing:0 8px">
-                    <thead>
-                        <tr>
-                            <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">What you need</th>
-                            <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">Others (typical)</th>
-                            <th scope="col" style="text-align:left;color:#9ba3b7;padding:6px 10px">EmpowerNow</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Working tools <strong>today</strong></th>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">“Coming soon” or DIY</td>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><a class="btn" data-ev="table_action_click" data-action="create_tool" href={`${import.meta.env.BASE_URL}products/crud/`}>Create a tool in &lt;10 min</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Cross‑platform enforcement</th>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Logs/observability</td>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Pre‑exec pins + runtime budgets/egress</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Standardized decisions</th>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">App‑specific rules</td>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OpenID AuthZEN (constraints/obligations/TTL)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Proof for audit & FinOps</th>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Unstructured logs</td>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Cryptographic receipts (decision/policy/schema/cost)</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Identity propagation</th>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">Ad‑hoc JWT passing</td>
-                            <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">OAuth 2.1 + RFC 8693 Token Exchange</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mobile-only" style="display:grid;gap:10px">
-                <details class="glass-card" style="padding:10px">
-                    <summary><strong>Working tools today</strong></summary>
-                    <div style="color:#9ba3b7;margin-top:6px">Others: “Coming soon” or DIY</div>
-                    <div style="margin-top:8px"><a class="btn" data-ev="table_action_click" data-action="create_tool" href={`${import.meta.env.BASE_URL}products/crud/`}>Create a tool in &lt;10 min</a></div>
-                </details>
-                <details class="glass-card" style="padding:10px">
-                    <summary><strong>Cross‑platform enforcement</strong></summary>
-                    <div style="color:#9ba3b7;margin-top:6px">Others: Logs/observability</div>
-                    <div style="color:#9ba3b7;margin-top:2px">EmpowerNow: Pre‑exec pins + runtime budgets/egress</div>
-                </details>
-                <details class="glass-card" style="padding:10px">
-                    <summary><strong>Standardized decisions</strong></summary>
-                    <div style="color:#9ba3b7;margin-top:6px">Others: App‑specific rules</div>
-                    <div style="color:#9ba3b7;margin-top:2px">EmpowerNow: OpenID AuthZEN (constraints/obligations/TTL)</div>
-                </details>
-                <details class="glass-card" style="padding:10px">
-                    <summary><strong>Proof for audit & FinOps</strong></summary>
-                    <div style="color:#9ba3b7;margin-top:6px">Others: Unstructured logs</div>
-                    <div style="color:#9ba3b7;margin-top:2px">EmpowerNow: Cryptographic receipts (decision/policy/schema/cost)</div>
-                </details>
-                <details class="glass-card" style="padding:10px">
-                    <summary><strong>Identity propagation</strong></summary>
-                    <div style="color:#9ba3b7;margin-top:6px">Others: Ad‑hoc JWT passing</div>
-                    <div style="color:#9ba3b7;margin-top:2px">EmpowerNow: OAuth 2.1 + RFC 8693 Token Exchange</div>
-                </details>
-            </div>
-            <style>
-                @media (max-width: 768px){ .desktop-only{ display:none } .mobile-only{ display:grid } }
-                @media (min-width: 769px){ .desktop-only{ display:block } .mobile-only{ display:none } }
-            </style>
+            <ComparisonTable rows={[
+                { need:'Working tools today', others:'“Coming soon” or DIY', us:<a class="btn" data-ev="table_action_click" data-action="create_tool" href={`${import.meta.env.BASE_URL}products/crud/`}>Create a tool in &lt;10 min</a> as any },
+                { need:'Cross‑platform enforcement', others:'Logs/observability', us:'Pre‑exec pins + runtime budgets/egress' },
+                { need:'Standardized decisions', others:'App‑specific rules', us:'OpenID AuthZEN (constraints/obligations/TTL)' },
+                { need:'Proof for audit & FinOps', others:'Unstructured logs', us:'Cryptographic receipts (decision/policy/schema/cost)' },
+                { need:'Identity propagation', others:'Ad‑hoc JWT passing', us:'OAuth 2.1 + RFC 8693 Token Exchange' }
+            ]} />
         </div>
     </section>
     <section class="container" data-section="neutral" style="padding:8px 0 24px">
