@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import HeroComposite from '../components/HeroComposite.astro';
 import DemoTile from '../components/DemoTile.astro';
+import HeroDemoTile from '../components/HeroDemoTile.astro';
 import ProofChip from '../components/ProofChip.astro';
 import StatusPills from '../components/StatusPills.astro';
 import CodeCard from '../components/CodeCard.astro';
@@ -29,7 +30,7 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
                 </div>
             </div>
             <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
-                <DemoTile poster={`${import.meta.env.BASE_URL}images/hero-poster.png`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} />
+                <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/hero-poster.png`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} captions={`${import.meta.env.BASE_URL}media/hero-demo.vtt`} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
             </div>
         </div>
     </section>

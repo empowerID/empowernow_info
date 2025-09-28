@@ -1,0 +1,92 @@
+---
+export interface Source { src: string; type: string }
+export interface Props {
+    poster: string;
+    sources: Source[];
+    captions?: string; // VTT file path
+    demoUrl?: string;  // full demo link
+}
+const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = Astro.props as Props;
+---
+<div class="demo-tile" style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.4);line-height:0;background:#000">
+    <video id="hero-video" poster={poster} preload="metadata" muted playsinline style="width:100%;height:auto;display:block">
+        {sources.map(s => <source src={s.src} type={s.type} />)}
+        {captions && <track kind="captions" src={captions} srcLang="en" label="English" default />}
+        Your browser does not support the video tag.
+    </video>
+    <div id="video-overlay" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;opacity:1;transition:opacity .3s ease;cursor:pointer">
+        <button class="btn btn-primary" id="play-button" aria-label="Play 90‑second demo">Play 90‑second demo</button>
+        <div style="color:#9ba3b7;font-size:.9rem">Click to play</div>
+    </div>
+    <div id="ended-overlay" hidden style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35))">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary" id="replay-button">Replay</button>
+            <a class="btn" id="full-demo-button" href={demoUrl}>Watch full demo</a>
+        </div>
+    </div>
+</div>
+<script define:vars={{ sources, poster, captions, demoUrl }}>
+(() => {
+    try{
+        const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+        const overlay = document.getElementById('video-overlay') as HTMLDivElement | null;
+        const endedOverlay = document.getElementById('ended-overlay') as HTMLDivElement | null;
+        const playBtn = document.getElementById('play-button') as HTMLButtonElement | null;
+        const replayBtn = document.getElementById('replay-button') as HTMLButtonElement | null;
+        const fullBtn = document.getElementById('full-demo-button') as HTMLAnchorElement | null;
+        const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+
+        if(!video || !overlay || !endedOverlay) return;
+
+        const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(prefersReducedMotion){
+            // Show poster only until user explicitly plays
+            overlay.style.opacity = '1';
+        }
+
+        function pushWatch(percent:number){
+            if(dnt) return;
+            try{
+                (window as any).dataLayer=(window as any).dataLayer||[];
+                (window as any).dataLayer.push({event:'hero_demo_watch', percent_viewed: percent, device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop'});
+            }catch{}
+        }
+
+        const milestones = new Set([25,50,75,90]);
+        const seen = new Set<number>();
+
+        function onTime(){
+            if(!video || !video.duration || !isFinite(video.duration)) return;
+            const pct = Math.floor((video.currentTime / video.duration) * 100);
+            for(const m of milestones){
+                if(pct >= m && !seen.has(m)){
+                    seen.add(m);
+                    pushWatch(m);
+                    if(m === 90){
+                        endedOverlay.hidden = false;
+                        overlay.style.opacity = '0';
+                    }
+                }
+            }
+        }
+
+        function play(){
+            if(!video) return;
+            endedOverlay.hidden = true;
+            overlay.style.opacity = '0';
+            video.currentTime = 0;
+            video.muted = true;
+            video.loop = true; // loop ~20–22s clip
+            video.play().catch(()=>{});
+        }
+
+        overlay.addEventListener('click', play);
+        playBtn && playBtn.addEventListener('click', (e)=>{ e.stopPropagation(); play(); });
+        replayBtn && replayBtn.addEventListener('click', (e)=>{ e.preventDefault(); play(); });
+        fullBtn && fullBtn.addEventListener('click', ()=> pushWatch(100));
+        video.addEventListener('timeupdate', onTime);
+    }catch{}
+})();
+</script>
+
+
