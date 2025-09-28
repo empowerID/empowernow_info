@@ -140,6 +140,12 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .trust-strip .btn:hover{transform:translateY(-2px)}
 .trust-strip strong{color:#e6e6e6}
 .trust-strip a:focus-visible{outline:2px solid var(--pulse-cyan);outline-offset:2px}
+.status-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.status-row .chip{cursor:default}
+.status-row .chip[data-clickable]{cursor:pointer}
+.status-row .chip[data-clickable]:focus-visible{outline:2px solid var(--pulse-cyan);outline-offset:2px}
+@keyframes pulseOnce{0%{opacity:.6}100%{opacity:1}}
+.status-row .chip.is-new{animation:pulseOnce .6s ease 1}
 
 /* Nav active and footer underline */
 .nav-links a[aria-current="page"]{text-decoration:underline;color:var(--color-primary)}

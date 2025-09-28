@@ -57,16 +57,32 @@ import PinPlan from '../components/icons/PinPlan.astro';
             <span class="chip">Anthropic MCP</span><span class="chip">OpenAI Functions</span><span class="chip">Microsoft Copilot</span><span class="chip">Google Vertex</span><span class="chip">AWS Bedrock</span><span class="chip">LangChain</span>
         </div>
         <div class="block-ghost" style="padding-top:10px">
-            <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
-                <span class="chip">MCP GA</span>
-                <span class="chip">OpenAI Testing</span>
-                <span class="chip">Copilot Design</span>
-                <span class="chip">Demo Active</span>
-                <span class="chip">Docs Complete</span>
-                <span class="chip">First tool &lt;10m</span>
-                <span class="chip">Publish to 3 &lt;1h</span>
+            <div class="status-row" id="status-row" style="color:#9ba3b7">
+                <button class="chip" type="button" data-clickable data-pill="MCP GA">MCP GA</button>
+                <button class="chip" type="button" data-clickable data-pill="OpenAI Testing">OpenAI Testing</button>
+                <button class="chip" type="button" data-clickable data-pill="Copilot Design">Copilot Design</button>
+                <button class="chip" type="button" data-clickable data-pill="Demo Active">Demo Active</button>
+                <button class="chip" type="button" data-clickable data-pill="Docs Complete">Docs Complete</button>
+                <button class="chip" type="button" data-clickable data-pill="First tool <10m">First tool &lt;10m</button>
+                <button class="chip" type="button" data-clickable data-pill="Publish to 3 <1h">Publish to 3 &lt;1h</button>
             </div>
         </div>
+        <script>
+        (function(){
+            try{
+                const row=document.getElementById('status-row');
+                if(row){
+                    row.addEventListener('click', function(e){
+                        const t = (e.target as HTMLElement).closest('[data-clickable]') as HTMLElement | null;
+                        if(!t) return;
+                        const pill=t.getAttribute('data-pill')||'';
+                        (window as any).dataLayer=(window as any).dataLayer||[];
+                        (window as any).dataLayer.push({event:'status_pill_click', pill_label:pill});
+                    });
+                }
+            }catch{}
+        })();
+        </script>
     </section>
     <section class="container" data-section="diff-grid" style="padding:24px 0">
         <div class="glass-card" style="padding:20px">
