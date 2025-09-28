@@ -9,7 +9,7 @@ export interface Props {
 const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = Astro.props as Props;
 ---
 <div class="demo-tile" style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.4);line-height:0;background:#000">
-    <video id="hero-video" poster={poster} preload="metadata" muted playsinline style="width:100%;height:auto;display:block">
+    <video id="hero-video" poster={poster} preload="metadata" muted playsinline style="width:100%;height:auto;display:block" loading="lazy">
         {sources.map(s => <source src={s.src} type={s.type} />)}
         {captions && <track kind="captions" src={captions} srcLang="en" label="English" default />}
         Your browser does not support the video tag.
@@ -39,9 +39,20 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
         if(!video || !overlay || !endedOverlay) return;
 
         const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if(prefersReducedMotion){
-            // Show poster only until user explicitly plays
-            overlay.style.opacity = '1';
+        // If reduced motion, disable autoplay and keep overlay visible
+        if(prefersReducedMotion){ overlay.style.opacity = '1'; }
+
+        // Lazy start: only initialize when tile is visible
+        if('IntersectionObserver' in window){
+            const io = new IntersectionObserver((entries)=>{
+                entries.forEach(e=>{
+                    if(e.isIntersecting){
+                        io.disconnect();
+                        // No-op; play happens on user interaction
+                    }
+                });
+            },{threshold:.2});
+            io.observe(overlay);
         }
 
         function pushWatch(percent:number){
