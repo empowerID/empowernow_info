@@ -53,7 +53,7 @@ import '../styles/utilities.css';
 			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px; background:transparent; border:0; appearance:none; -webkit-appearance:none; font:inherit; cursor:pointer}
 			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
 			/* Mega menu */
-            .nav-group{position:static}
+            .nav-group{position:relative}
             /* Mega menu panel aligned to nav container */
             .mega{position:fixed;left:50%;transform:translateX(-50%);top:64px; z-index:1010; width:min(1120px, calc(100vw - 32px)); background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden}
             .mega::before{content:""; position:absolute; inset:0; background:#0F1B33; pointer-events:none}
@@ -75,9 +75,11 @@ import '../styles/utilities.css';
             .links .link{color:#e6eef8}
             .links .link-dim{color:#b3c1da}
 			/* Dropdown */
-            .dropdown{position:fixed; top:64px; left:50%; transform:translateX(-50%); background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:8px; min-width:320px; box-shadow:0 16px 48px rgba(0,229,255,.15); z-index:1010; isolation:isolate; overflow:hidden}
+            .dropdown{position:absolute; top:100%; right:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:8px; min-width:320px; box-shadow:0 16px 48px rgba(0,229,255,.15); z-index:1010; isolation:isolate; overflow:hidden}
             .dropdown::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
             .dropdown > *{position:relative; z-index:1}
+            /* Centered variant (used by Resources) */
+            .dropdown--center{position:fixed; top:64px; left:50%; transform:translateX(-50%); right:auto}
             .dropdown-item{display:block; padding:10px 12px; border-radius:10px}
 			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
 		</style>
@@ -176,7 +178,7 @@ import '../styles/utilities.css';
                     <li>
                         <div class="nav-group">
                             <button class="nav-link" id="btn-resources" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources" data-ev="nav_click" data-label="Resources">Resources</button>
-                            <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown" data-menu>
+                            <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown dropdown--center" data-menu>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Overview</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="dropdown-item">Quickstart</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="dropdown-item">Adapter catalog</a>
