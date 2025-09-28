@@ -54,13 +54,13 @@ import '../styles/utilities.css';
 			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
 			/* Mega menu */
             .nav-group{position:static}
-            .mega{position:fixed;left:0;right:0;top:64px; background:rgba(15,27,51,.96); box-shadow:0 12px 50px rgba(0,0,0,.5); border-top:1px solid rgba(255,255,255,.06);}
+            .mega{position:fixed;left:0;right:0;top:64px; background:rgba(15,27,51,.96); box-shadow:0 12px 50px rgba(0,0,0,.5); border-top:1px solid rgba(255,255,255,.06); z-index:1010}
 			.mega-inner{display:grid;grid-template-columns:4fr 8fr;gap:16px;padding:16px 0}
 			.mega-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:12px}
 			.mega-card{display:block;background:rgba(255,255,255,.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.06)}
 			.mega-card:hover{background:rgba(255,255,255,.06)}
 			/* Dropdown */
-			.dropdown{position:absolute; top:100%; left:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:6px; min-width:240px; box-shadow:0 12px 40px rgba(0,0,0,.35)}
+            .dropdown{position:absolute; top:100%; left:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:6px; min-width:240px; box-shadow:0 12px 40px rgba(0,0,0,.35); z-index:1005}
 			.dropdown-item{display:block; padding:8px 10px; border-radius:8px}
 			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
 		</style>
@@ -375,7 +375,7 @@ import '../styles/utilities.css';
                             trigger.addEventListener('click', (e)=>{ e.preventDefault(); const ex = trigger.getAttribute('aria-expanded')==='true'; ex?close():open(); });
                             menu.addEventListener('mouseleave', close);
                             document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
-                            document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group')) close(); });
+                            document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group') && !t.closest('[data-menu]')) close(); });
                             menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:name, item:(a as HTMLElement).textContent?.trim()||''})));
                         }
                         wireMenu('btn-products','menu-products','products');
