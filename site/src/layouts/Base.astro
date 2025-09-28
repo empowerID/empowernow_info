@@ -31,6 +31,9 @@ import '../styles/utilities.css';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 		<link rel="preload" as="image" href={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} fetchpriority="high" />
+		{String(canonical||'/') === '/' && (
+			<link rel="preload" as="image" href={`${import.meta.env.BASE_URL}images/hero-poster.png`} fetchpriority="high" imagesizes="(max-width: 768px) 100vw, 480px" />
+		)}
 		<style>
 			html,body{margin:0;background:var(--navy);color:#fff;font-family:Inter,-apple-system,sans-serif}
 			main{min-height:60vh}
@@ -38,16 +41,20 @@ import '../styles/utilities.css';
 			nav{position:sticky;top:0;z-index:1000}
 			.consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1100}
 			.sr-only-focusable{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+			.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:1090;transform:translateY(110%);transition:transform .25s ease;backdrop-filter:blur(8px);background:rgba(15,27,51,.72);border-top:1px solid rgba(255,255,255,.12)}
+			.sticky-cta.is-visible{transform:translateY(0)}
 			/* Global link styles: avoid purple visited, underline only on hover */
 			a{color:var(--on-bg);text-decoration:none}
 			a:hover{color:var(--color-accent);text-decoration:underline}
 			a:visited{color:var(--on-bg)}
+			/* Visible focus ring for all focusable controls */
+			a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible, [role="button"]:focus-visible, .chip:focus-visible { outline:2px solid var(--pulse-cyan); outline-offset:2px; border-radius:6px }
 		</style>
 	</head>
     <body>
 		<a href="#main" class="sr-only-focusable">Skip to content</a>
         <nav aria-label="Primary navigation">
-			<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
+            <div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
 				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
 					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:28px;width:auto" />
 				</a>
@@ -62,13 +69,22 @@ import '../styles/utilities.css';
 				</ul>
 			</div>
 		</nav>
+        <div id="sticky-cta" class="sticky-cta" hidden>
+            <div class="container" style="display:flex;gap:10px;justify-content:space-between;align-items:center;padding:10px">
+                <div style="color:#9ba3b7;font-size:.95rem">Ship confidently — book a 15‑min demo.</div>
+                <div style="display:flex;gap:8px">
+                    <a class="btn btn-primary" data-ev="cta_click" data-label="book_demo_sticky" href={`${import.meta.env.BASE_URL}demo/`}>Book 15‑min demo</a>
+                    <a class="btn" data-ev="cta_click" data-label="watch_demo_sticky" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch demo</a>
+                </div>
+            </div>
+        </div>
         <main id="main">
 			<slot />
 		</main>
         <footer class="site-footer">
             <div class="container footer-top">
                 <div class="footer-brand">
-                    <img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" style="height:24px;max-width:240px;width:auto;image-rendering:auto" />
+                    <img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" style="height:24px;max-width:240px;width:auto;image-rendering:auto" loading="lazy" decoding="async" />
                     <div style="color:#9ba3b7;max-width:340px">Identity & Authorization Fabric for people, services, and AI agents.</div>
                     <div class="footer-trust">
                         <span class="chip chip--success">AA compliant</span>
@@ -216,7 +232,19 @@ import '../styles/utilities.css';
 						}
 						document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
 					};
-					if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
+                    if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
+                    // Sticky mobile CTA after ~20% scroll
+                    const bar = document.getElementById('sticky-cta');
+                    function showSticky(){
+                        if(!bar) return;
+                        const isMobile = matchMedia('(max-width: 768px)').matches;
+                        const threshold = Math.max(240, Math.round(document.documentElement.scrollHeight * 0.2));
+                        if(isMobile && window.scrollY > threshold){ bar.hidden = false; bar.classList.add('is-visible'); }
+                        else { bar.classList.remove('is-visible'); }
+                    }
+                    window.addEventListener('scroll', showSticky, { passive:true });
+                    window.addEventListener('resize', showSticky);
+                    showSticky();
 				}catch{}
 			})();
 		</script>
