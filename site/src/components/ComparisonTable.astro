@@ -30,7 +30,15 @@ const { rows } = Astro.props as Props;
           const el=(Astro as any).root as HTMLElement;
           const io=new IntersectionObserver((entries)=>{
             entries.forEach(e=>{
-              if(e.isIntersecting && !seen){ seen=true; (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push({event:'crud_compare_view', firstView:true}); io.disconnect(); }
+              if(e.isIntersecting && !seen){
+                seen=true;
+                const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+                if(!dnt){
+                  (window as any).dataLayer=(window as any).dataLayer||[];
+                  (window as any).dataLayer.push({event:'crud_compare_view', firstView:true});
+                }
+                io.disconnect();
+              }
             });
           },{threshold:.4});
           io.observe(el);

@@ -120,12 +120,13 @@ import '../styles/utilities.css';
 		<script>
 			(function(){
 				try{
-					const consentKey = 'analytics_consent';
+                    const consentKey = 'analytics_consent';
+                    const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
 					const consentEl = document.getElementById('consent');
 					const acceptBtn = document.getElementById('consent-accept');
 					const declineBtn = document.getElementById('consent-decline');
 					const has = localStorage.getItem(consentKey);
-					if(!has && consentEl){ consentEl.hidden = false; }
+                    if(!has && consentEl && !dnt){ consentEl.hidden = false; }
 					function setConsent(val){ localStorage.setItem(consentKey, val); if(consentEl) consentEl.hidden = true; }
 					acceptBtn && acceptBtn.addEventListener('click', function(){ setConsent('yes'); });
 					declineBtn && declineBtn.addEventListener('click', function(){ setConsent('no'); });
@@ -133,7 +134,7 @@ import '../styles/utilities.css';
 						const t = e.target as HTMLElement;
 						const el = t && (t.closest('[data-ev]') as HTMLElement | null);
 						if(!el) return;
-						if(localStorage.getItem(consentKey) !== 'yes') return;
+                        if(dnt || localStorage.getItem(consentKey) !== 'yes') return;
                         const type = el.getAttribute('data-ev') || 'event';
                         const label = el.getAttribute('data-label') || '';
                         const action = el.getAttribute('data-action') || '';

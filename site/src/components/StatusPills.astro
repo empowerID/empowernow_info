@@ -18,8 +18,11 @@ const { items = [] } = Astro.props as Props;
           const t = (e.target as HTMLElement).closest('[data-clickable]') as HTMLElement | null;
           if(!t) return;
           const pill=t.getAttribute('data-pill')||'';
-          (window as any).dataLayer=(window as any).dataLayer||[];
-          (window as any).dataLayer.push({event:'status_pill_click', pill_label:pill});
+          const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+          if(!dnt){
+            (window as any).dataLayer=(window as any).dataLayer||[];
+            (window as any).dataLayer.push({event:'status_pill_click', pill_label:pill});
+          }
           t.classList.add('is-new');
           setTimeout(()=> t.classList.remove('is-new'), 650);
         });
