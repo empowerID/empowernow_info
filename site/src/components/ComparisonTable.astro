@@ -17,7 +17,7 @@ const { rows } = Astro.props as Props;
         <tr>
           <th scope="row" style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.need}</th>
           <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.others}</td>
-          <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px">{r.us}</td>
+          <td style="background:var(--surface-2);border:1px solid var(--border-strong);padding:10px"><Fragment set:html={r.us} /></td>
         </tr>
       ))}
     </tbody>

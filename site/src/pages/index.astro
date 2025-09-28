@@ -68,7 +68,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
         <div class="glass-card" style="padding:20px">
             <h2 style="font-size:36px;margin:0 0 10px">How we’re different</h2>
             <ComparisonTable rows={[
-                { need:'Working tools today', others:'“Coming soon” or DIY', us:<a class="btn" data-ev="table_action_click" data-action="create_tool" href={`${import.meta.env.BASE_URL}products/crud/`}>Create a tool in &lt;10 min</a> as any },
+                { need:'Working tools today', others:'“Coming soon” or DIY', us:`<a class=\"btn\" data-ev=\"table_action_click\" data-action=\"create_tool\" href=\"${import.meta.env.BASE_URL}products/crud/\">Create a tool in &lt;10 min</a>` },
                 { need:'Cross‑platform enforcement', others:'Logs/observability', us:'Pre‑exec pins + runtime budgets/egress' },
                 { need:'Standardized decisions', others:'App‑specific rules', us:'OpenID AuthZEN (constraints/obligations/TTL)' },
                 { need:'Proof for audit & FinOps', others:'Unstructured logs', us:'Cryptographic receipts (decision/policy/schema/cost)' },
