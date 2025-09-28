@@ -59,6 +59,10 @@ import '../styles/utilities.css';
 			.mega-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:12px}
 			.mega-card{display:block;background:rgba(255,255,255,.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.06)}
 			.mega-card:hover{background:rgba(255,255,255,.06)}
+			/* Dropdown */
+			.dropdown{position:absolute; top:100%; left:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:6px; min-width:240px; box-shadow:0 12px 40px rgba(0,0,0,.35)}
+			.dropdown-item{display:block; padding:8px 10px; border-radius:8px}
+			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
 		</style>
 	</head>
     <body>
@@ -131,10 +135,30 @@ import '../styles/utilities.css';
                             </div>
                         </div>
                     </li>
-                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}resources/`} data-ev="nav_click" data-label="Resources">Resources</a></li>
+                    <li>
+                        <div class="nav-group">
+                            <button class="nav-link" id="btn-resources" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources" data-ev="nav_click" data-label="Resources">Resources</button>
+                            <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown" data-menu>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Overview</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="dropdown-item">Quickstart</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="dropdown-item">Adapter catalog</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Workflow examples</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/standards/`} class="dropdown-item">Standards</a>
+                            </div>
+                        </div>
+                    </li>
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="nav_click" data-label="Pricing">Pricing</a></li>
-                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}company/`} data-ev="nav_click" data-label="Company">Company</a></li>
+                    <li>
+                        <div class="nav-group">
+                            <button class="nav-link" id="btn-company" aria-haspopup="true" aria-expanded="false" aria-controls="menu-company" data-ev="nav_click" data-label="Company">Company</button>
+                            <div id="menu-company" role="menu" aria-labelledby="btn-company" hidden class="dropdown" data-menu>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}company/`} class="dropdown-item">About</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`} class="dropdown-item">Built by EmpowerID</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}company/`} class="dropdown-item">Press & News</a>
+                            </div>
+                        </div>
+                    </li>
                     <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
 			</div>
@@ -322,6 +346,8 @@ import '../styles/utilities.css';
                         }
                         wireMenu('btn-products','menu-products','products');
                         wireMenu('btn-solutions','menu-solutions','solutions');
+                        wireMenu('btn-resources','menu-resources','resources');
+                        wireMenu('btn-company','menu-company','company');
 					};
                     if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
                     // Sticky mobile CTA after ~20% scroll
