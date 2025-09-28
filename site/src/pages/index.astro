@@ -4,6 +4,7 @@ import HeroComposite from '../components/HeroComposite.astro';
 import DemoTile from '../components/DemoTile.astro';
 import ProofChip from '../components/ProofChip.astro';
 import StatusPills from '../components/StatusPills.astro';
+import CodeCard from '../components/CodeCard.astro';
 import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
@@ -207,26 +208,8 @@ import PinPlan from '../components/icons/PinPlan.astro';
                 </ul>
             </div>
             <div style="display:grid;gap:12px">
-                <div class="glass-card" style="padding:12px;background:rgba(0,0,0,.25)">
-                    <div style="opacity:.8;margin-bottom:6px">Blocked call (budget)</div>
-                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
-HTTP/1.1 402 Budget Required
-error: "budget_exceeded"
-call_id: "abc-123"
-`}</code></pre>
-                    <div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
-                </div>
-                <div class="glass-card" style="padding:12px;background:rgba(0,0,0,.25)">
-                    <div style="opacity:.8;margin-bottom:6px">Receipt (6 lines)</div>
-                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
-{ "decision_id":"d-9f2",
-  "policy_hash":"…a1c",
-  "tool_schema_hash":"…7b9",
-  "cost_usd":0.012,
-  "ttl_ms":5000 }
-`}</code></pre>
-                    <div style="opacity:.7;margin-top:8px;font-size:14px">Label: <em>Test Environment — Production Format</em></div>
-                </div>
+                <CodeCard title="Blocked call (budget)" variant="402" code={`HTTP/1.1 402 Budget Required\nerror: "budget_exceeded"\ncall_id: "abc-123"`} meta="Label: Test Environment — Production Format" />
+                <CodeCard title="Receipt (6 lines)" variant="receipt" code={`{ "decision_id":"d-9f2",\n  "policy_hash":"…a1c",\n  "tool_schema_hash":"…7b9",\n  "cost_usd":0.012,\n  "ttl_ms":5000 }`} meta="Label: Test Environment — Production Format" />
             </div>
         </div>
     </section>

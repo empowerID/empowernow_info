@@ -1,0 +1,33 @@
+---
+export interface Props { title?: string; code: string; variant?: 'default'|'402'|'receipt'; meta?: string }
+const { title = '', code, variant = 'default', meta = '' } = Astro.props as Props;
+const variantClass = variant === '402' ? 'code-card-402' : variant === 'receipt' ? 'code-card-receipt' : '';
+---
+<div class={`glass-card ${variantClass}`} style="padding:12px;background:rgba(0,0,0,.25);position:relative">
+  {title && <div style="opacity:.85;margin-bottom:6px">{title}</div>}
+  <button class="btn btn-ghost" type="button" id="copy-btn" aria-label="Copy code" title="Copy" style="position:absolute;top:8px;right:8px">Copy</button>
+  <pre class="glass-card" style="padding:12px;overflow:auto"><code>{code}</code></pre>
+  {meta && <div style="opacity:.7;margin-top:8px;font-size:14px">{meta}</div>}
+  <div id="copied-tip" role="status" aria-live="polite" style="position:absolute;top:8px;right:64px;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px;font-size:12px;opacity:0;transition:opacity .2s">Copied</div>
+</div>
+<script>
+  (function(){
+    try{
+      const root = (Astro as any).root as HTMLElement | undefined;
+      const wrap = root as HTMLElement;
+      const btn = wrap?.querySelector('#copy-btn') as HTMLButtonElement | null;
+      const tip = wrap?.querySelector('#copied-tip') as HTMLElement | null;
+      const codeEl = wrap?.querySelector('pre code') as HTMLElement | null;
+      if(btn && codeEl){
+        btn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(codeEl.innerText);
+            if(tip){ tip.style.opacity = '1'; setTimeout(()=> tip.style.opacity='0', 900); }
+          }catch{}
+        });
+      }
+    }catch{}
+  })();
+</script>
+
+
