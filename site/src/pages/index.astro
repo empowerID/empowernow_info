@@ -319,42 +319,70 @@ call_id: "abc-123"
     <!-- Savings calculator -->
     <section class="container reveal-on-scroll" data-section="calculator" style="padding:24px 0">
         <div class="glass-card" style="padding:20px">
-            <h2 style="font-size:36px;margin:0 0 10px">Calculate your potential savings</h2>
-            <p style="color:#9ba3b7;margin:0 0 10px">Based on your inputs and published industry averages; adjust assumptions.</p>
-            <form id="roi-form" class="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:12px 0">
-                <label> # tools<br/><input id="roi-tools" type="number" min="1" value="50" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
-                <label> weeks per tool<br/><input id="roi-weeks" type="number" min="1" value="6" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
-                <label> loaded eng cost ($)<br/><input id="roi-cost" type="number" min="100000" step="10000" value="200000" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
-                <label> # platforms<br/><input id="roi-platforms" type="number" min="1" value="2" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)"/></label>
+            <h2 style="font-size:36px;margin:0 0 10px">Savings calculator</h2>
+            <p style="color:#9ba3b7;margin:0 0 10px">Endpoints & platforms assumptions. Adjust and see impact.</p>
+            <form id="calc-form" aria-describedby="calc-live" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0">
+                <label for="calc-endpoints">Endpoints (20–50)</label>
+                <input id="calc-endpoints" type="range" min="20" max="50" value="30" step="1" aria-label="Endpoints" />
+                <label for="calc-platforms">Platforms (2–3)</label>
+                <input id="calc-platforms" type="range" min="2" max="3" value="2" step="1" aria-label="Platforms" />
+                <label for="calc-cost">Loaded engineering cost ($)</label>
+                <input id="calc-cost" type="number" min="100000" step="10000" value="200000" aria-label="Loaded engineering cost" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)" />
             </form>
-            <div class="glass-card" style="padding:12px;background:rgba(255,255,255,.04);color:#9ba3b7">
-                <div><strong>DIY:</strong> <span id="diy-val">$11,500,000</span> — tools × weeks × eng_cost × platforms</div>
-                <div><strong>EmpowerNow (Y1):</strong> <span id="enow-val">$120,000 – $300,000 + usage</span> — endpoints × $500 × 12</div>
+            <div id="calc-live" aria-live="polite" class="glass-card" style="padding:12px;background:rgba(255,255,255,.04);color:#9ba3b7">
+                <div><strong>DIY:</strong> <span id="calc-diy">$0</span> — endpoints × platforms × 4 weeks × eng_cost</div>
+                <div><strong>EmpowerNow (Y1):</strong> <span id="calc-enow">$0 + usage</span> — endpoints × $500 × 12</div>
             </div>
             <div style="margin-top:10px">
-                <a class="btn btn-primary" id="roi-cta" data-ev="roi_submit" data-label="roi-calc" href={`${import.meta.env.BASE_URL}pricing/`}>Estimate my savings</a>
+                <a class="btn btn-primary" id="calc-cta" href={`${import.meta.env.BASE_URL}pricing/`}>Estimate my savings</a>
             </div>
         </div>
         <script>
         (function(){
             try{
-                const t=document.getElementById('roi-tools') as HTMLInputElement;
-                const w=document.getElementById('roi-weeks') as HTMLInputElement;
-                const c=document.getElementById('roi-cost') as HTMLInputElement;
-                const p=document.getElementById('roi-platforms') as HTMLInputElement;
-                const diy=document.getElementById('diy-val');
-                const enow=document.getElementById('enow-val');
+                const endpoints=document.getElementById('calc-endpoints') as HTMLInputElement;
+                const platforms=document.getElementById('calc-platforms') as HTMLInputElement;
+                const cost=document.getElementById('calc-cost') as HTMLInputElement;
+                const diyEl=document.getElementById('calc-diy');
+                const enowEl=document.getElementById('calc-enow');
+                const cta=document.getElementById('calc-cta');
+                const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
                 function fmt(n:number){ return n.toLocaleString(undefined,{ style:'currency', currency:'USD', maximumFractionDigits:0 }); }
-                function recalc(){
-                    const T=Number(t.value)||0, W=Number(w.value)||0, C=Number(c.value)||0, P=Number(p.value)||0;
-                    const diyCost=T*W*C*P;
-                    if(diy) diy.textContent = fmt(diyCost);
-                    const endpoints=Math.max(1, Math.round(T*0.4));
-                    const low=endpoints*500*12, high=Math.round(low*2.5);
-                    if(enow) enow.textContent = `${fmt(low)} – ${fmt(high)} + usage`;
+                function animateTo(el:HTMLElement|null, from:number, to:number, dur:number){
+                    if(!el){ return; }
+                    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    if(reduced || dur<=0){ el.textContent = fmt(to); return; }
+                    const t0=performance.now();
+                    function tick(now:number){
+                        const p=Math.min(1,(now-t0)/dur);
+                        const v=Math.round(from + (to-from)*p);
+                        el.textContent = fmt(v);
+                        if(p<1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
                 }
-                [t,w,c,p].forEach(i=> i && i.addEventListener('input', recalc));
-                recalc();
+                function recalc(pushEvent:boolean){
+                    const E=Math.max(20, Math.min(50, Number(endpoints.value)||20));
+                    const P=Math.max(2, Math.min(3, Number(platforms.value)||2));
+                    const C=Math.max(100000, Number(cost.value)||200000);
+                    const diy=E*P*4*C;
+                    const enow=E*500*12;
+                    animateTo(diyEl, Number((diyEl?.textContent||'').replace(/[^\d]/g,''))||0, diy, 200);
+                    animateTo(enowEl, Number((enowEl?.textContent||'').replace(/[^\d]/g,''))||0, enow, 200);
+                    if(!dnt){
+                        try{ (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push({event:'calc_change', endpoints:E, platforms:P, eng_cost:C}); }catch{}
+                    }
+                }
+                [endpoints, platforms, cost].forEach(i=> i && i.addEventListener('input', ()=> recalc(true)));
+                cta && cta.addEventListener('click', ()=>{
+                    try{
+                        const E=Number(endpoints.value)||20, P=Number(platforms.value)||2, C=Number(cost.value)||200000;
+                        const diy=E*P*4*C; const enow=E*500*12; const savings=diy-enow;
+                        (window as any).dataLayer=(window as any).dataLayer||[];
+                        (window as any).dataLayer.push({event:'calc_submit', diy, empowernow_y1:enow, savings});
+                    }catch{}
+                });
+                recalc(false);
             }catch{}
         })();
         </script>
