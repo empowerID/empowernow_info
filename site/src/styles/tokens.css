@@ -30,6 +30,19 @@
 	--void-black:#0E0E10; /* stage background */
 	--glass-frost:rgba(255,255,255,.04); /* frosted panel fill */
 
+	/* Brand palette (spec) */
+	--bg:#0C1424;              /* deep navy */
+	--panel:#0F1B33;           /* elevated card */
+	--ink:#E9F0FF;             /* primary text */
+	--muted:#9BB2D1;           /* secondary text */
+	--brand-1:#7C5CFF;         /* violet */
+	--brand-2:#4CC9F0;         /* cyan */
+	--brand-3:#00E1A8;         /* mint accent */
+	--danger:#FF5D73;          /* for 402 */
+	--good:#00D68F;
+	--badge-bg:rgba(124,92,255,0.12);
+	--glow:0 0 48px rgba(76,201,240,.25);
+
 	/* Product accent tokens (identity, non-CTA) */
 	--accent-crud: var(--color-accent);
 	--accent-gateway: var(--color-primary);
