@@ -136,6 +136,7 @@ import '../styles/utilities.css';
 						if(localStorage.getItem(consentKey) !== 'yes') return;
                         const type = el.getAttribute('data-ev') || 'event';
                         const label = el.getAttribute('data-label') || '';
+                        const action = el.getAttribute('data-action') || '';
                         const position = el.getAttribute('data-position') || '';
                         const cta_level = el.getAttribute('data-cta-level') || 'soft';
                         const product = el.getAttribute('data-product') || 'na';
@@ -156,7 +157,7 @@ import '../styles/utilities.css';
                             utm_campaign,
                             utm_persona,
                             utm_stage,
-                            metadata: { label, position }
+                            metadata: { label, action, position }
                         };
                         (window as any).dataLayer = (window as any).dataLayer || [];
                         (window as any).dataLayer.push(record);
