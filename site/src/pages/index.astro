@@ -271,12 +271,14 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
                             entries.forEach(e=>{
                                 const id=(e.target as HTMLElement).getAttribute('data-section')||'unknown';
                                 if(e.isIntersecting){
-                                    (window).dataLayer.push({event:'section_view', id});
+                                    const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+                                    if(!dnt){ (window).dataLayer.push({event:'section_view', id}); }
                                     if(!t0.has(id)) t0.set(id, performance.now());
                                 } else {
                                     if(t0.has(id)){
                                         const ms=Math.round(performance.now()-t0.get(id));
-                                        (window).dataLayer.push({event:'section_time', id, ms});
+                                        const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+                                        if(!dnt){ (window).dataLayer.push({event:'section_time', id, ms}); }
                                         t0.delete(id);
                                     }
                                 }

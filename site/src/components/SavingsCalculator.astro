@@ -64,8 +64,11 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 200000 } = As
             try{
                 const E=Number(endpoints.value)||20, P=Number(platforms.value)||2, C=Number(cost.value)||200000;
                 const diy=E*P*4*C; const enow=E*500*12; const savings=diy-enow;
-                (window).dataLayer=(window).dataLayer||[];
-                (window).dataLayer.push({event:'calc_submit', diy, empowernow_y1:enow, savings});
+                const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+                if(!dnt){
+                    (window).dataLayer=(window).dataLayer||[];
+                    (window).dataLayer.push({event:'calc_submit', diy, empowernow_y1:enow, savings});
+                }
             }catch{}
         });
         recalc(false);
