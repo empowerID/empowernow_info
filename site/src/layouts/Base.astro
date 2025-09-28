@@ -54,11 +54,17 @@ import '../styles/utilities.css';
 			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
 			/* Mega menu */
             .nav-group{position:static}
-            .mega{position:fixed;left:0;right:0;top:64px; background:rgba(15,27,51,.96); box-shadow:0 12px 50px rgba(0,0,0,.5); border-top:1px solid rgba(255,255,255,.06); z-index:1010}
-			.mega-inner{display:grid;grid-template-columns:4fr 8fr;gap:16px;padding:16px 0}
-			.mega-grid{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:12px}
-			.mega-card{display:block;background:rgba(255,255,255,.04);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.06)}
-			.mega-card:hover{background:rgba(255,255,255,.06)}
+            .mega{position:fixed;left:0;right:0;top:64px; z-index:1010; background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-top:none; border-bottom-left-radius:16px; border-bottom-right-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden}
+            .mega::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.78), rgba(12,20,36,.6)); pointer-events:none}
+            .mega-inner{display:grid;grid-template-columns:4fr 8fr;gap:18px;padding:16px 0 18px}
+            .mega-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px 18px;padding:0 0 2px}
+            @media (min-width: 1280px){ .mega-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) } }
+            .mega-card{position:relative;display:grid;grid-template-rows:auto auto 1fr auto;row-gap:6px;background:rgba(255,255,255,.04);border-radius:14px;padding:16px 18px;border:1px solid rgba(255,255,255,.06)}
+            .mega-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);box-shadow:0 10px 22px rgba(0,0,0,.25)}
+            .mega-card:hover::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--quantum-violet,#7C5CFF),var(--pulse-cyan,#4CC9F0));border-top-left-radius:14px;border-top-right-radius:14px}
+            .mega-card:focus-within{outline:2px solid var(--ion-lime,#00E1A8); outline-offset:3px}
+            .mega-card .h3{font-size:20px;line-height:1.2}
+            .clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
             .mega-cta{color:var(--nav-ink); text-decoration:underline; display:inline-block; margin-top:10px}
             .links{display:flex;gap:10px;margin-top:10px}
             .links .link{color:#e6eef8}
@@ -89,36 +95,36 @@ import '../styles/utilities.css';
                                         <a id="cta-products-hub" href={`${import.meta.env.BASE_URL}products/`} class="mega-cta">View all products →</a>
                                     </div>
                                     <div class="mega-grid">
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/idp/`} class="mega-card">
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">IdP</div>
-                                            <div class="body">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
+                                            <div class="body clamp-2">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/idp/`}>Docs ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/pdp/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">PDP</div>
-                                            <div class="body">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
+                                            <div class="body clamp-2">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/pdp/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/pdp/`}>Docs ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">CRUD Service</div>
-                                            <div class="body">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
+                                            <div class="body clamp-2">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/crud/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/registry/`}>Docs ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/data-collector/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Data Collector</div>
-                                            <div class="body">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
+                                            <div class="body clamp-2">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/data-collector/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/membership/`}>Docs ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/aria-shield/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">ARIA Shield</div>
-                                            <div class="body">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
+                                            <div class="body clamp-2">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/aria/`}>Docs ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/gateway/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">ARIA MCP Gateway</div>
-                                            <div class="body">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
+                                            <div class="body clamp-2">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/gateway/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/product/gateway/`}>Docs ↗</a></div>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -135,26 +141,26 @@ import '../styles/utilities.css';
                                         <a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
                                     </div>
                                     <div class="mega-grid">
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`} class="mega-card">
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Agent Platforms (OEM/white‑label)</div>
-                                            <div class="body">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
+                                            <div class="body clamp-2">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Guide ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Systems Integrators (SI/GSI)</div>
-                                            <div class="body">Vertical catalog kits + policy packs + delivery playbooks.</div>
+                                            <div class="body clamp-2">Vertical catalog kits + policy packs + delivery playbooks.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Kit examples ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Enterprises (Governed Starter)</div>
-                                            <div class="body">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
+                                            <div class="body clamp-2">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Quickstart ↗</a></div>
-                                        </a>
-                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} class="mega-card">
+                                        </div>
+                                        <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Zero‑Token SPAs</div>
-                                            <div class="body">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
+                                            <div class="body clamp-2">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
                                             <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Docs ↗</a></div>
-                                        </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
