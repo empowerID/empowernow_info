@@ -100,7 +100,37 @@ import '../styles/utilities.css';
                             </div>
                         </div>
                     </li>
-                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}solutions/`} data-ev="nav_click" data-label="Solutions">Solutions</a></li>
+                    <li>
+                        <div class="nav-group">
+                            <button class="nav-link" id="btn-solutions" aria-haspopup="true" aria-expanded="false" aria-controls="menu-solutions" data-ev="nav_click" data-label="Solutions">Solutions</button>
+                            <div id="menu-solutions" role="menu" aria-labelledby="btn-solutions" hidden class="mega" data-menu>
+                                <div class="mega-inner container">
+                                    <div class="mega-left">
+                                        <div class="h3" style="margin:0 0 6px">Solutions</div>
+                                        <div class="body">Create → Control → Prove for teams and platforms.</div>
+                                    </div>
+                                    <div class="mega-grid">
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`} class="mega-card">
+                                            <div class="h3">Agent Platforms</div>
+                                            <div class="body">OEM/white‑label governance & tools.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`} class="mega-card">
+                                            <div class="h3">Systems Integrators</div>
+                                            <div class="body">Catalog kits for accelerated delivery.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`} class="mega-card">
+                                            <div class="h3">Enterprises</div>
+                                            <div class="body">Governed starter: tools, policy, receipts.</div>
+                                        </a>
+                                        <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/receipts/`} class="mega-card">
+                                            <div class="h3">Receipts & ROI</div>
+                                            <div class="body">Cryptographic proof and spend control.</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}resources/`} data-ev="nav_click" data-label="Resources">Resources</a></li>
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="nav_click" data-label="Pricing">Pricing</a></li>
@@ -271,15 +301,16 @@ import '../styles/utilities.css';
 							}catch{}
 						}
                         document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
-                        // Mega menu interactions (Products)
+                        // Mega menu interactions (Products & Solutions)
                         const consentKey='analytics_consent';
                         const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
                         function pl(ev:any){ if(dnt || localStorage.getItem(consentKey)!=='yes') return; (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push(ev);}
-                        const trigger = document.getElementById('btn-products') as HTMLButtonElement | null;
-                        const menu = document.getElementById('menu-products') as HTMLDivElement | null;
-                        if(trigger && menu){
+                        function wireMenu(btnId:string, menuId:string, name:string){
+                            const trigger = document.getElementById(btnId) as HTMLButtonElement | null;
+                            const menu = document.getElementById(menuId) as HTMLDivElement | null;
+                            if(!(trigger && menu)) return;
                             let hoverTimer:any=null;
-                            function open(){ trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:'products'}); }
+                            function open(){ trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:name}); }
                             function close(){ trigger.setAttribute('aria-expanded','false'); menu.hidden=true; }
                             trigger.addEventListener('mouseenter', ()=> { clearTimeout(hoverTimer); hoverTimer=setTimeout(open,120); });
                             trigger.addEventListener('mouseleave', ()=> { clearTimeout(hoverTimer); });
@@ -287,8 +318,10 @@ import '../styles/utilities.css';
                             menu.addEventListener('mouseleave', close);
                             document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
                             document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group')) close(); });
-                            menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:'products', item:(a as HTMLElement).textContent?.trim()||''})));
+                            menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:name, item:(a as HTMLElement).textContent?.trim()||''})));
                         }
+                        wireMenu('btn-products','menu-products','products');
+                        wireMenu('btn-solutions','menu-solutions','solutions');
 					};
                     if('requestIdleCallback' in window){ (window as any).requestIdleCallback(run); } else { setTimeout(run, 0); }
                     // Sticky mobile CTA after ~20% scroll
