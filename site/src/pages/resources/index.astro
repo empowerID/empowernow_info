@@ -29,13 +29,12 @@ const allResources: ResItem[] = [
     <!-- Hero with Global Search (full-bleed stage, content container inside) -->
     <section class="page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
         <div class="container">
-            <nav aria-label="Breadcrumb" class="meta" style="margin:0 0 6px;color:#9db4cf;background:transparent"><a href={base} style="text-decoration:none">Home</a> / <span aria-current="page">Resources</span></nav>
-            <p class="meta" style="color:var(--color-accent);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px;background:transparent">Resources</p>
+			<!-- Breadcrumb/eyebrow intentionally omitted to match other hero sections -->
 			<h1 class="display" style="margin:0 0 8px">Resources</h1>
-            <p style="color:#9ba3b7;max-width:860px;margin:0 0 16px">Standards primers, demos, and helpful links.</p>
+            <p class="body" style="color:#9db4cf;max-width:860px;margin:6px 0 20px">Standards primers, demos, and helpful links.</p>
 			<div style="max-width:640px">
                 <label for="gsearch" class="sr-only">Search resources</label>
-                <div style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.12);background:rgba(8,15,30,.42);backdrop-filter:saturate(120%) blur(6px)">
+                <div style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);background:rgba(8,15,30,.46);backdrop-filter:saturate(120%) blur(6px)">
                     <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
                     <button id="gsubmit" class="btn">Search</button>
                 </div>
