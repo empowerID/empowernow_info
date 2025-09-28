@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Built by EmpowerID — Neutral by Design';
+const description = 'EmpowerNow is the AI-focused Identity Fabric from EmpowerID—neutral Layer-2 governance with separate infrastructure and OEM readiness.';
+const canonical = '/company/built-by-empowerid/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <!-- Hero -->
+    <section class="hero-plate page-stage" style="padding:72px 0 24px">
+        <div class="container">
+            <h1 class="display" style="margin:0 0 10px">Neutral by design. Built by EmpowerID.</h1>
+            <p style="color:#9ba3b7;max-width:80ch">EmpowerNow is the AI‑focused Identity Fabric from <strong>EmpowerID</strong>—trusted IGA/PAM since <strong>2005</strong> with <strong>$20M+ revenue</strong> and deployments at <strong>Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR</strong>, and more.</p>
+        </div>
+    </section>
+
+    <!-- Why EmpowerID created EmpowerNow -->
+    <section class="container" style="padding:24px 0">
+        <h2 class="section-title">Why EmpowerID created EmpowerNow</h2>
+        <p style="color:#9ba3b7;max-width:90ch">Agents are exploding across platforms. Governance was fragmented and vendor‑locked. EmpowerID built EmpowerNow as a <strong>separate, standards‑embracing Layer‑2</strong> so any enterprise or platform can <strong>create once, enforce everywhere, prove everything</strong>—without changing their IGA or agent stack.</p>
+    </section>
+
+    <!-- Neutrality commitments -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Neutrality commitments</h2>
+        <ul style="color:#9ba3b7;line-height:1.8;margin:6px 0 0;padding-left:18px">
+            <li><strong>Separate infrastructure, contracts, and teams</strong> from EmpowerID</li>
+            <li><strong>Open‑source receipt verifier</strong> (public repo)</li>
+            <li><strong>Neutrality advisory board</strong> (incl. competitor representatives)</li>
+            <li><strong>Customer‑controlled keys</strong>, third‑party audits, SOC roadmap</li>
+        </ul>
+    </section>
+
+    <!-- Coexistence & OEM -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Coexistence & OEM</h2>
+        <p style="color:#9ba3b7;max-width:90ch">We coexist with <strong>Okta, Entra ID, SailPoint, EmpowerID, Ping, ForgeRock, CyberArk</strong>, and <strong>Vault</strong>. We’re <strong>OEM/white‑label ready</strong> for agent platforms, gateways, and IGA vendors. Keep your brand; ship governance faster.</p>
+    </section>
+
+    <!-- Quick answers -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Quick answers</h2>
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px"><h3 style="margin:0 0 6px">Is EmpowerNow a feature of EmpowerID?</h3><p style="color:#9ba3b7;margin:0">No. EmpowerNow is a <strong>neutral, vendor‑agnostic</strong> service. EmpowerID is our <strong>heritage and channel—not a dependency</strong>.</p></div>
+            <div class="glass-card" style="padding:16px"><h3 style="margin:0 0 6px">Will an EmpowerID competitor see my data?</h3><p style="color:#9ba3b7;margin:0">No. EmpowerNow runs on <strong>separate infrastructure</strong> with independent access controls and contracts.</p></div>
+            <div class="glass-card" style="padding:16px"><h3 style="margin:0 0 6px">Can we start small?</h3><p style="color:#9ba3b7;margin:0">Yes. Add a governed <strong>starter catalog</strong> of 10 tools, then expand endpoints and platforms at your pace.</p></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container" style="padding:16px 0 64px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}partners/`}>Partner with us (OEM/SI)</a>
+            <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/demo/`}>Book a 15‑minute demo</a>
+        </div>
+    </section>
+</Base>
+
+

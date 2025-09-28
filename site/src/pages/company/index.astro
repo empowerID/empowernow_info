@@ -1,0 +1,138 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Company — EmpowerNow';
+const description = 'Create once. Enforce everywhere. Prove everything. EmpowerNow is the universal agent governance & integration layer.';
+const canonical = '/company/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <!-- Hero -->
+    <section class="hero-plate page-stage" style="padding:72px 0 24px">
+        <div class="container" style="display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center">
+            <div>
+                <h1 class="display" style="margin:0 0 10px">Create tools once. Enforce policy everywhere. Prove every action.</h1>
+                <p style="color:#9ba3b7;max-width:72ch;margin:0 0 14px">EmpowerNow is the <strong>universal agent governance & integration layer</strong>. Teams <strong>create tools once</strong>, <strong>enforce policy & spend controls</strong> across <strong>OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock</strong>, and <strong>prove</strong> every action with cryptographic receipts.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="company-hero-demo">Watch 90‑sec demo</a>
+                    <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} data-ev="cta_click" data-label="company-hero-quickstart">Open Quickstart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why EmpowerNow (3 cards) -->
+    <section class="container" style="padding:40px 0 24px">
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">Create once</h3>
+                <p style="color:#9ba3b7;margin:0">Build tools in <strong>Automation Studio</strong>—no code—and publish to MCP, Function Calling, and Copilot formats from a single definition.</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">Enforce everywhere</h3>
+                <p style="color:#9ba3b7;margin:0">Use <strong>Authorization Studio</strong> plus <strong>ARIA Shield & MCP Gateway</strong> to apply budgets (402), content & egress rules, and parameter allow‑lists—in real time.</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">Prove everything</h3>
+                <p style="color:#9ba3b7;margin:0">Every governed call produces a cryptographic <strong>Receipt</strong> that auditors accept. Evidence replaces opinion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why now (convergence) -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Why now</h2>
+        <ul style="color:#9ba3b7;line-height:1.8;margin:6px 0 0;padding-left:18px">
+            <li><strong>Tools</strong> are converging on MCP and Function Calling.</li>
+            <li><strong>Architectures</strong> are converging on multi‑agent, multi‑platform deployments.</li>
+            <li><strong>Compliance</strong> is converging on agent governance requirements.</li>
+        </ul>
+        <p style="color:#9ba3b7;margin:8px 0 0">A <strong>neutral, standards‑embracing layer</strong> is no longer optional—it’s infrastructure.</p>
+    </section>
+
+    <!-- What we are -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">What we are (Layer‑2 middleware)</h2>
+        <div class="panel-glass" style="padding:16px">
+            <ul style="color:#9ba3b7;line-height:1.8;margin:0 0 8px;padding-left:18px">
+                <li><strong>Automation Studio</strong> — no‑code connectors/workflows → MCP Tools/Resources/Prompts; multi‑platform publish</li>
+                <li><strong>Authorization Studio</strong> — visual policy → standardized decision (constraints/obligations/TTL)</li>
+                <li><strong>Authentication Studio</strong> — no‑code <strong>Agent Passports</strong> (OAuth Token Exchange/RAR)</li>
+                <li><strong>Runtime</strong> — <strong>MCP Gateway</strong> (plan/schema pins), <strong>ARIA Shield</strong> (budgets/402, streaming caps, zero‑token SPA)</li>
+                <li><strong>Receipts</strong> — cryptographic audit chain for every governed call</li>
+            </ul>
+            <p style="color:#9ba3b7;margin:6px 0 0"><em><strong>Inventory Studio</strong>—identity/IGA inventory & lineage—runs behind the scenes so your policies stay accurate. It’s supporting infrastructure, not a learning curve.</em></p>
+        </div>
+    </section>
+
+    <!-- Switzerland by design -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Switzerland by design</h2>
+        <p style="color:#9ba3b7;max-width:90ch">We are <strong>vendor‑agnostic and OEM‑ready</strong>. EmpowerNow is a neutral Layer‑2 your team—or your platform—can ship under <strong>your brand</strong>. We coexist with <strong>Okta, Microsoft Entra ID, SailPoint, EmpowerID, Ping, ForgeRock, CyberArk, Vault</strong> and more. Standards first: <strong>AuthZEN • OIDC • SCIM • CAEP • MCP</strong>.</p>
+    </section>
+
+    <!-- Built by EmpowerID -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Built by EmpowerID (trust you can bank on)</h2>
+        <div class="glass-card" style="padding:16px;color:#9ba3b7">
+            <p style="margin:0 0 8px">EmpowerNow is the new, AI‑focused <strong>Identity Fabric</strong> brand from <strong>EmpowerID</strong>—a proven IGA/PAM vendor founded in <strong>2005</strong>, with <strong>$20M+ annual revenue</strong> and deployments at global brands including <strong>Airbus, Aldi, Daimler Truck, Siemens, RB (formerly Reckitt Benckiser), PACCAR</strong>, and others.</p>
+            <p style="margin:0">EmpowerID recognized that the <strong>LLM agent revolution</strong> needed a different approach—<strong>born using AI for AI</strong>, vendor‑agnostic, and standards‑embracing—so we built EmpowerNow to <strong>extend EmpowerID</strong> and to <strong>power any other IGA vendor or agent platform</strong>. That heritage gives us something startups can’t manufacture: <strong>instant credibility and enterprise‑grade procurement paths</strong>.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn how EmpowerNow relates to EmpowerID</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proof bar -->
+    <section class="container" style="padding:16px 0 8px">
+        <div class="block-ghost" style="padding-top:0">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+                <span class="chip">Author once → MCP/Functions/Copilot</span>
+                <span class="chip">402 budgets • content & egress control</span>
+                <span class="chip">Zero‑token SPA • gateway PEPs</span>
+                <span class="chip">Receipts auditors accept</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo strip -->
+    <section class="container" style="padding:8px 0 24px">
+        <div class="panel-glass" style="padding:16px">
+            <p style="color:#9ba3b7;margin:0 0 10px"><strong>Live in 90 seconds</strong>: Build once in Automation Studio → run on MCP, OpenAI, and Copilot—the <strong>same tool</strong>, governed.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the demo</a>
+                <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">FAQ</h2>
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">Are you replacing our IGA/PAM?</h3>
+                <p style="color:#9ba3b7;margin:0">No. EmpowerNow is a <strong>Layer‑2</strong> that governs agents and tools across platforms. It coexists with your IGA/PAM.</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">Can we OEM/white‑label?</h3>
+                <p style="color:#9ba3b7;margin:0">Yes. We’re Switzerland—<strong>neutral and OEM‑ready</strong>. Many customers ship EmpowerNow under their own brand.</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 6px">What if platforms ship native governance?</h3>
+                <p style="color:#9ba3b7;margin:0">We coexist and often <strong>OEM</strong>. Our value is <strong>cross‑platform</strong> policy + receipts and neutrality platforms cannot claim.</p>
+                <p style="color:#9ba3b7;margin:8px 0 0">Time‑to‑first‑tool is typically <strong>&lt;10 minutes</strong>; “publish to 3 platforms” <strong>&lt;1 hour</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container" style="padding:16px 0 64px;text-align:center">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
+            <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/demo/`}>Book a 15‑minute demo</a>
+            <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}partners/`}>Partner (OEM/SI)</a>
+        </div>
+        <div style="margin-top:10px"><a href="mailto:identityfabric@empowernow.ai" class="card-cta">identityfabric@empowernow.ai</a></div>
+    </section>
+</Base>
+
+
