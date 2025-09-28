@@ -1,33 +1,228 @@
 ---
 import Base from '../../layouts/Base.astro';
-const title = 'Resources — Standards, Demos, Guides';
-const description = 'Explore standards primers, product demos, and guides to get started.';
+const title = 'Resources | EmpowerNow';
+const description = 'Standards primers, demos, trust, ROI, research, and case studies for agent governance and integration.';
 const canonical = '/resources/';
 const base = import.meta.env.BASE_URL;
-const cards = [
-	{ href: `${base}resources/standards/`, title: 'Standards (Primers)', sub: 'OAuth, OIDC, PKCE, RAR, PAR, JARM, FAPI 2.0, SCIM, CIBA, MCP, CAEP' },
-	{ href: `${base}search/`, title: 'Search', sub: 'Find pages across the site' },
-	{ href: `${base}trust/`, title: 'Trust Center', sub: 'Security, Compliance, Privacy' },
-    { href: `${base}resources/proof-roi/`, title: 'Proof & ROI', sub: 'Receipts you can audit, ROI you can defend' },
-    { href: `${base}resources/research/`, title: 'Research Hub', sub: 'Competitors, matrices, claims, SERP, ROI' },
-    { href: `${base}resources/case-studies/`, title: 'Case Studies', sub: 'Program brief and testimonials (coming soon)' },
+
+type ResItem = { id:string; title:string; summary:string; href:string; type:'primer'|'demo'|'template'|'roi'|'case'|'note'; tags:string[]; updated_at:string; duration?:string; featured?:boolean };
+
+const collections = [
+    { id:'standards', title:'Standards (Primers)', description:'OAuth, OIDC, PKCE, RAR, PAR, JARM, FAPI 2.0, SCIM, CIBA, MCP, CAEP', href: `${base}resources/standards/` },
+    { id:'trust', title:'Trust Center', description:'Security, Compliance, Privacy', href: `${base}trust/` },
+    { id:'proof', title:'Proof & ROI', description:'Receipts you can audit, ROI you can defend', href: `${base}resources/proof-roi/` },
+    { id:'research', title:'Research Hub', description:'Competitor matrices, claims, SERP, ROI', href: `${base}resources/research/` },
+    { id:'cases', title:'Case Studies', description:'Program briefs and testimonials', href: `${base}resources/case-studies/` },
+    { id:'search', title:'Site Search', description:'Find anything on the site fast', href: `${base}search/` },
+];
+
+const allResources: ResItem[] = [
+    { id:'primer-authzen', title:'AuthZEN Primer', summary:'OpenID Authorization API concepts with examples.', href:`${base}resources/standards/authzen/`, type:'primer', tags:['AuthZEN','OAuth'], updated_at:'2025-09-01', featured:true },
+    { id:'primer-mcp', title:'MCP Primer', summary:'Model Context Protocol basics for tool invocation.', href:`${base}resources/standards/mcp/`, type:'primer', tags:['MCP'], updated_at:'2025-09-10', featured:true },
+    { id:'demo-mcp', title:'MCP Gateway Demo', summary:'Pre-exec plan validation and schema pins in action.', href:`${base}products/gateway/`, type:'demo', tags:['MCP','Budgets'], updated_at:'2025-08-28', duration:'3:12', featured:true },
+    { id:'roi-calc', title:'ROI Calculator', summary:'Estimate DIY vs EmpowerNow year-one costs.', href:`${base}`, type:'roi', tags:['ROI','Budgets'], updated_at:'2025-09-15', featured:true },
+    { id:'note-zero-token', title:'Zero-Token SPA Guide', summary:'How to eliminate tokens in the browser.', href:`${base}solutions/zero-token-spas/`, type:'note', tags:['OAuth','DPoP'], updated_at:'2025-07-12' },
+    { id:'case-brief', title:'Program Brief', summary:'Business outcomes and platform adoption path.', href:`${base}resources/case-studies/`, type:'case', tags:['Case'], updated_at:'2025-06-05' }
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:96px 0 24px">
+    <!-- Hero with Global Search -->
+    <section class="container page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
+        <p class="meta" style="color:var(--color-accent);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px">Resources</p>
 		<h1 class="display" style="margin:0 0 8px">Resources</h1>
-		<p style="color:#9ba3b7;max-width:860px">Standards primers, demos, and helpful links.</p>
+        <p style="color:#9ba3b7;max-width:860px;margin:0 0 16px">Standards primers, demos, and helpful links.</p>
+        <div style="max-width:640px">
+            <label for="gsearch" class="sr-only">Search resources</label>
+            <div class="glass-card" style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px">
+                <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
+                <button id="gsubmit" class="btn">Search</button>
+            </div>
+            <ul id="gsuggestions" role="listbox" aria-label="Search suggestions" class="glass-card" style="margin:6px 0 0;padding:0;list-style:none;display:none"></ul>
+        </div>
 	</section>
-	<section class="container" style="padding:8px 0 80px">
-		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
-			{cards.map(c => (
-				<a href={c.href} class="glass-card" style="padding:20px;text-decoration:none;color:inherit">
-					<h3 style="margin:0 0 6px">{c.title}</h3>
-					<p style="color:#9ba3b7;margin:0">{c.sub}</p>
+
+    <!-- Featured Row -->
+    <section class="container reveal-on-scroll" style="padding:24px 0 8px;content-visibility:auto">
+        <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Featured</h2>
+        <div class="grid-12" style="gap:16px">
+            {allResources.filter(r=>r.featured).slice(0,6).map(r => (
+                <a href={r.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={r.id} aria-label={`Open ${r.title}`} style="grid-column: span 4;min-width:220px">
+                    <div class="gradient-card__inner">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                            <h3 style="margin:0;color:#fff;font-size:18px">{r.title}</h3>
+                            <span class="chev" aria-hidden="true">→</span>
+                        </div>
+                        <p style="margin:6px 0 0;color:#9db4cf;font-size:14px">{r.summary}</p>
+                        {(() => {
+                            const days = Math.floor((Date.now() - Date.parse(r.updated_at)) / 86400000);
+                            if(days <= 30) return <span class="chip" style="margin-top:8px;background:rgba(0,229,255,.15);color:#0E1726">NEW</span>;
+                        })()}
+                    </div>
 				</a>
 			))}
 		</div>
 	</section>
+
+    <!-- Collections Grid -->
+    <section class="container reveal-on-scroll" style="padding:24px 0;content-visibility:auto">
+        <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Collections</h2>
+        <div style="display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:20px" class="collections-grid">
+            {collections.map(c => (
+                <a href={c.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={`col_${c.id}`} aria-label={`Open ${c.title} collection`}>
+                    <div class="gradient-card__inner">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                            <h3 style="margin:0;color:#fff;font-size:20px">{c.title}</h3>
+                            <span class="chev" aria-hidden="true">→</span>
+                        </div>
+                        <p style="margin:6px 0 0;color:#9db4cf">{c.description}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
+        <style>
+            @media (min-width: 640px){ .collections-grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
+            @media (min-width: 1024px){ .collections-grid{ grid-template-columns: repeat(3,minmax(0,1fr)); } }
+            .gradient-card{ border-radius:16px; padding:1px; background:linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(45deg, var(--pulse-cyan), var(--quantum-violet)) border-box; display:block; text-decoration:none; color:inherit }
+            .gradient-card__inner{ background:var(--panel); border-radius:16px; padding:24px }
+            .gradient-card:hover .chev{ transform: translateX(4px) }
+            .chev{ transition: transform .15s ease }
+        </style>
+    </section>
+
+    <!-- All Resources with Filters -->
+    <section class="container reveal-on-scroll" style="padding:24px 0;content-visibility:auto">
+        <div id="filters" class="glass-card" style="position:sticky;top:56px;z-index:10;padding:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input id="fsearch" type="search" placeholder="Search within resources…" aria-label="Search within resources" style="flex:1;min-width:180px;background:transparent;border:1px solid var(--border-strong);border-radius:10px;padding:8px;color:var(--on-bg)" />
+            <div id="type-pills" style="display:flex;gap:6px;flex-wrap:wrap">
+                <button class="pill" data-type="primer">Primers</button>
+                <button class="pill" data-type="demo">Demos</button>
+                <button class="pill" data-type="template">Templates</button>
+                <button class="pill" data-type="roi">ROI/Proof</button>
+                <button class="pill" data-type="case">Case Studies</button>
+                <button class="pill" data-type="note">Notes</button>
+            </div>
+            <div id="tag-chips" style="display:flex;gap:6px;flex-wrap:wrap">
+                {['AuthZEN','OIDC','MCP','SCIM','CAEP','Budgets','Content/Egress'].map(t => (
+                    <button class="chip" data-chip={t}>{t}</button>
+                ))}
+            </div>
+        </div>
+        <ul id="res-list" style="list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px"></ul>
+        <div id="empty" class="glass-card" style="display:none;padding:16px;color:#9db4cf">No results. Try <a href={`${base}resources/standards/`}>Standards</a> or <a href={`${base}search/`}>site search</a>.</div>
+        <style>
+            .pill{ padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:transparent; color:var(--on-bg) }
+            .pill.active{ background:rgba(0,229,255,.12); border-color:rgba(0,229,255,.55); color:#b9f6ff }
+            #res-list .item{ display:block; text-decoration:none; color:inherit }
+        </style>
+    </section>
+
+    <!-- CTA Footer -->
+    <section class="container surface-2 reveal-on-scroll" style="padding:40px 0 80px;border-radius:12px;text-align:center;content-visibility:auto">
+        <h2 style="margin:0 0 10px;font-size:32px">Ready to try it?</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <a class="btn btn-primary" data-ev="cta_click" data-label="quickstart_resources" href={`${base}docs/crud-service/quickstart`}>Open Quickstart</a>
+            <a class="btn" data-ev="cta_click" data-label="docs_resources" href="https://empowerid.github.io/empowernow_docs/">View Docs</a>
+            <a class="btn" data-ev="cta_click" data-label="book_demo_resources" href={`${base}demo/`}>Book 15‑min Demo</a>
+        </div>
+    </section>
+
+    <script define:vars={{ allResources, base }}>
+    (()=>{
+        // Utilities
+        const dnt = (navigator).doNotTrack==='1' || (window).doNotTrack==='1';
+        function pl(ev){ if(dnt) return; (window).dataLayer=(window).dataLayer||[]; (window).dataLayer.push(ev); }
+        const qsel = (s)=> document.querySelector(s);
+
+        // Hero global search with suggestions
+        const gi = qsel('#gsearch');
+        const gs = qsel('#gsuggestions');
+        const sb = qsel('#gsubmit');
+        function buildSuggestions(term){
+            const t = (term||'').trim().toLowerCase();
+            if(!t){ gs.style.display='none'; gs.innerHTML=''; return; }
+            const pool = allResources.slice(0,50);
+            const matches = pool.filter(r=> (r.title+" "+r.summary+" "+r.tags.join(' ')).toLowerCase().includes(t)).slice(0,8);
+            gs.innerHTML = matches.map((r,i)=> `<li role="option" id="opt-${i}"><a href="${r.href}" class="item glass-card" data-ev="resources_tile_click" data-label="${r.id}" style="display:block;padding:8px 10px;color:inherit;text-decoration:none">${r.title}<span style='color:#9db4cf'> — ${r.summary}</span></a></li>`).join('');
+            gs.style.display = matches.length ? 'block' : 'none';
+        }
+        gi && gi.addEventListener('input', ()=> buildSuggestions(gi.value));
+        gi && gi.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); const term=(gi.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); } });
+        sb && sb.addEventListener('click', ()=>{ const term=(gi?.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); });
+
+        // All resources list with filters
+        const list = qsel('#res-list');
+        const empty = qsel('#empty');
+        const fs = qsel('#fsearch');
+        const typePills = Array.from(document.querySelectorAll('#type-pills .pill'));
+        const tagChips = Array.from(document.querySelectorAll('#tag-chips .chip'));
+        const state = { term:'', types:new Set(), tags:new Set() };
+
+        function syncURL(){
+            const u = new URL(location.href);
+            u.searchParams.delete('type'); u.searchParams.delete('tag'); u.searchParams.delete('q');
+            if(state.term) u.searchParams.set('q', state.term);
+            state.types.forEach(t=> u.searchParams.append('type', t));
+            state.tags.forEach(t=> u.searchParams.append('tag', t));
+            history.replaceState(null,'', u.pathname + (u.search?u.search:'') + (u.hash||''));
+        }
+
+        function render(){
+            const term = state.term.toLowerCase();
+            const out = allResources.filter(r=> {
+                if(state.types.size && !state.types.has(r.type)) return false;
+                if(state.tags.size && !r.tags.some(t=> state.tags.has(t))) return false;
+                if(term && !(r.title+" "+r.summary+" "+r.tags.join(' ')).toLowerCase().includes(term)) return false;
+                return true;
+            });
+            if(!list) return;
+            list.innerHTML = out.map(r=>{
+                const date = new Date(r.updated_at).toLocaleDateString();
+                const typeLabel = r.type.toUpperCase();
+                const tagStr = r.tags.map(t=> `<span class='chip' style='margin-right:6px'>${t}</span>`).join('');
+                const dur = r.duration? ` • ${r.duration}`:'';
+                return `<li class='glass-card' style='padding:12px'>
+                    <a class='item' href='${r.href}' data-ev='resources_tile_click' data-label='${r.id}'>
+                        <div style='display:flex;justify-content:space-between;gap:8px;align-items:center'>
+                            <div>
+                                <div class='meta' style='opacity:.9'>${typeLabel}${dur}</div>
+                                <div style='font-weight:600;margin:2px 0'>${r.title}</div>
+                                <div style='color:#9db4cf'>${r.summary}</div>
+                                <div style='margin-top:6px'>${tagStr}</div>
+                            </div>
+                            <div class='meta' style='color:#9db4cf;white-space:nowrap'>Updated ${date}</div>
+                        </div>
+                    </a>
+                </li>`;
+            }).join('');
+            if(empty){ empty.style.display = out.length? 'none':'block'; }
+        }
+
+        function applyType(t){
+            if(state.types.has(t)) state.types.delete(t); else state.types.add(t);
+            pl({event:'resources_filter_apply', type:t});
+            typePills.forEach(p=> p.classList.toggle('active', state.types.has(p.getAttribute('data-type'))));
+            syncURL(); render();
+        }
+        function applyTag(t){
+            if(state.tags.has(t)) state.tags.delete(t); else state.tags.add(t);
+            pl({event:'resources_filter_apply', tag:t});
+            const btn = tagChips.find(b=> b.getAttribute('data-chip')===t); btn && btn.classList.toggle('chip--success', state.tags.has(t));
+            syncURL(); render();
+        }
+        typePills.forEach(p=> p.addEventListener('click', ()=> applyType(p.getAttribute('data-type'))));
+        tagChips.forEach(b=> b.addEventListener('click', ()=> applyTag(b.getAttribute('data-chip'))));
+        fs && fs.addEventListener('input', ()=> { state.term = (fs as HTMLInputElement).value; render(); syncURL(); });
+
+        // Initialize from URL
+        try{
+            const u = new URL(location.href);
+            const q = u.searchParams.get('q')||''; if(q && fs){ fs.value=q; state.term=q; }
+            u.searchParams.getAll('type').forEach(t=> state.types.add(t as any));
+            u.searchParams.getAll('tag').forEach(t=> state.tags.add(t));
+        }catch{}
+        typePills.forEach(p=> p.classList.toggle('active', state.types.has(p.getAttribute('data-type'))));
+        tagChips.forEach(b=> b.classList.toggle('chip--success', state.tags.has(b.getAttribute('data-chip'))));
+        render();
+    })();
+    </script>
 </Base>
-
-
