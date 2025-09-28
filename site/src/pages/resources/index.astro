@@ -26,27 +26,29 @@ const allResources: ResItem[] = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <!-- Hero with Global Search -->
-    <section class="container page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
-        <nav aria-label="Breadcrumb" class="meta" style="margin:0 0 6px;color:#9db4cf"><a href={base}>Home</a> / <span aria-current="page">Resources</span></nav>
-        <p class="meta" style="color:var(--color-accent);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px">Resources</p>
-		<h1 class="display" style="margin:0 0 8px">Resources</h1>
-        <p style="color:#9ba3b7;max-width:860px;margin:0 0 16px">Standards primers, demos, and helpful links.</p>
-		<div style="max-width:640px">
-            <label for="gsearch" class="sr-only">Search resources</label>
-            <div class="glass-card" style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px">
-                <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
-                <button id="gsubmit" class="btn">Search</button>
+    <!-- Hero with Global Search (full-bleed stage, content container inside) -->
+    <section class="page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
+        <div class="container">
+            <nav aria-label="Breadcrumb" class="meta" style="margin:0 0 6px;color:#9db4cf"><a href={base}>Home</a> / <span aria-current="page">Resources</span></nav>
+            <p class="meta" style="color:var(--color-accent);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px">Resources</p>
+			<h1 class="display" style="margin:0 0 8px">Resources</h1>
+            <p style="color:#9ba3b7;max-width:860px;margin:0 0 16px">Standards primers, demos, and helpful links.</p>
+			<div style="max-width:640px">
+                <label for="gsearch" class="sr-only">Search resources</label>
+                <div style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.12);background:rgba(8,15,30,.5);backdrop-filter:saturate(120%) blur(6px)">
+                    <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
+                    <button id="gsubmit" class="btn">Search</button>
+                </div>
+				<ul id="gsuggestions" role="listbox" aria-label="Search suggestions" style="margin:6px 0 0;padding:0;list-style:none;display:none;max-height:280px;overflow:auto;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(8,15,30,.4)"></ul>
+				<div id="gskel" style="display:none;margin-top:6px;padding:8px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(8,15,30,.4)">
+					<div class="skeleton" style="height:14px;margin:6px 0"></div>
+					<div class="skeleton" style="height:14px;margin:6px 0"></div>
+					<div class="skeleton" style="height:14px;margin:6px 0"></div>
+					<div class="skeleton" style="height:14px;margin:6px 0"></div>
+				</div>
             </div>
-			<ul id="gsuggestions" role="listbox" aria-label="Search suggestions" class="glass-card" style="margin:6px 0 0;padding:0;list-style:none;display:none;max-height:280px;overflow:auto"></ul>
-			<div id="gskel" class="glass-card" style="display:none;margin-top:6px;padding:8px">
-				<div class="skeleton" style="height:14px;margin:6px 0"></div>
-				<div class="skeleton" style="height:14px;margin:6px 0"></div>
-				<div class="skeleton" style="height:14px;margin:6px 0"></div>
-				<div class="skeleton" style="height:14px;margin:6px 0"></div>
-			</div>
         </div>
-	</section>
+    </section>
 
     <!-- Featured Row -->
     <section class="container" style="padding:24px 0 8px;content-visibility:auto">
