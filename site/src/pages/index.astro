@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import HeroComposite from '../components/HeroComposite.astro';
+import DemoTile from '../components/DemoTile.astro';
 import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
@@ -23,7 +24,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
                 </div>
             </div>
             <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
-                <HeroComposite />
+                <DemoTile poster={`${import.meta.env.BASE_URL}images/hero-poster.png`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} />
             </div>
         </div>
     </section>

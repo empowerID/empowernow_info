@@ -1,0 +1,56 @@
+---
+export interface Props {
+    poster: string;
+    sources?: Array<{ src: string; type: string }>;
+    ctaHref?: string;
+}
+const { poster, sources = [], ctaHref = `${import.meta.env.BASE_URL}resources/demo/` } = Astro.props as Props;
+---
+<div class="demo-tile panel-glass" style="position:relative;border-radius:14px;overflow:hidden">
+    {sources.length > 0 ? (
+        <video class="demo-video" poster={poster} preload="metadata" playsinline muted loop style="display:block;width:100%;height:auto">
+            {sources.map(s => <source src={s.src} type={s.type} />)}
+        </video>
+    ) : (
+        <img src={poster} alt="Demo preview" loading="lazy" decoding="async" style="display:block;width:100%;height:auto" />
+    )}
+    <div class="demo-overlay" style="position:absolute;left:0;right:0;bottom:0;padding:10px 12px;display:flex;gap:8px;align-items:center;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.65) 100%)">
+        <button class="btn" id="demo-replay" aria-label="Replay demo" hidden>Replay</button>
+        <a class="btn btn-primary" id="demo-watch" href={ctaHref} data-ev="cta_click" data-label="watch_demo" data-position="hero">Watch full demo</a>
+    </div>
+</div>
+<script>
+    (function(){
+        try{
+            const root = (Astro as any).root as HTMLElement | undefined;
+            const tile = root?.querySelector('.demo-tile') as HTMLElement | null;
+            const video = root?.querySelector('.demo-video') as HTMLVideoElement | null;
+            const replay = root?.querySelector('#demo-replay') as HTMLButtonElement | null;
+            const watch = root?.querySelector('#demo-watch') as HTMLAnchorElement | null;
+            const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if(video){
+                if(prefersReduced){ video.removeAttribute('autoplay'); video.pause(); }
+                let started=false, fired90=false;
+                const send = (percent:number)=>{
+                    try{ (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push({event:'hero_demo_watch', percent_viewed:percent, device:(/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop')}); }catch{}
+                };
+                video.addEventListener('play', ()=>{ if(!started){ started=true; send(0); } });
+                video.addEventListener('timeupdate', ()=>{
+                    if(video.duration>0){
+                        const p = video.currentTime / video.duration;
+                        if(!fired90 && p>=0.9){ fired90=true; send(90); }
+                    }
+                });
+                video.addEventListener('ended', ()=>{ replay && (replay.hidden=false); });
+                replay && replay.addEventListener('click', ()=>{ try{ video.currentTime=0; video.play(); replay.hidden=true; }catch{} });
+            }
+            tile && tile.addEventListener('mouseenter', ()=>{ tile.style.boxShadow='0 10px 30px rgba(0,231,246,.18)'; });
+            tile && tile.addEventListener('mouseleave', ()=>{ tile.style.boxShadow=''; });
+        }catch{}
+    })();
+</script>
+<style>
+    .demo-tile:focus-within{ outline:2px solid var(--pulse-cyan); outline-offset:2px }
+</style>
+
+
