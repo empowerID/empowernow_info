@@ -72,6 +72,7 @@ import '../styles/utilities.css';
 				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
 					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:28px;width:auto" />
 				</a>
+                <button id="nav-open" class="btn" aria-controls="mobile-nav" aria-expanded="false" style="display:none">Menu</button>
                 <ul class="nav-links">
                     <li>
                         <div class="nav-group">
@@ -161,7 +162,27 @@ import '../styles/utilities.css';
                     </li>
                     <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
-			</div>
+            </div>
+            <div id="mobile-nav" hidden style="position:fixed;left:0;right:0;top:0;height:92vh;transform:translateY(-100%);transition:transform .18s ease; background:rgba(12,20,36,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);z-index:1050">
+                <div class="container" style="padding:16px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                        <strong>Menu</strong>
+                        <button id="nav-close" class="btn">Close</button>
+                    </div>
+                    <div style="display:grid;gap:8px">
+                        <a class="btn" href={`${import.meta.env.BASE_URL}products/`}>Products</a>
+                        <a class="btn" href={`${import.meta.env.BASE_URL}solutions/`}>Solutions</a>
+                        <a class="btn" href={`${import.meta.env.BASE_URL}resources/`}>Resources</a>
+                        <a class="btn" href="https://empowerid.github.io/empowernow_docs/">Docs</a>
+                        <a class="btn" href={`${import.meta.env.BASE_URL}pricing/`}>Pricing</a>
+                        <a class="btn" href={`${import.meta.env.BASE_URL}company/`}>Company</a>
+                        <div style="display:flex;gap:8px;margin-top:8px">
+                            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book Demo</a>
+                            <a class="btn" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</nav>
         <div id="sticky-cta" class="sticky-cta" hidden>
             <div class="container" style="display:flex;gap:10px;justify-content:space-between;align-items:center;padding:10px">
@@ -325,6 +346,19 @@ import '../styles/utilities.css';
 							}catch{}
 						}
                         document.querySelectorAll('a[data-ev]')?.forEach(appendUtm);
+                        // Mobile sheet nav
+                        const openBtn=document.getElementById('nav-open') as HTMLButtonElement|null;
+                        const closeBtn=document.getElementById('nav-close') as HTMLButtonElement|null;
+                        const sheet=document.getElementById('mobile-nav') as HTMLDivElement|null;
+                        function setOpen(v:boolean){ if(!(openBtn&&sheet)) return; openBtn.setAttribute('aria-expanded', String(v)); sheet.hidden=false; (sheet as HTMLElement).style.transform = v? 'translateY(0)': 'translateY(-100%)'; if(!v) setTimeout(()=>{ if(sheet) sheet.hidden=true; },180); }
+                        function mq(){ return matchMedia('(max-width: 768px)').matches; }
+                        if(openBtn && sheet){
+                            openBtn.style.display = mq()? 'inline-flex':'none';
+                            window.addEventListener('resize', ()=> openBtn.style.display = mq()? 'inline-flex':'none');
+                            openBtn.addEventListener('click', ()=> setOpen(true));
+                            closeBtn && closeBtn.addEventListener('click', ()=> setOpen(false));
+                            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') setOpen(false); });
+                        }
                         // Mega menu interactions (Products & Solutions)
                         const consentKey='analytics_consent';
                         const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
