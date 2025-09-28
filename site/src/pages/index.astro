@@ -34,6 +34,53 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
             </div>
         </div>
     </section>
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'Organization',
+        name:'EmpowerNow',
+        url: new URL(`${import.meta.env.BASE_URL}`, Astro.site).toString(),
+        logo: new URL(`${import.meta.env.BASE_URL}images/en-logo-dark.png`, Astro.site).toString(),
+        sameAs:[
+            'https://github.com/empowerID',
+            'https://www.linkedin.com/company/empowerid/'
+        ]
+    })}
+    </script>
+    <script type="application/ld+json">
+    {JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'Product',
+        name:'EmpowerNow Platform',
+        brand:{ '@type':'Brand', name:'EmpowerNow' },
+        description:'Universal Agent Governance & Integration Layer — Create tools once. Enforce policy & spend controls across agent platforms, and prove every action with cryptographic receipts.',
+        offers:{ '@type':'Offer', priceCurrency:'USD', price:'500', priceSpecification:{ '@type':'UnitPriceSpecification', priceCurrency:'USD', price:'500', unitText:'per governed endpoint / month' } }
+    })}
+    </script>
+    <script type="application/ld+json">
+    {JSON.stringify({
+        '@context':'https://schema.org',
+        '@type':'FAQPage',
+        mainEntity:[
+            {
+                '@type':'Question',
+                name:'How fast can I create a tool?',
+                acceptedAnswer:{ '@type':'Answer', text:'Under 10 minutes using CRUD Service; publish once to MCP, Copilot, Functions.' }
+            },
+            {
+                '@type':'Question',
+                name:'How do you control spend?',
+                acceptedAnswer:{ '@type':'Answer', text:'Budgets and per-route caps with 402 pre-execution blocks and usage attribution.' }
+            },
+            {
+                '@type':'Question',
+                name:'What audit evidence is produced?',
+                acceptedAnswer:{ '@type':'Answer', text:'Signed, hash-chained receipts with decision context, policy hash, schema hash, and cost.' }
+            }
+        ]
+    })}
+    </script>
     <!-- Trust strip -->
     <section class="container" data-section="trust" style="padding:12px 0 12px">
         <div class="panel-glass trust-strip" style="padding:12px;color:#9ba3b7">
