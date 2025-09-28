@@ -1,0 +1,31 @@
+---
+export interface Props { items: string[] }
+const { items = [] } = Astro.props as Props;
+---
+<div class="status-row" id="status-row" style="color:#9ba3b7">
+  {items.map(label => (
+    <button class="chip" type="button" data-clickable data-pill={label}>{label}</button>
+  ))}
+  <slot />
+</div>
+<script>
+  (function(){
+    try{
+      const root = (Astro as any).root as HTMLElement | undefined;
+      const row = root?.querySelector('#status-row') as HTMLElement | null;
+      if(row){
+        row.addEventListener('click', function(e){
+          const t = (e.target as HTMLElement).closest('[data-clickable]') as HTMLElement | null;
+          if(!t) return;
+          const pill=t.getAttribute('data-pill')||'';
+          (window as any).dataLayer=(window as any).dataLayer||[];
+          (window as any).dataLayer.push({event:'status_pill_click', pill_label:pill});
+          t.classList.add('is-new');
+          setTimeout(()=> t.classList.remove('is-new'), 650);
+        });
+      }
+    }catch{}
+  })();
+</script>
+
+
