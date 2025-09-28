@@ -9,6 +9,7 @@ import ComparisonTable from '../components/ComparisonTable.astro';
 import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
+import SavingsCalculator from '../components/SavingsCalculator.astro';
 ---
 <Base title="EmpowerNow — Universal Agent Governance & Integration Layer" description="Create tools once. Enforce policy & spend controls across agent platforms, and prove every action with cryptographic receipts." canonical="/">
     <!-- Hero -->
@@ -218,74 +219,7 @@ import PinPlan from '../components/icons/PinPlan.astro';
 	</section>
     <!-- Savings calculator -->
     <section class="container reveal-on-scroll" data-section="calculator" style="padding:24px 0">
-        <div class="glass-card" style="padding:20px">
-            <h2 style="font-size:36px;margin:0 0 10px">Savings calculator</h2>
-            <p style="color:#9ba3b7;margin:0 0 10px">Endpoints & platforms assumptions. Adjust and see impact.</p>
-            <form id="calc-form" aria-describedby="calc-live" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0">
-                <label for="calc-endpoints">Endpoints (20–50)</label>
-                <input id="calc-endpoints" type="range" min="20" max="50" value="30" step="1" aria-label="Endpoints" />
-                <label for="calc-platforms">Platforms (2–3)</label>
-                <input id="calc-platforms" type="range" min="2" max="3" value="2" step="1" aria-label="Platforms" />
-                <label for="calc-cost">Loaded engineering cost ($)</label>
-                <input id="calc-cost" type="number" min="100000" step="10000" value="200000" aria-label="Loaded engineering cost" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)" />
-            </form>
-            <div id="calc-live" aria-live="polite" class="glass-card" style="padding:12px;background:rgba(255,255,255,.04);color:#9ba3b7">
-                <div><strong>DIY:</strong> <span id="calc-diy">$0</span> — endpoints × platforms × 4 weeks × eng_cost</div>
-                <div><strong>EmpowerNow (Y1):</strong> <span id="calc-enow">$0 + usage</span> — endpoints × $500 × 12</div>
-            </div>
-            <div style="margin-top:10px">
-                <a class="btn btn-primary" id="calc-cta" href={`${import.meta.env.BASE_URL}pricing/`}>Estimate my savings</a>
-            </div>
-        </div>
-        <script>
-        (function(){
-            try{
-                const endpoints=document.getElementById('calc-endpoints') as HTMLInputElement;
-                const platforms=document.getElementById('calc-platforms') as HTMLInputElement;
-                const cost=document.getElementById('calc-cost') as HTMLInputElement;
-                const diyEl=document.getElementById('calc-diy');
-                const enowEl=document.getElementById('calc-enow');
-                const cta=document.getElementById('calc-cta');
-                const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
-                function fmt(n:number){ return n.toLocaleString(undefined,{ style:'currency', currency:'USD', maximumFractionDigits:0 }); }
-                function animateTo(el:HTMLElement|null, from:number, to:number, dur:number){
-                    if(!el){ return; }
-                    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-                    if(reduced || dur<=0){ el.textContent = fmt(to); return; }
-                    const t0=performance.now();
-                    function tick(now:number){
-                        const p=Math.min(1,(now-t0)/dur);
-                        const v=Math.round(from + (to-from)*p);
-                        el.textContent = fmt(v);
-                        if(p<1) requestAnimationFrame(tick);
-                    }
-                    requestAnimationFrame(tick);
-                }
-                function recalc(pushEvent:boolean){
-                    const E=Math.max(20, Math.min(50, Number(endpoints.value)||20));
-                    const P=Math.max(2, Math.min(3, Number(platforms.value)||2));
-                    const C=Math.max(100000, Number(cost.value)||200000);
-                    const diy=E*P*4*C;
-                    const enow=E*500*12;
-                    animateTo(diyEl, Number((diyEl?.textContent||'').replace(/[^\d]/g,''))||0, diy, 200);
-                    animateTo(enowEl, Number((enowEl?.textContent||'').replace(/[^\d]/g,''))||0, enow, 200);
-                    if(!dnt){
-                        try{ (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push({event:'calc_change', endpoints:E, platforms:P, eng_cost:C}); }catch{}
-                    }
-                }
-                [endpoints, platforms, cost].forEach(i=> i && i.addEventListener('input', ()=> recalc(true)));
-                cta && cta.addEventListener('click', ()=>{
-                    try{
-                        const E=Number(endpoints.value)||20, P=Number(platforms.value)||2, C=Number(cost.value)||200000;
-                        const diy=E*P*4*C; const enow=E*500*12; const savings=diy-enow;
-                        (window as any).dataLayer=(window as any).dataLayer||[];
-                        (window as any).dataLayer.push({event:'calc_submit', diy, empowernow_y1:enow, savings});
-                    }catch{}
-                });
-                recalc(false);
-            }catch{}
-        })();
-        </script>
+        <SavingsCalculator defaultEndpoints={30} defaultPlatforms={2} defaultCost={200000} />
     </section>
     <!-- Pricing teaser -->
     <section class="container" data-section="pricing" style="padding:24px 0">
