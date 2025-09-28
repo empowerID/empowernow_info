@@ -387,12 +387,23 @@ import '../styles/utilities.css';
                         const consentKey='analytics_consent';
                         const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
                         function pl(ev:any){ if(dnt || localStorage.getItem(consentKey)!=='yes') return; (window as any).dataLayer=(window as any).dataLayer||[]; (window as any).dataLayer.push(ev);}
+                        // Global menu manager ensures only one menu is open at a time
+                        const allMenus = Array.from(document.querySelectorAll('[data-menu]')) as HTMLElement[];
+                        const allTriggers = Array.from(document.querySelectorAll('[aria-haspopup="true"]')) as HTMLElement[];
+                        function closeAll(){
+                            allTriggers.forEach(b=> b.setAttribute('aria-expanded','false'));
+                            allMenus.forEach(m=> m.hidden = true);
+                        }
+                        const navRoot = document.querySelector('nav');
+                        navRoot && navRoot.addEventListener('mouseleave', closeAll);
+                        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAll(); });
+
                         function wireMenu(btnId:string, menuId:string, name:string){
                             const trigger = document.getElementById(btnId) as HTMLButtonElement | null;
                             const menu = document.getElementById(menuId) as HTMLDivElement | null;
                             if(!(trigger && menu)) return;
                             let hoverTimer:any=null;
-                            function open(){ trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:name}); }
+                            function open(){ closeAll(); trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:name}); }
                             function close(){ trigger.setAttribute('aria-expanded','false'); menu.hidden=true; }
                             trigger.addEventListener('mouseenter', ()=> { clearTimeout(hoverTimer); hoverTimer=setTimeout(open,120); });
                             trigger.addEventListener('mouseleave', ()=> { clearTimeout(hoverTimer); });
@@ -402,8 +413,7 @@ import '../styles/utilities.css';
                                 else { e.preventDefault(); open(); }
                             } });
                             menu.addEventListener('mouseleave', close);
-                            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
-                            document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group') && !t.closest('[data-menu]')) close(); });
+                            document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group') && !t.closest('[data-menu]')) closeAll(); });
                             menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:name, item:(a as HTMLElement).textContent?.trim()||''})));
                         }
                         wireMenu('btn-products','menu-products','products');
