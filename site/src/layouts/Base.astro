@@ -399,6 +399,8 @@ import '../styles/utilities.css';
                         function closeAll(){
                             allTriggers.forEach(b=> b.setAttribute('aria-expanded','false'));
                             allMenus.forEach(m=> m.hidden = true);
+                            // unlock scroll on mobile when any menu closes
+                            if(matchMedia('(max-width: 768px)').matches){ document.documentElement.style.overflow = ''; }
                         }
                         const navRoot = document.querySelector('nav');
                         navRoot && navRoot.addEventListener('mouseleave', closeAll);
@@ -409,7 +411,7 @@ import '../styles/utilities.css';
                             const menu = document.getElementById(menuId) as HTMLDivElement | null;
                             if(!(trigger && menu)) return;
                             let hoverTimer:any=null;
-                            function open(){ closeAll(); trigger.setAttribute('aria-expanded','true'); menu.hidden=false; pl({event:'menu_open', menu:name}); }
+                            function open(){ closeAll(); trigger.setAttribute('aria-expanded','true'); menu.hidden=false; if(matchMedia('(max-width: 768px)').matches){ document.documentElement.style.overflow = 'hidden'; } pl({event:'menu_open', menu:name}); }
                             function close(){ trigger.setAttribute('aria-expanded','false'); menu.hidden=true; }
                             trigger.addEventListener('mouseenter', ()=> { clearTimeout(hoverTimer); hoverTimer=setTimeout(open,120); });
                             trigger.addEventListener('mouseleave', ()=> { clearTimeout(hoverTimer); });
@@ -418,9 +420,13 @@ import '../styles/utilities.css';
                                 if(href){ if(!(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)) { e.preventDefault(); location.href = href; (window as any).dataLayer=(window as any).dataLayer||[]; pl({event:'menu_hub_click', menu:name, source:'label'}); } }
                                 else { e.preventDefault(); open(); }
                             } });
+                            // Keyboard open on focus/ArrowDown/Space
+                            trigger.addEventListener('focus', ()=> setTimeout(open, 0));
+                            trigger.addEventListener('keydown', (e)=>{ if(e.key==='ArrowDown' || e.key===' '){ e.preventDefault(); open(); (menu.querySelector('.mega-cta') as HTMLElement)?.focus?.(); } });
                             menu.addEventListener('mouseleave', close);
                             document.addEventListener('click', (e)=>{ const t=e.target as HTMLElement; if(!t.closest('.nav-group') && !t.closest('[data-menu]')) closeAll(); });
-                            menu.querySelectorAll('a[role="menuitem"]').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:name, item:(a as HTMLElement).textContent?.trim()||''})));
+                            // track clicks on primary links inside cards
+                            menu.querySelectorAll('.mega-card .link').forEach((a)=> a.addEventListener('click', ()=> pl({event:'menu_item_click', menu:name, item:(a as HTMLElement).closest('.mega-card')?.querySelector('.h3')?.textContent?.trim()||''})));
                         }
                         wireMenu('btn-products','menu-products','products');
                         wireMenu('btn-solutions','menu-solutions','solutions');
