@@ -27,16 +27,17 @@ const allResources: ResItem[] = [
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Hero with Global Search (full-bleed stage, content container inside) -->
-    <section class="page-stage" style="padding:96px 0 24px;content-visibility:auto;contain-intrinsic-size: 600px">
+    <section class="page-stage" style="padding:112px 0 40px;position:relative;content-visibility:auto;contain-intrinsic-size: 600px">
+        <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:48px;background:linear-gradient(180deg, rgba(14,23,38,0) 0%, rgba(14,23,38,.6) 60%, rgba(14,23,38,1) 100%)"></div>
         <div class="container">
 			<!-- Breadcrumb/eyebrow intentionally omitted to match other hero sections -->
 			<h1 class="display" style="margin:0 0 8px">Resources</h1>
             <p class="body" style="color:#9db4cf;max-width:860px;margin:6px 0 20px">Standards primers, demos, and helpful links.</p>
 			<div style="max-width:640px">
                 <label for="gsearch" class="sr-only">Search resources</label>
-                <div style="padding:8px;border-radius:12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.18);background:rgba(8,15,30,.46);backdrop-filter:saturate(120%) blur(6px)">
-                    <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.4 Inter, ui-sans-serif" />
-                    <button id="gsubmit" class="btn">Search</button>
+                <div style="padding:10px;border-radius:12px;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);background:rgba(8,15,30,.52);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);backdrop-filter:saturate(120%) blur(6px)">
+                    <input id="gsearch" type="search" placeholder="Search resources…" aria-label="Search resources" style="flex:1;min-width:120px;background:transparent;border:0;outline:none;color:var(--on-bg);font:400 16px/1.5 Inter, ui-sans-serif" />
+                    <button id="gsubmit" class="btn" style="margin-top:-1px">Search</button>
                 </div>
 				<ul id="gsuggestions" role="listbox" aria-label="Search suggestions" style="margin:6px 0 0;padding:0;list-style:none;display:none;max-height:280px;overflow:auto;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(8,15,30,.4)"></ul>
 				<div id="gskel" style="display:none;margin-top:6px;padding:8px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(8,15,30,.4)">
@@ -51,14 +52,14 @@ const allResources: ResItem[] = [
 
     <!-- Featured Row -->
     <section class="container" style="padding:24px 0 8px;content-visibility:auto">
-        <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Featured</h2>
+        <h2 style="font-size:28px;margin:0 0 12px;color:#f0f4f8">Featured</h2>
         <div class="featured-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
             {allResources.filter(r=>r.featured).slice(0,6).map(r => (
                 <a href={r.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={r.id} aria-label="Open resource">
                     <div class="gradient-card__inner card-tight">
                         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-                            <h3 style="margin:0;color:#fff;font-size:18px">{r.title}</h3>
-                            <span class="chev" aria-hidden="true">→</span>
+                            <h3 style="margin:0;color:#f7fbff;font-size:18px">{r.title}</h3>
+                            <span class="chev" aria-hidden="true" style="font-size:18px">→</span>
                         </div>
                         <p style="margin:6px 0 0;color:#9db4cf;font-size:14px">{r.summary}</p>
                     </div>
@@ -69,7 +70,7 @@ const allResources: ResItem[] = [
 
     <!-- Collections Grid -->
     <section class="container" style="padding:24px 0;content-visibility:auto">
-        <h2 style="font-size:28px;margin:0 0 10px;color:#e6e6e6">Collections</h2>
+        <h2 style="font-size:28px;margin:0 0 12px;color:#f0f4f8">Collections</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px" class="collections-grid">
             {collections.map(c => (
                 <a href={c.href} class="gradient-card hover-rise" data-ev="resources_tile_click" data-label={"col_" + c.id} aria-label="Open collection">
@@ -85,12 +86,31 @@ const allResources: ResItem[] = [
         </div>
         <style>
             .gradient-card{ border-radius:16px; padding:1px; background:linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(45deg, var(--pulse-cyan), var(--quantum-violet)) border-box; display:block; text-decoration:none; color:inherit }
-            .gradient-card__inner{ background:var(--panel); border-radius:16px; padding:24px; display:flex; flex-direction:column; min-height:110px }
+            .gradient-card__inner{ background:var(--panel); border-radius:16px; padding:24px; display:flex; flex-direction:column; min-height:110px; box-shadow: 0 0 0 1px rgba(255,255,255,.04) inset, 0 8px 24px rgba(0,0,0,.25) }
             .card-tight h3{ line-height:1.2 }
             .card-tight p{ line-height:1.5 }
             .gradient-card:hover .chev{ transform: translateX(4px) }
             .chev{ transition: transform .15s ease }
+            @media (min-width: 1024px){ .collections-grid{ gap:24px } .featured-grid{ gap:24px } }
         </style>
+        <script>
+            // Section impression analytics
+            (function(){
+                const dnt = (navigator).doNotTrack==='1' || (window).doNotTrack==='1';
+                if(dnt) return;
+                const dl = (window).dataLayer = (window).dataLayer || [];
+                function observeOnce(el, name){
+                    const io = new IntersectionObserver((entries)=>{
+                        entries.forEach(e=>{ if(e.isIntersecting){ dl.push({event:'resources_section_view', section:name}); io.disconnect(); } });
+                    }, { threshold:.4 });
+                    io.observe(el);
+                }
+                const featured = document.querySelector('.featured-grid');
+                const collections = document.querySelector('.collections-grid');
+                featured && observeOnce(featured, 'featured');
+                collections && observeOnce(collections, 'collections');
+            })();
+        </script>
     </section>
 
     <!-- All Resources with Filters -->
@@ -161,6 +181,8 @@ const allResources: ResItem[] = [
             activeIndex = matches.length?0:-1;
             gs.style.display = matches.length ? 'block' : 'none';
 			gsk && (gsk as HTMLElement).style.display = 'none';
+            gi && gi.setAttribute('aria-expanded', matches.length? 'true' : 'false');
+            if(matches.length){ gi && gi.setAttribute('aria-activedescendant', 'opt-0'); } else { gi && gi.removeAttribute('aria-activedescendant'); }
         }
         function buildSuggestions(term){ clearTimeout(sTimer); sTimer = window.setTimeout(()=> buildSuggestionsNow(term), 250); }
 		gi && gi.addEventListener('input', ()=> { if((gi as HTMLInputElement).value.trim()){ gsk && ((gsk as HTMLElement).style.display='block'); gs && ((gs as HTMLElement).style.display='none'); } buildSuggestions((gi as HTMLInputElement).value); });
@@ -168,7 +190,7 @@ const allResources: ResItem[] = [
             const items = Array.from(gs?.querySelectorAll('li')||[]);
             if(e.key==='ArrowDown'){ e.preventDefault(); if(items.length){ activeIndex = (activeIndex+1)%items.length; items.forEach((li,i)=> li.setAttribute('aria-selected', String(i===activeIndex))); liFocus(); } }
             else if(e.key==='ArrowUp'){ e.preventDefault(); if(items.length){ activeIndex = (activeIndex-1+items.length)%items.length; items.forEach((li,i)=> li.setAttribute('aria-selected', String(i===activeIndex))); liFocus(); } }
-            else if(e.key==='Escape'){ gs.style.display='none'; }
+            else if(e.key==='Escape'){ gs.style.display='none'; gi && gi.setAttribute('aria-expanded','false'); gi && gi.removeAttribute('aria-activedescendant'); }
             else if(e.key==='Enter'){
                 e.preventDefault();
                 const term=(gi.value||'').trim();
@@ -176,7 +198,7 @@ const allResources: ResItem[] = [
                 if(activeIndex>=0 && items[activeIndex]){ const a = items[activeIndex].querySelector('a') as HTMLAnchorElement; a && a.click(); return; }
                 location.href = `${base}search/?q=`+encodeURIComponent(term);
             }
-            function liFocus(){ const it = items[activeIndex]; it && (it.querySelector('a') as HTMLAnchorElement)?.focus(); }
+            function liFocus(){ const it = items[activeIndex]; it && (it.querySelector('a') as HTMLAnchorElement)?.focus(); gi && gi.setAttribute('aria-activedescendant', `opt-${activeIndex}`); }
         });
         sb && sb.addEventListener('click', ()=>{ const term=(gi?.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); });
 
