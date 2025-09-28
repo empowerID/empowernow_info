@@ -49,22 +49,25 @@ import '../styles/utilities.css';
 			a:visited{color:var(--on-bg)}
 			/* Visible focus ring for all focusable controls */
 			a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible, [role="button"]:focus-visible, .chip:focus-visible { outline:2px solid var(--pulse-cyan); outline-offset:2px; border-radius:6px }
+			/* Nav underline grow */
+			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px}
+			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
 		</style>
 	</head>
     <body>
 		<a href="#main" class="sr-only-focusable">Skip to content</a>
         <nav aria-label="Primary navigation">
-            <div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0">
+            <div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--nav-border)">
 				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
 					<img src={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:28px;width:auto" />
 				</a>
-				<ul class="nav-links">
-					<li><a href={`${import.meta.env.BASE_URL}products/`}>Products</a></li>
-					<li><a href={`${import.meta.env.BASE_URL}solutions/`}>Solutions</a></li>
-					<li><a href={`${import.meta.env.BASE_URL}resources/`}>Resources</a></li>
+                <ul class="nav-links">
+                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}products/`} data-ev="nav_click" data-label="Products">Products</a></li>
+                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}solutions/`} data-ev="nav_click" data-label="Solutions">Solutions</a></li>
+                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}resources/`} data-ev="nav_click" data-label="Resources">Resources</a></li>
 					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
-					<li><a href={`${import.meta.env.BASE_URL}pricing/`}>Pricing</a></li>
-                    <li><a href={`${import.meta.env.BASE_URL}company/`}>Company</a></li>
+                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="nav_click" data-label="Pricing">Pricing</a></li>
+                    <li><a class="nav-link" href={`${import.meta.env.BASE_URL}company/`} data-ev="nav_click" data-label="Company">Company</a></li>
                     <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
 			</div>
