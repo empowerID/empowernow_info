@@ -1,0 +1,20 @@
+---
+export interface Props { label: string; icon?: 'author'|'budget'|'receipt'|'shield'|'check' }
+const { label, icon = 'check' } = Astro.props as Props;
+const icons: Record<string, string> = {
+  author: '<path d="M4 12h12M4 8h12M4 16h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  budget: '<circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="2"/><path d="M10 5v10M7 8h6M7 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  receipt: '<path d="M6 4h8l2 2v10l-2 2H6l-2-2V6l2-2z" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 8h6M8 11h6M8 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+  shield: '<path d="M10 3l6 3v5a8 8 0 0 1-6 7 8 8 0 0 1-6-7V6l6-3z" stroke="currentColor" stroke-width="2" fill="none"/>',
+  check: '<path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'
+};
+---
+<span class="chip hover-rise" style="display:inline-flex;align-items:center;gap:6px">
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 20 20" class="proof-icon" style="color:var(--brand-2)"><Fragment set:html={icons[icon] || icons.check} /></svg>
+  {label}
+</span>
+<style>
+  .proof-icon{filter:drop-shadow(0 0 6px rgba(76,201,240,.35))}
+</style>
+
+

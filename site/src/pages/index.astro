@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import HeroComposite from '../components/HeroComposite.astro';
 import DemoTile from '../components/DemoTile.astro';
+import ProofChip from '../components/ProofChip.astro';
 import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
@@ -18,9 +19,9 @@ import PinPlan from '../components/icons/PinPlan.astro';
                     <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" data-position="hero" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
-                    <span class="chip">Author once → MCP / Functions / Copilot</span>
-                    <span class="chip">Budget 402 & content/egress deny</span>
-                    <span class="chip">Receipts auditors accept</span>
+                    <ProofChip label="Author once → MCP / Functions / Copilot" icon="author" />
+                    <ProofChip label="Budget 402 & content/egress deny" icon="budget" />
+                    <ProofChip label="Receipts auditors accept" icon="receipt" />
                 </div>
             </div>
             <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
