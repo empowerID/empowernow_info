@@ -12,9 +12,11 @@
   <url><loc>https://empowerid.github.io/products/idp/primer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/membership/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://empowerid.github.io/products/nowconnect/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/orchestration/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/pdp/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/pdp/primer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/receipts/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowerid.github.io/products/registry/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://empowerid.github.io/products/vds/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
