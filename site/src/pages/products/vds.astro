@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'VDS | EmpowerNow';
+const description = 'Virtual Directory Service: unify identity across sources without moving data; cache, map, secure; serve legacy and modern apps.';
+const canonical = '/products/vds/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"VDS","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} productKey="vds" productIcon="🗂️" eyebrow="🗂️ VDS" headline="VDS" subhead="Virtualize identity data for legacy and modern apps." targetICP={[ 'IAM', 'Platform Teams' ]} keyBenefits={[ 'Single logical directory across sources', 'Offloads legacy apps without migration', 'Caching for performance & resilience', 'Works with modern auth & IGA' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/vds/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} keywords={[ 'ldap','scim','oidc' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<ol class="numbered">
+					<li>Map — define virtual schema & joins</li>
+					<li>Expose — standards‑compliant views for apps</li>
+					<li>Secure — apply access policy & caching</li>
+				</ol>
+			</section>
+		</fragment>
+		<fragment slot="standards">
+			<div class="status-row">
+				<span class="chip chip--outline-cyan">LDAP</span>
+				<span class="chip chip--outline-cyan">SCIM</span>
+				<span class="chip chip--outline-cyan">OIDC</span>
+			</div>
+		</fragment>
+		<fragment slot="examples">
+			<div class="card-grid">
+				<div class="ns-card"><h3>Legacy app reads unified directory</h3><p>Single logical view.</p></div>
+				<div class="ns-card"><h3>SCIM proxy for modern services</h3><p>Bridge old and new.</p></div>
+			</div>
+		</fragment>
+	</Product>
+</Base>

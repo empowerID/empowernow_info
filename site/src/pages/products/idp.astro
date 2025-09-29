@@ -2,14 +2,30 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'IdP — Bind agents to users and capture consent';
-const description = 'Issue ARIA Passports, collect explicit user consent, and attach obligations that downstream services enforce.';
+const title = 'IdP | EmpowerNow';
+const description = 'Issue purpose-bound Agent Passports (OAuth TE + RAR + optional DPoP); bind agents to users and capture consent for downstream enforcement.';
 const canonical = '/products/idp/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"IdP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="idp" eyebrow="🔐 IDP" headline="Bind agents to users and capture consent up front" subhead="Issue purpose‑bound ARIA Passports (TE + RAR + optional DPoP), collect explicit user consent, and attach obligations that downstream services enforce." targetICP={[ 'Platform Teams', 'Security', 'Compliance' ]} keyBenefits={[ 'Strong agent binding to user identity', 'Pre‑issuance consent with obligations', 'Budget envelopes for spend governance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/', label: 'IdP Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp', 'authzen' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="idp" productIcon="🔐" eyebrow="🔐 IDP" headline="IdP" subhead="Bind agents to users and capture consent up front. Issue purpose‑bound Agent Passports (OAuth TE + RAR + optional DPoP) and attach obligations enforced downstream." targetICP={[ 'Platform Teams', 'Security', 'Compliance' ]} keyBenefits={[ 'Strong agent→user binding with purpose scope', 'Pre‑issuance consent & obligations', 'Budget envelopes enforced downstream', 'Optional DPoP (proof-of-possession)' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/idp/', label: 'IdP Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'oauth te','rar','dpop','oidc','scim','caep' ]}>
+        <fragment slot="standards">
+            <div class="status-row">
+                <span class="chip chip--outline-cyan">OAuth TE</span>
+                <span class="chip chip--outline-cyan">RAR</span>
+                <span class="chip chip--outline-cyan">DPoP</span>
+                <span class="chip chip--outline-cyan">OIDC</span>
+                <span class="chip chip--outline-cyan">SCIM</span>
+                <span class="chip chip--outline-cyan">CAEP</span>
+            </div>
+        </fragment>
+        <fragment slot="examples">
+            <div class="card-grid">
+                <div class="ns-card"><h3>GitHub Admin Passport</h3><p>Scope + step‑up enforced.</p></div>
+                <div class="ns-card"><h3>Copilot delegated action</h3><p>Consent before issuance.</p></div>
+            </div>
+        </fragment>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

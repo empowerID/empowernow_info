@@ -20,6 +20,8 @@ interface Props {
 	keywords?: string[];
 	/** product key for gradient mapping: idp|pdp|crud|collector|shield|gateway|vds|nowconnect */
 	productKey?: string;
+	/** optional icon (emoji or SVG text) shown in studio bar */
+	productIcon?: string;
 }
 function docsHref(p: Props): string | undefined {
 	return (p.secondaryCTA && p.secondaryCTA.href) || (p.docsLinks && p.docsLinks[0]?.href) || undefined;
@@ -59,7 +61,10 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
     </header>
     <nav class="studio-bar" aria-label="Product sections">
         <div class="container" style="display:flex;align-items:center;gap:12px;padding:10px 0">
-            <div class="studio-brand"><span class="chip">{p.headline}</span></div>
+            <div class="studio-brand">
+                {p.productIcon && <span aria-hidden="true">{p.productIcon}</span>}
+                <span class="h3" style="font-size:16px">{p.headline}</span>
+            </div>
             <ul class="studio-tabs tabs-scroll" role="tablist">
                 <li role="presentation"><a role="tab" href="#why">Why it wins</a></li>
                 <li role="presentation"><a role="tab" href="#how">How it works</a></li>

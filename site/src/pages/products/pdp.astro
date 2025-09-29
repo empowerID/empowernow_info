@@ -2,14 +2,27 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'AuthZEN PDP — Explainable, enforceable decisions';
-const description = 'Standardized allow/deny with constraints, obligations, TTL, and reasons. Built to be enforced by Gateway and Shield.';
+const title = 'PDP | EmpowerNow';
+const description = 'Policy decisions with standardized constraints/obligations/TTL—budgets, content, egress, params—enforced by gateways and apps.';
 const canonical = '/products/pdp/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"AuthZEN PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="pdp" eyebrow="🛡️ PDP" headline="Author once, decide everywhere" subhead="OpenID AuthZEN contracts return allow/deny + constraints/obligations/TTL with explanations — used by Gateway and Shield to enforce budgets, params, and content." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'Standardized, explainable decisions (AuthZEN)', 'Constraints/obligations for budgets, params, egress', 'Batch and graph‑aware evaluation; consistent across stacks' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','pdp','authorization' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="pdp" productIcon="🛡️" eyebrow="🛡️ PDP" headline="PDP" subhead="Standardized decisions with constraints, obligations, and TTL." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'One decision contract across agents/apps', 'Budget 402, content & egress limits, param allow‑lists', 'Conservative merge across policy layers', 'Explainable decisions with cache‑friendly TTL' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','oidc','caep' ]}>
+        <fragment slot="standards">
+            <div class="status-row">
+                <span class="chip chip--outline-cyan">AuthZEN</span>
+                <span class="chip chip--outline-cyan">OIDC</span>
+                <span class="chip chip--outline-cyan">CAEP</span>
+            </div>
+        </fragment>
+        <fragment slot="examples">
+            <div class="card-grid">
+                <div class="ns-card"><h3>AI chat budget 402</h3><p>Safe stop + upgrade CTA.</p></div>
+                <div class="ns-card"><h3>Off‑plan tool deny</h3><p>Plan step mismatch.</p></div>
+            </div>
+        </fragment>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

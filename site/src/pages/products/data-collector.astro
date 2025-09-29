@@ -2,8 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'Data Collector — Fresh context and spend signals';
-const description = 'Collect identities/entitlements with lineage + model usage/cost signals; feed PDP PIPs and budget decisions.';
+const title = 'Data Collector | EmpowerNow';
+const description = 'Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources, freshness) feeding PDP/PIP for accurate policy.';
 const canonical = '/products/data-collector/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Data Collector","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
@@ -26,6 +26,21 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                         <div class="node">ClickHouse</div>
                         <div class="node">PDP PIP</div>
                     </div>
+                </div>
+            </section>
+            <section id="standards" class="container" style="padding:8px 0 24px">
+                <h2 class="section-title">Standards</h2>
+                <div class="status-row">
+                    <span class="chip chip--outline-cyan">SCIM</span>
+                    <span class="chip chip--outline-cyan">OIDC</span>
+                    <span class="chip chip--outline-cyan">CAEP</span>
+                </div>
+            </section>
+            <section id="examples" class="container" style="padding:8px 0 24px">
+                <h2 class="section-title">Examples</h2>
+                <div class="card-grid">
+                    <div class="ns-card"><h3>Entitlement freshness feed → PDP</h3><p>Accurate decisions.</p></div>
+                    <div class="ns-card"><h3>Lineage for audit queries</h3><p>Traceability.</p></div>
                 </div>
             </section>
             <section class="container" style="padding:8px 0 24px">

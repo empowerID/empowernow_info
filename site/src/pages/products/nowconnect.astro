@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import Product from '../../layouts/Product.astro';
+import JsonLd from '../../components/JsonLd.astro';
+const title = 'NowConnect | EmpowerNow';
+const description = 'Hybrid connectivity using outbound relay patterns; connect agents and PEPs to on-prem systems securely—no inbound ports.';
+const canonical = '/products/nowconnect/';
+const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"NowConnect","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
+---
+<Base title={title} description={description} canonical={canonical}>
+	<JsonLd data={jsonLdProduct} />
+	<Product title={title} description={description} canonical={canonical} productKey="nowconnect" productIcon="🔗" eyebrow="🔗 NOWCONNECT" headline="NowConnect" subhead="Hybrid connectivity for on‑prem and cloud—secure by default." targetICP={[ 'Platform Teams', 'Security', 'Networking' ]} keyBenefits={[ 'No inbound holes; outbound‑only relays', 'Simple deployment; cloud or self‑hosted', 'Observability & controls built‑in', 'Works with CRUD Service and gateways' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/nowconnect/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} keywords={[ 'mtls','oauth','authzen' ]}>
+		<fragment slot="how">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">How it works</h2>
+				<ol class="numbered">
+					<li>Relay — establish outbound connector</li>
+					<li>Authorize — policy‑guarded calls only</li>
+					<li>Observe — logs/metrics/receipts</li>
+				</ol>
+			</section>
+		</fragment>
+		<fragment slot="standards">
+			<div class="status-row">
+				<span class="chip chip--outline-cyan">mTLS</span>
+				<span class="chip chip--outline-cyan">OAuth</span>
+				<span class="chip chip--outline-cyan">AuthZEN</span>
+			</div>
+		</fragment>
+		<fragment slot="examples">
+			<div class="card-grid">
+				<div class="ns-card"><h3>Reach on‑prem SAP/AD from cloud agent</h3><p>Secure relay.</p></div>
+				<div class="ns-card"><h3>PEP ↔ internal API with receipts</h3><p>Auditable path.</p></div>
+			</div>
+		</fragment>
+	</Product>
+</Base>
