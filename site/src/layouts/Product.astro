@@ -12,11 +12,17 @@ interface Props {
 	targetICP?: string[];
 	primaryCTA?: CTA;
 	secondaryCTA?: CTA;
+	tertiaryCTA?: CTA;
 	jsonLdProduct?: Record<string, any>;
 	proofTitle?: string;
 	docsLinks?: Link[];
 	wwwLinks?: Link[];
 	keywords?: string[];
+	/** product key for gradient mapping: idp|pdp|crud|collector|shield|gateway|vds|nowconnect */
+	productKey?: string;
+}
+function docsHref(p: Props): string | undefined {
+	return (p.secondaryCTA && p.secondaryCTA.href) || (p.docsLinks && p.docsLinks[0]?.href) || undefined;
 }
 const p = Astro.props as Props;
 import { relatedFor } from '../lib/keywords';
@@ -31,22 +37,71 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: 'Products', item: new URL(`${import.meta.env.BASE_URL}products/`, Astro.site).toString() },
 	{ name: p.headline, item: new URL(`${import.meta.env.BASE_URL}${String(p.canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
 ]} />
-<section class="container hero-plate" style="padding:72px 0 24px">
-    {p.eyebrow && <div class="eyebrow">{p.eyebrow}</div>}
-    <h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
-	{p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
-	{p.targetICP && p.targetICP.length>0 && (
-		<div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
-			{p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet">{t}</span>)}
-			{p.targetICP.length>2 && <span class="chip chip--more">+{p.targetICP.length-2} more</span>}
-		</div>
-	)}
-	<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-		{p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
-		{p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
-		<span class="chip chip--success" style="align-self:center">AA compliant</span>
-	</div>
-</section>
+<div class={`product-root ${p.productKey ? `product--${p.productKey}` : ''}`}>
+    <header class="hero-band">
+        <section class="container hero-plate" style="padding:72px 0 24px">
+            {p.eyebrow && <div class="eyebrow">{p.eyebrow}</div>}
+            <h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
+            {p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
+            {p.targetICP && p.targetICP.length>0 && (
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
+                    {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet">{t}</span>)}
+                    {p.targetICP.length>2 && <span class="chip chip--more">+{p.targetICP.length-2} more</span>}
+                </div>
+            )}
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+                {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
+                {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
+                {p.tertiaryCTA && <a class="btn btn-secondary" href={p.tertiaryCTA.href} aria-label={`Tertiary: ${p.tertiaryCTA.label}`} data-ev="cta_click" data-label={p.tertiaryCTA.label} data-position="hero_tertiary">{p.tertiaryCTA.label}</a>}
+                <span class="chip chip--success" style="align-self:center">AA compliant</span>
+            </div>
+        </section>
+    </header>
+    <nav class="studio-bar" aria-label="Product sections">
+        <div class="container" style="display:flex;align-items:center;gap:12px;padding:10px 0">
+            <div class="studio-brand"><span class="chip">{p.headline}</span></div>
+            <ul class="studio-tabs tabs-scroll" role="tablist">
+                <li role="presentation"><a role="tab" href="#why">Why it wins</a></li>
+                <li role="presentation"><a role="tab" href="#how">How it works</a></li>
+                <li role="presentation"><a role="tab" href="#standards">Standards</a></li>
+                <li role="presentation"><a role="tab" href="#examples">Examples</a></li>
+                <li role="presentation"><a role="tab" href="#plans">Plans</a></li>
+            </ul>
+            <div class="studio-cta">
+                {docsHref(p) && <a class="btn btn-ghost" href={docsHref(p)}>Docs</a>}
+                {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href}>Book demo</a>}
+            </div>
+        </div>
+    </nav>
+    <section id="why" class="container" style="padding:8px 0 24px">
+        {p.keyBenefits && p.keyBenefits.length > 0 && (
+            <>
+                <h2 class="section-title">Why it wins</h2>
+                <div class="benefit-row">
+                    {p.keyBenefits.map((b) => <div class="glass-card card-glow benefit-card"><span class="benefit-bullet" aria-hidden="true"></span><div>{b}</div></div>)}
+                </div>
+                <div class="row-hairline"></div>
+            </>
+        )}
+    </section>
+    <section id="how" class="container" style="padding:8px 0 16px"><slot name="how" /></section>
+    <section id="standards" class="container" style="padding:0 0 24px"><slot name="standards" /></section>
+    <section id="examples" class="container" style="padding:0 0 24px"><slot name="examples" /></section>
+    <section class="container" style="padding:0 0 24px">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+            {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="mid_primary">See it live</a>}
+            {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="mid_secondary">Read docs</a>}
+        </div>
+    </section>
+    <section id="plans" class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Plans</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+            <a class="btn" style="border-color:var(--color-accent);color:var(--color-accent)" href={`${import.meta.env.BASE_URL}pricing/`}>See pricing</a>
+            <a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Talk to us</a>
+        </div>
+    </section>
+</div>
 {p.keyBenefits && p.keyBenefits.length > 0 && (
 	<section class="container" style="padding:8px 0 24px">
 		<h2 class="section-title">Why it wins</h2>

@@ -298,3 +298,380 @@ Edit existing page (dev)
 - a11y: alt text, headings order, focus states
 - Performance: images optimized; budgets pass
 - Consent banner visible for new sessions
+
+## 36) Product page consistency kit (`/products/*`)
+
+Use this drop‑in pack to make every product page unmistakably clear and consistent across `/products/*`, using official product names. It includes a shared masthead (hero) + sticky “Studio Bar”, per‑product copy blocks, gradient/icon tokens, and a QA checklist.
+
+### A) Shared page template (use for every product)
+
+Add the context class for gradients on the page root wrapper (e.g., the top container in your page, or on `<body>` via `Base.astro`): `.product--idp | .product--pdp | .product--crud | .product--collector | .product--shield | .product--gateway | .product--vds | .product--nowconnect`.
+
+#### 1) Masthead (Hero)
+
+- Kicker (eyebrow): `ICON  PRODUCT NAME` (uppercase)
+- H1: official Product Name (not a slogan)
+- Sub‑headline (promise): 1–2 lines
+- One‑line explainer: ≤140 chars
+- CTA cluster: Book demo (primary), Read docs (secondary), Quickstart (secondary)
+- Visual: product icon + color gradient band
+
+```astro
+---
+// In a product page under src/pages/products/*.astro
+---
+<header class="hero-band">
+	<section class="container" style="padding:24px 0 28px">
+		<div class="eyebrow" aria-hidden="true">[ICON] PRODUCT NAME</div>
+		<h1 class="h1">[Product Name]</h1>
+		<p class="h3" style="margin:8px 0 0">[Promise line]</p>
+		<p class="body" style="margin:8px 0 0;max-width:72ch">[One-line explainer]</p>
+		<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+			<a class="btn btn-primary" href="/demo/" data-ev="cta" data-label="book-demo" data-position="hero">Book demo</a>
+			<a class="btn btn-secondary" href="[DOCS_URL]" data-ev="cta" data-label="read-docs" data-position="hero">Read docs</a>
+			<a class="btn btn-secondary" href="/quickstart/" data-ev="cta" data-label="quickstart" data-position="hero">Quickstart</a>
+		</div>
+	</section>
+</header>
+```
+
+#### 2) Sticky “Studio Bar”
+
+- Left: Icon + Product name
+- Center tabs: Why it wins • How it works • Standards • Examples • Plans
+- Right: Docs • Book demo
+
+```astro
+<nav class="studio-bar" aria-label="Product sections">
+	<div class="container" style="display:flex;align-items:center;gap:12px;padding:10px 0">
+		<div class="studio-brand"><span aria-hidden="true">[ICON]</span><span class="h3" style="font-size:16px">[Product Name]</span></div>
+		<ul class="studio-tabs tabs-scroll" role="tablist">
+			<li role="presentation"><a role="tab" href="#why">Why it wins</a></li>
+			<li role="presentation"><a role="tab" href="#how">How it works</a></li>
+			<li role="presentation"><a role="tab" href="#standards">Standards</a></li>
+			<li role="presentation"><a role="tab" href="#examples">Examples</a></li>
+			<li role="presentation"><a role="tab" href="#plans">Plans</a></li>
+		</ul>
+		<div class="studio-cta">
+			<a class="btn btn-ghost" href="[DOCS_URL]">Docs</a>
+			<a class="btn btn-primary" href="/demo/">Book demo</a>
+		</div>
+	</div>
+</nav>
+```
+
+#### 3) Sections (copy pattern)
+
+- `#why` — Why it wins (3–4 bullets; outcomes)
+- `#how` — How it works (3 steps + mini diagram)
+- `#standards` — Standards (pills)
+- `#examples` — Examples (2–4 cards)
+- `#plans` — Plans/Contact (link to pricing or contact)
+
+#### 4) A11y & SEO
+
+- Heading order H1→H2 (no skips)
+- Title: `[Product Name] | EmpowerNow`
+- Meta description ≤160 chars
+- OG: product icon + gradient band + product name
+
+### B) Product pages — copy blocks
+
+Replace `[DOCS_URL]` with the correct docs path.
+
+#### 1) IdP
+
+- Icon/gradient: 🔐  • indigo 600 → cyan 500
+- Docs: `/docs/idp`
+
+Hero
+
+- Kicker: 🔐 IDP
+- H1: IdP
+- Promise: Bind agents to users and capture consent up front.
+- Explainer: Issue purpose‑bound Agent Passports (OAuth TE + RAR + optional DPoP) and attach obligations enforced downstream.
+
+Why it wins
+
+- Strong agent→user binding with purpose scope
+- Pre‑issuance consent & obligations
+- Budget envelopes that downstream services enforce
+- Optional DPoP (proof‑of‑possession)
+
+How it works
+
+1. Request — agent requests purpose‑bound Passport (TE+RAR)
+2. Consent & obligations — user consent recorded, obligations attached
+3. Enforce — Shield/Gateway enforce scope/budget/obligations
+
+Standards: `OAuth TE • RAR • DPoP • OIDC • SCIM • CAEP`
+
+SEO
+
+- Title: `IdP | EmpowerNow`
+- Meta: `Issue purpose-bound Agent Passports (OAuth TE + RAR + optional DPoP), bind agents to users, capture consent, and enforce downstream.`
+
+#### 2) PDP
+
+- Icon/gradient: 🛡️  • violet 500 → magenta 500
+- Docs: `/docs/pdp`
+
+Hero
+
+- Kicker: 🛡️ PDP
+- H1: PDP
+- Promise: Standardized decisions with constraints, obligations, and TTL.
+- Explainer: Visual policy → normalized decision that gateways and apps can enforce—budgets, content, egress, params—everywhere.
+
+Why it wins
+
+- One decision contract across agents/apps
+- Budget 402, content & egress limits, param allow‑lists
+- Conservative merge across policy layers
+- Explainable decisions with cache‑friendly TTL
+
+How it works
+
+1. Decide — PDP returns `decision + constraints/obligations/ttl`
+2. Enforce — Shield/Gateway & apps apply limits during calls/streams
+3. Prove — Receipts link decision to policy snapshot
+
+Standards: `AuthZEN • OIDC • CAEP`
+
+SEO
+
+- Title: `PDP | EmpowerNow`
+- Meta: `Policy decisions with standardized constraints/obligations/TTL—budgets, content, egress, params—enforced by gateways and apps.`
+
+#### 3) CRUD Service
+
+- Icon/gradient: ⚙️  • lime 400 → cyan 500
+- Docs: `/docs/crud-service`
+
+Hero
+
+- Kicker: ⚙️ CRUD SERVICE
+- H1: CRUD Service
+- Promise: Create tools once—publish to MCP, Functions, and Copilot.
+- Explainer: No‑code connectors/workflows that output MCP Tools/Resources/Prompts and adapters for OpenAI Functions & Copilot actions.
+
+Why it wins
+
+- Author once → publish to many platforms
+- Idempotent runs with approvals & retries
+- Param schemas & validation built‑in
+- Hello‑world to usable tool in minutes
+
+How it works
+
+1. Define — tool inputs, validation, approvals
+2. Publish — output MCP + Functions + Copilot manifests
+3. Invoke — same tool from any agent; policy enforced downstream
+
+Standards: `MCP • OpenAI Function Calling • Copilot Studio`
+
+SEO
+
+- Title: `CRUD Service | EmpowerNow`
+- Meta: `No-code connectors/workflows that output MCP tools, OpenAI Functions, and Copilot actions. Author once—publish to many platforms.`
+
+#### 4) Data Collector
+
+- Icon/gradient: 🧭  • teal 400 → cyan 500
+- Docs: `/docs/data-collector`
+
+Hero
+
+- Kicker: 🧭 DATA COLLECTOR
+- H1: Data Collector
+- Promise: Keep identity facts fresh for accurate policy.
+- Explainer: Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources, freshness) feeding PDP/PIP and IGA systems.
+
+Why it wins
+
+- Fresh, normalized identity facts for decisions
+- Source lineage for audit and forensics
+- Reduces false positives/negatives in policy checks
+- Lightweight to deploy; fits existing IGA
+
+How it works
+
+1. Ingest — pull deltas from systems of record
+2. Normalize — unify schemas, map relationships
+3. Serve — expose to PDP/PIP & IGA for evaluation
+
+Standards: `SCIM • OIDC • CAEP` (plus source‑specific connectors)
+
+SEO
+
+- Title: `Data Collector | EmpowerNow`
+- Meta: `Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources, freshness) feeding PDP/PIP for accurate policy.`
+
+#### 5) ARIA Shield
+
+- Icon/gradient: 🧊  • cyan 500 → violet 500
+- Docs: `/docs/aria-shield`
+
+Hero
+
+- Kicker: 🧊 ARIA SHIELD
+- H1: ARIA Shield
+- Promise: Enforce budgets & streaming caps at runtime—zero‑token SPA.
+- Explainer: BFF gateway: applies budgets (402), streaming caps; terminates OAuth in backend (no tokens in browser); emits receipts.
+
+Why it wins
+
+- Real‑time spend & stream control
+- Zero‑token SPA for safer apps
+- Friendly UX on budget exceed (upgrade CTA)
+- Cryptographic receipts for audit
+
+How it works
+
+1. Pre‑check — fetch decision; set caps
+2. Stream — enforce caps; stop on exceed
+3. Record — write receipt & metrics
+
+Standards: `AuthZEN • OIDC • CAEP`
+
+SEO
+
+- Title: `ARIA Shield | EmpowerNow`
+- Meta: `BFF gateway that enforces budgets (402) and streaming caps at runtime, enables zero-token SPA, and emits cryptographic receipts.`
+
+#### 6) ARIA MCP Gateway
+
+- Icon/gradient: 🚦  • cyan 500 → violet 500
+- Docs: `/docs/aria-mcp-gateway`
+
+Hero
+
+- Kicker: 🚦 ARIA MCP GATEWAY
+- H1: ARIA MCP Gateway
+- Promise: Stop off‑plan & drifted tool calls—before execution.
+- Explainer: Enforces plan steps and schema pins at the agent→tool boundary; param & egress allow‑lists; receipts for every permit.
+
+Why it wins
+
+- Blocks risky tool calls pre‑execution
+- Prevents schema drift with pins + grace windows
+- Params/egress allowlists at the edge
+- Signed receipts for compliance
+
+How it works
+
+1. Validate — Passport + plan step + schema pin
+2. Allow/deny — match params & egress lists
+3. Receipt — sign & chain with policy snapshot
+
+Standards: `MCP • AuthZEN`
+
+SEO
+
+- Title: `ARIA MCP Gateway | EmpowerNow`
+- Meta: `MCP gateway that enforces plan steps and schema pins at the agent→tool boundary, validates params/egress, and emits receipts.`
+
+#### 7) VDS (Virtual Directory Service)
+
+- Icon/gradient: 🗂️  • slate 500 → cyan 500
+- Docs: `/docs/vds`
+
+Hero
+
+- Kicker: 🗂️ VDS
+- H1: VDS
+- Promise: Virtualize identity data for legacy and modern apps.
+- Explainer: Present a unified, read‑optimized directory view across sources without moving data; cache, map, and secure.
+
+Why it wins
+
+- Single logical directory across sources
+- Offloads legacy apps without migration
+- Caching for performance & resilience
+- Works with modern auth & IGA
+
+How it works
+
+1. Map — define virtual schema & joins
+2. Expose — standards‑compliant views for apps
+3. Secure — apply access policy & caching
+
+Standards: `LDAP • SCIM • OIDC` (as applicable)
+
+SEO
+
+- Title: `VDS | EmpowerNow`
+- Meta: `Virtual Directory Service: unify identity across sources without moving data; cache, map, secure; serve legacy and modern apps.`
+
+#### 8) NowConnect (hybrid connectivity)
+
+- Icon/gradient: 🔗  • emerald 500 → cyan 500
+- Docs: `/docs/nowconnect`
+
+Hero
+
+- Kicker: 🔗 NOWCONNECT
+- H1: NowConnect
+- Promise: Hybrid connectivity for on‑prem and cloud—secure by default.
+- Explainer: Lightweight relay patterns for connecting agents and PEPs to on‑prem systems without opening inbound ports.
+
+Why it wins
+
+- No inbound holes; outbound‑only relays
+- Simple deployment; cloud or self‑hosted
+- Observability & controls built‑in
+- Works with CRUD Service and gateways
+
+How it works
+
+1. Relay — establish outbound connector
+2. Authorize — policy‑guarded calls only
+3. Observe — logs/metrics/receipts
+
+Standards: `mTLS • OAuth • AuthZEN` (as applicable)
+
+SEO
+
+- Title: `NowConnect | EmpowerNow`
+- Meta: `Hybrid connectivity using outbound relay patterns; connect agents and PEPs to on-prem systems securely—no inbound ports.`
+
+### C) Icons & gradient tokens
+
+Map icon and gradient per product. Use a product context class to activate gradient tokens:
+
+| Product | Icon | Gradient (from → to) |
+| --- | --- | --- |
+| IdP | 🔐 | indigo 600 → cyan 500 |
+| PDP | 🛡️ | violet 500 → magenta 500 |
+| CRUD Service | ⚙️ | lime 400 → cyan 500 |
+| Data Collector | 🧭 | teal 400 → cyan 500 |
+| ARIA Shield | 🧊 | cyan 500 → violet 500 |
+| ARIA MCP Gateway | 🚦 | cyan 500 → violet 500 |
+| VDS | 🗂️ | slate 500 → cyan 500 |
+| NowConnect | 🔗 | emerald 500 → cyan 500 |
+
+Implementation notes:
+
+- Add `.product--{key}` to the page root to map `--grad-start/--grad-mid` via `utilities.css`.
+- Use `.hero-band` on the masthead wrapper to render the ambient gradient.
+- Replace emoji icons with SVGs at a consistent 24–32px size.
+
+### D) QA checklist (per product page)
+
+- [ ] H1 is exact product name
+- [ ] Eyebrow shows ICON + PRODUCT NAME in uppercase
+- [ ] Gradient band matches tokens
+- [ ] Sticky bar shows icon + name while scrolling
+- [ ] Tabs anchor to `#why #how #standards #examples #plans`
+- [ ] OG image includes product icon + name
+- [ ] CTAs: Book demo, Read docs, Quickstart
+- [ ] A11y: heading order, ARIA for tabs, focus styles, skip link
+- [ ] Mobile: identity above fold; tabs become horizontal scroller
+
+### E) Ship list (this sprint)
+
+1. Implement shared masthead + sticky bar component with token support
+2. Wire per‑product icon/gradient tokens
+3. Paste the copy blocks above for each product
+4. Generate per‑product OG images (icon + band + name)
+5. Verify SEO/A11y/Perf and launch

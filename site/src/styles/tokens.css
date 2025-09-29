@@ -52,6 +52,25 @@
 	--accent-receipts: #5F89FF; /* blue-violet trust */
 	--accent-collector: #6EF2F2; /* aqua tint */
 
+	/* Product gradient tokens (hero/studio bar start→mid) */
+	/* Use with per-page product classes to map into --grad-start-soft/--grad-mid-soft */
+	--grad-idp-start:#4F46E5; /* indigo 600 */
+	--grad-idp-mid:#06B6D4;   /* cyan 500 */
+	--grad-pdp-start:var(--color-primary);  /* violet */
+	--grad-pdp-mid:var(--color-secondary);  /* magenta */
+	--grad-crud-start:#A3E635; /* lime 400 */
+	--grad-crud-mid:#06B6D4;  /* cyan 500 */
+	--grad-collector-start:#2DD4BF; /* teal 400 */
+	--grad-collector-mid:#06B6D4;   /* cyan 500 */
+	--grad-shield-start:#06B6D4; /* cyan 500 */
+	--grad-shield-mid:#8B5CF6;  /* violet 500 */
+	--grad-gateway-start:#06B6D4; /* cyan 500 */
+	--grad-gateway-mid:#8B5CF6;  /* violet 500 */
+	--grad-vds-start:#64748B; /* slate 500 */
+	--grad-vds-mid:#06B6D4;  /* cyan 500 */
+	--grad-nowconnect-start:#10B981; /* emerald 500 */
+	--grad-nowconnect-mid:#06B6D4;  /* cyan 500 */
+
 	/* Borders & layers */
 	--border-soft:rgba(255,255,255,.18);
 	--border-strong:rgba(255,255,255,.28);
