@@ -1,0 +1,636 @@
+/* 
+ * EmpowerNow Unified Design System - Final Production v2.0
+ * One system for all contexts: presentations, web, marketing
+ * Backward compatible with existing NeonFlux implementation
+ */
+
+/* ============================================
+   CORE DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* Primary Palette - 6 Colors Only */
+  --cyan: #00E7F6;        /* Primary action, links, success states */
+  --violet: #6C4CFF;      /* Secondary, headers, technical products */
+  --magenta: #B326FF;     /* Tertiary accent, governance products */
+  --green: #B6FF3C;       /* Success, GA status */
+  --amber: #FFC266;       /* Warning, Beta status (fixed for contrast) */
+  --red: #FF5D73;         /* Error, problems, destructive only */
+  
+  /* Backgrounds - 3 Levels */
+  --bg-primary: #0A0A0A;    /* Main background */
+  --bg-secondary: #0B1C3D;  /* Cards, elevated surfaces */
+  --bg-tertiary: #1A1A2E;   /* Gradient end, subtle elevation */
+  
+  /* Text Colors - 3 Levels */
+  --text-primary: #E8ECFF;   /* Headers, important text (WCAG AA) */
+  --text-secondary: #B3BCD2; /* Body text (4.5:1 contrast verified) */
+  --text-muted: #666666;     /* Captions, labels */
+  
+  /* Functional Tokens */
+  --border: rgba(255, 255, 255, 0.15);
+  --glass: rgba(255, 255, 255, 0.05);
+  
+  /* Spacing Scale (8px base) - Use These Only */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+  --space-9: 72px;
+  --space-10: 80px;
+  
+  /* Typography Scale */
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 20px;
+  --font-xl: 24px;
+  --font-2xl: 32px;
+  --font-3xl: 48px;
+  
+  /* Border Radius System */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+  
+  /* Elevation/Shadow Scale */
+  --shadow-1: 0 6px 20px rgba(0, 0, 0, 0.30);
+  --shadow-2: 0 10px 28px rgba(0, 0, 0, 0.40);
+  --shadow-3: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 40px rgba(0, 231, 246, 0.25);
+  
+  /* Standard Opacity Scale */
+  --opacity-5: 0.05;
+  --opacity-10: 0.10;
+  --opacity-20: 0.20;
+  --opacity-40: 0.40;
+  --opacity-60: 0.60;
+  --opacity-80: 0.80;
+  
+  /* Breakpoints */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1600px;
+  
+  /* Data Visualization Palette */
+  --viz-1: #00E7F6;  /* Cyan - primary data */
+  --viz-2: #6C4CFF;  /* Violet - secondary data */
+  --viz-3: #B6FF3C;  /* Lime - positive trends */
+  --viz-4: #B326FF;  /* Magenta - comparison data */
+  --viz-5: #5FB0FF;  /* Blue - auxiliary data */
+  
+  /* Transition Timing */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* ============================================
+   BACKWARD COMPATIBILITY ALIASES
+   Maps old NeonFlux tokens to new system
+   ============================================ */
+
+:root {
+  /* Legacy Color Mappings */
+  --color-bg: var(--bg-primary);
+  --navy: var(--bg-secondary);
+  --color-primary: var(--violet);
+  --color-secondary: var(--magenta);
+  --color-accent: var(--cyan);
+  --color-success: var(--green);
+  --color-warning: var(--amber);
+  --color-surface: var(--glass);
+  
+  /* On-Color Tokens */
+  --on-bg: var(--text-primary);
+  --on-muted: var(--text-secondary);
+  --on-primary: #FFFFFF;
+  --on-accent: var(--bg-secondary);
+  --on-surface: var(--text-primary);
+  
+  /* Semantic Tokens */
+  --ion-lime: var(--green);
+  --signal-amber: var(--amber);
+  --focus-ring: var(--cyan);
+  --link-color: var(--cyan);
+  --link-visited: var(--cyan);
+  
+  /* Theme Aliases */
+  --pulse-cyan: var(--cyan);
+  --quantum-violet: var(--violet);
+  --ultraviolet-magenta: var(--magenta);
+  --void-black: var(--bg-primary);
+  --glass-frost: var(--glass);
+  
+  /* Product Accent Mappings */
+  --accent-crud: var(--cyan);
+  --accent-gateway: var(--violet);
+  --accent-pdp: var(--magenta);
+  --accent-shield: #5A84FF;
+  --accent-idp: var(--magenta);
+  --accent-receipts: #5F89FF;
+  --accent-collector: var(--cyan);
+  
+  /* Border & Surface Mappings */
+  --border-soft: var(--border);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --surface-1: var(--glass);
+  --surface-2: rgba(255, 255, 255, 0.09);
+  --surface-3: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================
+   BASE RESET & DEFAULTS
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: var(--font-md);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   COMPONENT PATTERNS
+   ============================================ */
+
+/* 1. Container Pattern */
+.container {
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-10);
+  box-shadow: var(--shadow-1);
+}
+
+.container--glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.container--slide {
+  width: 1600px;
+  height: 900px;
+  padding: var(--space-6) var(--space-10);
+  overflow: hidden;
+}
+
+/* 2. Process Flow Pattern */
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.flow__step {
+  flex: 1;
+  text-align: center;
+  max-width: 200px;
+  position: relative;
+  z-index: 2;
+}
+
+.flow__icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--space-3);
+  background: linear-gradient(135deg, 
+    rgba(0, 231, 246, var(--opacity-10)),
+    rgba(0, 231, 246, var(--opacity-5)));
+  border: 2px solid rgba(0, 231, 246, var(--opacity-40));
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  transition: transform var(--transition-fast);
+  transform: translateZ(0); /* GPU acceleration */
+  will-change: transform;
+}
+
+.flow__icon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 231, 246, var(--opacity-40));
+}
+
+.flow__icon:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.flow__title {
+  color: var(--cyan);
+  font-size: var(--font-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.flow__description {
+  color: var(--text-secondary);
+  font-size: var(--font-sm);
+  line-height: 1.4;
+}
+
+.flow__arrow {
+  flex: 0 0 auto;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(0, 231, 246, var(--opacity-40)),
+    transparent);
+  position: relative;
+}
+
+.flow__arrow::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid rgba(0, 231, 246, var(--opacity-60));
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+/* 3. Comparison Pattern */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.compare__item {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: transform var(--transition-fast);
+}
+
+.compare__item:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.compare__item--negative {
+  background: rgba(255, 93, 115, var(--opacity-5));
+  border: 2px solid rgba(255, 93, 115, var(--opacity-40));
+}
+
+.compare__item--positive {
+  background: rgba(182, 255, 60, var(--opacity-5));
+  border: 2px solid rgba(182, 255, 60, var(--opacity-40));
+}
+
+.compare__badge {
+  position: absolute;
+  top: -12px;
+  left: var(--space-3);
+  padding: 4px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.compare__item--negative .compare__badge {
+  background: rgba(255, 93, 115, 0.25);
+  color: var(--red);
+  border: 1px solid rgba(255, 93, 115, var(--opacity-60));
+}
+
+.compare__item--positive .compare__badge {
+  background: rgba(182, 255, 60, 0.25);
+  color: var(--green);
+  border: 1px solid rgba(182, 255, 60, var(--opacity-60));
+}
+
+/* 4. Value Proposition Pattern */
+.values {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.value {
+  text-align: center;
+}
+
+.value__icon {
+  font-size: 28px;
+  margin-bottom: var(--space-1);
+  display: block;
+}
+
+.value__title {
+  color: var(--cyan);
+  font-size: var(--font-md);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.value__text {
+  color: var(--text-muted);
+  font-size: var(--font-xs);
+  line-height: 1.3;
+}
+
+/* 5. Status Pattern */
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status--ga {
+  background: rgba(182, 255, 60, var(--opacity-20));
+  color: var(--green);
+  border: 1px solid rgba(182, 255, 60, var(--opacity-60));
+}
+
+.status--beta {
+  background: rgba(255, 194, 102, var(--opacity-20));
+  color: var(--amber);
+  border: 1px solid rgba(255, 194, 102, var(--opacity-60));
+}
+
+.status--soon {
+  background: var(--glass);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ============================================
+   TYPOGRAPHY CLASSES
+   ============================================ */
+
+.text-h1 {
+  font-size: var(--font-3xl);
+  font-weight: 300;
+  color: var(--cyan);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.text-h2 {
+  font-size: var(--font-2xl);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.text-h3 {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.text-body {
+  font-size: var(--font-md);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.text-caption {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .responsive .text-h1 { font-size: clamp(32px, 5vw, 48px); }
+  .responsive .text-h2 { font-size: clamp(24px, 4vw, 32px); }
+  .responsive .text-h3 { font-size: clamp(20px, 3vw, 24px); }
+}
+
+/* ============================================
+   PRODUCT GRADIENTS (Simplified to 3 families)
+   ============================================ */
+
+.gradient--technical {
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+}
+
+.gradient--operational {
+  background: linear-gradient(135deg, var(--green), var(--cyan));
+}
+
+.gradient--governance {
+  background: linear-gradient(135deg, var(--magenta), var(--violet));
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Interactive States */
+.interactive {
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.interactive:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.interactive:active {
+  transform: translateY(0);
+}
+
+/* Glass Effects */
+.glass-light {
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.glass-medium {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Never exceed blur(20px) for performance */
+.glass-heavy {
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ============================================
+   PERFORMANCE & ACCESSIBILITY
+   ============================================ */
+
+/* GPU Acceleration for animations */
+.gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .flow__icon:hover,
+  .compare__item:hover,
+  .interactive:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Focus Visible Polyfill */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Skip to content */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--cyan);
+  color: var(--bg-primary);
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+
+/* Container Sizing */
+.contained {
+  contain: layout style paint;
+}
+
+.max-w-sm { max-width: 640px; }
+.max-w-md { max-width: 768px; }
+.max-w-lg { max-width: 1024px; }
+.max-w-xl { max-width: 1280px; }
+.max-w-2xl { max-width: 1600px; }
+
+/* Spacing Utilities (using 8px grid) */
+.p-0 { padding: 0; }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: var(--space-5); }
+.p-6 { padding: var(--space-6); }
+
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+
+/* ============================================
+   MEDIA QUERIES
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .container--slide {
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+    padding: var(--space-4) var(--space-6);
+  }
+  
+  .flow {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .flow__arrow {
+    display: none;
+  }
+  
+  .compare {
+    grid-template-columns: 1fr;
+  }
+  
+  .values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .container {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
+
+

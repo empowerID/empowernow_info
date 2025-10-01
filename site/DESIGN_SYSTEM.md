@@ -4,31 +4,41 @@ This guide codifies the NeonFlux design language as implemented on the marketing
 
 ## Tokens (web)
 
-CSS source of truth: `src/styles/tokens.css` and `src/styles/utilities.css`.
+CSS source of truth: `src/styles/empowernow_unified_design_final.css` (v2). Legacy files `src/styles/tokens.css` and `src/styles/utilities.css` remain supported via aliases during migration.
 
 ```css
 :root {
-  --color-bg: #0E0E10;
-  --navy: #0B1C3D;               /* surfaces/nav */
-  --color-primary: #6C4CFF;      /* violet headings/highlights */
-  --color-secondary: #B326FF;    /* magenta accents/small areas */
-  --color-accent: #00E7F6;       /* cyan CTAs/links hover/focus */
-  --color-success: #B6FF3C;      /* lime success */
-  --color-warning: #FFC266;      /* amber warnings */
-  --color-surface: rgba(255,255,255,.06);
-  /* Typography colors (recommended) */
-  --on-bg: #E8ECFF;              /* body text */
-  --on-muted: #A7B0C7;           /* secondary text */
-  --on-accent: #002628;          /* text on cyan */
+  /* Unified v2 core palette */
+  --cyan: #00E7F6;
+  --violet: #6C4CFF;
+  --magenta: #B326FF;
+  --green: #B6FF3C;
+  --amber: #FFC266; /* contrast-fixed */
+  --red: #FF5D73;
+
+  /* Text & surfaces */
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #0B1C3D;
+  --text-primary: #E8ECFF;
+  --text-secondary: #B3BCD2;
+
+  /* Legacy aliases (backward compatible) */
+  --color-bg: var(--bg-primary);
+  --navy: var(--bg-secondary);
+  --color-primary: var(--violet);
+  --color-secondary: var(--magenta);
+  --color-accent: var(--cyan);
+  --color-success: var(--green);
+  --color-warning: var(--amber);
 }
 ```
 
-Utilities used across pages:
+Utilities used across pages (legacy classes remain valid; prefer v2 patterns where possible):
 
 ```css
 nav { background: rgba(11,28,61,.8); border-bottom: 1px solid rgba(0,231,246,.2) }
 .glass-card { background: rgba(11,28,61,.85); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.1) }
-.btn-primary { background: var(--color-accent); color: var(--navy) }
+.btn-primary { background: var(--color-accent); color: var(--on-accent) }
 ```
 
 ## Neon‑Flux Re‑Art Direction
@@ -44,7 +54,7 @@ North star: Neon instruments on a dark stage. The dark background is the stage, 
 | Positive/Warning | `--ion-lime`, `--signal-amber` | Success/limit states, receipts |
 | Surfaces | Stage: `--color-bg` • Glass: `--surface-1/2` • Ghost: transparent + subtle border | Panels & dividers |
 
-Accessibility rule: cyan on dark must meet AA; avoid thin cyan body text on pure black. Use `--on-bg` for paragraphs and `--on-muted` for secondary text.
+Accessibility rule: cyan on dark must meet AA; avoid cyan body paragraphs. Use `--on-bg` for paragraphs and `--on-muted` for secondary text. Focus-visible outline uses unified `--cyan` and reduced-motion is respected.
 
 ### Surface System (Depth)
 

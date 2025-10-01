@@ -20,6 +20,21 @@
     return L1>L2? L1/L2: L2/L1;
   }
 
+  // Detect Unified v2 tokens presence by checking computed CSS vars on :root
+  try {
+    const root = document.documentElement;
+    const styles = getComputedStyle(root);
+    const hasUnified = !!styles.getPropertyValue('--cyan').trim() && !!styles.getPropertyValue('--amber').trim();
+    const hasAliases = !!styles.getPropertyValue('--color-accent').trim();
+    if (hasUnified && hasAliases) {
+      res.notes.push('Unified v2 detected with legacy alias mapping active');
+    } else if (hasUnified) {
+      res.notes.push('Unified v2 detected (no legacy aliases found)');
+    } else {
+      res.notes.push('Unified v2 not detected; using legacy tokens');
+    }
+  } catch {}
+
   // Header glass
   const nav = document.querySelector('nav');
   if (nav) {

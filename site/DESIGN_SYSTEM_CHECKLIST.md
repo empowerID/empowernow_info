@@ -2,6 +2,18 @@
 
 Use this to review any www page before publish.
 
+## Unified Design System v2 (Addendum)
+- [ ] Unified CSS loaded: `src/styles/empowernow_unified_design_final.css`
+- [ ] Backward-compat aliases resolve (legacy `--color-*` tokens still work)
+- [ ] 8px spacing scale used (`--space-*`); radius/shadow scale applied
+- [ ] Focus-visible is present on links/buttons/controls
+- [ ] Reduced motion respected (`prefers-reduced-motion`) and hover states degrade
+- [ ] Skip-to-content link visible on focus
+- [ ] Blur effects do not exceed `blur(20px)`
+- [ ] Responsive typography via `clamp()` at mobile breakpoints
+- [ ] Print styles render legibly (white bg, black text, minimal shadows)
+- [ ] Data viz palette uses `--viz-*` tokens where charts/graphs exist
+
 ## Header
 - [ ] Glass background `rgba(11,28,61,.8)` with 20px blur
 - [ ] Bottom border `rgba(0,231,246,.2)`
