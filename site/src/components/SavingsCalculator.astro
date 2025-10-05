@@ -1,26 +1,151 @@
 ---
 export interface Props { defaultEndpoints?: number; defaultPlatforms?: number; defaultCost?: number }
-const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 200000 } = Astro.props as Props;
+const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Astro.props as Props;
 ---
-<div class="glass-card" style="padding:20px">
-    <h2 style="font-size:36px;margin:0 0 10px">Savings calculator</h2>
-    <p style="color:#9ba3b7;margin:0 0 10px">Endpoints & platforms assumptions. Adjust and see impact.</p>
-    <form id="calc-form" aria-describedby="calc-live" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0">
-        <label for="calc-endpoints">Endpoints (20–50)</label>
-        <input id="calc-endpoints" type="range" min="20" max="50" value={String(defaultEndpoints)} step="1" aria-label="Endpoints" />
-        <label for="calc-platforms">Platforms (2–3)</label>
-        <input id="calc-platforms" type="range" min="2" max="3" value={String(defaultPlatforms)} step="1" aria-label="Platforms" />
-        <label for="calc-cost">Loaded engineering cost ($)</label>
-        <input id="calc-cost" type="number" min="100000" step="10000" value={String(defaultCost)} aria-label="Loaded engineering cost" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--on-surface)" />
-    </form>
-    <div id="calc-live" aria-live="polite" class="glass-card" style="padding:12px;background:rgba(255,255,255,.04);color:#9ba3b7">
-        <div><strong>DIY:</strong> <span id="calc-diy">$0</span> — endpoints × platforms × 4 weeks × eng_cost</div>
-        <div><strong>EmpowerNow (Y1):</strong> <span id="calc-enow">$0 + usage</span> — endpoints × $500 × 12</div>
+<div class="panel-glow calc-wrapper" style="padding:32px;position:relative;max-width:900px;margin:0 auto">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+        <img src={`${import.meta.env.BASE_URL}images/icons/icon-calculator.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+        <div>
+            <h2 style="font-size:32px;margin:0 0 4px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Savings calculator</h2>
+            <p style="color:#B3BCD2;margin:0;font-size:14px">Endpoints & platforms assumptions. Adjust and see impact.</p>
+        </div>
     </div>
-    <div style="margin-top:10px">
-        <a class="btn btn-primary" id="calc-cta" href={`${import.meta.env.BASE_URL}pricing/`}>Estimate my savings</a>
+    
+    <form id="calc-form" aria-describedby="calc-live" class="glass-card" style="padding:20px;background:rgba(0,0,0,.35);margin-bottom:16px">
+        <div style="display:grid;gap:20px">
+            <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                    <label for="calc-endpoints" style="color:#e8ecff;font-size:15px;font-weight:500">Endpoints</label>
+                    <span id="calc-endpoints-val" style="color:#00E7F6;font-size:18px;font-weight:600">{defaultEndpoints}</span>
+                </div>
+                <input id="calc-endpoints" type="range" min="20" max="50" value={String(defaultEndpoints)} step="1" aria-label="Endpoints" class="calc-slider" />
+            </div>
+            <div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+                    <label for="calc-platforms" style="color:#e8ecff;font-size:15px;font-weight:500">Platforms</label>
+                    <span id="calc-platforms-val" style="color:#00E7F6;font-size:18px;font-weight:600">{defaultPlatforms}</span>
+                </div>
+                <input id="calc-platforms" type="range" min="2" max="5" value={String(defaultPlatforms)} step="1" aria-label="Platforms" class="calc-slider" />
+            </div>
+        </div>
+    </form>
+    
+    <div id="calc-live" aria-live="polite" class="glass-card" style="padding:20px;background:rgba(0,0,0,.35);margin-bottom:20px">
+        <div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+                <span style="color:#e8ecff;font-size:14px;font-weight:500">DIY formula: endpoints</span>
+                <span id="calc-diy" style="color:#00E7F6;font-size:20px;font-weight:600">$0</span>
+            </div>
+            <div style="color:#9ba3b7;font-size:13px">endpoints × platforms × 4 weeks × eng_cost</div>
+        </div>
+        <div style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+                <span style="color:#e8ecff;font-size:14px;font-weight:500">EmpowerNow (Y1): endpoints × $500 × 12 +</span>
+                <span id="calc-enow" style="color:#00E7F6;font-size:20px;font-weight:600">$0</span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align:center">
+        <a class="btn btn-ghost" id="calc-cta" href={`${import.meta.env.BASE_URL}pricing/`} style="border:2px solid var(--pulse-cyan);color:var(--pulse-cyan);font-size:16px;padding:12px 28px">Estimate my savings</a>
     </div>
 </div>
+
+<style>
+.calc-slider {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.calc-slider::-webkit-slider-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    border: none;
+}
+
+.calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #00E7F6, #00B8C4);
+    border: 3px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,231,246,0.6), 0 2px 8px rgba(0,0,0,0.3);
+    margin-top: -6px;
+    transition: all 0.2s ease;
+}
+
+.calc-slider::-webkit-slider-thumb:hover {
+    background: linear-gradient(135deg, #00F5FF, #00C8D4);
+    box-shadow: 0 0 18px rgba(0,231,246,0.9), 0 3px 10px rgba(0,0,0,0.4);
+    transform: scale(1.1);
+}
+
+.calc-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 20px rgba(0,231,246,1), 0 0 0 4px rgba(0,231,246,0.2);
+}
+
+/* Firefox */
+.calc-slider::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    border: none;
+}
+
+.calc-slider::-moz-range-progress {
+    height: 8px;
+    background: linear-gradient(90deg, #00E7F6, #00B8C4);
+    border-radius: 4px 0 0 4px;
+}
+
+.calc-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #00E7F6, #00B8C4);
+    border: 3px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,231,246,0.6), 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
+}
+
+.calc-slider::-moz-range-thumb:hover {
+    background: linear-gradient(135deg, #00F5FF, #00C8D4);
+    box-shadow: 0 0 18px rgba(0,231,246,0.9), 0 3px 10px rgba(0,0,0,0.4);
+    transform: scale(1.1);
+}
+
+.calc-slider:focus::-moz-range-thumb {
+    box-shadow: 0 0 20px rgba(0,231,246,1), 0 0 0 4px rgba(0,231,246,0.2);
+}
+
+/* Add a visual progress fill using a pseudo-element for webkit */
+.calc-slider::before {
+    content: '';
+    position: absolute;
+    height: 8px;
+    background: linear-gradient(90deg, #00E7F6, #00B8C4);
+    border-radius: 4px 0 0 4px;
+    width: var(--slider-percent, 50%);
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+</style>
 <script>
 (function(){
     try{
@@ -29,6 +154,8 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 200000 } = As
         const cost=document.getElementById('calc-cost');
         const diyEl=document.getElementById('calc-diy');
         const enowEl=document.getElementById('calc-enow');
+        const endpointsVal=document.getElementById('calc-endpoints-val');
+        const platformsVal=document.getElementById('calc-platforms-val');
         const cta=document.getElementById('calc-cta');
         const dnt = (navigator).doNotTrack==='1' || (window).doNotTrack==='1';
         function fmt(n){ return n.toLocaleString(undefined,{ style:'currency', currency:'USD', maximumFractionDigits:0 }); }
@@ -45,24 +172,45 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 200000 } = As
             }
             requestAnimationFrame(tick);
         }
+        function updateSliderProgress(slider, value, min, max){
+            if(!slider) return;
+            const percent = ((value - min) / (max - min)) * 100;
+            slider.style.setProperty('--slider-percent', percent + '%');
+        }
         function recalc(pushEvent){
-            const E=Math.max(20, Math.min(50, Number(endpoints.value)||20));
-            const P=Math.max(2, Math.min(3, Number(platforms.value)||2));
-            const C=Math.max(100000, Number(cost.value)||200000);
+            const E=Math.max(20, Math.min(50, Number(endpoints?.value)||20));
+            const P=Math.max(2, Math.min(5, Number(platforms?.value)||2));
+            const C=Math.max(10000, Number(cost?.value)||50000);
             const diy=E*P*4*C;
             const enow=E*500*12;
-            const fromD=Number((diyEl?.textContent||'').replace(/[^\d]/g,''))||0;
-            const fromE=Number((enowEl?.textContent||'').replace(/[^\d]/g,''))||0;
-            animateTo(diyEl, fromD, diy, 200);
-            animateTo(enowEl, fromE, enow, 200);
+            
+            // Get current values more reliably
+            const fromDText = diyEl?.textContent || '0';
+            const fromEText = enowEl?.textContent || '0';
+            const fromD = Number(fromDText.replace(/[^0-9]/g,'')) || 0;
+            const fromE = Number(fromEText.replace(/[^0-9]/g,'')) || 0;
+            
+            // Update both values
+            if(diyEl) animateTo(diyEl, fromD, diy, 200);
+            if(enowEl) animateTo(enowEl, fromE, enow, 200);
+            
+            // Update slider value displays
+            if(endpointsVal) endpointsVal.textContent = String(E);
+            if(platformsVal) platformsVal.textContent = String(P);
+            
+            // Update slider progress bars
+            updateSliderProgress(endpoints, E, 20, 50);
+            updateSliderProgress(platforms, P, 2, 5);
+            
             if(!dnt && pushEvent){
                 try{ (window).dataLayer=(window).dataLayer||[]; (window).dataLayer.push({event:'calc_change', endpoints:E, platforms:P, eng_cost:C}); }catch{}
             }
         }
-        [endpoints, platforms, cost].forEach(i=> i && i.addEventListener('input', ()=> recalc(true)));
+        [endpoints, platforms].forEach(i=> i && i.addEventListener('input', ()=> recalc(true)));
+        if(cost) cost.addEventListener('input', ()=> recalc(true));
         cta && cta.addEventListener('click', ()=>{
             try{
-                const E=Number(endpoints.value)||20, P=Number(platforms.value)||2, C=Number(cost.value)||200000;
+                const E=Number(endpoints?.value)||20, P=Number(platforms?.value)||2, C=Number(cost?.value)||50000;
                 const diy=E*P*4*C; const enow=E*500*12; const savings=diy-enow;
                 const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
                 if(!dnt){
