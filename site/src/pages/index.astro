@@ -48,6 +48,9 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
             background: transparent;
             padding: 0;
         }
+        .partner-card:hover img {
+            filter: brightness(2) saturate(0);
+        }
     </style>
     <!-- JSON-LD -->
     <script type="application/ld+json">
@@ -121,12 +124,41 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
 		}
 	</script>
     <!-- Platform coverage -->
-    <section class="container" data-section="platforms" style="padding:8px 0 12px">
-        <div style="margin:6px 0;display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
-            <span class="chip">Anthropic MCP</span><span class="chip">OpenAI Functions</span><span class="chip">Microsoft Copilot</span><span class="chip">Google Vertex</span><span class="chip">AWS Bedrock</span><span class="chip">LangChain</span>
+    <section class="container" data-section="platforms" style="padding:24px 0 32px">
+        <div class="partner-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:32px;margin-bottom:32px">
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(108,76,255,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/anthropic-logo.svg`} alt="Anthropic" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">Anthropic MCP</div>
+            </div>
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(0,231,246,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/openai-logo.svg`} alt="OpenAI" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">OpenAI Functions</div>
+            </div>
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(108,76,255,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/microsoft-logo.svg`} alt="Microsoft" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">Microsoft Copilot</div>
+            </div>
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(0,231,246,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/google-logo.svg`} alt="Google" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">Google Vertex</div>
+            </div>
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(108,76,255,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/aws-logo.svg`} alt="AWS" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">AWS Bedrock</div>
+            </div>
+            <div class="partner-card glass-card hover-rise" style="padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;border:1px solid rgba(0,231,246,.3)">
+                <img src={`${import.meta.env.BASE_URL}images/partners/langchain-logo.svg`} alt="LangChain" style="width:56px;height:56px;transition:filter 0.3s ease" />
+                <div style="color:#e8ecff;font-weight:500;font-size:13px">LangChain</div>
+            </div>
         </div>
-        <div class="block-ghost" style="padding-top:10px">
-            <StatusPills items={["MCP GA","OpenAI Testing","Copilot Design","Demo Active","Docs Complete","First tool <10m","Publish to 3 <1h"]} />
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">MCP GA</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">OpenAI Testing</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">Copilot Design</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">Demo Active</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">Docs Complete</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">First tool &lt;10m</span>
+            <span class="glass-card" style="padding:8px 16px;font-size:13px;color:#e8ecff;border:1px solid rgba(255,255,255,.15)">Publish to 3 &lt;1h</span>
         </div>
     </section>
     <section class="container" data-section="diff-grid" style="padding:24px 0">
