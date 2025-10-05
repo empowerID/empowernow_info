@@ -32,6 +32,14 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
             <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
                 <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} captions={`${import.meta.env.BASE_URL}media/hero-demo.vtt`} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
             </div>
+            <!-- Trust Strip -->
+            <div class="panel-glass trust-strip" style="padding:20px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;width:100%">
+                <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:300px">
+                    <span>Built by <strong>EmpowerID</strong> (since 2005, $20M+ revenue; Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR).</span>
+                    <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
+                </div>
+                <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>
+            </div>
         </div>
     </section>
     <style>
@@ -88,15 +96,16 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
         ]
     })}
     </script>
-    <!-- Trust strip -->
-    <section class="container" data-section="trust" style="padding:12px 0 12px">
-        <div class="panel-glass trust-strip" style="padding:12px;color:#9ba3b7">
-            <span>Built by <strong>EmpowerID</strong> (since 2005, $20M+ revenue; Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR).</span>
-            <span>•</span>
-            <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
+    <!-- Trust strip Commented out till approved to move in the hero section -->
+    <!-- <section class="container" data-section="trust" style="padding:12px 0 12px">
+        <div class="panel-glass trust-strip" style="padding:12px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:300px">
+                <span>Built by <strong>EmpowerID</strong> (since 2005, $20M+ revenue; Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR).</span>
+                <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
+            </div>
             <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>
         </div>
-    </section>
+    </section> -->
 	<script>
 		if (matchMedia('(hover:hover) and (pointer:fine) and (min-width:1024px)').matches) {
 			const root = document.querySelector('.parallax-glow');
