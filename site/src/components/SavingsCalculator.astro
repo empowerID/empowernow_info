@@ -2,7 +2,7 @@
 export interface Props { defaultEndpoints?: number; defaultPlatforms?: number; defaultCost?: number }
 const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Astro.props as Props;
 ---
-<div class="panel-glow calc-wrapper" style="padding:32px;position:relative;max-width:900px;margin:0 auto">
+<div class="panel-glow calc-wrapper" style="padding:32px;position:relative">
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
         <img src={`${import.meta.env.BASE_URL}images/icons/icon-calculator.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
         <div>
@@ -144,6 +144,7 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Ast
     pointer-events: none;
     top: 0;
     left: 0;
+    z-index: -1;
 }
 </style>
 <script>

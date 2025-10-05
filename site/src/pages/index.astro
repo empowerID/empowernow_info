@@ -394,25 +394,54 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
             </div>
         </div>
 	</section>
-    <!-- Savings calculator -->
-    <section class="container reveal-on-scroll" data-section="calculator" style="padding:24px 0">
-        <SavingsCalculator defaultEndpoints={30} defaultPlatforms={2} defaultCost={50000} />
-    </section>
-    <!-- Pricing teaser -->
-    <section class="container" data-section="pricing" style="padding:24px 0">
-        <div class="glass-card" style="padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
-            <h2 class="section-title" style="margin:0 12px 0 0; font-size:28px">Pricing</h2>
-            <div style="color:#9ba3b7">Starting at <strong>$500 / governed endpoint / month</strong> · usage (decisions/receipts) · author seats • OEM revenue share</div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn btn-primary" data-ev="table_action_click" data-label="compare_tiers" href={`${import.meta.env.BASE_URL}pricing/`}>Compare tiers</a>
-                <a class="btn" href={`${import.meta.env.BASE_URL}contact/`}>Contact sales</a>
+    <!-- Savings calculator & Pricing -->
+    <section class="container reveal-on-scroll" data-section="calculator-pricing" style="padding:24px 0 60px">
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:stretch">
+            <!-- Calculator (2/3) -->
+            <div>
+                <SavingsCalculator defaultEndpoints={30} defaultPlatforms={2} defaultCost={50000} />
+            </div>
+            
+            <!-- Pricing (1/3) -->
+            <div class="panel-glow" style="padding:32px;display:flex;flex-direction:column">
+                <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/icon-price-tag.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+                    <h2 style="font-size:32px;margin:0;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Pricing</h2>
+                </div>
+                
+                <div style="flex:1;margin-bottom:24px">
+                    <div style="color:#e8ecff;font-size:15px;font-weight:500;margin-bottom:8px">Starting at</div>
+                    <div style="color:#00E7F6;font-size:20px;font-weight:600;margin-bottom:16px">$500 / endpoint / month</div>
+                    
+                    <div class="glass-card" style="padding:16px;background:rgba(0,0,0,.35);margin-bottom:16px">
+                        <ul style="list-style:none;padding:0;margin:0;color:#B3BCD2;font-size:14px;line-height:1.8">
+                            <li style="display:flex;align-items:start;gap:8px;margin-bottom:8px">
+                                <span style="color:#00E7F6;font-size:16px">•</span>
+                                <span>Usage (decisions/receipts)</span>
+                            </li>
+                            <li style="display:flex;align-items:start;gap:8px;margin-bottom:8px">
+                                <span style="color:#00E7F6;font-size:16px">•</span>
+                                <span>Author seats</span>
+                            </li>
+                            <li style="display:flex;align-items:start;gap:8px">
+                                <span style="color:#00E7F6;font-size:16px">•</span>
+                                <span>OEM revenue share</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:auto;align-items:center">
+                    <a class="btn btn-primary" data-ev="table_action_click" data-label="compare_tiers" href={`${import.meta.env.BASE_URL}pricing/`} style="padding:12px 28px;font-size:16px">Compare tiers</a>
+                    <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}contact/`} style="padding:12px 28px;font-size:16px;border:2px solid rgba(255,255,255,.2);color:#e8ecff">Contact sales</a>
+                </div>
             </div>
         </div>
     </section>
+    <div class="section-divider" style="margin-bottom:40px"></div>
 
     <!-- Primary CTA -->
     <section class="container surface-2 reveal-on-scroll" data-section="cta" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
-		<div style="position:absolute;top:-24px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent)"></div>
         <h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
         <p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">Create once → Enforce everywhere → Prove everything.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
