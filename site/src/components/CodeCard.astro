@@ -5,11 +5,12 @@ const variantClass = variant === '402' ? 'code-card-402' : variant === 'receipt'
 ---
 <div class={`glass-card ${variantClass}`} style="padding:12px;background:rgba(0,0,0,.25);position:relative">
   {title && <div style="opacity:.85;margin-bottom:6px">{title}</div>}
-  <button class="btn btn-ghost" type="button" id="copy-btn" aria-label="Copy code" title="Copy" style="position:absolute;top:8px;right:8px">Copy</button>
+  <!-- <button class="btn btn-ghost" type="button" id="copy-btn" aria-label="Copy code" title="Copy" style="position:absolute;top:8px;right:8px">Copy</button> -->
   <pre class="glass-card" style="padding:12px;overflow:auto"><code>{code}</code></pre>
   {meta && <div style="opacity:.7;margin-top:8px;font-size:14px">{meta}</div>}
-  <div id="copied-tip" role="status" aria-live="polite" style="position:absolute;top:8px;right:64px;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px;font-size:12px;opacity:0;transition:opacity .2s">Copied</div>
+  <!-- <div id="copied-tip" role="status" aria-live="polite" style="position:absolute;top:8px;right:64px;background:rgba(0,0,0,.6);padding:4px 8px;border-radius:6px;font-size:12px;opacity:0;transition:opacity .2s">Copied</div> -->
 </div>
+<!-- Copy functionality temporarily disabled
 <script>
   (function(){
     try{
@@ -29,5 +30,6 @@ const variantClass = variant === '402' ? 'code-card-402' : variant === 'receipt'
     }catch{}
   })();
 </script>
+-->
 
 
