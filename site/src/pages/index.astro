@@ -273,34 +273,63 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
             </div>
         </div>
     </section>
-    <section class="container section-spine surface-2 reveal-on-scroll cv-auto" data-section="what-you-get" style="padding:40px 0;border-radius:12px">
-        <div style="text-align:center;margin-bottom:24px">
-            <h2 style="font-size:42px;margin:0 0 6px">What you get</h2>
-            <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Five building blocks that interlock. Start with one, or deploy the full fabric as your platform standard.</p>
-        </div>
-        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center">
-            <div>
-                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px"><Passport />ARIA Shield (Gateway)</h3>
-                <p style="color:#9ba3b7;margin:0 0 14px">One secure front door; allow/deny with reasons; budget checks; no browser tokens.</p>
-                <h3 style="margin:16px 0 6px;display:flex;align-items:center;gap:10px"><AuthZEN />Authorization (PDP)</h3>
-                <p style="color:#9ba3b7;margin:0">OpenID AuthZEN decisions with constraints, obligations, and TTL.</p>
+    <div class="section-divider"></div>
+    <section class="surface-2 reveal-on-scroll cv-auto" data-section="what-you-get" style="padding:60px 0;width:100%">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:32px">
+                <h2 style="font-size:42px;margin:0 0 6px">What you get</h2>
+                <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Five building blocks that interlock. Start with one, or deploy the full fabric as your platform standard.</p>
             </div>
-            <div class="glass-card" style="padding:20px;min-height:140px">
-                <h3 style="margin:0 0 6px">Authentication (IdP)</h3>
-                <p style="color:#9ba3b7;margin:0">Passports via Token Exchange + RAR; pairwise subjects; optional DPoP.</p>
-            </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:28px;align-items:center;margin-top:24px">
-            <div class="glass-card" style="padding:20px;min-height:140px">
-                <h3 style="margin:0 0 6px">Automation Studio</h3>
-                <p style="color:#9ba3b7;margin:0">No‑code MCP tools; per‑run policy; approvals, retries, and receipts.</p>
-            </div>
-            <div>
-                <h3 style="margin:0 0 6px;display:flex;align-items:center;gap:10px"><PinPlan />Inventory</h3>
-                <p style="color:#9ba3b7;margin:0">Fresh identity & usage with lineage; feeds PDP PIPs and analytics.</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;gap:20px;align-items:center">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-shield-aria.png`} alt="" style="width:64px;height:64px;flex-shrink:0" />
+                        <div>
+                            <h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">ARIA Shield (Gateway)</h3>
+                            <p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">One secure front door; allow/deny with reasons; budget checks; no browser tokens.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;gap:20px;align-items:center">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-clipboard-path.png`} alt="" style="width:64px;height:64px;flex-shrink:0" />
+                        <div>
+                            <h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Authorization (PDP)</h3>
+                            <p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">OpenID AuthZEN decisions with constraints, obligations, and TTL.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;gap:20px;align-items:center">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-auth-passport.png`} alt="" style="width:64px;height:64px;flex-shrink:0" />
+                        <div>
+                            <h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Authentication (IdP)</h3>
+                            <p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">Passports via Token Exchange + RAR; pairwise subjects; optional DPoP.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;gap:20px;align-items:center">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-gear-spin.png`} alt="" style="width:64px;height:64px;flex-shrink:0" />
+                        <div>
+                            <h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Automation Studio</h3>
+                            <p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">No‑code MCP tools; per‑run policy; approvals, retries, and receipts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;gap:20px;align-items:center">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-lock-nodes.png`} alt="" style="width:64px;height:64px;flex-shrink:0" />
+                        <div>
+                            <h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Inventory</h3>
+                            <p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">Fresh identity & usage with lineage; feeds PDP PIPs and analytics.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <div class="section-divider"></div>
     <section class="container reveal-on-scroll" data-section="journey-band" style="padding:24px 0 8px">
         <div class="glass-card" style="padding:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
             <strong style="color:#9ba3b7">Create</strong>
