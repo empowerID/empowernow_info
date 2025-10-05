@@ -442,20 +442,47 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
 
     <!-- Primary CTA -->
     <section class="container surface-2 reveal-on-scroll" data-section="cta" style="padding:60px 0 120px;text-align:center;position:relative;border-radius:12px">
-        <h2 style="font-size:40px;margin:0 0 12px">Ready to get started?</h2>
-        <p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">Create once → Enforce everywhere → Prove everything.</p>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:12px">
+            <img src={`${import.meta.env.BASE_URL}images/icons/icon-rocket.png`} alt="" style="width:56px;height:56px" />
+            <h2 style="font-size:40px;margin:0">Ready to get started?</h2>
+        </div>
+        <p style="color:#9ba3b7;max-width:720px;margin:0 auto 24px;font-size:18px">Create once → Enforce everywhere → Prove everything.</p>
+        
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center;margin-bottom:24px">
             <a class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the demo</a>
             <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
-            <a class="btn" data-ev="cta_click" data-label="book_demo" style="border-color:var(--color-accent);color:var(--color-accent);background:transparent" href={`${import.meta.env.BASE_URL}demo/`}>Book a 15‑min demo</a>
-            <span class="chip chip--success" style="align-self:center">AA compliant</span>
+            <a class="btn btn-ghost" data-ev="cta_click" data-label="book_demo" style="border:2px solid var(--pulse-cyan);color:var(--pulse-cyan)" href={`${import.meta.env.BASE_URL}demo/`}>Book a 15‑min demo</a>
+            <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(0,231,246,0.1);border:1px solid rgba(0,231,246,0.3);border-radius:24px">
+                <img src={`${import.meta.env.BASE_URL}images/icons/icon-aa.png`} alt="AA compliant" style="width:20px;height:20px" />
+                <span style="color:#00E7F6;font-size:14px;font-weight:500">AA compliant</span>
+            </div>
 		</div>
-        <div class="glass-card" style="margin:16px auto 0;max-width:880px;padding:12px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:#9ba3b7">
-            <div><strong>Receipts/day</strong> <span id="k_receipts">—</span></div>
-            <div><strong>Spend blocked (402)</strong> <span id="k_blocked">—</span></div>
-            <div><strong>Governed endpoints</strong> <span id="k_endpoints">—</span></div>
+        
+        <div class="glass-card" style="margin:0 auto 16px;max-width:880px;padding:20px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap;background:rgba(0,0,0,.35)">
+            <div style="display:flex;align-items:center;gap:12px">
+                <img src={`${import.meta.env.BASE_URL}images/icons/icon-receipts-sm.png`} alt="" style="width:40px;height:40px" />
+                <div style="text-align:left">
+                    <div style="color:#9ba3b7;font-size:13px">Receipts/day</div>
+                    <div style="color:#00E7F6;font-size:20px;font-weight:600" id="k_receipts">—</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <img src={`${import.meta.env.BASE_URL}images/icons/icon-402.png`} alt="" style="width:40px;height:40px" />
+                <div style="text-align:left">
+                    <div style="color:#9ba3b7;font-size:13px">Spend blocked (402)</div>
+                    <div style="color:#00E7F6;font-size:20px;font-weight:600" id="k_blocked">—</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <img src={`${import.meta.env.BASE_URL}images/icons/icon-shield-cost.png`} alt="" style="width:40px;height:40px" />
+                <div style="text-align:left">
+                    <div style="color:#9ba3b7;font-size:13px">Governed endpoints</div>
+                    <div style="color:#00E7F6;font-size:20px;font-weight:600" id="k_endpoints">—</div>
+                </div>
+            </div>
         </div>
-        <div style="margin-top:12px"><a class="btn" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`}>View Controls & Evidence →</a></div>
+        
+        <div><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/controls-evidence/`} style="border:2px solid rgba(255,255,255,.2)">View Controls & Evidence →</a></div>
 	</section>
     <script>
         (function(){
