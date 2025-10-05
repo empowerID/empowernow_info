@@ -181,38 +181,49 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
         </div>
     </section>
 	<div class="section-divider"></div>
-    <section class="container surface-2 reveal-on-scroll cv-auto" data-section="outcomes" style="padding:40px 0;border-radius:12px">
-        <div style="text-align:center;margin-bottom:24px">
-            <h2 style="font-size:42px;margin:0 0 6px">Outcomes that matter</h2>
-            <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Audit you can prove. Spend you can control. Ship with confidence.</p>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
-            <div class="panel-glow hover-rise" style="padding:24px">
-                <div class="product-rail rail--receipts" aria-hidden="true"></div>
-                <h3 style="margin:0 0 8px;display:flex;align-items:center;gap:8px"><span class="chip">AI you can audit</span></h3>
-                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
-                    <li>Authorization on every request</li>
-                    <li>Guardrails for egress/content</li>
-                    <li>Signed, hash‑chained receipts</li>
-                </ul>
+    <section class="surface-2 reveal-on-scroll cv-auto" data-section="outcomes" style="padding:60px 0;width:100%">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:32px">
+                <h2 style="font-size:42px;margin:0 0 6px">Outcomes that matter</h2>
+                <p style="color:#B3BCD2;max-width:760px;margin:0 auto">Audit you can prove. Spend you can control. Ship with confidence.</p>
             </div>
-            <div class="panel-glow hover-rise" style="padding:24px">
-                <div class="product-rail rail--gateway" aria-hidden="true"></div>
-                <h3 style="margin:0 0 8px;display:flex;align-items:center;gap:8px"><span class="chip">Spend under control</span></h3>
-                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
-                    <li>Budgets and per‑route caps</li>
-                    <li>Over‑cap returns 402 (pre‑exec)</li>
-                    <li>Usage by model, tool, team</li>
-                </ul>
-            </div>
-            <div class="panel-glow hover-rise" style="padding:24px">
-                <div class="product-rail rail--pdp" aria-hidden="true"></div>
-                <h3 style="margin:0 0 8px;display:flex;align-items:center;gap:8px"><span class="chip">Ship with confidence</span></h3>
-                <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
-                    <li>Config‑as‑code, PR‑gated</li>
-                    <li>SaaS, private cloud, self‑host</li>
-                    <li>Adopt incrementally</li>
-                </ul>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-eye-crosshair.png`} alt="" style="width:48px;height:48px" />
+                        <h3 style="margin:0;color:#e8ecff;font-size:18px;font-weight:600">AI you can audit</h3>
+                    </div>
+                    <div class="product-rail rail--receipts" aria-hidden="true" style="margin-bottom:16px"></div>
+                    <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                        <li>Authorization on every request</li>
+                        <li>Guardrails for egress/content</li>
+                        <li>Signed, hash‑chained receipts</li>
+                    </ul>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-shield-cost.png`} alt="" style="width:48px;height:48px" />
+                        <h3 style="margin:0;color:#e8ecff;font-size:18px;font-weight:600">Spend under control</h3>
+                    </div>
+                    <div class="product-rail rail--gateway" aria-hidden="true" style="margin-bottom:16px"></div>
+                    <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                        <li>Budgets and per‑route caps</li>
+                        <li>Over‑cap returns 402 (pre‑exec)</li>
+                        <li>Usage by model, tool, team</li>
+                    </ul>
+                </div>
+                <div class="panel-glow hover-rise" style="padding:24px">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-rocket.png`} alt="" style="width:48px;height:48px" />
+                        <h3 style="margin:0;color:#e8ecff;font-size:18px;font-weight:600">Ship with confidence</h3>
+                    </div>
+                    <div class="product-rail rail--pdp" aria-hidden="true" style="margin-bottom:16px"></div>
+                    <ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
+                        <li>Config‑as‑code, PR‑gated</li>
+                        <li>SaaS, private cloud, self‑host</li>
+                        <li>Adopt incrementally</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
