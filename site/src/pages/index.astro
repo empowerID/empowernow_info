@@ -229,13 +229,13 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
     </section>
     <div class="section-divider"></div>
     <section class="container reveal-on-scroll" data-section="tool-factory" style="padding:24px 0">
-        <div class="glass-card" style="padding:20px">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div class="glass-card" style="padding:32px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
                 <div>
-                    <h2 style="font-size:36px;margin:0 0 6px">Turn any API/DB into an agent‑safe tool — no code</h2>
-                    <p style="color:#9ba3b7;max-width:760px;margin:0">Paste an endpoint, get an MCP‑ready tool with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
+                    <h2 style="font-size:36px;margin:0 0 12px">Turn any API/DB into an agent‑safe tool — no code</h2>
+                    <p style="color:#9ba3b7;margin:0">Paste an endpoint, get an MCP‑ready tool with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
                 </div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
                     <a class="btn btn-primary" data-ev="cta_click" data-label="tf-quickstart" data-position="tool-factory" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
                     <a class="btn" data-ev="cta_click" data-label="tf-adapters" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
                     <a class="btn" data-ev="cta_click" data-label="tf-examples" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/`}>Workflow examples</a>
@@ -245,18 +245,31 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
     </section>
     <!-- How it works -->
     <section class="container reveal-on-scroll cv-auto" data-section="how-it-works" style="padding:8px 0 24px">
-        <div class="glass-card" style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start">
-            <div>
-                <h2 style="font-size:36px;margin:0 0 6px">Author once → Enforce → Prove</h2>
-                <ul style="margin:10px 0 0 18px;color:#9ba3b7;line-height:1.8">
-                    <li><strong>Author once</strong> in Automation Studio → publish to <strong>MCP/Functions/Copilot</strong></li>
-                    <li><strong>Enforce</strong> budgets (402), content & egress with Authorization Studio + Gateway/Shield</li>
-                    <li><strong>Prove</strong> with a signed <strong>Receipt</strong> (decision, policy snapshot, schema pin)</li>
-                </ul>
-            </div>
-            <div style="display:grid;gap:12px">
-                <CodeCard title="Blocked call (budget)" variant="402" code={`HTTP/1.1 402 Budget Required\nerror: "budget_exceeded"\ncall_id: "abc-123"`} meta="Label: Test Environment — Production Format" />
-                <CodeCard title="Receipt (6 lines)" variant="receipt" code={`{ "decision_id":"d-9f2",\n  "policy_hash":"…a1c",\n  "tool_schema_hash":"…7b9",\n  "cost_usd":0.012,\n  "ttl_ms":5000 }`} meta="Label: Test Environment — Production Format" />
+        <div class="glass-card" style="padding:32px">
+            <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:start">
+                <div>
+                    <h2 style="font-size:36px;margin:0 0 28px;line-height:1.2">Author once → Enforce → Prove</h2>
+                    <div style="display:flex;flex-direction:column;gap:24px">
+                        <div style="display:flex;gap:20px;align-items:center">
+                            <img src={`${import.meta.env.BASE_URL}images/icons/icon-policy-pick.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                            <p style="margin:0;color:#9ba3b7;line-height:1.8"><strong>Author once</strong> in Automation Studio → publish to <strong>MCP/Functions/Copilot</strong></p>
+                        </div>
+                        <div class="product-rail rail--gateway" aria-hidden="true"></div>
+                        <div style="display:flex;gap:20px;align-items:center">
+                            <img src={`${import.meta.env.BASE_URL}images/icons/icon-402.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                            <p style="margin:0;color:#9ba3b7;line-height:1.8"><strong>Enforce</strong> budgets (402), content & egress with Authorization Studio + Gateway/Shield</p>
+                        </div>
+                        <div class="product-rail rail--gateway" aria-hidden="true"></div>
+                        <div style="display:flex;gap:20px;align-items:center">
+                            <img src={`${import.meta.env.BASE_URL}images/icons/icon-receipt.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                            <p style="margin:0;color:#9ba3b7;line-height:1.8"><strong>Prove</strong> with a signed <strong>Receipt</strong> (decision, policy snapshot, schema pin)</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:grid;gap:16px">
+                    <CodeCard title="Blocked call (budget)" variant="402" code={`HTTP/1.1 402 Budget Required\nerror: "budget_exceeded"\ncall_id: "abc-123"`} meta="Label: Test Environment — Production Format" />
+                    <CodeCard title="Receipt (6 lines)" variant="receipt" code={`{ "decision_id":"d-9f2",\n  "policy_hash":"…a1c",\n  "tool_schema_hash":"…7b9",\n  "cost_usd":0.012,\n  "ttl_ms":5000 }`} meta="Label: Test Environment — Production Format" />
+                </div>
             </div>
         </div>
     </section>
