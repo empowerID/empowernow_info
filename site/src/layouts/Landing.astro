@@ -15,8 +15,8 @@ const pad = background === 'hero' ? '120px 0 64px' : '48px 0 16px';
 const sectionStyle = `${`padding:${pad}`}${bgUrl ? `;background-image:url(${bgUrl});background-size:cover;background-position:center;background-repeat:no-repeat` : ''}`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="container" style={sectionStyle} data-suppress-sticky>
-        <div class="hero" style="display:grid;grid-template-columns:5fr 7fr;gap:16px;align-items:center">
+    <section class="hero-plate page-stage" style={sectionStyle} data-suppress-sticky>
+        <div class="container hero" style="display:grid;grid-template-columns:5fr 7fr;gap:16px;align-items:center">
             <div>
                 <h1 class="display" style="margin:0 0 10px"><slot name="heading">{title}</slot></h1>
                 <p style="color:#9ba3b7;max-width:720px"><slot name="subhead">{description}</slot></p>
