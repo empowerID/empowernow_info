@@ -1,0 +1,40 @@
+---
+import Base from './Base.astro';
+interface Props {
+    title: string;
+    description?: string;
+    canonical?: string;
+    chips?: string[];
+}
+const { title, description = '', canonical = '/', chips = [] } = Astro.props as Props;
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:48px 0 16px" data-suppress-sticky>
+        <div class="hero" style="display:grid;grid-template-columns:5fr 7fr;gap:16px;align-items:center">
+            <div>
+                <h1 class="display" style="margin:0 0 10px"><slot name="heading">{title}</slot></h1>
+                <p style="color:#9ba3b7;max-width:720px"><slot name="subhead">{description}</slot></p>
+                {(chips?.length>0) && (
+                    <ul style="display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:12px 0 0;list-style:none;color:#9ba3b7">
+                        {chips.map(c => <li class="chip chip--outline-cyan">{c}</li>)}
+                    </ul>
+                )}
+                <div style="display:flex;gap:10px;margin-top:12px">
+                    <slot name="primary-ctas" />
+                </div>
+            </div>
+            <div>
+                <slot />
+            </div>
+        </div>
+    </section>
+    <div class="section-divider"></div>
+    <section class="container" style="padding:8px 0 64px">
+        <slot name="below" />
+    </section>
+    <style>
+        @media (max-width: 900px){ .hero { grid-template-columns: 1fr } }
+    </style>
+</Base>
+
+
