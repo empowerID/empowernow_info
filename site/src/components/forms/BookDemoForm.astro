@@ -150,6 +150,13 @@ const base = import.meta.env.BASE_URL;
         .input { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.08); color: inherit; padding: 10px 12px; border-radius: 8px; width:100% }
         label { display:block; font-size:.9rem; color:#9ba3b7; margin:0 0 6px }
         .opt{ color:#6f7d98; font-weight:normal }
+        /* Ensure native controls render with dark UI (fixes washed-out select options on some platforms) */
+        :where(.glass-card, form, .input, select.input){ color-scheme: dark }
+        /* Improve dropdown contrast across browsers */
+        select.input{ background-color: rgba(15,27,51,.92); }
+        select.input option{ background:#0F1B33; color:#e6eef8 }
+        select.input option:checked{ background:#1e2b4f; color:#ffffff }
+        select.input option[disabled]{ color:#6f7d98 }
         @media (max-width: 900px){ .form-grid { grid-template-columns: 1fr } }
     </style>
 </section>
