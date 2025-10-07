@@ -1,5 +1,6 @@
 ---
 import Landing from '../../layouts/Landing.astro';
+import ARIAAuthorizationPremium from '../../components/ARIAAuthorizationPremium.astro';
 const title = 'What is ARIA? — Agent Risk & Identity Authorization';
 const description = 'ARIA is our AI governance initiative: Shield (BFF PEP) + MCP Gateway (tool PEP) with a PDP that returns constraints/obligations and a Receipt Vault for provable audit.';
 const canonical = '/products/aria/';
@@ -26,10 +27,7 @@ const canonical = '/products/aria/';
       <h2 class="section-title">How ARIA works</h2>
       <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start">
         <div class="glass-card" style="padding:12px">
-          <!-- Premium diagram component -->
-          <client:only fallback="">
-            {await import('../../components/ARIAAuthorizationPremium.astro').then(m => m.default({}))}
-          </client:only>
+          <ARIAAuthorizationPremium client:idle />
         </div>
         <aside class="glass-card" style="padding:12px;position:sticky;top:88px">
           <h3 style="margin:0 0 8px">Legend</h3>
