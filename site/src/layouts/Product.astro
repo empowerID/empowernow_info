@@ -40,22 +40,22 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
 	{ name: p.headline, item: new URL(`${import.meta.env.BASE_URL}${String(p.canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
 ]} />
 <div class={`product-root ${p.productKey ? `product--${p.productKey}` : ''}`}>
-    <header class="hero-band">
-        <section class="container hero-plate" style="padding:72px 0 24px">
-            {p.eyebrow && <div class="eyebrow">{p.eyebrow}</div>}
-            <h1 class="display" style="margin:0 0 12px">{p.headline}</h1>
-            {p.subhead && <p style="color:#9ba3b7;max-width:860px">{p.subhead}</p>}
+    <header class="hero-band product-hero-band">
+        <section class="container hero-plate" style="padding:120px 0 60px;position:relative;z-index:1">
+            {p.eyebrow && <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">{p.eyebrow}</div>}
+            <h1 class="display" style="margin:0 0 20px;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;font-weight:800">{p.headline}</h1>
+            {p.subhead && <p style="color:#b3bcd2;max-width:860px;font-size:clamp(1.125rem,2vw,1.375rem);line-height:1.5;margin:0 0 24px">{p.subhead}</p>}
             {p.targetICP && p.targetICP.length>0 && (
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0">
-                    {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet">{t}</span>)}
-                    {p.targetICP.length>2 && <span class="chip chip--more">+{p.targetICP.length-2} more</span>}
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 32px">
+                    {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">{t}</span>)}
+                    {p.targetICP.length>2 && <span class="chip chip--more" style="padding:8px 16px;font-size:14px">+{p.targetICP.length-2} more</span>}
                 </div>
             )}
-            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-                {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
-                {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
-                {p.tertiaryCTA && <a class="btn btn-secondary" href={p.tertiaryCTA.href} aria-label={`Tertiary: ${p.tertiaryCTA.label}`} data-ev="cta_click" data-label={p.tertiaryCTA.label} data-position="hero_tertiary">{p.tertiaryCTA.label}</a>}
-                <span class="chip chip--success" style="align-self:center">AA compliant</span>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+                {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary" style="padding:14px 32px;font-size:16px;font-weight:700">{p.primaryCTA.label}</a>}
+                {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.secondaryCTA.label}</a>}
+                {p.tertiaryCTA && <a class="btn btn-secondary" href={p.tertiaryCTA.href} aria-label={`Tertiary: ${p.tertiaryCTA.label}`} data-ev="cta_click" data-label={p.tertiaryCTA.label} data-position="hero_tertiary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.tertiaryCTA.label}</a>}
+                <span class="chip chip--success" style="padding:8px 16px;font-size:14px;font-weight:600">AA compliant</span>
             </div>
         </section>
     </header>
@@ -107,22 +107,6 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
         </div>
     </section>
 </div>
-{p.keyBenefits && p.keyBenefits.length > 0 && (
-	<section class="container" style="padding:8px 0 24px">
-		<h2 class="section-title">Why it wins</h2>
-		<div class="benefit-row">
-			{p.keyBenefits.map((b) => <div class="glass-card card-glow benefit-card"><span class="benefit-bullet" aria-hidden="true"></span><div>{b}</div></div>)}
-		</div>
-        <div class="row-hairline"></div>
-	</section>
-)}
-<section class="container" style="padding:8px 0 16px"><slot name="how" /></section>
-<section class="container" style="padding:0 0 24px">
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-        {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="mid_primary">See it live</a>}
-        {p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="mid_secondary">Read docs</a>}
-    </div>
-    </section>
 {p.proofTitle && <section class="container" style="padding:8px 0 8px"><h2 class="section-title">{p.proofTitle}</h2></section>}
 <section class="container" style="padding:8px 0 24px"><slot name="proof" /></section>
 <slot name="related" />

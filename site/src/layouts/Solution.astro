@@ -33,21 +33,22 @@ const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
     { name: p.headline, item: new URL(`${import.meta.env.BASE_URL}${String(p.canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
 ]} />
 {faqJson && <script type="application/ld+json">{JSON.stringify(faqJson)}</script>}
-<header class="container" style="padding:72px 0 24px">
-    <h1 class="display">{p.headline}</h1>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-        {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary">{p.primaryCTA.label}</a>}
-        {p.secondaryCTA && <a class="btn" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary">{p.secondaryCTA.label}</a>}
-    </div>
-</header>
-{p.outcomes && p.outcomes.length > 0 && (
-    <section class="container" style="padding:8px 0 24px">
-        <h2 class="section-title">Outcomes</h2>
-        <div class="grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-            {p.outcomes.map((o) => <div class="card" style="background:rgba(11,28,61,.85);border:1px solid rgba(0,231,246,.2);border-radius:12px;padding:16px">{o}</div>)}
+<header class="solution-hero-band">
+    <section class="container hero-plate" style="padding:120px 0 60px;position:relative;z-index:1">
+        <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">💡 SOLUTION</div>
+        <h1 class="display" style="margin:0 0 20px;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;font-weight:800">{p.headline}</h1>
+        {p.outcomes && p.outcomes.length > 0 && (
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 32px">
+                {p.outcomes.map((o) => <span class="chip chip--outline-cyan" style="padding:8px 16px;font-size:14px;font-weight:600">{o}</span>)}
+            </div>
+        )}
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+            {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary" style="padding:14px 32px;font-size:16px;font-weight:700">{p.primaryCTA.label}</a>}
+            {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.secondaryCTA.label}</a>}
+            <span class="chip chip--success" style="padding:8px 16px;font-size:14px;font-weight:600">AA compliant</span>
         </div>
     </section>
-)}
+</header>
 <slot name="how" />
 <slot name="standards" />
 <slot name="related" />
