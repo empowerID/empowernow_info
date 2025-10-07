@@ -1,6 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
-const title = 'Authorization Model — PDP, PEP, PIP, PAP';
+const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
 const base = import.meta.env.BASE_URL;
@@ -8,7 +8,7 @@ const slugs = ['ai-middleware-leadership','contracts','authz-model','idp-technic
 const labels: Record<string,string> = {
   'ai-middleware-leadership': 'AI Middleware Leadership',
   'contracts': 'ARIA Contracts',
-  'authz-model': 'Authorization Model',
+  'authz-model': 'Authorization Fundamentals',
   'idp-technical-overview': 'IdP Technical Overview'
 };
 const slug = 'authz-model';
@@ -18,7 +18,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
 ---
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
-    <h1 class="display" style="margin:0 0 10px">Authorization Model</h1>
+    <h1 class="display" style="margin:0 0 10px">Authorization Fundamentals</h1>
     <p style="color:#9ba3b7;max-width:90ch">PAP authors policy. PDP evaluates decisions using PIPs. PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
       <a class="btn btn-ghost" href={`${base}resources/`}>← All resources</a>
