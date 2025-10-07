@@ -23,8 +23,6 @@ const items = [
 	{ slug:'dcr', label:'Dynamic Client Registration (RFC 7591/7592)' },
 	{ slug:'authzen', label:'OpenID AuthZEN' },
 	{ slug:'authzen-draft04', label:'OpenID AuthZEN Draft‑04' },
-	{ slug:'authzen-search', label:'AuthZEN Search profile' },
-	{ slug:'pdp-pricing-model', label:'PDP Pricing Model' },
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
@@ -39,6 +37,12 @@ const items = [
 					<h3 style="margin:0">{i.label}</h3>
 				</a>
 			))}
+		</div>
+		<div class="panel-glass" style="padding:16px;margin-top:16px">
+			<strong>Looking for the authorization model?</strong>
+			<div style="margin-top:8px">
+				<a class="btn btn-ghost" href={`${base}resources/strategy/authz-model/`}>PDP/PEP/PIP/PAP explainer with diagram →</a>
+			</div>
 		</div>
 	</section>
 </Base>
