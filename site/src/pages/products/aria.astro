@@ -10,7 +10,7 @@ const canonical = '/products/aria/';
     <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read white paper</a>
   </div>
   <div slot="below">
-    <section class="container" style="padding:8px 0 24px">
+    <section id="how-it-works" class="container" style="padding:8px 0 24px">
       <h2 class="section-title">ARIA at a glance</h2>
       <p style="color:#9ba3b7;max-width:90ch">ARIA (Agent Risk & Identity Authorization) provides provable guardrails for AI: create governed tools, enforce policy at the edge, and prove every action with receipts.</p>
       <div class="glass-card" style="padding:16px">
@@ -20,6 +20,31 @@ const canonical = '/products/aria/';
           <div><h3 style="margin:0 0 6px">PDP</h3><p style="color:#9ba3b7;margin:0">Decisions with <strong>constraints</strong> and <strong>obligations</strong>—a dialogue, not a gate.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP deep‑dive →</a></div>
           <div><h3 style="margin:0 0 6px">Receipt Vault</h3><p style="color:#9ba3b7;margin:0">Financial‑grade, tamper‑evident receipts with policy snapshot and spend.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>Receipts →</a></div>
         </div>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">How ARIA works</h2>
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start">
+        <div class="glass-card" style="padding:12px">
+          <!-- Premium diagram -->
+          <iframe srcdoc="" title="ARIA Authorization Diagram" loading="lazy" style="display:none"></iframe>
+          <!-- Inline import for now to avoid cross-origin issues -->
+          <!-- We can switch to client:idle import of the component once extracted fully -->
+          <!-- Placeholder: the page already hosts the full SVG on the fundamentals page; here we will use the component in a follow-up step. -->
+          <!-- Keeping this lightweight: link to the fundamentals page anchor for now. -->
+          <div style="padding:8px;color:#9ba3b7">See the full interactive diagram in Authorization Fundamentals.</div>
+          <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/authz-model/`}>Open diagram →</a>
+        </div>
+        <aside class="glass-card" style="padding:12px;position:sticky;top:88px">
+          <h3 style="margin:0 0 8px">Legend</h3>
+          <ol style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
+            <li>Plan itinerary (LLM) → ARIA Shield (PEP)</li>
+            <li>Book flight (tool) → ARIA MCP Gateway (PEP)</li>
+            <li>Both PEPs check with PDP → decision + constraints/obligations</li>
+            <li>PDP queries Membership (Neo4j PIP) for delegation context</li>
+          </ol>
+          <div style="margin-top:10px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
+        </aside>
       </div>
     </section>
     <section class="container" style="padding:8px 0 24px">
@@ -41,7 +66,7 @@ const canonical = '/products/aria/';
         </div>
       </div>
     </section>
-    <section class="container" style="padding:8px 0 24px">
+    <section id="threats-controls" class="container" style="padding:8px 0 24px">
       <h2 class="section-title">Threats → Controls</h2>
       <div class="glass-card" style="padding:16px">
         <table style="width:100%;border-collapse:collapse;color:#e8ecff">
