@@ -30,7 +30,7 @@ const canonical = '/products/';
         <div class="grid-3" id="panel-build" role="tabpanel" aria-labelledby="tab-build">
             <div class="panel-glow" data-cat="build" style="padding:16px; grid-column: span 2">
                 <div class="product-rail rail--crud" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUD Service</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUD Service</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Turn any API/DB into agent‑safe tools (schema pins + policy hooks). Publish once to MCP / Copilot / OpenAI Functions.</div>
                 <div id="products-crud-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
                     <div class="block-ghost">
@@ -57,7 +57,7 @@ const canonical = '/products/';
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px" id="panel-secure" role="tabpanel" aria-labelledby="tab-secure" hidden>
                 <div class="product-rail rail--shield" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">ARIA Shield</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Application‑aware BFF for AI agents</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Stop data exfiltration & cap AI spend (402); params/egress allow‑lists</li>
@@ -67,7 +67,7 @@ const canonical = '/products/';
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div class="product-rail rail--gateway" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">MCP Gateway</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">MCP Gateway</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Cross‑platform policy gate (Anthropic MCP)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Block prompt‑injection/tool overreach pre‑execution; validate plan & schema pins</li>
@@ -77,7 +77,7 @@ const canonical = '/products/';
             </div>
             <div class="glass-card" data-cat="secure" style="padding:16px">
                 <div class="product-rail rail--pdp" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">AuthZEN PDP</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Decisions in milliseconds (OpenID AuthZEN)</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Standardized decisions + constraints/obligations + TTL → consistent enforcement across agents</li>
@@ -87,7 +87,7 @@ const canonical = '/products/';
             </div>
             <div class="glass-card" style="padding:16px">
                 <div class="product-rail rail--idp" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">IdP</h3><span class="chip chip--success">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">IdP</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Agent Passports & Consent</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Scoped, least‑privilege tokens and on‑behalf‑of flows — no long‑lived secrets</li>
@@ -98,7 +98,7 @@ const canonical = '/products/';
 
             <div class="glass-card" data-cat="audit" style="padding:16px" id="panel-audit" role="tabpanel" aria-labelledby="tab-audit" hidden>
                 <div class="product-rail rail--collector" aria-hidden="true"></div>
-                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3><span class="chip chip--success" data-badge-info="GA">GA</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Data Collector</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Spend & usage with receipts</div>
                 <ul style="color:#9ba3b7;line-height:1.7;margin:0 0 10px;padding-left:18px">
                     <li><strong>Outcome:</strong> Per‑call cost & receipts for audit/FinOps — attribute dollars to policy, user, and tool</li>
@@ -176,8 +176,8 @@ const canonical = '/products/';
             <h2 class="section-title" style="margin-top:0">Complete Control Stack</h2>
             <div aria-hidden="true" class="section-rail" style="margin:-2px 0 10px"></div>
             <ul style="color:#9ba3b7;line-height:1.8;margin:0 0 10px;padding-left:18px">
-                <li><strong>Pre‑execution (MCP Gateway)</strong> <span class="badge badge--ga">GA</span>: validate <em>plan & schema pins</em>; block off‑policy <em>before</em> models run.</li>
-                <li><strong>Authorization (AuthZEN PDP)</strong> <span class="badge badge--ga">GA</span>: standardized <em>who/what/for whom/constraints</em> (+ obligations/TTL).</li>
+                <li><strong>Pre‑execution (MCP Gateway)</strong>: validate <em>plan & schema pins</em>; block off‑policy <em>before</em> models run.</li>
+                <li><strong>Authorization (AuthZEN PDP)</strong>: standardized <em>who/what/for whom/constraints</em> (+ obligations/TTL).</li>
                 <li><strong>Runtime (ARIA Shield)</strong> <span class="badge badge--beta">Beta</span>: <em>budgets (HTTP 402)</em>, parameter allow‑lists, egress filters; cost attribution.</li>
             </ul>
             <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Security brief</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a></div>
