@@ -6,6 +6,7 @@ const canonical = '/comparisons/gateway-vs-api-gateway/';
 ---
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
+    <nav aria-label="Breadcrumb" style="margin-bottom:8px"><a href={`${import.meta.env.BASE_URL}`}>Home</a> / <a href={`${import.meta.env.BASE_URL}comparisons/`}>Comparisons</a> / MCP vs API Gateway</nav>
     <h1 class="display" style="margin:0 0 10px">MCP Gateway vs API Gateway</h1>
     <p style="color:#9ba3b7;max-width:90ch">API gateways route and rate‑limit. MCP Gateway validates <em>plan steps</em> and <em>schema pins</em>, enforces AuthZEN constraints, and emits receipts. They solve different problems and often run together.</p>
   </section>
