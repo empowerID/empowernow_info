@@ -148,8 +148,13 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
   );
 }
 
-/* Mobile adjustments */
+/* Tablet and Mobile adjustments */
 @media (max-width: 768px) {
+  /* Hide desktop navigation on tablet and smaller */
+  .nav-links {
+    display: none !important;
+  }
+  
   nav.navbar {
     padding: 0;
     background: transparent;
