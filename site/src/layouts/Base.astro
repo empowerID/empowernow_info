@@ -42,7 +42,58 @@ import '../styles/utilities.css';
 			footer .btn{text-decoration:none}
 			.footer-divider{height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent);margin-bottom:60px}
 			.footer-icon-tooltip:hover .tooltip-text{visibility:visible !important;opacity:1 !important}
-			nav{position:sticky;top:0;z-index:1000}
+			
+			/* ============================================
+			   ENHANCED FLOATING NAVIGATION
+			   ============================================ */
+			
+			/* Base navigation container - overlays hero, doesn't push it down */
+			nav.navbar{position:absolute;top:0;left:0;right:0;z-index:1000;padding:0;background:transparent;transition:padding 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)}
+			
+			/* Inner wrapper for animation - completely transparent at hero */
+			.navbar-inner{max-width:100%;margin:0 auto;position:relative;background:transparent !important;backdrop-filter:none;-webkit-backdrop-filter:none;border:none !important;border-radius:0;box-shadow:none;transition:all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);transform:translateZ(0)}
+			
+			/* Content container - force transparent background, no borders */
+			.navbar-inner .container{padding:16px 0;background:transparent !important;backdrop-filter:none !important;border:none !important;border-bottom:none !important;box-shadow:none !important;transition:padding 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
+			
+			/* Logo transition */
+			.navbar-logo{height:44px;width:auto;transition:height 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
+			
+			/* Floating state (when scrolled) - make nav sticky and add glass effect */
+			nav.navbar[data-scrolled="true"]{position:fixed;top:0;left:0;right:0;padding:16px 32px 0;background:transparent}
+			nav.navbar[data-scrolled="true"] .navbar-inner{max-width:1120px;padding:0 64px;border-radius:16px;background:rgba(11,28,61,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:2px solid rgba(0,231,246,.25);border-bottom:1px solid rgba(255,255,255,.08);border-left:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);box-shadow:0 0 30px rgba(0,231,246,.15),0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+			nav.navbar[data-scrolled="true"] .navbar-inner .container{padding:12px 0;max-width:1120px;margin:0 auto}
+			nav.navbar[data-scrolled="true"] .navbar-logo{height:40px}
+			
+			/* Gradient hairline enhancement */
+			nav.navbar[data-scrolled="true"] .navbar-inner::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan),var(--ultraviolet-magenta));opacity:.6;border-radius:2px;pointer-events:none}
+			
+			/* Mobile adjustments */
+			@media (max-width: 768px){
+				nav.navbar{padding:0;background:transparent}
+				nav.navbar[data-scrolled="true"]{padding:0;background:transparent}
+				nav.navbar .navbar-inner,nav.navbar[data-scrolled="true"] .navbar-inner{max-width:100%;border-radius:0;border-left:none;border-right:none}
+				nav.navbar[data-scrolled="true"] .navbar-inner{border-radius:0 0 12px 12px}
+				.navbar-logo,nav.navbar[data-scrolled="true"] .navbar-logo{height:40px}
+			}
+			
+			/* Reduced motion support */
+			@media (prefers-reduced-motion: reduce){
+				nav.navbar,nav.navbar .navbar-inner,nav.navbar .container,.navbar-logo{transition:none !important;animation:none !important}
+			}
+			
+			/* Enhanced focus for floating state */
+			nav.navbar[data-scrolled="true"] a:focus-visible,nav.navbar[data-scrolled="true"] button:focus-visible{outline:3px solid var(--pulse-cyan);outline-offset:4px;box-shadow:0 0 0 6px rgba(0,231,246,.2)}
+			
+			/* High contrast mode */
+			@media (prefers-contrast: high){
+				nav.navbar[data-scrolled="true"] .navbar-inner{background:rgba(11,28,61,.95);border-top-color:var(--cyan);border-bottom-color:rgba(255,255,255,.3)}
+			}
+			
+			/* ============================================
+			   EXISTING STYLES (PRESERVED)
+			   ============================================ */
+			
 			.consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1100}
 			.sr-only-focusable{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 			.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:1090;transform:translateY(110%);transition:transform .25s ease;backdrop-filter:blur(8px);background:rgba(15,27,51,.72);border-top:1px solid rgba(255,255,255,.12)}
@@ -53,13 +104,20 @@ import '../styles/utilities.css';
 			a:visited{color:var(--on-bg)}
 			/* Visible focus ring for all focusable controls */
 			a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible, [role="button"]:focus-visible, .chip:focus-visible { outline:2px solid var(--pulse-cyan); outline-offset:2px; border-radius:6px }
+			/* Nav link colors - define here to avoid undefined vars */
+			:root{
+				--nav-ink-dim: rgba(255,255,255,0.7);
+				--nav-ink: rgba(255,255,255,1);
+			}
 			/* Nav underline grow */
 			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px; background:transparent; border:0; appearance:none; -webkit-appearance:none; font:inherit; cursor:pointer}
-			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
+			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px;text-shadow:0 0 8px rgba(0,231,246,.3)}
 			/* Mega menu */
             .nav-group{position:relative}
             /* Mega menu panel aligned to nav container */
-            .mega{position:fixed;left:50%;transform:translateX(-50%);top:64px; z-index:1010; width:min(1120px, calc(100vw - 32px)); background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden}
+            .mega{position:fixed;left:50%;transform:translateX(-50%);top:64px; z-index:1010; width:min(1120px, calc(100vw - 32px)); background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden;transition:top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
+			/* Adjust mega menu position when nav is floating */
+			nav.navbar[data-scrolled="true"] ~ * .mega,nav.navbar[data-scrolled="true"] .mega{top:80px}
             .mega::before{content:""; position:absolute; inset:0; background:#0F1B33; pointer-events:none}
             .mega::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
             .mega-inner{position:relative; z-index:1; display:grid;grid-template-columns:4fr 8fr;gap:18px;padding:16px 0 18px}
@@ -83,18 +141,21 @@ import '../styles/utilities.css';
             .dropdown::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
             .dropdown > *{position:relative; z-index:1}
             /* Centered variant (used by Resources) */
-            .dropdown--center{position:fixed; top:64px; left:50%; transform:translateX(-50%); right:auto}
+            .dropdown--center{position:fixed; top:64px; left:50%; transform:translateX(-50%); right:auto;transition:top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
+			/* Adjust dropdown position when nav is floating */
+			nav.navbar[data-scrolled="true"] .dropdown--center{top:80px}
             .dropdown-item{display:block; padding:10px 12px; border-radius:10px}
 			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
 		</style>
 	</head>
     <body>
 		<a href="#main" class="sr-only-focusable">Skip to content</a>
-        <nav aria-label="Primary navigation">
-            <div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--nav-border)">
-				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:-2px">
-					<img src={`${import.meta.env.BASE_URL}images/empowernow-logo.svg`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:44px;width:auto" />
-				</a>
+        <nav class="navbar" aria-label="Primary navigation" data-scrolled="false">
+			<div class="navbar-inner">
+				<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center">
+					<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:-2px">
+						<img src={`${import.meta.env.BASE_URL}images/empowernow-logo.svg`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" class="navbar-logo" />
+					</a>
                 <button id="nav-open" class="btn" aria-controls="mobile-nav" aria-expanded="false" style="display:none">Menu</button>
                 <ul class="nav-links">
                     <li>
@@ -205,7 +266,8 @@ import '../styles/utilities.css';
                     </li>
                     <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
-            </div>
+				</div>
+			</div>
             <div id="mobile-nav" hidden style="position:fixed;left:0;right:0;top:0;height:92vh;transform:translateY(-100%);transition:transform .18s ease; background:rgba(12,20,36,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);z-index:1050">
                 <div class="container" style="padding:16px">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -320,6 +382,40 @@ import '../styles/utilities.css';
 				</div>
 			</div>
 		</div>
+		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+					
+					let ticking = false;
+					const threshold = 50; // Scroll threshold in pixels
+					
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+					
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+					
+					// Initialize state on load
+					updateNavState();
+					
+					// Listen to scroll (passive for performance)
+					window.addEventListener('scroll', onScroll, { passive: true });
+				}catch{}
+			})();
+		</script>
 		<script>
 			(function(){
 				try{
