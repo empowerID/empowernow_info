@@ -37,9 +37,9 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     PIP1 --> PDP1
   end
   subgraph PEP[Policy Enforcement Points]
-    IdPPEP[IdP (issuance): consent, step-up, budgets]
-    GWPEP[Gateway (runtime): params/egress, spend, model caps]
-    SVCPEP[Service (runtime): resource/domain checks]
+    IdPPEP["IdP (issuance): consent, step-up, budgets"]
+    GWPEP["Gateway (runtime): params/egress, spend, model caps"]
+    SVCPEP["Service (runtime): resource/domain checks"]
   end
   PAP1 --> PDP1
   PDP1 -->|decision| IdPPEP

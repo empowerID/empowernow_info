@@ -142,7 +142,7 @@ import '../styles/custom-styles.css';
                                         <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Enterprises (Governed Starter)</div>
                                             <div class="body clamp-2">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Quickstart ↗</a></div>
+                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart ↗</a></div>
                                         </div>
                                         <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Zero‑Token SPAs</div>
@@ -159,7 +159,7 @@ import '../styles/custom-styles.css';
                             <button class="nav-link" id="btn-resources" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources" data-ev="nav_click" data-label="Resources">Resources</button>
                             <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown dropdown--center" data-menu>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Overview</a>
-                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="dropdown-item">Quickstart</a>
+                                <a role="menuitem" tabindex="-1" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="dropdown-item">Quickstart</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="dropdown-item">Adapter catalog</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Workflow examples</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/standards/`} class="dropdown-item">Standards</a>
@@ -197,7 +197,7 @@ import '../styles/custom-styles.css';
                         <a class="btn" href={`${import.meta.env.BASE_URL}company/`}>Company</a>
                         <div style="display:flex;gap:8px;margin-top:8px">
                             <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book Demo</a>
-                            <a class="btn" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a>
+                            <a class="btn" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart</a>
                         </div>
                     </div>
                 </div>
@@ -305,8 +305,9 @@ import '../styles/custom-styles.css';
 					const nav = document.querySelector('nav.navbar');
 					if(!nav) return;
 					
-					let ticking = false;
-					const threshold = 50; // Scroll threshold in pixels
+                    let ticking = false;
+                    const hasHeroStage = !!document.querySelector('.page-stage');
+                    const threshold = hasHeroStage ? 50 : -1; // float immediately if no hero
 					
 					function updateNavState() {
 						const scrollY = window.scrollY;
@@ -390,7 +391,15 @@ import '../styles/custom-styles.css';
 			try {
 				import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs')
 					.then((m)=>{
-						try{ m.default.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'relaxed' }); }catch{}
+						try{
+							const mermaid = (m && (m.default||m));
+							mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'relaxed' });
+							// Ensure render on first load
+							requestAnimationFrame(()=>{
+								try{ mermaid.run && mermaid.run({ querySelector: '.mermaid' }); }catch{}
+								try{ mermaid.init && mermaid.init(undefined, document.querySelectorAll('.mermaid')); }catch{}
+							});
+						}catch{}
 					})
 				.catch(()=>{});
 			} catch {}

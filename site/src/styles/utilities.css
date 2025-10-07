@@ -29,6 +29,7 @@ nav{background:rgba(11,28,61,.8);backdrop-filter:blur(20px);border-bottom:1px so
 .glass-card h3{color:var(--on-surface);font-weight:750;font-size:20px}
 .glass-card p{color:var(--on-muted)}
 .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(0,231,246,.4),transparent)}
+.mermaid svg{display:block;max-width:100%;height:auto}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 /* Footer links */
 footer a{color:var(--on-bg);text-decoration:none}
