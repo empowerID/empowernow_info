@@ -47,6 +47,41 @@ const canonical = `/resources/standards/${slug}/`;
         </div>
         <div class="glass-card" style="padding:20px">
             <h2 class="section-title" style="margin:0 0 8px">How it works (high level)</h2>
+            { slug === 'oauth' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">OAuth 2.0 (RFC 6749) issues Bearer tokens (RFC 6750) and optionally supports Token Introspection (RFC 7662). Errors MUST be conveyed via <code>WWW-Authenticate</code> with <code>error</code> and <code>error_description</code>. Introspection responses include <code>active</code>, <code>scope</code>, <code>client_id</code>, <code>sub</code>, <code>aud</code>, <code>exp</code>.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`WWW-Authenticate: Bearer realm="api", error="insufficient_scope", error_description="..."`}</code></pre>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`Introspection\n{ "active": true, "client_id": "abc", "sub": "user:1", "scope": "read", "aud": ["api://rs"], "exp": 1735689600 }`}</code></pre>
+                </>
+            ) }
+            { slug === 'oidc' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">OIDC adds an ID Token (JWT) with claims like <code>iss</code>, <code>sub</code>, <code>aud</code>, <code>exp</code>, <code>iat</code>, and (for web flows) <code>nonce</code>. UserInfo is fetched with a Bearer token (RFC 6750). Use discovery to locate endpoints and JWKS.</p>
+                </>
+            ) }
+            { slug === 'pkce' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">PKCE (RFC 7636) mitigates code interception. Prefer <code>code_challenge_method=S256</code>. Verifier length MUST be 43–128 characters; its lifetime MUST NOT exceed the auth code lifetime.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant UA as Browser\n  participant Client\n  participant AS as Authorization Server\n  UA->>AS: /authorize (code_challenge=S256)\n  AS-->>UA: 302 code\n  Client->>AS: /token (code_verifier)\n  AS-->>Client: access_token`}</code></pre>
+                </>
+            ) }
+            { slug === 'rar' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">RAR (RFC 9396) allows fine‑grained permissions via <code>authorization_details</code>. Multiple entries are allowed; the AS MUST validate types and ignore unknown members.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`{\n  "authorization_details": [{\n    "type": "ai_agent_delegation",\n    "tools": ["mcp:flights:search"],\n    "locations": ["https://tools.example.com"],\n    "dat": {"purpose": "travel"}\n  }]\n}`}</code></pre>
+                </>
+            ) }
+            { slug === 'par' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">PAR (RFC 9126) moves large/structured requests to the back‑channel. Client authentication is REQUIRED. The returned <code>request_uri</code> has a short TTL and is used at <code>/authorize</code>.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant Client\n  participant AS\n  Client->>AS: POST /par (client auth)\n  AS-->>Client: {request_uri, expires_in}\n  Client->>AS: /authorize?request_uri=...&response_mode=jwt\n  AS-->>Client: JARM JWT`}</code></pre>
+                </>
+            ) }
+            { slug === 'jarm' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">JARM returns authorization responses as a signed JWT. Container includes <code>iss</code>, <code>aud</code>, <code>exp</code>, <code>iat</code>, <code>state</code>, and <code>nonce</code>. Clients MUST verify signature and expiry and handle replay protection.</p>
+                </>
+            ) }
             {
                 slug === 'token-exchange' && (
                     <>
@@ -103,6 +138,33 @@ resource=https://idp.example.com/api/admin
                     <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant AS as Authorization Server\n  Client->>AS: POST /register (metadata)\n  AS-->>Client: 201 { client_id[, client_secret] }\n  Client->>AS: (7592) GET/PATCH/DELETE /register/{client_id}`}</code></pre>
                 </>
             ) }
+            { slug === 'scim' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">SCIM defines identity schemas and APIs. PATCH supports <code>add</code>, <code>replace</code>, and <code>remove</code>. Filtering, sorting, and pagination should be supported; use ETags for concurrency.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`PATCH /Users/2819c223-7f76-453a-919d-413861904646\n{\n  "Operations": [{\n    "op": "replace",\n    "path": "name.familyName",\n    "value": "Benson"\n  }]\n}`}</code></pre>
+                </>
+            ) }
+            { slug === 'ciba' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">CIBA enables backchannel authentication. Modes: poll, ping, push. The AS returns <code>auth_req_id</code> and <code>interval</code>; the client polls <code>/token</code> until success or timeout.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant Client\n  participant AS\n  Client->>AS: backchannel auth (login_hint)\n  AS-->>Client: {auth_req_id, interval}\n  loop poll\n    Client->>AS: POST /token (auth_req_id)\n    AS-->>Client: authorization_pending\n  end\n  AS-->>Client: {access_token, id_token}`}</code></pre>
+                </>
+            ) }
+            { slug === 'fapi-2-0' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">FAPI 2.0 hardens OAuth/OIDC. Baseline vs Advanced differ by requirements such as PAR/JARM and sender‑constrained tokens (mTLS or DPoP). Follow profile conformance for cipher suites and redirect URI handling.</p>
+                </>
+            ) }
+            { slug === 'caep' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">CAEP (OIDF Shared Signals) standardizes event‑based session and risk signals (e.g., token revoked, risk changed). Push or query bindings deliver events; relying parties consume and adjust sessions/authorization.</p>
+                </>
+            ) }
+            { slug === 'mcp' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">MCP defines a protocol between clients and tool servers for model context. Clarify roles (client/server/tools), transport vs schema, version negotiation, and policy/security hooks.</p>
+                </>
+            ) }
             { slug === 'authzen' && (
                 <>
                     <p style="color:#9ba3b7;margin:0 0 8px">OpenID AuthZEN (OIDF) defines an authorization decision API and common data model to externalize fine‑grained authorization. It complements OAuth/OIDC by standardizing decision requests/responses (subject, action, resource, context) and obligations.</p>
@@ -115,6 +177,16 @@ resource=https://idp.example.com/api/admin
         <div class="glass-card" style="padding:16px">
             <h2 class="section-title" style="margin:0 0 8px">References</h2>
             <ul style="margin:0;color:#9ba3b7;line-height:1.8;padding-left:18px">
+                { slug === 'oauth' && (<>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc6749/">RFC 6749: OAuth 2.0</a></li>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc6750/">RFC 6750: Bearer Token Usage</a></li>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc7662/">RFC 7662: Token Introspection</a></li>
+                </>) }
+                { slug === 'oidc' && (<li><a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core 1.0</a></li>) }
+                { slug === 'pkce' && (<li><a href="https://datatracker.ietf.org/doc/rfc7636/">RFC 7636: PKCE</a></li>) }
+                { slug === 'rar' && (<li><a href="https://datatracker.ietf.org/doc/rfc9396/">RFC 9396: RAR</a></li>) }
+                { slug === 'par' && (<li><a href="https://datatracker.ietf.org/doc/rfc9126/">RFC 9126: PAR</a></li>) }
+                { slug === 'jarm' && (<li><a href="https://openid.net/specs/oauth-v2-jarm.html">OIDF: JARM</a></li>) }
                 { slug === 'token-exchange' && (<li><a href="https://datatracker.ietf.org/doc/rfc8693/">RFC 8693: OAuth 2.0 Token Exchange</a></li>) }
                 { slug === 'resource-indicators' && (<li><a href="https://datatracker.ietf.org/doc/rfc8707/">RFC 8707: Resource Indicators</a></li>) }
                 { slug === 'dpop' && (<li><a href="https://datatracker.ietf.org/doc/rfc9449/">RFC 9449: DPoP</a></li>) }
@@ -123,7 +195,15 @@ resource=https://idp.example.com/api/admin
                     <li><a href="https://datatracker.ietf.org/doc/rfc7591/">RFC 7591: Dynamic Client Registration</a></li>
                     <li><a href="https://datatracker.ietf.org/doc/rfc7592/">RFC 7592: Client Registration Management</a></li>
                 </>) }
+                { slug === 'scim' && (<>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc7643/">RFC 7643: SCIM Core Schema</a></li>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc7644/">RFC 7644: SCIM Protocol</a></li>
+                </>) }
+                { slug === 'ciba' && (<li><a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html">OIDF: CIBA Core</a></li>) }
+                { slug === 'fapi-2-0' && (<li><a href="https://openid.net/specs/fapi-2_0-baseline.html">OIDF: FAPI 2.0 Baseline</a></li>) }
+                { slug === 'caep' && (<li><a href="https://openid.net/specs/openid-caep-specification-1_0.html">OIDF: CAEP</a></li>) }
                 { slug === 'authzen' && (<li><a href="https://openid.net/wg/az/">OpenID Foundation: AuthZEN WG</a></li>) }
+                { slug === 'mcp' && (<li><a href="https://modelcontextprotocol.io/">Model Context Protocol Spec</a></li>) }
             </ul>
         </div>
     </section>
