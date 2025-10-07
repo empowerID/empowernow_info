@@ -167,6 +167,12 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     </ul>
   </section>
   <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Attribute-Based Access Control (AuthZEN)</h2>
+    <div class="glass-card" style="padding:12px">
+      {await import('../../components/ABACAuthZEN.astro').then(m => m.default({}))}
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">Where we implement this</h2>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
       <li><strong>IdP (PEP)</strong>: RFC 8693 Token Exchange with consent obligations; DPoP; pairwise.</li>
