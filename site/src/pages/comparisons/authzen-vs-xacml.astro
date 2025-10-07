@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'AuthZEN vs XACML';
+const description = 'Modern JSON decisions with constraints/obligations vs XML policy evaluation — what changes and why teams migrate.';
+const canonical = '/comparisons/authzen-vs-xacml/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">AuthZEN vs XACML</h1>
+    <p style="color:#9ba3b7;max-width:90ch">AuthZEN standardizes <strong>JSON</strong> authorization decisions with <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> — designed for streaming and gateways. XACML is XML‑centric and harder to integrate with modern runtimes.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <div class="glass-card" style="padding:16px">
+      <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
+        <thead><tr><th style="text-align:left">Dimension</th><th style="text-align:left">XACML</th><th style="text-align:left">AuthZEN</th></tr></thead>
+        <tbody>
+          <tr><td>Message format</td><td>XML</td><td><strong>JSON</strong></td></tr>
+          <tr><td>Decision payload</td><td>Permit/Deny</td><td><strong>Permit/Deny + constraints + obligations + TTL</strong></td></tr>
+          <tr><td>Gateway integration</td><td>Custom</td><td><strong>Native</strong> (PEPs enforce constraints)</td></tr>
+          <tr><td>Developer ergonomics</td><td>Low</td><td><strong>High</strong> (simple JSON)</td></tr>
+          <tr><td>Receipts/audit</td><td>Not standardized</td><td><strong>Pairs with receipts</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">FAQ</h2>
+    <ul style="color:#9ba3b7;line-height:1.8">
+      <li><strong>Do I rewrite policies?</strong> Keep ABAC. Translate rules to AuthZEN‑compatible policy authoring; requests map to JSON categories.</li>
+      <li><strong>Can both coexist?</strong> Yes. Use PDP adapters to serve AuthZEN decisions while legacy continues during migration.</li>
+    </ul>
+  </section>
+  <script type="application/ld+json">{JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Is AuthZEN a replacement for XACML?","acceptedAnswer":{"@type":"Answer","text":"AuthZEN modernizes decision messages and enforcement integration; you keep ABAC concepts while adopting JSON decisions."}},
+      {"@type":"Question","name":"How hard is migration?","acceptedAnswer":{"@type":"Answer","text":"Requests and categories map cleanly; the main change is returning constraints and obligations with TTL to drive runtime enforcement."}}
+    ]
+  })}</script>
+</Base>
+

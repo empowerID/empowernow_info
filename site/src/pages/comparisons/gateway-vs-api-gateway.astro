@@ -1,5 +1,38 @@
 ---
 import Base from '../../layouts/Base.astro';
+const title = 'MCP Gateway vs API Gateway';
+const description = 'Why an MCP-aware policy gateway is required for agent tools vs. a traditional API gateway.';
+const canonical = '/comparisons/gateway-vs-api-gateway/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">MCP Gateway vs API Gateway</h1>
+    <p style="color:#9ba3b7;max-width:90ch">API gateways route and rate‑limit. MCP Gateway validates <em>plan steps</em> and <em>schema pins</em>, enforces AuthZEN constraints, and emits receipts. They solve different problems and often run together.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <div class="glass-card" style="padding:16px">
+      <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
+        <thead><tr><th style="text-align:left">Capability</th><th style="text-align:left">API Gateway</th><th style="text-align:left">MCP Gateway</th></tr></thead>
+        <tbody>
+          <tr><td>Routing/Rate limits</td><td>Yes</td><td>Works with API GW</td></tr>
+          <tr><td>Schema pin validation</td><td>No</td><td><strong>Yes</strong> (hash/version)</td></tr>
+          <tr><td>Plan discipline</td><td>No</td><td><strong>Yes</strong> (deny off‑plan pre‑exec)</td></tr>
+          <tr><td>AuthZEN constraints</td><td>No</td><td><strong>Yes</strong></td></tr>
+          <tr><td>Receipts</td><td>No</td><td><strong>Yes</strong> (signed evidence)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">FAQ</h2>
+    <ul style="color:#9ba3b7;line-height:1.8">
+      <li><strong>Can I use both?</strong> Yes. Place MCP Gateway behind your API gateway for policy enforcement and receipts.</li>
+      <li><strong>Do I need MCP to benefit?</strong> MCP support is ideal; schema pinning and AuthZEN decisions add value regardless.</li>
+    </ul>
+  </section>
+</Base>
+---
+import Base from '../../layouts/Base.astro';
 const title = 'AI Gateway (ARIA Shield) vs Network API Gateway';
 const description = 'Clarifying roles: ARIA Shield enforces budgets, authorization, and tool allow‑lists for agents; API gateways route and rate‑limit.';
 const canonical = '/comparisons/gateway-vs-api-gateway/';
