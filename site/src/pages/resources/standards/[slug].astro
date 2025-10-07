@@ -50,30 +50,65 @@ const canonical = `/resources/standards/${slug}/`;
             {
                 slug === 'token-exchange' && (
                     <>
-                        <p style="color:#9ba3b7;margin:0 0 8px">Exchange a subject token and (optionally) actor token for a new access token. We set <code>act.sub</code> for OBO and may include ARIA extensions.</p>
-                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant C as Client\n  participant IdP as Token Endpoint\n  C->>IdP: POST /token (grant_type=token-exchange)\n  IdP-->>C: access_token (aud, act.sub)`}</code></pre>
+                        <p style="color:#9ba3b7;margin:0 8px 8px 0">RFC 8693 lets a client exchange one token for another. Inputs include <code>subject_token</code> (required), optional <code>actor_token</code>, and <code>requested_token_type</code>. The AS validates inputs and issues a new token; for OBO, JWTs commonly carry <code>act</code> (actor) and may include <code>may_act</code>.</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`x-www-form-urlencoded
+grant_type=urn:ietf:params:oauth:grant-type:token-exchange&
+subject_token=...&
+subject_token_type=urn:ietf:params:oauth:token-type:access_token&
+actor_token=...&
+actor_token_type=urn:ietf:params:oauth:token-type:access_token&
+requested_token_type=urn:ietf:params:oauth:token-type:access_token&
+resource=https://api.example.com/
+`}</code></pre>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant C as Client\n  participant AS as Authorization Server (TE)\n  participant RS as Resource Server\n  C->>AS: POST /token (TE: subject_token[, actor_token])\n  AS->>AS: Validate signatures/expiry/audience/types\n  AS-->>C: access_token (may include act.sub; aud set for resource)\n  C->>RS: Use new token to call API`}</code></pre>
+                        <p style="color:#9ba3b7;margin-top:8px">Key params: <code>subject_token[_type]</code>, <code>actor_token[_type]</code>, <code>requested_token_type</code>, <code>resource</code> (or AS-specific audience), <code>scope</code>. Output is a normal OAuth token response.</p>
                     </>
                 )
             }
             {
                 slug === 'resource-indicators' && (
                     <>
-                        <p style="color:#9ba3b7;margin:0 0 8px">Send <code>resource</code> to set the intended audience precisely.</p>
-                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant BFF\n  participant IdP\n  BFF->>IdP: token (resource=api://admin)\n  IdP-->>BFF: access_token (aud=[api://admin])`}</code></pre>
+                        <p style="color:#9ba3b7;margin:0 0 8px">RFC 8707 defines the <code>resource</code> parameter to indicate the target RS. Values MUST be absolute URIs without fragments. AS issues a token suitable for that resource (often reflected in <code>aud</code>).</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`x-www-form-urlencoded
+grant_type=client_credentials&
+scope=admin.api&
+resource=https://idp.example.com/api/admin
+`}</code></pre>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant AS as Authorization Server\n  participant Admin as Admin API\n  Client->>AS: /token (resource=https://.../api/admin)\n  AS-->>Client: access_token (aud matches resource)\n  Client->>Admin: Authorization: Bearer &lt;access_token&gt;`}</code></pre>
+                        <p style="color:#9ba3b7;margin-top:8px">Multiple <code>resource</code> values may be sent; the AS selects what it supports. If both vendor <code>audience</code> and <code>resource</code> are sent, follow your AS precedence (RFC recommends <code>resource</code>).</p>
                     </>
                 )
             }
             {
                 slug === 'dpop' && (
                     <>
-                        <p style="color:#9ba3b7;margin:0 0 8px">Sender‑constrained tokens with <code>cnf.jkt</code> bound to a JWK; proof on each call.</p>
-                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nflowchart TD\n  A[Client] -- DPoP proof --> T[Token Endpoint]\n  T -->|cnf.jkt| AT[Access Token]\n  A -- proof + AT --> RS[Resource Server]`}</code></pre>
+                        <p style="color:#9ba3b7;margin:0 0 8px">DPoP (RFC 9449) binds tokens to a client key. Proof JWT header contains the public JWK; payload includes <code>htu</code> (URL), <code>htm</code> (method), <code>iat</code>, <code>jti</code>; RS requests include <code>ath</code> (access token hash). Issued tokens carry <code>cnf.jkt</code>.</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`DPoP: eyJ0eXAiOiJkcG9wK2p3dCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiIiwiamdrIjp7Imt0eSI6IlJTQSIsIm4iOiIuLi4iLCJlIjoiAQABIn19.eyJodG0iOiJQT1NUIiwiaHR1IjoiaHR0cHM6Ly9pZHAuZXhhbXBsZS5jb20vdG9rZW4iLCJpYXQiOjE3MDAwMDAwMDAsImp0aSI6InU0LWJpZCJ9..sig`}</code></pre>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nflowchart TD\n  A[Client] -- DPoP proof --> TE[Token Endpoint]\n  TE -->|cnf.jkt in token| AT[Access Token]\n  A -- DPoP proof + AT --> RS[Resource Server]\n  RS -->|verify sig, htm/htu, jti, ath| Allow`}</code></pre>
+                        <p style="color:#9ba3b7;margin-top:8px">Servers commonly enforce replay windows on <code>jti</code> and may issue nonces. Resource calls MUST present a fresh proof per request.</p>
                     </>
                 )
             }
-            { slug === 'mtls' && (<p style="color:#9ba3b7;margin:0">Mutual TLS sender‑constrains tokens using client certificates per RFC 8705.</p>) }
-            { slug === 'dcr' && (<p style="color:#9ba3b7;margin:0">Dynamic Client Registration automates client onboarding and updates (RFC 7591/7592).</p>) }
-            { slug === 'authzen' && (<p style="color:#9ba3b7;margin:0">AuthZEN defines portable authorization decision contracts; our PDP aligns with its model for constraints and obligations.</p>) }
+            { slug === 'mtls' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">RFC 8705 defines OAuth mTLS: client auth at AS and certificate‑bound access tokens at RS. Two auth modes: <code>tls_client_auth</code> (CA‑issued) and <code>self_signed_tls_client_auth</code>. Tokens carry <code>cnf</code> with <code>x5t#S256</code>.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`"cnf": {"x5t#S256": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"}`}</code></pre>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant AS as Authorization Server (mTLS)\n  participant RS as Resource Server (mTLS)\n  Client->>AS: TLS handshake (client cert) + /token\n  AS-->>Client: cert-bound access_token (cnf.x5t#S256)\n  Client->>RS: TLS handshake (same cert) + request\n  RS->>RS: Verify cert thumbprint matches token`}</code></pre>
+                </>
+            ) }
+            { slug === 'dcr' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">RFC 7591/7592 specify dynamic registration and management. Clients POST metadata (optionally with a <code>software_statement</code>) to <code>/register</code>, receive <code>client_id</code> (and secret). 7592 adds read/update/rotate.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`POST /register\n{\n  "redirect_uris": ["https://app.example.com/cb"],\n  "grant_types": ["authorization_code"],\n  "response_types": ["code"],\n  "token_endpoint_auth_method": "tls_client_auth",\n  "software_statement": "eyJ..."\n}`}</code></pre>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant AS as Authorization Server\n  Client->>AS: POST /register (metadata)\n  AS-->>Client: 201 { client_id[, client_secret] }\n  Client->>AS: (7592) GET/PATCH/DELETE /register/{client_id}`}</code></pre>
+                </>
+            ) }
+            { slug === 'authzen' && (
+                <>
+                    <p style="color:#9ba3b7;margin:0 0 8px">OpenID AuthZEN (OIDF) defines an authorization decision API and common data model to externalize fine‑grained authorization. It complements OAuth/OIDC by standardizing decision requests/responses (subject, action, resource, context) and obligations.</p>
+                    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant PDP as AuthZ Decision Service\n  participant RS as Resource Server\n  Client->>PDP: evaluate(subject, action, resource, context)\n  PDP-->>Client: { decision, constraints, obligations }\n  Client->>RS: Enforce decision + constraints`}</code></pre>
+                </>
+            ) }
         </div>
     </section>
 </Base>
