@@ -26,14 +26,10 @@ const canonical = '/products/aria/';
       <h2 class="section-title">How ARIA works</h2>
       <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start">
         <div class="glass-card" style="padding:12px">
-          <!-- Premium diagram -->
-          <iframe srcdoc="" title="ARIA Authorization Diagram" loading="lazy" style="display:none"></iframe>
-          <!-- Inline import for now to avoid cross-origin issues -->
-          <!-- We can switch to client:idle import of the component once extracted fully -->
-          <!-- Placeholder: the page already hosts the full SVG on the fundamentals page; here we will use the component in a follow-up step. -->
-          <!-- Keeping this lightweight: link to the fundamentals page anchor for now. -->
-          <div style="padding:8px;color:#9ba3b7">See the full interactive diagram in Authorization Fundamentals.</div>
-          <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/authz-model/`}>Open diagram →</a>
+          <!-- Premium diagram component -->
+          <client:only fallback="">
+            {await import('../../components/ARIAAuthorizationPremium.astro').then(m => m.default({}))}
+          </client:only>
         </div>
         <aside class="glass-card" style="padding:12px;position:sticky;top:88px">
           <h3 style="margin:0 0 8px">Legend</h3>
