@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://empowernow.ai/products/aria-shield/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowernow.ai/products/aria-shield/faq/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://empowernow.ai/products/aria/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowernow.ai/products/crud/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowernow.ai/products/crud/primer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://empowernow.ai/products/data-collector/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>

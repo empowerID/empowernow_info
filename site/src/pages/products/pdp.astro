@@ -7,6 +7,7 @@ const description = 'Policy decisions with standardized constraints/obligations/
 const canonical = '/products/pdp/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"AuthZEN PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
+---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
     <Product title={title} description={description} canonical={canonical} productKey="pdp" productIcon="🛡️" eyebrow="🛡️ PDP" headline="PDP" subhead="Standardized decisions with constraints, obligations, and TTL." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'One decision contract across agents/apps', 'Budget 402, content & egress limits, param allow‑lists', 'Conservative merge across policy layers', 'Explainable decisions with cache‑friendly TTL' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','oidc','caep' ]}>
@@ -28,6 +29,10 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				<h2 class="section-title">How it works</h2>
                 <p style="color:#9ba3b7">Services call PDP with subject, resource, action, and context. PDP evaluates policy and returns a decision with constraints/obligations, TTL, and reasons for audit.
                 </p>
+				<div class="panel-glass" style="padding:12px;margin-top:8px">
+					<strong>Batch decisions = fewer round‑trips, lower latency.</strong>
+					<p style="color:#9ba3b7;margin:6px 0 0">Send multiple checks in one call for faster pages and smoother agent runs.</p>
+				</div>
 				<div class="diagram vignette" style="margin-top:12px">
 					<div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px;position:relative;z-index:1">
 						<div class="node">Subject</div>
@@ -42,6 +47,10 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 						<div class="node">Decision</div>
 					</div>
 				</div>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Decisions you can explain</h2>
+				<p style="color:#9ba3b7;max-width:90ch">PDP returns constraints and clear reasons, not just allow/deny—so security, engineering, and auditors share the same facts.</p>
 			</section>
             <section class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Proof</h2>

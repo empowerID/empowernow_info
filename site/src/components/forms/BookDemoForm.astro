@@ -1,0 +1,164 @@
+---
+interface Props {
+    helper?: string;
+    endpoint?: string; // JSON webhook for HubSpot later
+    mailto?: string;   // fallback email
+}
+const { helper = 'Tell us a bit about you and we will reach out shortly.', endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined, mailto = (import.meta.env.PUBLIC_SALES_EMAIL as string | undefined) ?? 'sales@empowernow.ai' } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
+---
+<section class="container" style="padding:24px 0 48px">
+    <p style="color:#9ba3b7;max-width:860px;margin:0 0 8px">{helper}</p>
+    <div class="glass-card" style="padding:16px;border-radius:12px">
+        <form id="demo-form" method="post" action={endpoint ? endpoint : `mailto:${mailto}`} enctype={endpoint ? 'application/x-www-form-urlencoded' : 'text/plain'} novalidate>
+            <div class="form-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+                <div>
+                    <label for="email">Work email</label>
+                    <input id="email" name="email" class="input" type="email" required placeholder="ada@company.com" />
+                </div>
+                <div>
+                    <label for="company">Company</label>
+                    <input id="company" name="company" class="input" type="text" required placeholder="Company Inc." />
+                </div>
+                <div>
+                    <label for="name">Full name</label>
+                    <input id="name" name="name" class="input" type="text" placeholder="Ada Lovelace" />
+                </div>
+                <div>
+                    <label for="role">Role <span class="opt">(optional)</span></label>
+                    <input id="role" name="role" class="input" type="text" placeholder="Engineering Lead" />
+                </div>
+                <div>
+                    <label for="phone">Phone (optional)</label>
+                    <input id="phone" name="phone" class="input" type="tel" inputmode="tel" placeholder="+1 555 123 4567" />
+                </div>
+                <div>
+                    <label for="product">Product interest</label>
+                    <select id="product" name="product" class="input">
+                        <option value="pdp">PDP</option>
+                        <option value="aria-shield">ARIA Shield</option>
+                        <option value="idp">IdP</option>
+                        <option value="crud-service">CRUD Service</option>
+                        <option value="data-collector">Data Collector</option>
+                        <option value="gateway">ARIA MCP Gateway</option>
+                        <option value="other" selected>Other / Not sure</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="timeline">Timeline <span class="opt">(optional)</span></label>
+                    <select id="timeline" name="timeline" class="input">
+                        <option value="now">Ready now</option>
+                        <option value="this-quarter">This quarter</option>
+                        <option value="this-year">This year</option>
+                        <option value="exploring">Exploring</option>
+                    </select>
+                </div>
+                <div style="grid-column:1/-1">
+                    <label for="message">Context</label>
+                    <textarea id="message" name="message" class="input" rows={5} placeholder="What problem are you solving? Any specific goals for the demo?" />
+                </div>
+            </div>
+            <input type="hidden" name="page" value={typeof window === 'undefined' ? '' : location.pathname} />
+            <input type="hidden" name="utm_campaign" value="" />
+            <input type="hidden" name="utm_medium" value="" />
+            <input type="hidden" name="utm_source" value="" />
+            <div style="display:flex;gap:12px;align-items:center;margin-top:16px">
+                <button type="submit" class="btn btn-primary" data-ev="cta_click" data-label="book_demo_submit" data-cta-level="hard">Request demo</button>
+                <div id="form-status" role="status" aria-live="polite" style="color:#9ba3b7"></div>
+            </div>
+        </form>
+    </div>
+    <p style="color:#9ba3b7;font-size:.9rem;margin-top:10px">We respond within 1 business day. No spam. See <a href={`${base}trust/privacy/`}>Privacy</a>.</p>
+    <script>
+        (function(){
+            try{
+                const form = document.getElementById('demo-form') as HTMLFormElement | null;
+                const status = document.getElementById('form-status') as HTMLDivElement | null;
+                if(!form) return;
+                // UTM propagation
+                const url = new URL(location.href);
+                (form.querySelector('input[name="utm_campaign"]') as HTMLInputElement | null)?.setAttribute('value', url.searchParams.get('utm_campaign') || '');
+                (form.querySelector('input[name="utm_medium"]') as HTMLInputElement | null)?.setAttribute('value', url.searchParams.get('utm_medium') || '');
+                (form.querySelector('input[name="utm_source"]') as HTMLInputElement | null)?.setAttribute('value', url.searchParams.get('utm_source') || '');
+                async function postJSON(endpoint: string, data: Record<string, string>){
+                    const res = await fetch(endpoint, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(data) });
+                    if(!res.ok) throw new Error('Request failed');
+                }
+                function buildMailto(to: string, data: Record<string,string>){
+                    const subject = encodeURIComponent('Demo request — ' + (data.company || data.name || ''));
+                    const body = encodeURIComponent(Object.entries(data).map(([k,v])=> `${k}: ${v}`).join('\n'));
+                    return `mailto:${to}?subject=${subject}&body=${body}`;
+                }
+                function isValidEmail(v:string){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+                function markError(input: HTMLInputElement | HTMLTextAreaElement, msg: string){
+                    input.setAttribute('aria-invalid','true');
+                    input.style.borderColor = 'var(--color-danger, #ff7b7b)';
+                    status && (status.textContent = msg);
+                }
+                function clearError(input: HTMLInputElement | HTMLTextAreaElement){ input.removeAttribute('aria-invalid'); input.style.borderColor = ''; }
+                // personalization defaults
+                (function personalize(){
+                    try{
+                        const url = new URL(location.href);
+                        const p = (url.searchParams.get('product')||'').toLowerCase();
+                        const map: Record<string,string> = { pdp:'pdp', shield:'aria-shield', 'aria-shield':'aria-shield', idp:'idp', crud:'crud-service', crudservice:'crud-service', collector:'data-collector', gateway:'gateway' };
+                        const target = map[p] || (p || 'other');
+                        const sel = document.getElementById('product') as HTMLSelectElement|null;
+                        if(sel && Array.from(sel.options).some(o=>o.value===target)) sel.value = target;
+                    }catch{}
+                })();
+                form.addEventListener('submit', async function(e){
+                    const fd = new FormData(form);
+                    const payload: Record<string,string> = {};
+                    fd.forEach((v,k)=>{ payload[k] = String(v); });
+                    // inline validation
+                    clearError(document.getElementById('email') as HTMLInputElement);
+                    clearError(document.getElementById('company') as HTMLInputElement);
+                    if(!isValidEmail(payload.email||'')) { e.preventDefault(); markError(document.getElementById('email') as HTMLInputElement, 'Please enter a valid work email.'); return; }
+                    if(!payload.company) { e.preventDefault(); markError(document.getElementById('company') as HTMLInputElement, 'Please enter your company.'); return; }
+                    const configuredEndpoint = (form.getAttribute('action') || '').startsWith('http') ? form.getAttribute('action')! : '';
+                    const mail = (form.getAttribute('action') || '').startsWith('mailto:') ? (form.getAttribute('action') || '').replace('mailto:','') : '';
+                    if(configuredEndpoint){
+                        e.preventDefault();
+                        try{
+                            status && (status.textContent = 'Submitting…');
+                            await postJSON(configuredEndpoint, payload);
+                            try { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event:'form_submit', form:'book_demo', status:'success' }); } catch {}
+                            location.href = `${import.meta.env.BASE_URL}thank-you/?s=demo`;
+                        }catch{
+                            status && (status.textContent = 'Submission failed. Please try again.');
+                            try { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event:'form_submit', form:'book_demo', status:'error' }); } catch {}
+                        }
+                        return;
+                    }
+                    if(mail){
+                        e.preventDefault();
+                        const href = buildMailto(mail, payload);
+                        status && (status.textContent = 'Opening your email client…');
+                        try{ location.href = href; }catch{}
+                        setTimeout(()=>{ location.href = `${import.meta.env.BASE_URL}thank-you/?s=demo`; }, 600);
+                        try { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event:'form_submit', form:'book_demo', status:'mailto' }); } catch {}
+                        return;
+                    }
+                });
+                try { (window as any).dataLayer = (window as any).dataLayer || []; (window as any).dataLayer.push({ event:'form_view', form:'book_demo' }); } catch {}
+            }catch{}
+        })();
+    </script>
+    <style>
+        .glass-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px }
+        .input { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.08); color: inherit; padding: 10px 12px; border-radius: 8px; width:100% }
+        label { display:block; font-size:.9rem; color:#9ba3b7; margin:0 0 6px }
+        .opt{ color:#6f7d98; font-weight:normal }
+        /* Ensure native controls render with dark UI (fixes washed-out select options on some platforms) */
+        :where(.glass-card, form, .input, select.input){ color-scheme: dark }
+        /* Improve dropdown contrast across browsers */
+        select.input{ background-color: rgba(15,27,51,.92); }
+        select.input option{ background:#0F1B33; color:#e6eef8 }
+        select.input option:checked{ background:#1e2b4f; color:#ffffff }
+        select.input option[disabled]{ color:#6f7d98 }
+        @media (max-width: 900px){ .form-grid { grid-template-columns: 1fr } }
+    </style>
+</section>
+
+

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Thank you — EmpowerNow';
+const description = 'We received your request and will reach out shortly.';
+const canonical = '/thank-you/';
+---
+<Base title={title} description={description} canonical={canonical}>
+    <section class="container" style="padding:64px 0 72px; text-align:center" data-suppress-sticky>
+        <h1 class="display" style="margin:0 0 12px">Thank you!</h1>
+        <p style="color:#9ba3b7;max-width:720px;margin:0 auto 20px">We received your request. A member of our team will reach out shortly.</p>
+        <div style="display:flex;gap:10px;justify-content:center">
+            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch demo</a>
+            <a class="btn" href={`${import.meta.env.BASE_URL}`}>Back to home</a>
+        </div>
+    </section>
+</Base>
+
+

@@ -36,11 +36,64 @@ import AuroraText from '../components/AuroraText.astro';
             <!-- Trust Strip -->
             <div class="panel-glass trust-strip" style="padding:20px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;width:100%">
                 <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:300px">
-                    <span>Built by <strong>EmpowerID</strong> (since 2005, $20M+ revenue; Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR).</span>
+                    <span><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
                     <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
                 </div>
                 <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>
             </div>
+        </div>
+    </section>
+    <!-- Delegate safely band -->
+    <section class="container reveal-on-scroll" data-section="delegate-safely" style="padding:8px 0 24px">
+        <div class="glass-card" style="padding:16px">
+            <h2 class="section-title" style="margin-top:0">Delegate safely. Ship faster.</h2>
+            <p style="color:#9ba3b7;max-width:860px;margin:0 0 8px">Let AI agents act for people — with clear limits you control. Approvals, budgets, time windows, and location rules keep work safe and auditable.</p>
+            <ul style="display:flex;gap:10px;flex-wrap:wrap;color:#9ba3b7;margin:0">
+                <li class="chip">Time‑boxed access</li>
+                <li class="chip">Spend limits</li>
+                <li class="chip">Manager approval</li>
+                <li class="chip">Geo/IP controls</li>
+            </ul>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+                <a class="btn" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA?</a>
+                <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>See governance →</a>
+            </div>
+        </div>
+    </section>
+    <!-- Governance crisis band -->
+    <section class="container reveal-on-scroll" data-section="governance-crisis" style="padding:16px 0 24px">
+        <div class="panel-glass" style="padding:16px">
+            <h2 class="section-title" style="margin-top:0">The AI Gold Rush created a governance crisis</h2>
+            <p style="color:#9ba3b7;max-width:860px;margin:0 0 8px">Ungoverned AI drives runaway spend, opens new attack surfaces, and leaves you without a financial‑grade audit. EmpowerNow is the neutral Layer‑2 that puts guardrails on every action.</p>
+            <ul style="display:flex;gap:10px;flex-wrap:wrap;color:#9ba3b7;margin:0">
+                <li class="chip">Unpredictable spend</li>
+                <li class="chip">New attack surface</li>
+                <li class="chip">No financial‑grade audit</li>
+            </ul>
+            <div style="margin-top:12px"><a class="btn" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>Explore AI Agent Governance</a></div>
+        </div>
+    </section>
+    <!-- DNA strip -->
+    <section class="container reveal-on-scroll" data-section="dna" style="padding:8px 0 24px">
+        <div class="glass-card" style="padding:16px">
+            <h2 class="section-title" style="margin-top:0">Proven DNA you can bank on</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+                <span class="chip">Connector DNA</span>
+                <span class="chip">Authorization DNA</span>
+                <span class="chip">Enforcement DNA</span>
+                <span class="chip">Audit DNA</span>
+            </div>
+        </div>
+    </section>
+    <!-- Create/Enforce/Prove band -->
+    <section class="container reveal-on-scroll" data-section="loop" style="padding:8px 0 24px">
+        <div class="panel-glass" style="padding:16px">
+            <h2 class="section-title" style="margin-top:0">Create once. Enforce everywhere. Prove every action.</h2>
+            <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+                <li>Create tools once: No‑code CRUD Service transforms any API, DB, or workflow into a governed MCP tool.</li>
+                <li>Enforce policy everywhere: ARIA Shield + MCP Gateway apply budgets, route‑level constraints, and tool allow‑lists across agents.</li>
+                <li>Prove every action: Cryptographic receipts deliver a financial‑grade, immutable audit for every decision and spend.</li>
+            </ul>
         </div>
     </section>
     <style>
@@ -104,7 +157,7 @@ import AuroraText from '../components/AuroraText.astro';
     <!-- <section class="container" data-section="trust" style="padding:12px 0 12px">
         <div class="panel-glass trust-strip" style="padding:12px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
             <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:300px">
-                <span>Built by <strong>EmpowerID</strong> (since 2005, $20M+ revenue; Airbus, Aldi, Daimler Truck, Siemens, RB, PACCAR).</span>
+                <span><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
                 <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
             </div>
             <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>

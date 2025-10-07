@@ -1,0 +1,72 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleJsonLd from '../../../components/ArticleJsonLd.astro';
+const title = 'IdP for AI Agents — Technical Overview';
+const description = 'Engineer-facing overview: OBO (RFC 8693), RAR (RFC 9396), DPoP (RFC 9449), RFC 8707 resource audiences, identity ARNs, JIT consent, and PATs.';
+const canonical = '/resources/strategy/idp-technical-overview/';
+const article = {
+  '@context':'https://schema.org', '@type':'Article',
+  headline: title, description,
+  author: { '@type':'Organization', name:'EmpowerNow' },
+  url: new URL(canonical, Astro.site),
+  datePublished: '2025-10-07'
+};
+---
+<Base title={title} description={description} canonical={canonical}>
+  <ArticleJsonLd data={article} />
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">IdP for AI Agents — Technical Overview</h1>
+    <p style="color:#9ba3b7;max-width:90ch">How our IdP issues purpose‑bound Agent Passports using standards: Token Exchange (RFC 8693) with Authorization Details (RAR, RFC 9396), optional DPoP (RFC 9449), and Resource Indicators (RFC 8707). Includes identity ARNs mapping, JIT consent at issuance, and PATs for dev tools.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}products/idp/`}>Back to IdP</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA?</a>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">On‑Behalf‑Of (OBO) claims</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><code>sub</code>: end‑user (authorization basis)</li>
+      <li><code>act.sub</code>: actor (agent/service)</li>
+      <li><code>azp</code>: authorized party (BFF/client)</li>
+    </ul>
+    <p style="color:#9ba3b7;margin-top:8px">Agents and elevated service routes require a concrete <code>delegation_id</code>. Non‑elevated service routes authorize on <code>sub</code> without a delegation id.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Standards implemented</h2>
+    <div class="glass-card" style="padding:12px">
+      <ul style="margin:0;color:#9ba3b7;line-height:1.8;padding-left:18px">
+        <li>RFC 8693 Token Exchange (OBO)</li>
+        <li>RFC 9396 RAR (batched capabilities) + PAR/JARM (optional)</li>
+        <li>RFC 9449 DPoP (sender‑constrained tokens)</li>
+        <li>RFC 8707 Resource Indicators (audience)</li>
+        <li>OIDC Discovery + JWKS</li>
+      </ul>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Identity ARNs & federation mapping</h2>
+    <p style="color:#9ba3b7;max-width:90ch">We mint provider‑scoped Account ARNs and, when configured, consolidate to a stable Identity ARN. Policy can target identities once, across providers.</p>
+    <div style="margin-top:8px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read about identity strategy →</a></div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Consent at issuance (JIT obligations)</h2>
+    <p style="color:#9ba3b7;max-width:90ch">If policy requires consent, the token endpoint returns <code>authorization_pending</code> with an opaque handle. On approval, issuance resumes. Subject‑only, manager‑approved, or dual‑approval patterns are supported.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Dev‑tool access (PATs)</h2>
+    <p style="color:#9ba3b7;max-width:90ch">Scoped PATs replace vendor API keys at our proxies (OpenAI/Anthropic). Introspected server‑side, short‑TTL cached, enforced via PDP/budgets, with receipts.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Audience control (RFC 8707)</h2>
+    <p style="color:#9ba3b7;max-width:90ch">Use <code>resource</code> to set the intended audience precisely and avoid 401s. Falls back to legacy audience logic when disabled.</p>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>Decision contract (PDP)</a>
+      <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/gateway/`}>Gateway (PEP)</a>
+      <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/aria/`}>About ARIA</a>
+    </div>
+  </section>
+</Base>
+
+

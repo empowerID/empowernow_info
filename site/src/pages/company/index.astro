@@ -73,10 +73,24 @@ const canonical = '/company/';
     <section class="container" style="padding:16px 0 24px">
         <h2 class="section-title">Built by EmpowerID (trust you can bank on)</h2>
         <div class="glass-card" style="padding:16px;color:#9ba3b7">
-            <p style="margin:0 0 8px">EmpowerNow is the new, AI‑focused <strong>Identity Fabric</strong> brand from <strong>EmpowerID</strong>—a proven IGA/PAM vendor founded in <strong>2005</strong>, with <strong>$20M+ annual revenue</strong> and deployments at global brands including <strong>Airbus, Aldi, Daimler Truck, Siemens, RB (formerly Reckitt Benckiser), PACCAR</strong>, and others.</p>
-            <p style="margin:0">EmpowerID recognized that the <strong>LLM agent revolution</strong> needed a different approach—<strong>born using AI for AI</strong>, vendor‑agnostic, and standards‑embracing—so we built EmpowerNow to <strong>extend EmpowerID</strong> and to <strong>power any other IGA vendor or agent platform</strong>. That heritage gives us something startups can’t manufacture: <strong>instant credibility and enterprise‑grade procurement paths</strong>.</p>
+            <p style="margin:0 0 8px"><strong>EmpowerNow</strong> is the AI‑focused <strong>Identity Fabric</strong> from <strong>EmpowerID</strong> (founded 2005). It’s a <strong>neutral, standards‑led Layer‑2</strong> that governs agents and apps across platforms.</p>
+            <ul style="margin:8px 0 8px; line-height:1.8; padding-left:18px">
+                <li><strong>Enterprise heritage</strong>: IGA/PAM deployments since 2005 at global brands</li>
+                <li><strong>Neutral & OEM‑ready</strong>: ship under your brand; coexist with Okta, Entra, SailPoint, EmpowerID, Ping, CyberArk</li>
+                <li><strong>Standards first</strong>: OAuth TE/RAR/DPoP • AuthZEN‑style decisions • MCP</li>
+            </ul>
+            <div class="panel-glass" style="padding:12px; margin:10px 0">
+                <strong style="color:#e8ecff">Origins (condensed)</strong>
+                <ul style="margin:6px 0 0; padding-left:18px; line-height:1.8">
+                    <li>2023 — ChatGPT moment → tools explode; teams need safe, governed execution</li>
+                    <li>2024 — Standards align (MCP, OAuth TE/RAR, AuthZEN patterns)</li>
+                    <li>2025 — EmpowerNow launched: Layer‑2 fabric with Studios + ARIA enforcement + Receipts</li>
+                </ul>
+            </div>
+            <p style="margin:0"><em>Positioning</em>: Use <strong>“EmpowerNow by EmpowerID”</strong> in formal contexts (decks/RFPs). Otherwise <strong>“EmpowerNow”</strong> to keep the neutral brand front‑and‑center.</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
                 <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn how EmpowerNow relates to EmpowerID</a>
+                <a class="btn" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>AI Agent Governance</a>
             </div>
         </div>
     </section>
@@ -107,6 +121,11 @@ const canonical = '/company/';
     <!-- FAQ -->
     <section class="container" style="padding:16px 0 24px">
         <h2 class="section-title">FAQ</h2>
+        <div class="glass-card" style="padding:16px;margin-bottom:16px">
+            <h3 style="margin:0 0 6px">Humans vs Agents, one fabric</h3>
+            <p style="color:#9ba3b7;margin:0">Empower ID governs people (IGA). EmpowerNow governs AI agents and their tools. Use either independently—or both together for unified governance.</p>
+            <div style="margin-top:8px"><a class="btn" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>Read the explainer</a></div>
+        </div>
         <div class="grid-3">
             <div class="glass-card" style="padding:16px">
                 <h3 style="margin:0 0 6px">Are you replacing our IGA/PAM?</h3>

@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Ungoverned AI vs EmpowerNow';
+const description = 'Contrast runaway spend and weak audit with EmpowerNow’s budgets, enforcement, and cryptographic receipts.';
+const canonical = '/comparisons/ungoverned-ai/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">Ungoverned AI vs EmpowerNow</h1>
+    <p style="color:#9ba3b7;max-width:80ch">A simple comparison of risks vs governed outcomes.</p>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <div class="glass-card" style="padding:16px">
+      <table class="comparison" style="width:100%;border-collapse:collapse;color:#e8ecff">
+        <thead><tr><th style="text-align:left">Risk/Capability</th><th style="text-align:left">Ungoverned AI</th><th style="text-align:left">EmpowerNow</th></tr></thead>
+        <tbody>
+          <tr><td>Spend</td><td>Unpredictable, runaway</td><td>Budget caps (402) and per‑route limits</td></tr>
+          <tr><td>Security</td><td>Tool/agent injection; drift</td><td>Tool allow‑lists, schema pins, anti‑injection</td></tr>
+          <tr><td>Authorization</td><td>Unclear/implicit</td><td>PDP decisions with constraints/obligations/TTL</td></tr>
+          <tr><td>Audit</td><td>Logs only; easy to dispute</td><td>Cryptographic receipts with decision and spend</td></tr>
+          <tr><td>Platform lock‑in</td><td>High</td><td>Neutral Layer‑2; reusable tools across agents</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px"><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>Explore the solution</a><a class="btn" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a></div>
+  </section>
+</Base>
+
+
