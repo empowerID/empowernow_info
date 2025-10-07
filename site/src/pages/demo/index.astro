@@ -1,0 +1,30 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import BookDemoForm from '../../components/forms/BookDemoForm.astro';
+const title = 'Book a 15‑minute demo — EmpowerNow';
+const description = 'Ship zero‑token SPAs and policy‑guarded agents in days, not months.';
+const canonical = '/demo/';
+const salesEmail = (import.meta as any).env.PUBLIC_SALES_EMAIL || 'sales@empowernow.ai';
+const ogImage = new URL(`${import.meta.env.BASE_URL}images/empowernow-logo.svg`, Astro.site).toString();
+---
+<Landing title={title} description={description} canonical={canonical} chips={[ 'Calendar in 1 click', 'Tailored to your stack', 'Privacy‑first' ]} background="hero">
+    <div slot="primary-ctas">
+        <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/?schedule=now`} data-ev="cta_click" data-label="schedule_now" data-cta-level="hard">Schedule now</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="cta_click" data-label="pricing_top" data-cta-level="soft">Pricing</a>
+    </div>
+    <BookDemoForm helper="Tell us a bit about you and we will reach out shortly." mailto={salesEmail} />
+    <div slot="below">
+        <h2 class="section-title">What we’ll cover</h2>
+        <ul style="color:#9ba3b7;line-height:1.8">
+            <li>AuthZEN decisions with constraints/obligations/TTL and receipts</li>
+            <li>Pre‑execution budgets, egress controls, and safety rails for agents</li>
+            <li>Zero‑token SPA pattern with BFF/Shield</li>
+            <li>Adapter catalog and governance metrics</li>
+        </ul>
+        <div style="margin-top:16px">
+            <a href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="watch_demo_text" style="color:#b3c1da">Prefer to watch a short demo video?</a>
+        </div>
+    </div>
+</Landing>
+
+

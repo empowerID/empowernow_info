@@ -3,13 +3,16 @@ import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
 const title = 'Receipt Vault — Tamper‑Evident Audit';
-const description = 'Sign and hash-chain high‑value logs and decisions. Produce verifiable receipts for every critical action.';
+const description = 'Prove every action: cryptographic receipts with decision context, policy hash, schema hash, and spend — financial‑grade audit.';
 const canonical = '/products/receipts/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"Receipt Vault","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product title={title} description={description} canonical={canonical} headline="Prove what happened, when, and why" subhead="Hash‑chain and sign critical events and decisions, with contextual metadata for audit and forensics." targetICP={[ 'Security', 'Compliance', 'Platform Teams' ]} keyBenefits={[ 'Tamper‑evident receipts', 'Contextual decision metadata', 'Independent verification' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent‑Safe Tools' }, { href: '/solutions/zero-token-spas/', label: 'Zero‑Token SPAs' } ]} keywords={[ 'authzen' ]}>
+	<Product title={title} description={description} canonical={canonical} headline="Prove every action" subhead="Financial‑grade, cryptographic receipts for every governed decision and spend." targetICP={[ 'Security', 'Compliance', 'Platform Teams' ]} keyBenefits={[ 'Tamper‑evident, hash‑chained receipts', 'Decision context + policy hash + schema hash', 'Spend attribution and independent verification' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} wwwLinks={[ { href: '/solutions/ai-agent-governance/', label: 'AI Agent Governance' } ]} keywords={[ 'authzen','audit' ]}>
+		<fragment slot="cta-after">
+			<div style="margin-top:12px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read the Strategy Memo →</a></div>
+		</fragment>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

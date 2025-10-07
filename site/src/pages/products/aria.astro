@@ -1,0 +1,87 @@
+---
+import Landing from '../../layouts/Landing.astro';
+const title = 'What is ARIA? — Agent Risk & Identity Authorization';
+const description = 'ARIA is our AI governance initiative: Shield (BFF PEP) + MCP Gateway (tool PEP) with a PDP that returns constraints/obligations and a Receipt Vault for provable audit.';
+const canonical = '/products/aria/';
+---
+<Landing title={title} description={description} canonical={canonical} background="hero" chips={[ 'Budget caps (402)', 'Egress control', 'Cryptographic receipts' ]}>
+  <div slot="primary-ctas">
+    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+    <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read white paper</a>
+  </div>
+  <div slot="below">
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">ARIA at a glance</h2>
+      <p style="color:#9ba3b7;max-width:90ch">ARIA (Agent Risk & Identity Authorization) provides provable guardrails for AI: create governed tools, enforce policy at the edge, and prove every action with receipts.</p>
+      <div class="glass-card" style="padding:16px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+          <div><h3 style="margin:0 0 6px">ARIA Shield (BFF)</h3><p style="color:#9ba3b7;margin:0">Policy Enforcement Point for LLM traffic: sessions not tokens; budgets, egress, and stream‑time truncation.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn Shield →</a></div>
+          <div><h3 style="margin:0 0 6px">MCP Gateway</h3><p style="color:#9ba3b7;margin:0">Policy Enforcement Point for tools: schema pins, plan steps, allow‑lists, signed receipts.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/gateway/`}>Learn Gateway →</a></div>
+          <div><h3 style="margin:0 0 6px">PDP</h3><p style="color:#9ba3b7;margin:0">Decisions with <strong>constraints</strong> and <strong>obligations</strong>—a dialogue, not a gate.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP deep‑dive →</a></div>
+          <div><h3 style="margin:0 0 6px">Receipt Vault</h3><p style="color:#9ba3b7;margin:0">Financial‑grade, tamper‑evident receipts with policy snapshot and spend.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>Receipts →</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">Decisions with constraints and obligations</h2>
+      <p style="color:#9ba3b7;max-width:90ch">The PDP returns <strong>constraints</strong> the PEP enforces synchronously (egress_allow, models_allow, data_scope, spend_budget) and <strong>obligations</strong> the PEP performs after (audit_log, run_workflow, consent). This turns policy into precise, real‑time control.</p>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">ARIA for AI Delegation</h2>
+      <div class="glass-card" style="padding:16px">
+        <p style="color:#9ba3b7;margin:0 0 8px">Safer agent delegation without rewrites: you approve, we apply guardrails, and every action leaves a receipt.</p>
+        <ul style="margin:0;color:#9ba3b7;line-height:1.8;padding-left:18px">
+          <li><strong>Delegate with guardrails</strong> — scope, time, location, budget</li>
+          <li><strong>One identity model</strong> — people, services, and agents governed the same way</li>
+          <li><strong>Explainable decisions</strong> — clear reasons, not just allow/deny</li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read white paper</a>
+          <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Watch video</a>
+        </div>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">Threats → Controls</h2>
+      <div class="glass-card" style="padding:16px">
+        <table style="width:100%;border-collapse:collapse;color:#e8ecff">
+          <thead><tr><th style="text-align:left">Threat</th><th style="text-align:left">Control</th><th style="text-align:left">Enforced by</th></tr></thead>
+          <tbody>
+            <tr><td>Schema drift</td><td>Schema pins (version/hash, grace window)</td><td>MCP Gateway</td></tr>
+            <tr><td>Overspend</td><td>Pre‑gate budgets + stream‑time settle</td><td>PDP + Shield</td></tr>
+            <tr><td>Prompt leakage</td><td>Egress allow‑lists, classification policies</td><td>Shield</td></tr>
+            <tr><td>Replay/token theft</td><td>Pairwise sub, act.sub, optional DPoP</td><td>IdP + PEPs</td></tr>
+            <tr><td>Missing audit</td><td>Signed, hash‑chained receipts</td><td>PEPs + Receipt Vault</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">How it works (end‑to‑end)</h2>
+      <ol class="numbered">
+        <li>Ingress with ARIA Passport (user ↔ agent binding)</li>
+        <li>Schema pin & optional plan contract validation</li>
+        <li>PDP decision → constraints & obligations</li>
+        <li>PEP enforcement (budgets, egress, params)</li>
+        <li>Tool call</li>
+        <li>Receipt emission and chain update</li>
+        <li>Analytics verify and update budgets</li>
+      </ol>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">Watch the overview</h2>
+      <div class="glass-card" style="padding:12px">
+        <p style="color:#9ba3b7;margin:0">Prefer video? Watch a 2‑minute ARIA overview.</p>
+        <div style="margin-top:8px"><a class="btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">Open video ↗</a></div>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 64px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Download white paper</a>
+      </div>
+    </section>
+  </div>
+</Landing>
+
+
