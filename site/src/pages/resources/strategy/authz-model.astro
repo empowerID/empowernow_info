@@ -27,7 +27,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
     <div class="glass-card" style="padding:12px">
-      {await import('../../components/AuthorizationFundamentalsDiagram.astro').then(m => m.default({}))}
+      {await import('../../../components/AuthorizationFundamentalsDiagram.astro').then(m => m.default({}))}
     </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
@@ -39,7 +39,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">Attribute-Based Access Control (AuthZEN)</h2>
     <div class="glass-card" style="padding:12px">
-      {await import('../../components/ABACAuthZEN.astro').then(m => m.default({}))}
+      {await import('../../../components/ABACAuthZEN.astro').then(m => m.default({}))}
     </div>
   </section>
   <section class="container" style="padding:8px 0 24px">
