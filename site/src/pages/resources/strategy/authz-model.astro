@@ -26,25 +26,138 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   </section>
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
-    <div class="panel-glass" style="padding:12px;overflow:auto">
-      <pre class="mermaid" style="max-width:100%;white-space:pre;overflow:auto">flowchart LR
-  subgraph PAP[Policy Administration Point]
-    PAP1[Author policies]
-  end
-  subgraph PDP[Policy Decision Point]
-    PIP1[PIP: fetch attributes & context]
-    PDP1[Evaluate rules → decision + constraints + obligations]
-    PIP1 --> PDP1
-  end
-  subgraph PEP[Policy Enforcement Points]
-    IdPPEP[IdP (issuance): consent, step-up, budgets]
-    GWPEP[Gateway (runtime): params/egress, spend, model caps]
-    SVCPEP[Service (runtime): resource/domain checks]
-  end
-  PAP1 --> PDP1
-  PDP1 -->|decision| IdPPEP
-  PDP1 -->|decision| GWPEP
-  PDP1 -->|decision| SVCPEP</pre>
+    <div class="panel-glass" style="padding:12px;overflow:hidden">
+      <div style="width:100%;min-height:850px;background:#0E0E10;padding:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px">
+        <style>
+          @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+          @keyframes pulse { 0%,100% { opacity:.6 } 50% { opacity:1 } }
+          @keyframes flowDash { 0% { stroke-dashoffset:20 } 100% { stroke-dashoffset:0 } }
+          .float{ animation: float 3.5s ease-in-out infinite }
+          .pulse{ animation: pulse 2.5s ease-in-out infinite }
+          .flow-dash{ stroke-dasharray:10 5; animation: flowDash 1.5s linear infinite }
+        </style>
+        <svg viewBox="0 0 1400 850" style="width:100%;max-width:1120px;max-height:850px">
+          <defs>
+            <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0E0E10" stop-opacity="1" />
+              <stop offset="50%" stop-color="#0B1C3D" stop-opacity="0.2" />
+              <stop offset="100%" stop-color="#0E0E10" stop-opacity="1" />
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="5" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="glowStrong"><feGaussianBlur stdDeviation="10" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#00E7F6"/></marker>
+            <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#B326FF"/></marker>
+            <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#FF6B35"/></marker>
+          </defs>
+          <rect width="1400" height="850" fill="url(#bgGradient)"/>
+          <text x="700" y="55" fill="#00E7F6" font-size="38" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">ARIA: AI Agent Authorization</text>
+          <text x="700" y="88" fill="#C5CAD9" font-size="16" text-anchor="middle" font-family="Inter, ui-sans-serif">Enforcing delegation at two boundaries: LLM access + Tool access</text>
+          <g class="float" style="animation-delay:0s">
+            <rect x="80" y="130" width="380" height="140" rx="14" fill="rgba(0,231,246,.08)" stroke="#00E7F6" stroke-width="3" filter="url(#glow)"/>
+            <text x="110" y="170" fill="#00E7F6" font-size="18" font-weight="700" font-family="Inter, ui-sans-serif">Scenario: Delegated Agent</text>
+            <text x="110" y="202" fill="#FFFFFF" font-size="15" font-weight="600" font-family="Inter, ui-sans-serif">Alice Chen → Travel Agent</text>
+            <text x="110" y="228" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Constraints: Max $2000/trip, Business class only</text>
+            <text x="110" y="250" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Allowed: search_flights, book_hotels, check_weather</text>
+          </g>
+          <g class="float" style="animation-delay:.2s">
+            <circle cx="180" cy="400" r="50" fill="rgba(0,231,246,.12)" stroke="#00E7F6" stroke-width="3" filter="url(#glowStrong)"/>
+            <circle cx="180" cy="388" r="18" fill="none" stroke="#00E7F6" stroke-width="2.5"/>
+            <path d="M165 418 Q 180 408 195 418" fill="none" stroke="#00E7F6" stroke-width="2.5" stroke-linecap="round"/>
+            <text x="180" y="475" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">Alice Chen</text>
+            <text x="180" y="495" fill="#C5CAD9" font-size="13" text-anchor="middle" font-family="Inter, ui-sans-serif">User</text>
+          </g>
+          <line x1="230" y1="400" x2="300" y2="400" stroke="#00E7F6" stroke-width="2.5" stroke-dasharray="6 6" opacity=".7"/>
+          <text x="265" y="390" fill="#00E7F6" font-size="12" font-weight="600" text-anchor="middle" font-family="Inter, ui-sans-serif">delegates</text>
+          <g class="float" style="animation-delay:.4s">
+            <rect x="305" y="350" width="150" height="100" rx="14" fill="rgba(108,76,255,.18)" stroke="#6C4CFF" stroke-width="3" filter="url(#glowStrong)"/>
+            <rect x="355" y="375" width="50" height="40" rx="4" fill="none" stroke="#6C4CFF" stroke-width="2.5"/>
+            <rect x="375" y="370" width="10" height="8" rx="2" fill="#6C4CFF"/>
+            <line x1="365" y1="382" x2="395" y2="382" stroke="#6C4CFF" stroke-width="1.5"/>
+            <line x1="365" y1="390" x2="395" y2="390" stroke="#6C4CFF" stroke-width="1.5"/>
+            <circle cx="365" cy="405" r="3" fill="none" stroke="#6C4CFF" stroke-width="1.5"/>
+            <circle cx="395" cy="405" r="3" fill="none" stroke="#6C4CFF" stroke-width="1.5"/>
+            <text x="380" y="462" fill="#FFFFFF" font-size="15" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">Travel Agent</text>
+            <text x="380" y="480" fill="#C5CAD9" font-size="12" text-anchor="middle" font-family="Inter, ui-sans-serif">AI Agent</text>
+          </g>
+          <g><circle cx="530" cy="330" r="18" fill="#00E7F6" filter="url(#glow)"/><text x="530" y="338" fill="#0E0E10" font-size="15" font-weight="800" text-anchor="middle" font-family="Inter, ui-sans-serif">1</text></g>
+          <line x1="455" y1="375" x2="610" y2="330" stroke="#00E7F6" stroke-width="4" marker-end="url(#arrowCyan)" filter="url(#glow)" class="flow-dash"/>
+          <text x="535" y="348" fill="#00E7F6" font-size="13" font-weight="700" font-family="Inter, ui-sans-serif">Plan itinerary (LLM)</text>
+          <g class="float" style="animation-delay:.6s">
+            <rect x="615" y="280" width="220" height="100" rx="14" fill="rgba(11,28,61,.95)" stroke="#B326FF" stroke-width="3" filter="url(#glowStrong)"/>
+            <rect x="615" y="280" width="220" height="38" rx="14" fill="rgba(179,38,255,.35)"/>
+            <path d="M645 298 L645 309 Q645 313 649 315 Q653 313 653 309 L653 298 Z" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+            <text x="665" y="305" fill="#FFFFFF" font-size="18" font-weight="700" font-family="Inter, ui-sans-serif">ARIA Shield</text>
+            <text x="635" y="340" fill="#FFFFFF" font-size="14" font-weight="600" font-family="Inter, ui-sans-serif">PEP: OpenAI Gateway</text>
+            <text x="635" y="362" fill="#C5CAD9" font-size="12" font-family="Inter, ui-sans-serif">Can Travel Agent call OpenAI</text>
+            <text x="635" y="376" fill="#C5CAD9" font-size="12" font-family="Inter, ui-sans-serif">for Alice?</text>
+          </g>
+          <g><circle cx="530" cy="470" r="18" fill="#00E7F6" filter="url(#glow)"/><text x="530" y="478" fill="#0E0E10" font-size="15" font-weight="800" text-anchor="middle" font-family="Inter, ui-sans-serif">1</text></g>
+          <line x1="455" y1="420" x2="610" y2="470" stroke="#00E7F6" stroke-width="4" marker-end="url(#arrowCyan)" filter="url(#glow)" class="flow-dash"/>
+          <text x="535" y="455" fill="#00E7F6" font-size="13" font-weight="700" font-family="Inter, ui-sans-serif">Book flight (tool)</text>
+          <g class="float" style="animation-delay:.8s">
+            <rect x="615" y="420" width="220" height="100" rx="14" fill="rgba(11,28,61,.95)" stroke="#B326FF" stroke-width="3" filter="url(#glowStrong)"/>
+            <rect x="615" y="420" width="220" height="38" rx="14" fill="rgba(179,38,255,.35)"/>
+            <rect x="640" y="433" width="24" height="24" rx="4" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+            <path d="M645 445 L659 445 M652 440 L652 450" stroke="#FFFFFF" stroke-width="2.5"/>
+            <text x="670" y="445" fill="#FFFFFF" font-size="18" font-weight="700" font-family="Inter, ui-sans-serif">ARIA MCP Gateway</text>
+            <text x="635" y="480" fill="#FFFFFF" font-size="14" font-weight="600" font-family="Inter, ui-sans-serif">PEP: Tool Access</text>
+            <text x="635" y="502" fill="#C5CAD9" font-size="12" font-family="Inter, ui-sans-serif">Can Travel Agent use this tool</text>
+            <text x="635" y="516" fill="#C5CAD9" font-size="12" font-family="Inter, ui-sans-serif">for Alice?</text>
+          </g>
+          <g><circle cx="920" cy="400" r="18" fill="#B326FF" filter="url(#glow)"/><text x="920" y="408" fill="#FFFFFF" font-size="15" font-weight="800" text-anchor="middle" font-family="Inter, ui-sans-serif">2</text></g>
+          <line x1="835" y1="330" x2="980" y2="375" stroke="#B326FF" stroke-width="4" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow-dash"/>
+          <line x1="835" y1="470" x2="980" y2="425" stroke="#B326FF" stroke-width="4" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow-dash"/>
+          <text x="890" y="350" fill="#E0B3FF" font-size="13" font-weight="700" font-family="Inter, ui-sans-serif">Check authz</text>
+          <g class="float" style="animation-delay:1s">
+            <rect x="985" y="330" width="260" height="140" rx="14" fill="rgba(11,28,61,.95)" stroke="#00E7F6" stroke-width="3" filter="url(#glowStrong)"/>
+            <rect x="985" y="330" width="260" height="42" rx="14" fill="rgba(0,231,246,.2)"/>
+            <circle cx="1015" cy="351" r="16" fill="none" stroke="#00E7F6" stroke-width="2.5"/>
+            <path d="M1007 351 Q1015 343 1023 351 Q1015 359 1007 351" fill="none" stroke="#00E7F6" stroke-width="2.5"/>
+            <text x="1040" y="359" fill="#FFFFFF" font-size="20" font-weight="700" font-family="Inter, ui-sans-serif">PDP</text>
+            <text x="1005" y="398" fill="#FFFFFF" font-size="15" font-weight="600" font-family="Inter, ui-sans-serif">Policy Decision Point</text>
+            <text x="1005" y="424" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">• Is delegation valid?</text>
+            <text x="1005" y="444" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">• Within constraints?</text>
+            <text x="1005" y="464" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">• Return: PERMIT + limits</text>
+          </g>
+          <g><circle cx="1115" cy="520" r="18" fill="#FF6B35" filter="url(#glow)"/><text x="1115" y="528" fill="#FFFFFF" font-size="15" font-weight="800" text-anchor="middle" font-family="Inter, ui-sans-serif">3</text></g>
+          <line x1="1115" y1="470" x2="1115" y2="580" stroke="#FF6B35" stroke-width="4" marker-end="url(#arrowOrange)" filter="url(#glow)" class="flow-dash"/>
+          <text x="1135" y="525" fill="#FF6B35" font-size="13" font-weight="700" font-family="Inter, ui-sans-serif">Check</text>
+          <text x="1135" y="542" fill="#FF6B35" font-size="13" font-weight="700" font-family="Inter, ui-sans-serif">delegation</text>
+          <g class="float" style="animation-delay:1.2s">
+            <rect x="925" y="585" width="380" height="120" rx="14" fill="rgba(255,107,53,.1)" stroke="#FF6B35" stroke-width="3" filter="url(#glowStrong)"/>
+            <rect x="925" y="585" width="380" height="42" rx="14" fill="rgba(255,107,53,.2)"/>
+            <circle cx="955" cy="606" r="10" fill="none" stroke="#FF6B35" stroke-width="2.5"/>
+            <circle cx="975" cy="606" r="10" fill="none" stroke="#FF6B35" stroke-width="2.5"/>
+            <circle cx="965" cy="617" r="10" fill="none" stroke="#FF6B35" stroke-width="2.5"/>
+            <line x1="960" y1="600" x2="970" y2="602" stroke="#FF6B35" stroke-width="2"/>
+            <line x1="960" y1="612" x2="970" y2="612" stroke="#FF6B35" stroke-width="2"/>
+            <text x="990" y="614" fill="#FFFFFF" font-size="20" font-weight="700" font-family="Inter, ui-sans-serif">Membership Service (Neo4j)</text>
+            <text x="945" y="655" fill="#FFFFFF" font-size="15" font-weight="600" font-family="Inter, ui-sans-serif">PIP: Delegation Graph</text>
+            <text x="945" y="680" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Stores: User → Agent relationships with constraints</text>
+            <text x="945" y="698" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Returns: Budget limits, allowed tools, time bounds</text>
+          </g>
+          <g class="float" style="animation-delay:1.4s">
+            <rect x="80" y="585" width="420" height="120" rx="14" fill="rgba(255,107,53,.05)" stroke="#FF6B35" stroke-width="2" stroke-dasharray="6 6" opacity=".95"/>
+            <text x="105" y="615" fill="#FF6B35" font-size="16" font-weight="700" font-family="Inter, ui-sans-serif">Delegation Graph</text>
+            <circle cx="150" cy="655" r="22" fill="rgba(0,231,246,.2)" stroke="#00E7F6" stroke-width="2.5"/>
+            <text x="150" y="662" fill="#FFFFFF" font-size="12" font-weight="600" text-anchor="middle" font-family="Inter, ui-sans-serif">Alice</text>
+            <line x1="172" y1="655" x2="278" y2="655" stroke="#FF6B35" stroke-width="3" marker-end="url(#arrowOrange)"/>
+            <text x="225" y="642" fill="#FF6B35" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter, ui-sans-serif">DELEGATES</text>
+            <text x="225" y="675" fill="#C5CAD9" font-size="10" text-anchor="middle" font-family="Courier New, monospace">$2K/trip, 3 tools</text>
+            <rect x="280" y="633" width="90" height="44" rx="8" fill="rgba(108,76,255,.2)" stroke="#6C4CFF" stroke-width="2.5"/>
+            <text x="325" y="660" fill="#FFFFFF" font-size="11" font-weight="600" text-anchor="middle" font-family="Inter, ui-sans-serif">Travel Agent</text>
+          </g>
+          <g class="float" style="animation-delay:1.6s">
+            <rect x="545" y="585" width="350" height="120" rx="14" fill="rgba(0,231,246,.05)" stroke="#00E7F6" stroke-width="3" stroke-dasharray="6 6" filter="url(#glow)"/>
+            <text x="570" y="615" fill="#00E7F6" font-size="18" font-weight="700" font-family="Inter, ui-sans-serif">🔐 ARIA's Unique Value</text>
+            <text x="570" y="648" fill="#FFFFFF" font-size="15" font-weight="600" font-family="Inter, ui-sans-serif">✓ Dual PEP Enforcement</text>
+            <text x="580" y="670" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Guard both LLM access AND tool usage</text>
+            <text x="570" y="695" fill="#FFFFFF" font-size="15" font-weight="600" font-family="Inter, ui-sans-serif">✓ Graph-Based Delegation</text>
+            <text x="580" y="717" fill="#C5CAD9" font-size="13" font-family="Inter, ui-sans-serif">Rich relationship model with constraints</text>
+          </g>
+          <g class="pulse"><circle cx="500" cy="200" r="2.5" fill="#00E7F6" opacity=".5"/><circle cx="1300" cy="300" r="2" fill="#B326FF" opacity=".5"/><circle cx="800" cy="550" r="2.5" fill="#FF6B35" opacity=".5"/></g>
+        </svg>
+      </div>
     </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
@@ -69,64 +182,6 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
       <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
     </div>
   </section>
-  <script type="module">
-    try{
-      // Fallback: load Mermaid here if the global loader hasn't executed yet
-      const ensureMermaid = async () => {
-        const has = (window && (window as any).mermaid);
-        if(has && (window as any).mermaid){
-          try{ (window as any).mermaid.run?.({ querySelector: '.mermaid' }); }catch{}
-          return;
-        }
-        const mod = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-        const mermaid = (mod && (mod.default||mod));
-        try{
-          mermaid.initialize({
-            startOnLoad: true,
-            theme: 'base',
-            securityLevel: 'relaxed',
-            themeVariables: {
-              primaryColor: '#0B1C3D',
-              primaryBorderColor: '#00E7F6',
-              primaryTextColor: '#FFFFFF',
-              secondaryColor: '#6C4CFF',
-              secondaryBorderColor: '#B326FF',
-              secondaryTextColor: '#FFFFFF',
-              tertiaryColor: '#0E0E10',
-              tertiaryBorderColor: '#6C4CFF',
-              tertiaryTextColor: '#EDEDED',
-              background: '#0E0E10',
-              mainBkg: '#0B1C3D',
-              secondBkg: '#6C4CFF',
-              tertiaryBkg: '#0B1C3D',
-              lineColor: '#00E7F6',
-              textColor: '#EDEDED',
-              nodeBkg: '#0B1C3D',
-              nodeTextColor: '#EDEDED',
-              clusterBkg: 'rgba(11, 28, 61, 0.85)',
-              clusterBorder: 'rgba(0, 231, 246, 0.2)',
-              edgeLabelBackground: '#0B1C3D',
-              actorBorder: '#00E7F6',
-              actorBkg: '#0B1C3D',
-              actorTextColor: '#EDEDED',
-              actorLineColor: '#00E7F6',
-              labelBoxBkgColor: '#0B1C3D',
-              labelBoxBorderColor: '#00E7F6',
-              labelTextColor: '#EDEDED',
-              noteBkgColor: '#6C4CFF',
-              noteTextColor: '#FFFFFF',
-              noteBorderColor: '#B326FF',
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-              fontSize: '14px'
-            }
-          });
-          mermaid.run?.({ querySelector: '.mermaid' });
-          mermaid.init?.(undefined, document.querySelectorAll('.mermaid'));
-        }catch{}
-      };
-      if('requestIdleCallback' in window){ (window as any).requestIdleCallback(ensureMermaid); } else { setTimeout(ensureMermaid, 0); }
-    }catch{}
-  </script>
 </Base>
 
 
