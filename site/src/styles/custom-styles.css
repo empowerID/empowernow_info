@@ -1,4 +1,209 @@
 /* ============================================
+   PRODUCT HERO BACKGROUND
+============================================ */
+
+.product-hero-band {
+  position: relative;
+  min-height: 600px;
+  background-image: url('/empowernow_info/images/backgrounds/bg-header-products.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Overlay for better text readability */
+.product-hero-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.75) 0%,
+    rgba(10, 10, 10, 0.85) 50%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+  z-index: 0;
+}
+
+/* Subtle gradient accent overlay */
+.product-hero-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 20%,
+    rgba(0, 231, 246, 0.08) 0%,
+    rgba(108, 76, 255, 0.05) 30%,
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-hero-band {
+    min-height: 500px;
+    background-position: center top;
+  }
+  
+  .product-hero-band .hero-plate {
+    padding: 140px 0 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-hero-band {
+    min-height: 480px;
+  }
+  
+  .product-hero-band .hero-plate {
+    padding: 120px 0 50px !important;
+  }
+}
+
+/* ============================================
+   ENHANCED STUDIO BAR
+============================================ */
+
+.studio-bar {
+  position: sticky;
+  top: 72px;
+  z-index: 50;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 18, 40, 0.92) 0%,
+    rgba(11, 24, 48, 0.90) 50%,
+    rgba(14, 30, 56, 0.88) 100%
+  );
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border-top: 1px solid rgba(0, 231, 246, 0.15);
+  border-bottom: 2px solid rgba(0, 231, 246, 0.25);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(0, 231, 246, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Gradient hairline at top */
+.studio-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.3) 20%,
+    rgba(0, 231, 246, 0.5) 50%,
+    rgba(179, 38, 255, 0.3) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.studio-tabs {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 231, 246, 0.3) transparent;
+}
+
+.studio-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.studio-tabs::-webkit-scrollbar-thumb {
+  background: rgba(0, 231, 246, 0.3);
+  border-radius: 2px;
+}
+
+.studio-tabs a {
+  display: block;
+  padding: 10px 18px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.studio-tabs a:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.studio-tabs a.active,
+.studio-tabs a:target {
+  color: rgba(0, 231, 246, 1);
+  background: rgba(0, 231, 246, 0.08);
+  border-bottom: 2px solid rgba(0, 231, 246, 0.8);
+}
+
+.studio-cta {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+/* Adjust studio bar position when nav is floating */
+nav.navbar[data-scrolled="true"] ~ main .studio-bar,
+body[data-nav-floating="true"] .studio-bar {
+  top: 64px;
+}
+
+@media (max-width: 768px) {
+  .studio-bar {
+    top: 56px;
+  }
+  
+  .studio-brand {
+    font-size: 14px;
+  }
+  
+  .studio-cta {
+    display: none;
+  }
+  
+  .studio-tabs a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .studio-tabs {
+    gap: 2px;
+  }
+  
+  .studio-tabs a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================
    ENHANCED FLOATING NAVIGATION
 ============================================ */
 
@@ -286,16 +491,17 @@ a.nav-link:visited {
   left: 50%;
   transform: translateX(-50%);
   top: 64px;
+  padding:16px 24px;
   z-index: 1010;
   width: min(1120px, calc(100vw - 32px));
   background: linear-gradient(
     135deg,
-    rgba(8, 18, 40, 0.92) 0%,
-    rgba(11, 24, 48, 0.9) 50%,
-    rgba(14, 30, 56, 0.88) 100%
+    rgba(8, 18, 40, 1) 0%,
+    rgba(11, 24, 48, 1) 50%,
+    rgba(14, 30, 56, 1) 100%
   );
-  backdrop-filter: blur(24px) saturate(140%) brightness(0.5);
-  -webkit-backdrop-filter: blur(24px) saturate(140%) brightness(0.5);
+  /* backdrop-filter: blur(24px) saturate(140%) brightness(0.5); */
+  /* -webkit-backdrop-filter: blur(24px) saturate(140%) brightness(0.5); */
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 2px solid rgba(0, 231, 246, 0.25);
   border-radius: 16px;
