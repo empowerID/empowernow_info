@@ -326,6 +326,35 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
   nav.navbar[data-scrolled="true"] .navbar-logo {
     height: 40px;
   }
+  
+  /* Mobile mega menu adjustments */
+  .mega-illustration {
+    max-width: 180px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .mega-card-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .mega-card {
+    padding: 12px 14px;
+  }
+  
+  .mega-card .h3 {
+    font-size: 16px;
+  }
+  
+  .mega-card .body {
+    font-size: 12px;
+  }
+  
+  .links .link,
+  .links .link-dim {
+    font-size: 13px;
+  }
 }
 
 /* Reduced motion support */
@@ -518,6 +547,9 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .mega-left {
   padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mega-left .h3 {
@@ -529,6 +561,24 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-left .body {
   color: var(--ink, #e9f0ff);
   opacity: 0.9;
+}
+
+/* Illustration at bottom left */
+.mega-illustration {
+  margin-top: auto;
+  margin-left: -18px;
+  margin-right: -18px;
+  margin-bottom: -18px;
+  max-width: calc(100% + 36px);
+  height: auto;
+  opacity: 0.6;
+  filter: drop-shadow(0 4px 16px rgba(0, 231, 246, 0.15));
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.mega-illustration:hover {
+  opacity: 0.8;
+  filter: drop-shadow(0 6px 20px rgba(0, 231, 246, 0.25));
 }
 
 .mega-cta {
@@ -547,13 +597,14 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 18px;
+  gap: 12px 16px;
   padding: 0 0 2px;
 }
 
 @media (min-width: 1280px) {
   .mega-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 14px;
   }
 }
 
@@ -561,10 +612,10 @@ nav.navbar[data-scrolled="true"] .mega {
   position: relative;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  row-gap: 6px;
+  row-gap: 8px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 14px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
               background 0.2s ease,
@@ -572,6 +623,22 @@ nav.navbar[data-scrolled="true"] .mega {
               box-shadow 0.2s ease;
   /* GPU acceleration */
   will-change: transform;
+}
+
+/* Product icon in card */
+.mega-card-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(0, 231, 246, 0.2));
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.mega-card:hover .mega-card-icon {
+  opacity: 1;
+  filter: drop-shadow(0 4px 12px rgba(0, 231, 246, 0.35));
+  transform: translateY(-2px);
 }
 
 .mega-card:hover {
@@ -606,9 +673,15 @@ nav.navbar[data-scrolled="true"] .mega {
 }
 
 .mega-card .h3 {
-  font-size: 20px;
-  line-height: 1.2;
+  font-size: 17px;
+  line-height: 1.3;
   margin: 0;
+  font-weight: 700;
+}
+
+.mega-card .body {
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .clamp-2 {
@@ -621,27 +694,32 @@ nav.navbar[data-scrolled="true"] .mega {
 .links {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .links .link {
   color: #e6eef8;
   text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .links .link:hover,
 .links .link:focus {
   text-decoration: none !important;
+  color: rgba(0, 231, 246, 0.9);
 }
 
 .links .link-dim {
   color: #b3c1da;
   text-decoration: none !important;
+  font-size: 14px;
 }
 
 .links .link-dim:hover,
 .links .link-dim:focus {
   text-decoration: none !important;
+  color: #e6eef8;
 }
 
 /* ============================================
