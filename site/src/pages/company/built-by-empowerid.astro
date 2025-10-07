@@ -1,17 +1,41 @@
 ---
 import Base from '../../layouts/Base.astro';
+import HeroDemoTile from '../../components/HeroDemoTile.astro';
 const title = 'Built by EmpowerID — Neutral by Design';
 const description = 'EmpowerNow is the AI-focused Identity Fabric from EmpowerID—neutral Layer-2 governance with separate infrastructure and OEM readiness.';
 const canonical = '/company/built-by-empowerid/';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Hero -->
-    <section class="hero-plate page-stage" style="padding:72px 0 24px">
-        <div class="container">
-            <h1 class="display" style="margin:0 0 10px">Neutral by design. Built by EmpowerID.</h1>
-            <p style="color:#9ba3b7;max-width:80ch"><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</p>
+    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+        <div class="container" style="display:flex;gap:48px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1 1 520px;min-width:300px">
+                <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Neutral by design. Built by EmpowerID.</h1>
+                <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5"><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</p>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+                    <a class="btn btn-primary" data-ev="cta_click" data-label="partner_oem" data-position="hero" href={`${import.meta.env.BASE_URL}partners/`}>Partner with us (OEM/SI)</a>
+                    <a class="btn btn-ghost" data-ev="cta_click" data-label="book_demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Book a 15‑minute demo</a>
+                </div>
+            </div>
+            <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
+                <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/video-placeholder/company-video-placeholder.jpg`} sources={[{src:`${import.meta.env.BASE_URL}videos/company/Empower_Now__Strategic_Pivot.mp4`,type:'video/mp4'}]} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
+            </div>
         </div>
     </section>
+    <script>
+		if (matchMedia('(hover:hover) and (pointer:fine) and (min-width:1024px)').matches) {
+			const root = document.querySelector('.parallax-glow');
+			if (root) {
+				document.addEventListener('mousemove', (e) => {
+					const r = root.getBoundingClientRect();
+					const mx = e.clientX - (r.left + r.width/2);
+					const my = e.clientY - (r.top + r.height/2);
+					root.style.setProperty('--mx', mx + 'px');
+					root.style.setProperty('--my', my + 'px');
+				});
+			}
+		}
+	</script>
 
     <!-- Why EmpowerID created EmpowerNow -->
     <section class="container" style="padding:24px 0">
@@ -48,13 +72,6 @@ const canonical = '/company/built-by-empowerid/';
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="container" style="padding:16px 0 64px">
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}partners/`}>Partner with us (OEM/SI)</a>
-            <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/demo/`}>Book a 15‑minute demo</a>
-        </div>
-    </section>
 </Base>
 
 

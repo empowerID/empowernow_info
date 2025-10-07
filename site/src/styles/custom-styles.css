@@ -1,4 +1,144 @@
 /* ============================================
+   ENHANCED STUDIO BAR
+============================================ */
+
+.studio-bar {
+  position: sticky;
+  top: 72px;
+  z-index: 50;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 18, 40, 0.92) 0%,
+    rgba(11, 24, 48, 0.90) 50%,
+    rgba(14, 30, 56, 0.88) 100%
+  );
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border-top: 1px solid rgba(0, 231, 246, 0.15);
+  border-bottom: 2px solid rgba(0, 231, 246, 0.25);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(0, 231, 246, 0.08);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Gradient hairline at top */
+.studio-bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.3) 20%,
+    rgba(0, 231, 246, 0.5) 50%,
+    rgba(179, 38, 255, 0.3) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.studio-tabs {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 231, 246, 0.3) transparent;
+}
+
+.studio-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.studio-tabs::-webkit-scrollbar-thumb {
+  background: rgba(0, 231, 246, 0.3);
+  border-radius: 2px;
+}
+
+.studio-tabs a {
+  display: block;
+  padding: 10px 18px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.studio-tabs a:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.studio-tabs a.active,
+.studio-tabs a:target {
+  color: rgba(0, 231, 246, 1);
+  background: rgba(0, 231, 246, 0.08);
+  border-bottom: 2px solid rgba(0, 231, 246, 0.8);
+}
+
+.studio-cta {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+/* Adjust studio bar position when nav is floating */
+nav.navbar[data-scrolled="true"] ~ main .studio-bar,
+body[data-nav-floating="true"] .studio-bar {
+  top: 64px;
+}
+
+@media (max-width: 768px) {
+  .studio-bar {
+    top: 56px;
+  }
+  
+  .studio-brand {
+    font-size: 14px;
+  }
+  
+  .studio-cta {
+    display: none;
+  }
+  
+  .studio-tabs a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .studio-tabs {
+    gap: 2px;
+  }
+  
+  .studio-tabs a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================
    ENHANCED FLOATING NAVIGATION
 ============================================ */
 
@@ -286,15 +426,42 @@ a.nav-link:visited {
   left: 50%;
   transform: translateX(-50%);
   top: 64px;
+  padding:16px 24px;
   z-index: 1010;
   width: min(1120px, calc(100vw - 32px));
-  background: #0f1b33;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(
+    135deg,
+    rgba(8, 18, 40, 1) 0%,
+    rgba(11, 24, 48, 1) 50%,
+    rgba(14, 30, 56, 1) 100%
+  );
+  /* backdrop-filter: blur(24px) saturate(140%) brightness(0.5); */
+  /* -webkit-backdrop-filter: blur(24px) saturate(140%) brightness(0.5); */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid rgba(0, 231, 246, 0.25);
   border-radius: 16px;
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 
+    0 0 40px rgba(0, 231, 246, 0.15),
+    0 0 80px rgba(108, 76, 255, 0.08),
+    0 16px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 231, 246, 0.05);
   isolation: isolate;
   overflow: hidden;
   transition: top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* GPU acceleration hint */
+  will-change: top;
+  transform: translateX(-50%) translateZ(0);
+}
+
+/* Remove underlines from all mega menu links */
+.mega a {
+  text-decoration: none !important;
+}
+
+.mega a:hover,
+.mega a:focus {
+  text-decoration: none !important;
 }
 
 /* Adjust mega menu position when nav is floating - closer spacing */
@@ -303,24 +470,41 @@ nav.navbar[data-scrolled="true"] .mega {
   top: 60px;
 }
 
+/* Gradient hairline at top */
 .mega::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: #0f1b33;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.4) 15%,
+    rgba(0, 231, 246, 0.6) 40%,
+    rgba(0, 231, 246, 0.8) 50%,
+    rgba(0, 231, 246, 0.6) 60%,
+    rgba(179, 38, 255, 0.4) 85%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
   pointer-events: none;
+  z-index: 2;
 }
 
+/* Subtle ambient glow overlay */
 .mega::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(12, 20, 36, 0.82),
-    rgba(12, 20, 36, 0.66)
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(0, 231, 246, 0.03) 0%,
+    transparent 60%
   );
   pointer-events: none;
+  z-index: 1;
 }
 
 .mega-inner {
@@ -349,11 +533,15 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .mega-cta {
   color: var(--ink, #e9f0ff);
-  text-decoration: underline;
+  text-decoration: none !important;
   display: inline-block;
   margin-top: 10px;
   font-weight: 700;
-  text-underline-offset: 3px;
+}
+
+.mega-cta:hover,
+.mega-cta:focus {
+  text-decoration: none !important;
 }
 
 .mega-grid {
@@ -374,16 +562,25 @@ nav.navbar[data-scrolled="true"] .mega {
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   row-gap: 6px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 14px;
   padding: 16px 18px;
   border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+              background 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  /* GPU acceleration */
+  will-change: transform;
 }
 
 .mega-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px) translateZ(0);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 231, 246, 0.2);
+  box-shadow: 
+    0 0 20px rgba(0, 231, 246, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .mega-card:hover::before {
@@ -395,8 +592,9 @@ nav.navbar[data-scrolled="true"] .mega {
   height: 2px;
   background: linear-gradient(
     90deg,
-    var(--quantum-violet, #7c5cff),
-    var(--pulse-cyan, #4cc9f0)
+    rgba(108, 76, 255, 0.4),
+    rgba(0, 231, 246, 0.8),
+    rgba(179, 38, 255, 0.4)
   );
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
@@ -428,10 +626,22 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .links .link {
   color: #e6eef8;
+  text-decoration: none !important;
+}
+
+.links .link:hover,
+.links .link:focus {
+  text-decoration: none !important;
 }
 
 .links .link-dim {
   color: #b3c1da;
+  text-decoration: none !important;
+}
+
+.links .link-dim:hover,
+.links .link-dim:focus {
+  text-decoration: none !important;
 }
 
 /* ============================================
@@ -442,32 +652,82 @@ nav.navbar[data-scrolled="true"] .mega {
   position: absolute;
   top: 44px;
   right: 0;
-  background: #0f1b33;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(8, 18, 40, 0.94) 0%,
+    rgba(11, 24, 48, 0.92) 50%,
+    rgba(14, 30, 56, 0.9) 100%
+  );
+  backdrop-filter: blur(20px) saturate(130%) brightness(0.52);
+  -webkit-backdrop-filter: blur(20px) saturate(130%) brightness(0.52);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid rgba(0, 231, 246, 0.2);
   border-radius: 16px;
   padding: 8px;
   min-width: 320px;
-  box-shadow: 0 16px 48px rgba(0, 229, 255, 0.15);
+  box-shadow: 
+    0 0 30px rgba(0, 231, 246, 0.12),
+    0 0 60px rgba(108, 76, 255, 0.06),
+    0 12px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 231, 246, 0.04);
   z-index: 1010;
   isolation: isolate;
   overflow: hidden;
+  /* GPU acceleration */
+  transform: translateZ(0);
 }
 
+/* Remove underlines from all dropdown links */
+.dropdown a {
+  text-decoration: none !important;
+}
+
+.dropdown a:hover,
+.dropdown a:focus {
+  text-decoration: none !important;
+}
+
+/* Gradient hairline at top */
 .dropdown::before {
   content: "";
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
   background: linear-gradient(
-    180deg,
-    rgba(12, 20, 36, 0.82),
-    rgba(12, 20, 36, 0.66)
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.3) 20%,
+    rgba(0, 231, 246, 0.5) 45%,
+    rgba(0, 231, 246, 0.7) 50%,
+    rgba(0, 231, 246, 0.5) 55%,
+    rgba(179, 38, 255, 0.3) 80%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Subtle ambient glow */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(0, 231, 246, 0.02) 0%,
+    transparent 50%
   );
   pointer-events: none;
+  z-index: 1;
 }
 
 .dropdown > * {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 /* Centered variant (used by Resources) */
@@ -492,9 +752,16 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   display: block;
   padding: 10px 12px;
   border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  /* GPU acceleration */
+  transform: translateZ(0);
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 231, 246, 0.15);
+  text-decoration: none !important;
 }
