@@ -17,8 +17,25 @@ const collections = [
 ];
 
 const allResources: ResItem[] = [
+    // Primers — Standards
+    { id:'primer-oauth', title:'OAuth 2.0 Primer', summary:'Delegated authorization framework and token usage.', href:`${base}resources/standards/oauth/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-oidc', title:'OIDC Primer', summary:'OpenID Connect identity layer on OAuth 2.0.', href:`${base}resources/standards/oidc/`, type:'primer', tags:['OIDC','OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-pkce', title:'PKCE Primer', summary:'Proof Key for Code Exchange best practices.', href:`${base}resources/standards/pkce/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-rar', title:'RAR Primer', summary:'Rich Authorization Requests with authorization_details.', href:`${base}resources/standards/rar/`, type:'primer', tags:['OAuth','OIDC'], updated_at:'2025-09-01' },
+    { id:'primer-par', title:'PAR Primer', summary:'Pushed Authorization Requests back‑channel pattern.', href:`${base}resources/standards/par/`, type:'primer', tags:['OAuth','OIDC'], updated_at:'2025-09-01' },
+    { id:'primer-jarm', title:'JARM Primer', summary:'JWT-secured authorization response mode.', href:`${base}resources/standards/jarm/`, type:'primer', tags:['OIDC','OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-fapi', title:'FAPI 2.0 Primer', summary:'Hardened security profile for OAuth/OIDC.', href:`${base}resources/standards/fapi-2-0/`, type:'primer', tags:['OIDC','OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-scim', title:'SCIM Primer', summary:'Provisioning standard for users, groups, entitlements.', href:`${base}resources/standards/scim/`, type:'primer', tags:['SCIM'], updated_at:'2025-09-01' },
+    { id:'primer-ciba', title:'CIBA Primer', summary:'Back‑channel authentication flow.', href:`${base}resources/standards/ciba/`, type:'primer', tags:['OIDC'], updated_at:'2025-09-01' },
+    { id:'primer-caep', title:'CAEP Primer', summary:'Event‑based session/risk signals.', href:`${base}resources/standards/caep/`, type:'primer', tags:['OIDC'], updated_at:'2025-09-01' },
+    { id:'primer-dpop', title:'DPoP Primer', summary:'Sender‑constrained tokens with proof JWT.', href:`${base}resources/standards/dpop/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-mtls', title:'OAuth mTLS Primer', summary:'Mutual‑TLS auth and cert‑bound tokens.', href:`${base}resources/standards/mtls/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-dcr', title:'Dynamic Client Registration', summary:'Register and manage OAuth clients via API.', href:`${base}resources/standards/dcr/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-te', title:'Token Exchange (RFC 8693)', summary:'On‑behalf‑of delegation and token swapping.', href:`${base}resources/standards/token-exchange/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
+    { id:'primer-ri', title:'Resource Indicators (RFC 8707)', summary:'Audience selection via resource parameter.', href:`${base}resources/standards/resource-indicators/`, type:'primer', tags:['OAuth'], updated_at:'2025-09-01' },
     { id:'primer-authzen', title:'AuthZEN Primer', summary:'OpenID Authorization API concepts with examples.', href:`${base}resources/standards/authzen/`, type:'primer', tags:['AuthZEN','OAuth'], updated_at:'2025-09-01', featured:true },
     { id:'primer-mcp', title:'MCP Primer', summary:'Model Context Protocol basics for tool invocation.', href:`${base}resources/standards/mcp/`, type:'primer', tags:['MCP'], updated_at:'2025-09-10', featured:true },
+    // Demos/Notes/Cases
     { id:'demo-mcp', title:'MCP Gateway Demo', summary:'Pre-exec plan validation and schema pins in action.', href:`${base}products/gateway/`, type:'demo', tags:['MCP','Budgets'], updated_at:'2025-08-28', duration:'3:12', featured:true },
     { id:'roi-calc', title:'ROI Calculator', summary:'Estimate DIY vs EmpowerNow year-one costs.', href:`${base}`, type:'roi', tags:['ROI','Budgets'], updated_at:'2025-09-15', featured:true },
     { id:'note-zero-token', title:'Zero-Token SPA Guide', summary:'How to eliminate tokens in the browser.', href:`${base}solutions/zero-token-spas/`, type:'note', tags:['OAuth','DPoP'], updated_at:'2025-07-12' },
