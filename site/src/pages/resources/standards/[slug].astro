@@ -98,7 +98,7 @@ resource=https://idp.example.com/api/admin
             ) }
             { slug === 'dcr' && (
                 <>
-                    <p style="color:#9ba3b7;margin:0 0 8px">RFC 7591/7592 specify dynamic registration and management. Clients POST metadata (optionally with a <code>software_statement</code>) to <code>/register</code>, receive <code>client_id</code> (and secret). 7592 adds read/update/rotate.</p>
+                    <p style="color:#9ba3b7;margin:0 0 8px">RFC 7591/7592 specify dynamic registration and management. Clients POST metadata (optionally with a <code>software_statement</code>) to <code>/register</code>, receive <code>client_id</code> (and secret) plus a <code>registration_access_token</code> and <code>registration_client_uri</code> for subsequent GET/PATCH/DELETE (7592).</p>
                     <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`POST /register\n{\n  "redirect_uris": ["https://app.example.com/cb"],\n  "grant_types": ["authorization_code"],\n  "response_types": ["code"],\n  "token_endpoint_auth_method": "tls_client_auth",\n  "software_statement": "eyJ..."\n}`}</code></pre>
                     <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant AS as Authorization Server\n  Client->>AS: POST /register (metadata)\n  AS-->>Client: 201 { client_id[, client_secret] }\n  Client->>AS: (7592) GET/PATCH/DELETE /register/{client_id}`}</code></pre>
                 </>
@@ -109,6 +109,22 @@ resource=https://idp.example.com/api/admin
                     <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant Client\n  participant PDP as AuthZ Decision Service\n  participant RS as Resource Server\n  Client->>PDP: evaluate(subject, action, resource, context)\n  PDP-->>Client: { decision, constraints, obligations }\n  Client->>RS: Enforce decision + constraints`}</code></pre>
                 </>
             ) }
+        </div>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+        <div class="glass-card" style="padding:16px">
+            <h2 class="section-title" style="margin:0 0 8px">References</h2>
+            <ul style="margin:0;color:#9ba3b7;line-height:1.8;padding-left:18px">
+                { slug === 'token-exchange' && (<li><a href="https://datatracker.ietf.org/doc/rfc8693/">RFC 8693: OAuth 2.0 Token Exchange</a></li>) }
+                { slug === 'resource-indicators' && (<li><a href="https://datatracker.ietf.org/doc/rfc8707/">RFC 8707: Resource Indicators</a></li>) }
+                { slug === 'dpop' && (<li><a href="https://datatracker.ietf.org/doc/rfc9449/">RFC 9449: DPoP</a></li>) }
+                { slug === 'mtls' && (<li><a href="https://datatracker.ietf.org/doc/rfc8705/">RFC 8705: OAuth mTLS</a></li>) }
+                { slug === 'dcr' && (<>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc7591/">RFC 7591: Dynamic Client Registration</a></li>
+                    <li><a href="https://datatracker.ietf.org/doc/rfc7592/">RFC 7592: Client Registration Management</a></li>
+                </>) }
+                { slug === 'authzen' && (<li><a href="https://openid.net/wg/az/">OpenID Foundation: AuthZEN WG</a></li>) }
+            </ul>
         </div>
     </section>
 </Base>
