@@ -1,142 +1,4 @@
 /* ============================================
-   PRODUCT HERO BACKGROUND
-============================================ */
-
-.product-hero-band {
-  position: relative;
-  min-height: 480px;
-  background-image: url('/empowernow_info/images/backgrounds/bg-header-products.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  /* Inner shadow for depth */
-  box-shadow: 
-    inset 0 80px 60px -60px rgba(0, 0, 0, 0.6),
-    inset 0 -80px 60px -60px rgba(0, 0, 0, 0.6);
-}
-
-/* Overlay for better text readability */
-.product-hero-band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.70) 0%,
-    rgba(10, 10, 10, 0.80) 50%,
-    rgba(10, 10, 10, 0.90) 100%
-  );
-  z-index: 0;
-}
-
-/* Subtle gradient accent overlay */
-.product-hero-band::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 20%,
-    rgba(0, 231, 246, 0.08) 0%,
-    rgba(108, 76, 255, 0.05) 30%,
-    transparent 70%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .product-hero-band {
-    min-height: 420px;
-    background-position: center top;
-  }
-  
-  .product-hero-band .hero-plate {
-    padding: 100px 0 50px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-hero-band {
-    min-height: 400px;
-  }
-  
-  .product-hero-band .hero-plate {
-    padding: 90px 0 40px !important;
-  }
-}
-
-/* ============================================
-   SOLUTION HERO BACKGROUND
-============================================ */
-
-.solution-hero-band {
-  position: relative;
-  min-height: 480px;
-  background-image: url('/empowernow_info/images/backgrounds/bg-header-services.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  /* Inner shadow for depth */
-  box-shadow: 
-    inset 0 80px 60px -60px rgba(0, 0, 0, 0.6),
-    inset 0 -80px 60px -60px rgba(0, 0, 0, 0.6);
-}
-
-/* Overlay for better text readability */
-.solution-hero-band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 10, 10, 0.70) 0%,
-    rgba(10, 10, 10, 0.80) 50%,
-    rgba(10, 10, 10, 0.90) 100%
-  );
-  z-index: 0;
-}
-
-/* Subtle gradient accent overlay - cyan glow like products */
-.solution-hero-band::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 50% 20%,
-    rgba(0, 231, 246, 0.08) 0%,
-    rgba(108, 76, 255, 0.05) 30%,
-    transparent 70%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .solution-hero-band {
-    min-height: 420px;
-    background-position: center top;
-  }
-  
-  .solution-hero-band .hero-plate {
-    padding: 100px 0 50px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .solution-hero-band {
-    min-height: 400px;
-  }
-  
-  .solution-hero-band .hero-plate {
-    padding: 90px 0 40px !important;
-  }
-}
-
-/* ============================================
    ENHANCED STUDIO BAR
 ============================================ */
 
@@ -592,6 +454,16 @@ a.nav-link:visited {
   transform: translateX(-50%) translateZ(0);
 }
 
+/* Remove underlines from all mega menu links */
+.mega a {
+  text-decoration: none !important;
+}
+
+.mega a:hover,
+.mega a:focus {
+  text-decoration: none !important;
+}
+
 /* Adjust mega menu position when nav is floating - closer spacing */
 nav.navbar[data-scrolled="true"] ~ * .mega,
 nav.navbar[data-scrolled="true"] .mega {
@@ -661,11 +533,15 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .mega-cta {
   color: var(--ink, #e9f0ff);
-  text-decoration: underline;
+  text-decoration: none !important;
   display: inline-block;
   margin-top: 10px;
   font-weight: 700;
-  text-underline-offset: 3px;
+}
+
+.mega-cta:hover,
+.mega-cta:focus {
+  text-decoration: none !important;
 }
 
 .mega-grid {
@@ -750,10 +626,22 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .links .link {
   color: #e6eef8;
+  text-decoration: none !important;
+}
+
+.links .link:hover,
+.links .link:focus {
+  text-decoration: none !important;
 }
 
 .links .link-dim {
   color: #b3c1da;
+  text-decoration: none !important;
+}
+
+.links .link-dim:hover,
+.links .link-dim:focus {
+  text-decoration: none !important;
 }
 
 /* ============================================
@@ -788,6 +676,16 @@ nav.navbar[data-scrolled="true"] .mega {
   overflow: hidden;
   /* GPU acceleration */
   transform: translateZ(0);
+}
+
+/* Remove underlines from all dropdown links */
+.dropdown a {
+  text-decoration: none !important;
+}
+
+.dropdown a:hover,
+.dropdown a:focus {
+  text-decoration: none !important;
 }
 
 /* Gradient hairline at top */
@@ -855,6 +753,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid transparent;
+  text-decoration: none !important;
   transition: background 0.15s ease, border-color 0.15s ease;
   /* GPU acceleration */
   transform: translateZ(0);
@@ -864,4 +763,5 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 .dropdown-item:focus {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 231, 246, 0.15);
+  text-decoration: none !important;
 }

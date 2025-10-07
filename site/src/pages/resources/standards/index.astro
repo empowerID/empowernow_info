@@ -26,9 +26,11 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:96px 0 24px">
-		<h1 class="display" style="margin:0 0 8px">Standards Fundamentals</h1>
-        <p style="color:#9ba3b7;max-width:860px">Concise primers: why it matters, how it works, and where it’s enforced (Gateway, Shield, PDP, IdP).</p>
+	<section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${base}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+		<div class="container" style="position:relative;z-index:1">
+			<h1 class="display" style="margin:0 0 8px">Standards Fundamentals</h1>
+			<p style="color:#9ba3b7;max-width:860px">Concise primers: why it matters, how it works, and where it's enforced (Gateway, Shield, PDP, IdP).</p>
+		</div>
 	</section>
 	<section class="container" style="padding:8px 0 80px">
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
