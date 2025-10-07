@@ -129,9 +129,15 @@ import '../styles/custom-styles.css';
                                     <div class="mega-left">
                                         <div class="h3" style="margin:0 0 6px">Explore solutions</div>
                                         <div class="body">OEM/white‑label for platforms, bundles for SIs, starter kits for enterprises.</div>
-                                        <a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
+									<a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
+									<a href={`${import.meta.env.BASE_URL}products/aria/`} class="mega-cta">What is ARIA? →</a>
                                     </div>
                                     <div class="mega-grid">
+											<div class="mega-card" role="menuitem" tabindex="-1">
+												<div class="h3">ARIA (Umbrella)</div>
+												<div class="body clamp-2">Governance umbrella across platforms — Shield + MCP Gateway + PDP + Receipts.</div>
+												<div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA? →</a></div>
+											</div>
                                         <div class="mega-card" role="menuitem" tabindex="-1">
                                             <div class="h3">Agent Platforms (OEM/white‑label)</div>
                                             <div class="body clamp-2">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
@@ -247,6 +253,7 @@ import '../styles/custom-styles.css';
                     <li><span style="color:#9ba3b7">VDS (Coming soon)</span></li>
                 </ul></div>
                 <div class="footer-col"><h4>Solutions</h4><ul>
+							<li><a href={`${import.meta.env.BASE_URL}products/aria/`}>ARIA overview</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Zero‑token SPAs</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Agent‑safe tools</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Delegated auth</a></li>
