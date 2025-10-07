@@ -59,48 +59,7 @@ import '../styles/custom-styles.css';
 			a:visited{color:var(--on-bg)}
 			/* Visible focus ring for all focusable controls */
 			a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible, [role="button"]:focus-visible, .chip:focus-visible { outline:2px solid var(--pulse-cyan); outline-offset:2px; border-radius:6px }
-			/* Nav link colors - define here to avoid undefined vars */
-			:root{
-				--nav-ink-dim: rgba(255,255,255,0.7);
-				--nav-ink: rgba(255,255,255,1);
-			}
-			/* Nav underline grow */
-			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px; background:transparent; border:0; appearance:none; -webkit-appearance:none; font:inherit; cursor:pointer}
-			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px;text-shadow:0 0 8px rgba(0,231,246,.3)}
-			/* Mega menu */
-            .nav-group{position:relative}
-            /* Mega menu panel aligned to nav container */
-            .mega{position:fixed;left:50%;transform:translateX(-50%);top:64px; z-index:1010; width:min(1120px, calc(100vw - 32px)); background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden;transition:top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
-			/* Adjust mega menu position when nav is floating */
-			nav.navbar[data-scrolled="true"] ~ * .mega,nav.navbar[data-scrolled="true"] .mega{top:80px}
-            .mega::before{content:""; position:absolute; inset:0; background:#0F1B33; pointer-events:none}
-            .mega::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
-            .mega-inner{position:relative; z-index:1; display:grid;grid-template-columns:4fr 8fr;gap:18px;padding:16px 0 18px}
-            .mega-left{padding:16px 18px}
-            .mega-left .h3{color:var(--ink,#E9F0FF);font-weight:800;letter-spacing:-.01em}
-            .mega-left .body{color:var(--ink,#E9F0FF);opacity:.9}
-            .mega-cta{color:var(--ink,#E9F0FF); text-decoration:underline; display:inline-block; margin-top:10px; font-weight:700; text-underline-offset:3px}
-            .mega-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px 18px;padding:0 0 2px}
-            @media (min-width: 1280px){ .mega-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) } }
-            .mega-card{position:relative;display:grid;grid-template-rows:auto auto 1fr auto;row-gap:6px;background:rgba(255,255,255,.04);border-radius:14px;padding:16px 18px;border:1px solid rgba(255,255,255,.06)}
-            .mega-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);box-shadow:0 10px 22px rgba(0,0,0,.25)}
-            .mega-card:hover::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--quantum-violet,#7C5CFF),var(--pulse-cyan,#4CC9F0));border-top-left-radius:14px;border-top-right-radius:14px}
-            .mega-card:focus-within{outline:2px solid var(--ion-lime,#00E1A8); outline-offset:3px}
-            .mega-card .h3{font-size:20px;line-height:1.2;margin:0}
-            .clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-            .links{display:flex;gap:10px;margin-top:10px}
-            .links .link{color:#e6eef8}
-            .links .link-dim{color:#b3c1da}
-			/* Dropdown */
-            .dropdown{position:absolute; top:100%; right:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:8px; min-width:320px; box-shadow:0 16px 48px rgba(0,229,255,.15); z-index:1010; isolation:isolate; overflow:hidden}
-            .dropdown::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
-            .dropdown > *{position:relative; z-index:1}
-            /* Centered variant (used by Resources) */
-            .dropdown--center{position:fixed; top:64px; left:50%; transform:translateX(-50%); right:auto;transition:top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
-			/* Adjust dropdown position when nav is floating */
-			nav.navbar[data-scrolled="true"] .dropdown--center{top:80px}
-            .dropdown-item{display:block; padding:10px 12px; border-radius:10px}
-			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
+			/* Nav styles moved to custom-styles.css */
 		</style>
 	</head>
     <body>
@@ -207,7 +166,7 @@ import '../styles/custom-styles.css';
                             </div>
                         </div>
                     </li>
-					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
+					<li><a class="nav-link" href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener" data-ev="nav_click" data-label="Docs">Docs</a></li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="nav_click" data-label="Pricing">Pricing</a></li>
                     <li>
                         <div class="nav-group">
