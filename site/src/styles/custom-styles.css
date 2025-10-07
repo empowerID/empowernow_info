@@ -288,6 +288,37 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
   );
 }
 
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .mega-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .mega-card {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+  
+  .mega-card-icon {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .mega-card-content .h3 {
+    font-size: 16px;
+  }
+  
+  .mega-card-content .body {
+    font-size: 13px;
+  }
+  
+  .mega-card-solution {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+}
+
 /* Tablet and Mobile adjustments */
 @media (max-width: 768px) {
   /* Hide desktop navigation on tablet and smaller */
@@ -326,6 +357,52 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
   nav.navbar[data-scrolled="true"] .navbar-logo {
     height: 40px;
   }
+  
+  /* Mobile mega menu adjustments */
+  .mega-illustration {
+    max-width: 180px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .mega-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .mega-card {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  
+  .mega-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .mega-card-content .h3 {
+    font-size: 15px;
+  }
+  
+  .mega-card-content .body {
+    font-size: 12px;
+  }
+  
+  .links .link,
+  .links .link-dim {
+    font-size: 13px;
+  }
+  
+  .mega-card-solution {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  
+  .pill {
+    font-size: 11px;
+    padding: 3px 8px;
+    margin-left: 4px;
+  }
 }
 
 /* Reduced motion support */
@@ -333,7 +410,13 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
   nav.navbar,
   nav.navbar .navbar-inner,
   nav.navbar .container,
-  .navbar-logo {
+  .navbar-logo,
+  .mega,
+  .dropdown,
+  .mega-card,
+  .mega-card-solution,
+  .mega-card-icon,
+  .pill {
     transition: none !important;
     animation: none !important;
   }
@@ -518,6 +601,9 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .mega-left {
   padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mega-left .h3 {
@@ -529,6 +615,24 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-left .body {
   color: var(--ink, #e9f0ff);
   opacity: 0.9;
+}
+
+/* Illustration at bottom left */
+.mega-illustration {
+  margin-top: auto;
+  margin-left: -18px;
+  margin-right: -18px;
+  margin-bottom: -18px;
+  max-width: calc(100% + 36px);
+  height: auto;
+  opacity: 0.6;
+  filter: drop-shadow(0 4px 16px rgba(0, 231, 246, 0.15));
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.mega-illustration:hover {
+  opacity: 0.8;
+  filter: drop-shadow(0 6px 20px rgba(0, 231, 246, 0.25));
 }
 
 .mega-cta {
@@ -547,25 +651,23 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 18px;
+  grid-template-rows: repeat(3, auto);
+  gap: 14px 16px;
   padding: 0 0 2px;
-}
-
-@media (min-width: 1280px) {
-  .mega-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 .mega-card {
   position: relative;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  row-gap: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 14px;
-  padding: 16px 18px;
+  padding: 12px 18px;
   border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  color: inherit;
+  overflow: visible;
   transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
               background 0.2s ease,
               border-color 0.2s ease,
@@ -574,8 +676,42 @@ nav.navbar[data-scrolled="true"] .mega {
   will-change: transform;
 }
 
+/* Wrapper inside card for icon + content */
+.mega-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+/* Product icon in card - now on the left */
+.mega-card-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(0, 231, 246, 0.2));
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.mega-card:hover .mega-card-icon {
+  opacity: 1;
+  filter: drop-shadow(0 4px 12px rgba(0, 231, 246, 0.35));
+  transform: scale(1.05);
+}
+
+/* Content wrapper for text */
+.mega-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
+}
+
 .mega-card:hover {
-  transform: translateY(-4px) translateZ(0);
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 231, 246, 0.2);
   box-shadow: 
@@ -600,15 +736,157 @@ nav.navbar[data-scrolled="true"] .mega {
   border-top-right-radius: 14px;
 }
 
-.mega-card:focus-within {
+.mega-card:focus-within,
+.mega-card:focus {
   outline: 2px solid var(--ion-lime, #00e1a8);
   outline-offset: 3px;
 }
 
-.mega-card .h3 {
-  font-size: 20px;
-  line-height: 1.2;
+/* ============================================
+   SOLUTION MEGA CARDS (with link buttons inside)
+============================================ */
+
+.mega-card-solution {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 14px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: inherit;
+  overflow: visible;
+  cursor: pointer;
+  transition: background 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* Solutions card wrapper is the same as products */
+.mega-card-solution .mega-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+}
+
+.mega-card-solution:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 231, 246, 0.15);
+  box-shadow: 
+    0 0 16px rgba(0, 231, 246, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.mega-card-solution:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(108, 76, 255, 0.3),
+    rgba(0, 231, 246, 0.6),
+    rgba(179, 38, 255, 0.3)
+  );
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.mega-card-solution:focus-within {
+  outline: 2px solid var(--ion-lime, #00e1a8);
+  outline-offset: 3px;
+}
+
+.mega-card-solution .mega-card-icon {
+  flex-shrink: 0;
+}
+
+/* Ensure links are clickable above card click handler */
+.mega-card-solution .links a {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* ============================================
+   PILL BADGES (for category labels)
+============================================ */
+
+.pill {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 4px 10px;
+  margin-left: 6px;
+  border-radius: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+  
+  /* Gradient background */
+  background: linear-gradient(
+    135deg,
+    rgba(0, 231, 246, 0.12) 0%,
+    rgba(108, 76, 255, 0.12) 100%
+  );
+  
+  /* Border with gradient */
+  border: 1px solid rgba(0, 231, 246, 0.25);
+  
+  /* Subtle glow */
+  box-shadow: 
+    0 0 12px rgba(0, 231, 246, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  
+  /* Text color */
+  color: rgba(0, 231, 246, 0.9);
+  
+  /* Smooth transitions */
+  transition: all 0.2s ease;
+}
+
+.mega-card-solution:hover .pill {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 231, 246, 0.18) 0%,
+    rgba(108, 76, 255, 0.18) 100%
+  );
+  border-color: rgba(0, 231, 246, 0.4);
+  box-shadow: 
+    0 0 16px rgba(0, 231, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: rgba(0, 231, 246, 1);
+}
+
+.mega-card-content .h3 {
+  font-size: 17px;
+  line-height: 1.3;
   margin: 0;
+  font-weight: 700;
+  color: var(--ink, #e9f0ff);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.mega-card-content .body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink, #e9f0ff);
+  opacity: 0.85;
+  margin: 0;
+  /* Allow text to wrap naturally - override clamp-2 */
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
 }
 
 .clamp-2 {
@@ -620,28 +898,33 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .links {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 14px;
+  margin-top: 8px;
 }
 
 .links .link {
   color: #e6eef8;
   text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .links .link:hover,
 .links .link:focus {
   text-decoration: none !important;
+  color: rgba(0, 231, 246, 0.9);
 }
 
 .links .link-dim {
   color: #b3c1da;
   text-decoration: none !important;
+  font-size: 14px;
 }
 
 .links .link-dim:hover,
 .links .link-dim:focus {
   text-decoration: none !important;
+  color: #e6eef8;
 }
 
 /* ============================================

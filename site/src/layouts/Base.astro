@@ -84,38 +84,69 @@ import '../styles/custom-styles.css';
                                         <div class="h3" style="margin:0 0 6px">Explore products</div>
                                         <div class="body">Create once → enforce everywhere → prove every action.</div>
                                         <a id="cta-products-hub" href={`${import.meta.env.BASE_URL}products/`} class="mega-cta">View all products →</a>
+                                        <img src={`${import.meta.env.BASE_URL}images/illustrations/illustration-cube-panels.png`} alt="" class="mega-illustration" width="240" height="auto" loading="lazy" />
                                     </div>
                                     <div class="mega-grid">
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">IdP</div>
-                                            <div class="body clamp-2">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">PDP</div>
-                                            <div class="body clamp-2">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/pdp/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">CRUD Service</div>
-                                            <div class="body clamp-2">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/crud/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Data Collector</div>
-                                            <div class="body clamp-2">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/data-collector/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">ARIA Shield</div>
-                                            <div class="body clamp-2">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">ARIA MCP Gateway</div>
-                                            <div class="body clamp-2">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/gateway/`}>Learn more →</a></div>
-                                        </div>
+                                        <a href={`${import.meta.env.BASE_URL}products/idp/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-idp.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">IdP</div>
+                                                    <div class="body">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/pdp/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-pdp.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">PDP</div>
+                                                    <div class="body">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/crud/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-crud-service.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">CRUD Service</div>
+                                                    <div class="body">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/data-collector/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-data-collector.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Data Collector</div>
+                                                    <div class="body">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/aria-shield/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-aria-shield.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">ARIA Shield</div>
+                                                    <div class="body">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/gateway/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-mcp-gateway.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">ARIA MCP Gateway</div>
+                                                    <div class="body">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -130,33 +161,59 @@ import '../styles/custom-styles.css';
                                         <div class="h3" style="margin:0 0 6px">Explore solutions</div>
                                         <div class="body">OEM/white‑label for platforms, bundles for SIs, starter kits for enterprises.</div>
 									<a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
+                                        <img src={`${import.meta.env.BASE_URL}images/illustrations/illustration-package-panels.png`} alt="" class="mega-illustration" width="240" height="auto" loading="lazy" />
 									<a href={`${import.meta.env.BASE_URL}products/aria/`} class="mega-cta">What is ARIA? →</a>
                                     </div>
                                     <div class="mega-grid">
-											<div class="mega-card" role="menuitem" tabindex="-1">
-												<div class="h3">ARIA (Umbrella)</div>
-												<div class="body clamp-2">Governance umbrella across platforms — Shield + MCP Gateway + PDP + Receipts.</div>
-												<div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA? →</a></div>
-											</div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Agent Platforms (OEM/white‑label)</div>
-                                            <div class="body clamp-2">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Guide ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}products/aria/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-aria-shield.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">ARIA (Umbrella)</div>
+                                                    <div class="body">Governance umbrella across platforms — Shield + MCP Gateway + PDP + Receipts.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA? →</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Systems Integrators (SI/GSI)</div>
-                                            <div class="body clamp-2">Vertical catalog kits + policy packs + delivery playbooks.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Kit examples ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-agents.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Agent Platforms <span class="pill">OEM/white‑label</span></div>
+                                                    <div class="body">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Guide ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Enterprises (Governed Starter)</div>
-                                            <div class="body clamp-2">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-si.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Systems Integrators <span class="pill">SI/GSI</span></div>
+                                                    <div class="body">Vertical catalog kits + policy packs + delivery playbooks.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Kit examples ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Zero‑Token SPAs</div>
-                                            <div class="body clamp-2">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Docs ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-enterprise.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Enterprises <span class="pill">Governed Starter</span></div>
+                                                    <div class="body">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart ↗</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-zero-token.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Zero‑Token SPAs</div>
+                                                    <div class="body">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Docs ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -307,6 +364,64 @@ import '../styles/custom-styles.css';
 			</div>
 		</div>
 		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+					
+					let ticking = false;
+					const threshold = 50; // Scroll threshold in pixels
+					
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+					
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+					
+					// Initialize state on load
+					updateNavState();
+					
+			// Listen to scroll (passive for performance)
+			window.addEventListener('scroll', onScroll, { passive: true });
+		}catch{}
+	})();
+	</script>
+	<script>
+		// ============================================
+		// SOLUTION CARDS - Make entire card clickable
+		// ============================================
+		(function(){
+			try{
+				document.querySelectorAll('.mega-card-solution').forEach(card => {
+					const primaryLink = card.getAttribute('data-primary-link');
+					if (!primaryLink) return;
+					
+					card.addEventListener('click', (e) => {
+						// Don't navigate if clicking on a link inside
+						const target = e.target as HTMLElement;
+						if (target.tagName === 'A' || target.closest('a')) {
+							return;
+						}
+						
+						// Navigate to primary link
+						window.location.href = primaryLink;
+					});
+				});
+			}catch{}
+		})();
+	</script>
+	<script>
 			(function(){
 				try{
                     const consentKey = 'analytics_consent';

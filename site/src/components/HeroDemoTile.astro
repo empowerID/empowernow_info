@@ -5,8 +5,9 @@ export interface Props {
     sources: Source[];
     captions?: string; // VTT file path
     demoUrl?: string;  // full demo link
+    playButtonLabel?: string; // Custom label for play button
 }
-const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = Astro.props as Props;
+const { poster, sources = [], captions = '', demoUrl = '/resources/demo/', playButtonLabel = 'Play 90‑second demo' } = Astro.props as Props;
 ---
 <div class="demo-tile" style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.4);line-height:0;background:#000">
     <video id="hero-video" poster={poster} preload="metadata" muted playsinline controls style="width:100%;height:auto;display:block" loading="lazy">
@@ -15,7 +16,7 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
         Your browser does not support the video tag.
     </video>
     <div id="video-overlay" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;opacity:1;transition:opacity .3s ease;cursor:pointer">
-        <button class="btn btn-primary" id="play-button" aria-label="Play 90‑second demo">Play 90‑second demo</button>
+        <button class="btn btn-primary" id="play-button" aria-label={playButtonLabel}>{playButtonLabel}</button>
         <!-- <div style="color:#9ba3b7;font-size:.9rem">Click to play</div> -->
     </div>
     <div id="ended-overlay" style="position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35))">
