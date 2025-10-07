@@ -393,7 +393,45 @@ import '../styles/custom-styles.css';
 					.then((m)=>{
 						try{
 							const mermaid = (m && (m.default||m));
-							mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'relaxed' });
+							mermaid.initialize({
+								startOnLoad: true,
+								theme: 'base',
+								securityLevel: 'relaxed',
+								themeVariables: {
+									primaryColor: '#0B1C3D',
+									primaryBorderColor: '#00E7F6',
+									primaryTextColor: '#FFFFFF',
+									secondaryColor: '#6C4CFF',
+									secondaryBorderColor: '#B326FF',
+									secondaryTextColor: '#FFFFFF',
+									tertiaryColor: '#0E0E10',
+									tertiaryBorderColor: '#6C4CFF',
+									tertiaryTextColor: '#EDEDED',
+									background: '#0E0E10',
+									mainBkg: '#0B1C3D',
+									secondBkg: '#6C4CFF',
+									tertiaryBkg: '#0B1C3D',
+									lineColor: '#00E7F6',
+									textColor: '#EDEDED',
+									nodeBkg: '#0B1C3D',
+									nodeTextColor: '#EDEDED',
+									clusterBkg: 'rgba(11, 28, 61, 0.85)',
+									clusterBorder: 'rgba(0, 231, 246, 0.2)',
+									edgeLabelBackground: '#0B1C3D',
+									actorBorder: '#00E7F6',
+									actorBkg: '#0B1C3D',
+									actorTextColor: '#EDEDED',
+									actorLineColor: '#00E7F6',
+									labelBoxBkgColor: '#0B1C3D',
+									labelBoxBorderColor: '#00E7F6',
+									labelTextColor: '#EDEDED',
+									noteBkgColor: '#6C4CFF',
+									noteTextColor: '#FFFFFF',
+									noteBorderColor: '#B326FF',
+									fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+									fontSize: '14px'
+								}
+							});
 							// Ensure render on first load
 							requestAnimationFrame(()=>{
 								try{ mermaid.run && mermaid.run({ querySelector: '.mermaid' }); }catch{}
