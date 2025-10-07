@@ -25,21 +25,17 @@ const canonical = '/products/aria/';
     </section>
     <section id="how-it-works" class="container" style="padding:8px 0 24px">
       <h2 class="section-title">How ARIA works</h2>
-      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start">
-        <div class="glass-card" style="padding:12px">
-          <ARIAAuthorizationPremium />
-        </div>
-        <aside class="glass-card" style="padding:12px;position:sticky;top:88px">
-          <h3 style="margin:0 0 8px">Legend</h3>
-          <ol style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
-            <li>Plan itinerary (LLM) → ARIA Shield (PEP)</li>
-            <li>Book flight (tool) → ARIA MCP Gateway (PEP)</li>
-            <li>Both PEPs check with PDP → decision + constraints/obligations</li>
-            <li>PDP queries Membership (Neo4j PIP) for delegation context</li>
-          </ol>
-          <div style="margin-top:10px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
-        </aside>
+      <div class="glass-card" style="padding:12px">
+        <ARIAAuthorizationPremium />
       </div>
+      <h3 style="margin:12px 0 8px">Legend</h3>
+      <ol style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
+        <li>Plan itinerary (LLM) → ARIA Shield (PEP)</li>
+        <li>Book flight (tool) → ARIA MCP Gateway (PEP)</li>
+        <li>Both PEPs check with PDP → decision + constraints/obligations</li>
+        <li>PDP queries Membership (Neo4j PIP) for delegation context</li>
+      </ol>
+      <div style="margin-top:10px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
     </section>
     <section class="container" style="padding:8px 0 24px">
       <h2 class="section-title">Decisions with constraints and obligations</h2>

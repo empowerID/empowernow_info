@@ -22,7 +22,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
     <h1 class="display" style="margin:0 0 10px">Authorization Fundamentals</h1>
-    <p style="color:#9ba3b7;max-width:90ch">PAP authors policy. PDP evaluates decisions using PIPs. PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
+    <p style="color:#9ba3b7;max-width:90ch">Modern Attribute‑Based Access Control (ABAC) using <strong>OpenID AuthZEN</strong>. PAP authors versioned policy, PDP evaluates decisions with PIPs, and PEPs enforce <em>constraints</em> (sync) and <em>obligations</em> (async) at the correct boundary (IdP at issuance; Gateway/Service at runtime).</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
       <a class="btn btn-ghost" href={`${base}resources/`}>← All resources</a>
     </div>
@@ -35,8 +35,66 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
       <li><strong>PIPs</strong>: trusted attribute/context providers (e.g., membership, search, geo).</li>
-      <li><strong>PDP</strong>: returns <em>decision</em> with <em>constraints</em> (sync) and <em>obligations</em> (async).</li>
+      <li><strong>PDP</strong>: returns AuthZEN <em>decision</em> with <em>constraints</em> (sync) and <em>obligations</em> (async).</li>
       <li><strong>PEPs</strong>: enforce at the right layer — IdP for issuance obligations; Gateway/Service for runtime constraints.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">ABAC in AuthZEN terms</h2>
+    <div class="glass-card" style="padding:12px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;color:#9ba3b7">
+        <div>
+          <h3 style="margin:0 0 6px">Subject</h3>
+          <p style="margin:0">Who/what performs an action. Examples: role, department, clearance, certifications.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 6px">Action</h3>
+          <p style="margin:0">Operation being requested (read, write, transfer). Rich attributes like amount or channel.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 6px">Resource</h3>
+          <p style="margin:0">The object affected (document, account, case). Attributes like classification or owner.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 6px">Context</h3>
+          <p style="margin:0">Time, device, location, risk score. Used for run‑time constraints and obligations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">AuthZEN decision example</h2>
+    <div class="glass-card" style="padding:12px">
+      <p style="color:#9ba3b7;margin:0 0 8px">A PDP evaluates attributes and returns a decision with explicit constraints (to be enforced synchronously by the PEP) and obligations (post‑actions).</p>
+      <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "decision": "Permit",
+  "ttl": 3000,
+  "constraints": {
+    "egress_allow": ["*.example.com"],
+    "models_allow": ["gpt-4o-mini"],
+    "spend_budget_usd": 25
+  },
+  "obligations": [
+    { "type": "audit_log", "reason": "policy:finance_travel" },
+    { "type": "run_workflow", "name": "receipt_emit" }
+  ]
+}
+`}</code></pre>
+      <p style="color:#9ba3b7;margin:8px 0 0">Compared to legacy XACML, AuthZEN is transport‑friendly JSON with standardized fields for constraints/obligations and TTL, designed for streaming and real‑time enforcement.</p>
+    </div>
+  </section>
+
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Migrating from XACML to AuthZEN</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>Policy</strong>: keep ABAC model; translate rules to AuthZEN‑compatible PAP syntax or authoring tools.</li>
+      <li><strong>Requests</strong>: map XACML categories to subject/action/resource/context JSON objects.</li>
+      <li><strong>Decisions</strong>: replace XACML Result with AuthZEN decision + constraints + obligations (+ TTL).
+      </li>
+      <li><strong>PEPs</strong>: enforce constraints at runtime (gateways/services) and perform obligations (issuance/audit).</li>
     </ul>
   </section>
   
@@ -56,6 +114,15 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
       <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
     </div>
   </section>
+  <script type="application/ld+json">{JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What is ABAC?","acceptedAnswer":{"@type":"Answer","text":"Attribute‑Based Access Control evaluates subject, action, resource, and context attributes against policy to decide PERMIT or DENY."}},
+      {"@type":"Question","name":"What is OpenID AuthZEN?","acceptedAnswer":{"@type":"Answer","text":"AuthZEN standardizes JSON authorization decisions that include constraints and obligations with TTL for real‑time enforcement across PEPs."}},
+      {"@type":"Question","name":"How does AuthZEN differ from XACML?","acceptedAnswer":{"@type":"Answer","text":"AuthZEN uses simple JSON messages and explicit constraints/obligations, making it easier to integrate with gateways, services, and streaming workloads than XML‑based XACML."}}
+    ]
+  })}</script>
 </Base>
 
 
