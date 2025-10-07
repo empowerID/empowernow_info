@@ -1,0 +1,500 @@
+/* ============================================
+   ENHANCED FLOATING NAVIGATION
+============================================ */
+
+/* Base navigation container - overlays hero, doesn't push it down */
+nav.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0;
+  background: transparent;
+  transition: padding 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  border:none;
+  background:transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Inner wrapper for animation - completely transparent at hero */
+.navbar-inner {
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  background: transparent !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: translateZ(0);
+}
+
+/* Content container - force transparent background, no borders */
+.navbar-inner .container {
+  padding: 16px 0;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  transition: padding 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Logo transition */
+.navbar-logo {
+  height: 44px;
+  width: auto;
+  transition: height 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Floating state (when scrolled) - make nav sticky and add glass effect */
+nav.navbar[data-scrolled="true"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 32px 0;
+  background: transparent;
+}
+nav.navbar[data-scrolled="true"] .navbar-inner {
+  max-width: 1120px;
+  padding: 0 32px;
+  border-radius: 16px;
+  /* Gradient background - darker with less opacity for more transparency */
+  background: linear-gradient(
+    135deg,
+    rgba(5, 15, 35, 1) 0%,
+    rgba(8, 18, 40, 1) 50%,
+    rgba(10, 22, 48, 1) 100%
+  );
+  backdrop-filter: blur(24px) saturate(120%) brightness(0.42);
+  -webkit-backdrop-filter: blur(24px) saturate(120%) brightness(0.42);
+  /* Subtle outline always visible */
+  outline: 1px solid rgba(0, 231, 246, 0.15);
+  outline-offset: -1px;
+  border-top: 2px solid rgba(0, 231, 246, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(108, 76, 255, 0.08);
+  border-right: 1px solid rgba(108, 76, 255, 0.08);
+  /* Enhanced glow */
+  box-shadow: 
+    0 0 40px rgba(0, 231, 246, 0.2),
+    0 0 80px rgba(108, 76, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 231, 246, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+nav.navbar[data-scrolled="true"] .navbar-inner .container {
+  padding: 12px 0;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+nav.navbar[data-scrolled="true"] .navbar-logo {
+  height: 40px;
+}
+
+/* Enhanced hover state - amplify glow */
+nav.navbar[data-scrolled="true"] .navbar-inner:hover {
+  outline-color: rgba(0, 231, 246, 0.3);
+  border-top-color: rgba(0, 231, 246, 0.45);
+  box-shadow: 
+    0 0 60px rgba(0, 231, 246, 0.35),
+    0 0 100px rgba(108, 76, 255, 0.15),
+    0 0 140px rgba(179, 38, 255, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 231, 246, 0.1);
+}
+
+/* Gradient hairline enhancement */
+nav.navbar[data-scrolled="true"] .navbar-inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.3) 10%,
+    rgba(0, 231, 246, 0.6) 30%,
+    rgba(0, 231, 246, 0.8) 50%,
+    rgba(0, 231, 246, 0.6) 70%,
+    rgba(179, 38, 255, 0.3) 90%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Amplify gradient hairline on hover */
+nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 76, 255, 0.5) 10%,
+    rgba(0, 231, 246, 0.8) 30%,
+    rgba(0, 231, 246, 1) 50%,
+    rgba(0, 231, 246, 0.8) 70%,
+    rgba(179, 38, 255, 0.5) 90%,
+    transparent 100%
+  );
+}
+
+/* Tablet and Mobile adjustments */
+@media (max-width: 768px) {
+  /* Hide desktop navigation on tablet and smaller */
+  .nav-links {
+    display: none !important;
+  }
+  
+  nav.navbar {
+    padding: 0;
+    background: transparent;
+  }
+  nav.navbar[data-scrolled="true"] {
+    padding: 0;
+    background: transparent;
+  }
+  nav.navbar .navbar-inner,
+  nav.navbar[data-scrolled="true"] .navbar-inner {
+    max-width: 100%;
+    padding: 0 24px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  nav.navbar[data-scrolled="true"] .navbar-inner {
+    border-radius: 0 0 12px 12px;
+    /* Keep gradient on mobile */
+    box-shadow: 
+      0 0 30px rgba(0, 231, 246, 0.15),
+      0 8px 24px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  nav.navbar[data-scrolled="true"] .navbar-inner::before {
+    border-radius: 0;
+  }
+  .navbar-logo,
+  nav.navbar[data-scrolled="true"] .navbar-logo {
+    height: 40px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  nav.navbar,
+  nav.navbar .navbar-inner,
+  nav.navbar .container,
+  .navbar-logo {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Enhanced focus for floating state */
+nav.navbar[data-scrolled="true"] a:focus-visible,
+nav.navbar[data-scrolled="true"] button:focus-visible {
+  outline: 3px solid var(--pulse-cyan);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(0, 231, 246, 0.2);
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  nav.navbar[data-scrolled="true"] .navbar-inner {
+    background: rgba(11, 28, 61, 0.95);
+    border-top-color: var(--cyan);
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ============================================
+   NAV LINKS & MENUS
+============================================ */
+
+/* Nav link colors */
+:root {
+  --nav-ink-dim: rgba(255, 255, 255, 0.7);
+  --nav-ink: rgba(255, 255, 255, 1);
+}
+
+/* Nav link styles with underline grow effect */
+.nav-link {
+  position: relative;
+  color: var(--nav-ink-dim);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  transition: background-size 0.12s ease, color 0.12s ease;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--nav-ink);
+  background-size: 100% 2px;
+  text-shadow: 0 0 8px rgba(0, 231, 246, 0.3);
+}
+
+/* Override default anchor styles for nav links */
+a.nav-link {
+  text-decoration: none !important;
+  display: inline-block;
+  color: var(--nav-ink-dim) !important;
+}
+
+a.nav-link:hover,
+a.nav-link:focus {
+  text-decoration: none !important;
+  color: var(--nav-ink) !important;
+  background-size: 100% 2px;
+  text-shadow: 0 0 8px rgba(0, 231, 246, 0.3);
+}
+
+a.nav-link:visited {
+  color: var(--nav-ink-dim) !important;
+}
+
+/* Nav group container */
+.nav-group {
+  position: relative;
+}
+
+/* ============================================
+   MEGA MENU
+============================================ */
+
+/* Mega menu panel aligned to nav container */
+.mega {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 64px;
+  z-index: 1010;
+  width: min(1120px, calc(100vw - 32px));
+  background: #0f1b33;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35);
+  isolation: isolate;
+  overflow: hidden;
+  transition: top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Adjust mega menu position when nav is floating - closer spacing */
+nav.navbar[data-scrolled="true"] ~ * .mega,
+nav.navbar[data-scrolled="true"] .mega {
+  top: 60px;
+}
+
+.mega::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #0f1b33;
+  pointer-events: none;
+}
+
+.mega::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 20, 36, 0.82),
+    rgba(12, 20, 36, 0.66)
+  );
+  pointer-events: none;
+}
+
+.mega-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 18px;
+  padding: 16px 0 18px;
+}
+
+.mega-left {
+  padding: 16px 18px;
+}
+
+.mega-left .h3 {
+  color: var(--ink, #e9f0ff);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.mega-left .body {
+  color: var(--ink, #e9f0ff);
+  opacity: 0.9;
+}
+
+.mega-cta {
+  color: var(--ink, #e9f0ff);
+  text-decoration: underline;
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+  padding: 0 0 2px;
+}
+
+@media (min-width: 1280px) {
+  .mega-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.mega-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  row-gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mega-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+.mega-card:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--quantum-violet, #7c5cff),
+    var(--pulse-cyan, #4cc9f0)
+  );
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.mega-card:focus-within {
+  outline: 2px solid var(--ion-lime, #00e1a8);
+  outline-offset: 3px;
+}
+
+.mega-card .h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.links .link {
+  color: #e6eef8;
+}
+
+.links .link-dim {
+  color: #b3c1da;
+}
+
+/* ============================================
+   DROPDOWN MENU
+============================================ */
+
+.dropdown {
+  position: absolute;
+  top: 44px;
+  right: 0;
+  background: #0f1b33;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 8px;
+  min-width: 320px;
+  box-shadow: 0 16px 48px rgba(0, 229, 255, 0.15);
+  z-index: 1010;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 20, 36, 0.82),
+    rgba(12, 20, 36, 0.66)
+  );
+  pointer-events: none;
+}
+
+.dropdown > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Centered variant (used by Resources) */
+.dropdown--center {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
+  transition: top 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Adjust dropdown position when nav is floating - closer spacing */
+nav.navbar[data-scrolled="true"] .dropdown {
+  top: 42px;
+}
+nav.navbar[data-scrolled="true"] .dropdown--center {
+  top: 60px;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: rgba(255, 255, 255, 0.06);
+}
