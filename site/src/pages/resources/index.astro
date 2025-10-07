@@ -179,12 +179,12 @@ const allResources: ResItem[] = [
             gs.innerHTML = matches.map((r,i)=> `<li role="option" id="opt-${i}" aria-selected="${i===0}"><a href="${r.href}" class="item glass-card" data-ev="resources_tile_click" data-label="${r.id}" style="display:block;padding:8px 10px;color:inherit;text-decoration:none">${r.title}<span style='color:#9db4cf'> — ${r.summary}</span></a></li>`).join('');
             activeIndex = matches.length?0:-1;
             gs.style.display = matches.length ? 'block' : 'none';
-			gsk && (gsk as HTMLElement).style.display = 'none';
+            gsk && (gsk.style.display = 'none');
             gi && gi.setAttribute('aria-expanded', matches.length? 'true' : 'false');
             if(matches.length){ gi && gi.setAttribute('aria-activedescendant', 'opt-0'); } else { gi && gi.removeAttribute('aria-activedescendant'); }
         }
         function buildSuggestions(term){ clearTimeout(sTimer); sTimer = window.setTimeout(()=> buildSuggestionsNow(term), 250); }
-		gi && gi.addEventListener('input', ()=> { if((gi as HTMLInputElement).value.trim()){ gsk && ((gsk as HTMLElement).style.display='block'); gs && ((gs as HTMLElement).style.display='none'); } buildSuggestions((gi as HTMLInputElement).value); });
+        gi && gi.addEventListener('input', ()=> { if(gi.value && gi.value.trim()){ gsk && (gsk.style.display='block'); gs && (gs.style.display='none'); } buildSuggestions(gi.value); });
         gi && gi.addEventListener('keydown', (e)=>{
             const items = Array.from(gs?.querySelectorAll('li')||[]);
             if(e.key==='ArrowDown'){ e.preventDefault(); if(items.length){ activeIndex = (activeIndex+1)%items.length; items.forEach((li,i)=> li.setAttribute('aria-selected', String(i===activeIndex))); liFocus(); } }
@@ -194,10 +194,10 @@ const allResources: ResItem[] = [
                 e.preventDefault();
                 const term=(gi.value||'').trim();
                 pl({event:'resources_search', term, results_count: (gs?.children?.length||0)});
-                if(activeIndex>=0 && items[activeIndex]){ const a = items[activeIndex].querySelector('a') as HTMLAnchorElement; a && a.click(); return; }
+                if(activeIndex>=0 && items[activeIndex]){ const a = items[activeIndex].querySelector('a'); if(a && a.click){ a.click(); return; } }
                 location.href = `${base}search/?q=`+encodeURIComponent(term);
             }
-            function liFocus(){ const it = items[activeIndex]; it && (it.querySelector('a') as HTMLAnchorElement)?.focus(); gi && gi.setAttribute('aria-activedescendant', `opt-${activeIndex}`); }
+            function liFocus(){ const it = items[activeIndex]; const anchor = it && it.querySelector('a'); if(anchor && anchor.focus){ anchor.focus(); } gi && gi.setAttribute('aria-activedescendant', `opt-${activeIndex}`); }
         });
         sb && sb.addEventListener('click', ()=>{ const term=(gi?.value||'').trim(); pl({event:'resources_search', term, results_count: (gs?.children?.length||0)}); location.href = `${base}search/?q=`+encodeURIComponent(term); });
 
@@ -228,7 +228,7 @@ const allResources: ResItem[] = [
                 return true;
             });
             if(!list) return;
-			rsk && ((rsk as HTMLElement).style.display='none');
+            rsk && (rsk.style.display='none');
             list.innerHTML = out.map(r=>{
                 const date = new Date(r.updated_at).toLocaleDateString();
                 const typeLabel = r.type.toUpperCase();
@@ -265,14 +265,14 @@ const allResources: ResItem[] = [
         }
         typePills.forEach(p=> p.addEventListener('click', ()=> applyType(p.getAttribute('data-type'))));
         tagChips.forEach(b=> b.addEventListener('click', ()=> applyTag(b.getAttribute('data-chip'))));
-		let fTimer=0;
-		fs && fs.addEventListener('input', ()=> { rsk && ((rsk as HTMLElement).style.display='block'); state.term = (fs as HTMLInputElement).value; clearTimeout(fTimer); fTimer = window.setTimeout(()=> { render(); syncURL(); }, 250); });
+        let fTimer=0;
+        fs && fs.addEventListener('input', ()=> { rsk && (rsk.style.display='block'); state.term = fs.value; clearTimeout(fTimer); fTimer = window.setTimeout(()=> { render(); syncURL(); }, 250); });
 
         // Initialize from URL
         try{
             const u = new URL(location.href);
             const q = u.searchParams.get('q')||''; if(q && fs){ fs.value=q; state.term=q; }
-            u.searchParams.getAll('type').forEach(t=> state.types.add(t as any));
+            u.searchParams.getAll('type').forEach(t=> state.types.add(t));
             u.searchParams.getAll('tag').forEach(t=> state.tags.add(t));
         }catch{}
         typePills.forEach(p=> p.classList.toggle('active', state.types.has(p.getAttribute('data-type'))));
