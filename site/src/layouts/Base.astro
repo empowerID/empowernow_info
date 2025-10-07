@@ -399,7 +399,8 @@ import '../styles/custom-styles.css';
 							mermaid.initialize({
 								startOnLoad: true,
 								theme: 'base',
-								securityLevel: 'relaxed',
+								securityLevel: 'loose',
+								flowchart: { useMaxWidth: false, htmlLabels: true, diagramPadding: 8 },
 								themeVariables: {
 									primaryColor: '#0B1C3D',
 									primaryBorderColor: '#00E7F6',

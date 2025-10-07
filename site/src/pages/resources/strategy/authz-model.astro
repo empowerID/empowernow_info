@@ -26,8 +26,8 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   </section>
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
-    <div class="panel-glass" style="padding:12px">
-      <pre class="mermaid">flowchart LR
+    <div class="panel-glass" style="padding:12px;overflow:auto">
+      <pre class="mermaid" style="max-width:100%;white-space:pre;overflow:auto">flowchart LR
   subgraph PAP[Policy Administration Point]
     PAP1[Author policies]
   end
@@ -37,9 +37,9 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     PIP1 --> PDP1
   end
   subgraph PEP[Policy Enforcement Points]
-    IdPPEP["IdP (issuance): consent, step-up, budgets"]
-    GWPEP["Gateway (runtime): params/egress, spend, model caps"]
-    SVCPEP["Service (runtime): resource/domain checks"]
+    IdPPEP[IdP (issuance): consent, step-up, budgets]
+    GWPEP[Gateway (runtime): params/egress, spend, model caps]
+    SVCPEP[Service (runtime): resource/domain checks]
   end
   PAP1 --> PDP1
   PDP1 -->|decision| IdPPEP
