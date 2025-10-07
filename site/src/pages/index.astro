@@ -11,13 +11,14 @@ import Passport from '../components/icons/Passport.astro';
 import AuthZEN from '../components/icons/AuthZEN.astro';
 import PinPlan from '../components/icons/PinPlan.astro';
 import SavingsCalculator from '../components/SavingsCalculator.astro';
+import AuroraText from '../components/AuroraText.astro';
 ---
 <Base title="EmpowerNow — Universal Agent Governance & Integration Layer" description="Create tools once. Enforce policy & spend controls across agent platforms, and prove every action with cryptographic receipts." canonical="/">
     <!-- Hero -->
     <section class="hero-plate page-stage" data-section="hero" style={`padding:120px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
         <div class="container" style="display:flex;gap:48px;align-items:center;flex-wrap:wrap">
             <div style="flex:1 1 520px;min-width:300px">
-                <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Create tools once. Enforce policy everywhere. <span style="font-size:1.15em">Prove every action.</span></h1>
+                <h1 class="display" style="margin:0 0 10px;line-height:1.2"><span style="background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Create tools once. Enforce policy everywhere.</span> <AuroraText><span style="font-size:1.15em">Prove every action.</span></AuroraText></h1>
                 <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5">No‑code tools for any agent platform with <strong>budget & content controls</strong> and <strong>cryptographic receipts</strong>.</p>
                 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
                     <a class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑second demo</a>
@@ -29,7 +30,7 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
                     <ProofChip label="Receipts auditors accept" icon="receipt" />
                 </div>
             </div>
-            <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
+            <div class="parallax-glow hero-video-container" style="flex:1 1 420px;min-width:280px;position:relative">
                 <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} captions={`${import.meta.env.BASE_URL}media/hero-demo.vtt`} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
             </div>
             <!-- Trust Strip -->

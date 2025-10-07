@@ -1,0 +1,73 @@
+---
+/**
+ * AuroraText Component
+ * 
+ * Animated gradient text effect - gradient flows through the text itself.
+ * Inspired by the "AI Agent SDK" style gradient animation.
+ * 
+ * Usage:
+ *   <AuroraText>Your text here</AuroraText>
+ * 
+ * Features:
+ *   - Pure CSS animated gradient on text
+ *   - Respects prefers-reduced-motion
+ *   - GPU accelerated
+ *   - NeonFlux color palette
+ */
+
+export interface Props {
+    className?: string;
+}
+
+const { className = '' } = Astro.props as Props;
+---
+
+<span class={`aurora-text ${className}`}>
+    <slot />
+</span>
+
+<style>
+    .aurora-text {
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(
+            90deg,
+            hsl(270, 100%, 70%),
+            hsl(180, 100%, 65%),
+            hsl(300, 100%, 70%),
+            hsl(180, 100%, 65%),
+            hsl(270, 100%, 70%)
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: aurora-flow 4s ease-in-out infinite;
+        will-change: background-position;
+    }
+
+    @keyframes aurora-flow {
+        0% {
+            background-position: 0% center;
+        }
+        50% {
+            background-position: 100% center;
+        }
+        100% {
+            background-position: 0% center;
+        }
+    }
+
+    /* Respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        .aurora-text {
+            animation: none;
+            background: linear-gradient(
+                90deg,
+                hsl(270, 100%, 70%),
+                hsl(180, 100%, 65%)
+            );
+            background-size: 100% auto;
+        }
+    }
+</style>
