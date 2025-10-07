@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'PDP Pricing Model';
+const description = 'Licensing model for the Policy Decision Point (standalone and embedded).';
+const canonical = '/resources/standards/pdp-pricing-model/';
+---
+<Base title={title} description={description} canonical={canonical}>
+	<section class="container" style="padding:96px 0 24px">
+		<h1 class="display" style="margin:0 0 8px">PDP Pricing Model</h1>
+		<p style="color:#9ba3b7;max-width:860px">Standalone and embedded licensing, meters, overage policy, deployment impacts.</p>
+	</section>
+	<section class="container" style="padding:8px 0 80px">
+		<div class="glass-card" style="padding:24px">
+			<h3>Highlights</h3>
+			<ul>
+				<li>Standalone PDP: MAU/MAP/Tenant primary meter, retention and region gates.</li>
+				<li>Embedded PDP: restricted-use, decisions included per parent unit, single-invoice overage.</li>
+				<li>Deployment: SaaS control plane + customer PDPs, or self-managed Kubernetes.</li>
+			</ul>
+		</div>
+	</section>
+</Base>
+
