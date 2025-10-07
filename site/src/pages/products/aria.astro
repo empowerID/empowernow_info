@@ -28,14 +28,49 @@ const canonical = '/products/aria/';
       <div class="glass-card" style="padding:12px">
         <ARIAAuthorizationPremium />
       </div>
-      <h3 style="margin:12px 0 8px">Legend</h3>
-      <ol style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
-        <li>Plan itinerary (LLM) → ARIA Shield (PEP)</li>
-        <li>Book flight (tool) → ARIA MCP Gateway (PEP)</li>
-        <li>Both PEPs check with PDP → decision + constraints/obligations</li>
-        <li>PDP queries Membership (Neo4j PIP) for delegation context</li>
-      </ol>
-      <div style="margin-top:10px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
+      <h3 style="margin:12px 0 8px">Flow at a glance</h3>
+      <div class="glass-card" style="padding:12px">
+        <ol style="margin:0;line-height:1.9;color:#9ba3b7;padding-left:18px">
+          <li><strong>Delegate</strong>: Alice delegates a <em>Travel Agent</em> with scope (budget, tools) recorded in Membership (Neo4j PIP).</li>
+          <li><strong>Plan</strong>: The agent plans an itinerary via the LLM. The call goes through <strong>ARIA Shield</strong> (PEP‑1).
+            <div style="opacity:.8">Shield classifies the prompt and attaches attributes (models, egress domain, purpose).</div>
+          </li>
+          <li><strong>Pre‑check</strong>: Shield asks the <strong>PDP</strong> for a decision with context (delegator ↔ agent, classification).
+            <div style="opacity:.8">PDP reads delegation constraints from the <strong>PIP</strong> (Membership graph).</div>
+          </li>
+          <li><strong>Tool</strong>: The agent executes a tool (book flight) via <strong>ARIA MCP Gateway</strong> (PEP‑2).
+            <div style="opacity:.8">Gateway validates schema pins/plan steps before the model or tool runs.</div>
+          </li>
+          <li><strong>Decision</strong>: PDP returns <em>Permit</em> with <strong>constraints</strong> (egress_allow, models_allow, spend_budget) and
+            <strong>obligations</strong> (audit_log, receipt_emit, run_workflow) plus a TTL.</li>
+          <li><strong>Enforce</strong>: PEPs enforce in real time — Shield applies budget/egress/model caps; Gateway enforces schema and plan discipline.</li>
+          <li><strong>Prove</strong>: Both PEPs emit signed receipts. Analytics update spend and remaining budgets.</li>
+        </ol>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px">
+        <div class="glass-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">Actors & boundaries</h4>
+          <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
+            <thead><tr><th style="text-align:left">Actor</th><th style="text-align:left">Role</th><th style="text-align:left">Boundary</th></tr></thead>
+            <tbody>
+              <tr><td>Alice</td><td>Delegator</td><td>Grants scope in Membership (PIP)</td></tr>
+              <tr><td>Travel Agent</td><td>AI Agent</td><td>Uses tools under delegation</td></tr>
+              <tr><td>ARIA Shield</td><td>PEP‑1</td><td>LLM gateway: classify, cap, egress</td></tr>
+              <tr><td>ARIA MCP Gateway</td><td>PEP‑2</td><td>Tool gateway: schema/plan discipline</td></tr>
+              <tr><td>PDP</td><td>Decision</td><td>Returns constraints + obligations</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glass-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">What the PDP returns</h4>
+          <ul style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
+            <li><strong>Decision</strong>: Permit/Deny with TTL for re‑use.</li>
+            <li><strong>Constraints</strong>: egress_allow, models_allow, spend_budget, data_scope.</li>
+            <li><strong>Obligations</strong>: audit_log, receipt_emit, run_workflow, consent.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:12px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
     </section>
     <section class="container" style="padding:8px 0 24px">
       <h2 class="section-title">Decisions with constraints and obligations</h2>
