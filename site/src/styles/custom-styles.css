@@ -420,11 +420,6 @@ nav.navbar[data-scrolled="true"] .navbar-inner:hover::before {
     transition: none !important;
     animation: none !important;
   }
-  
-  .mega-card:hover,
-  .mega-card-solution:hover {
-    transform: none !important;
-  }
 }
 
 /* Enhanced focus for floating state */
@@ -664,9 +659,8 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-card {
   position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 14px;
   padding: 12px 18px;
@@ -680,6 +674,15 @@ nav.navbar[data-scrolled="true"] .mega {
               box-shadow 0.2s ease;
   /* GPU acceleration */
   will-change: transform;
+}
+
+/* Wrapper inside card for icon + content */
+.mega-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
 }
 
 /* Product icon in card - now on the left */
@@ -709,7 +712,6 @@ nav.navbar[data-scrolled="true"] .mega {
 }
 
 .mega-card:hover {
-  transform: translateY(-2px) translateZ(0);
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 231, 246, 0.2);
   box-shadow: 
@@ -747,9 +749,8 @@ nav.navbar[data-scrolled="true"] .mega {
 .mega-card-solution {
   position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 14px;
   padding: 12px 18px;
@@ -760,6 +761,15 @@ nav.navbar[data-scrolled="true"] .mega {
   transition: background 0.2s ease,
               border-color 0.2s ease,
               box-shadow 0.2s ease;
+}
+
+/* Solutions card wrapper is the same as products */
+.mega-card-solution .mega-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
 }
 
 .mega-card-solution:hover {
