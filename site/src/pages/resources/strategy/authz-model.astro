@@ -26,8 +26,8 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   </section>
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
-    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid
-flowchart LR
+    <div class="panel-glass" style="padding:12px">
+      <div class="mermaid">flowchart LR
   subgraph PAP[Policy Administration Point]
     PAP1[Author policies]
   end
@@ -44,8 +44,8 @@ flowchart LR
   PAP1 --> PDP1
   PDP1 -->|decision| IdPPEP
   PDP1 -->|decision| GWPEP
-  PDP1 -->|decision| SVCPEP
-`}</code></pre>
+  PDP1 -->|decision| SVCPEP</div>
+    </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
       <li><strong>PIPs</strong>: trusted attribute/context providers (e.g., membership, search, geo).</li>
