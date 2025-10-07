@@ -354,6 +354,41 @@ import '../styles/custom-styles.css';
 				}catch{}
 			})();
 		</script>
+		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+
+					let ticking = false;
+					const hasHeroStage = !!document.querySelector('.page-stage');
+					const threshold = hasHeroStage ? 50 : -1; // float immediately if no hero
+
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+
+					// Initialize state on load
+					updateNavState();
+
+					// Listen to scroll (passive for performance)
+					window.addEventListener('scroll', onScroll, { passive: true });
+				}catch{}
+			})();
+		</script>
 		<script type="module">
 			// Mermaid diagrams support (render elements with class="mermaid")
 			try {
