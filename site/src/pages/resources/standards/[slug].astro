@@ -1,6 +1,6 @@
 ---
 export async function getStaticPaths() {
-	const slugs = ['oauth','oidc','pkce','rar','par','jarm','fapi-2-0','scim','ciba','mcp','caep'];
+    const slugs = ['oauth','oidc','pkce','rar','par','jarm','fapi-2-0','scim','ciba','mcp','caep','token-exchange','resource-indicators','dpop','mtls','dcr','authzen'];
 	return slugs.map((slug) => ({ params: { slug } }));
 }
 const { slug } = Astro.params as { slug: string };
@@ -15,6 +15,12 @@ const pretty = slug
   .replace('ciba','CIBA')
   .replace('mcp','Model Context Protocol (MCP)')
   .replace('caep','CAEP')
+  .replace('token-exchange','Token Exchange (RFC 8693)')
+  .replace('resource-indicators','Resource Indicators (RFC 8707)')
+  .replace('dpop','DPoP (RFC 9449)')
+  .replace('mtls','OAuth mTLS (RFC 8705)')
+  .replace('dcr','Dynamic Client Registration (RFC 7591/7592)')
+  .replace('authzen','OpenID AuthZEN')
   .replace('oauth','OAuth 2.0');
 const title = `${pretty} — Primer`;
 const description = 'What it is, why it matters, enforcement points, and how it works.';
@@ -41,7 +47,33 @@ const canonical = `/resources/standards/${slug}/`;
         </div>
         <div class="glass-card" style="padding:20px">
             <h2 class="section-title" style="margin:0 0 8px">How it works (high level)</h2>
-            <p style="color:#9ba3b7;margin:0">See our Docs for deep dives and reference.</p>
+            {
+                slug === 'token-exchange' && (
+                    <>
+                        <p style="color:#9ba3b7;margin:0 0 8px">Exchange a subject token and (optionally) actor token for a new access token. We set <code>act.sub</code> for OBO and may include ARIA extensions.</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  autonumber\n  participant C as Client\n  participant IdP as Token Endpoint\n  C->>IdP: POST /token (grant_type=token-exchange)\n  IdP-->>C: access_token (aud, act.sub)`}</code></pre>
+                    </>
+                )
+            }
+            {
+                slug === 'resource-indicators' && (
+                    <>
+                        <p style="color:#9ba3b7;margin:0 0 8px">Send <code>resource</code> to set the intended audience precisely.</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nsequenceDiagram\n  participant BFF\n  participant IdP\n  BFF->>IdP: token (resource=api://admin)\n  IdP-->>BFF: access_token (aud=[api://admin])`}</code></pre>
+                    </>
+                )
+            }
+            {
+                slug === 'dpop' && (
+                    <>
+                        <p style="color:#9ba3b7;margin:0 0 8px">Sender‑constrained tokens with <code>cnf.jkt</code> bound to a JWK; proof on each call.</p>
+                        <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid\nflowchart TD\n  A[Client] -- DPoP proof --> T[Token Endpoint]\n  T -->|cnf.jkt| AT[Access Token]\n  A -- proof + AT --> RS[Resource Server]`}</code></pre>
+                    </>
+                )
+            }
+            { slug === 'mtls' && (<p style="color:#9ba3b7;margin:0">Mutual TLS sender‑constrains tokens using client certificates per RFC 8705.</p>) }
+            { slug === 'dcr' && (<p style="color:#9ba3b7;margin:0">Dynamic Client Registration automates client onboarding and updates (RFC 7591/7592).</p>) }
+            { slug === 'authzen' && (<p style="color:#9ba3b7;margin:0">AuthZEN defines portable authorization decision contracts; our PDP aligns with its model for constraints and obligations.</p>) }
         </div>
     </section>
 </Base>
