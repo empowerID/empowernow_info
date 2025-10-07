@@ -27,7 +27,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
     <div class="panel-glass" style="padding:12px">
-      <div class="mermaid">flowchart LR
+      <pre class="mermaid">flowchart LR
   subgraph PAP[Policy Administration Point]
     PAP1[Author policies]
   end
@@ -44,7 +44,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   PAP1 --> PDP1
   PDP1 -->|decision| IdPPEP
   PDP1 -->|decision| GWPEP
-  PDP1 -->|decision| SVCPEP</div>
+  PDP1 -->|decision| SVCPEP</pre>
     </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
@@ -69,6 +69,26 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
       <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
     </div>
   </section>
+  <script type="module">
+    try{
+      // Fallback: load Mermaid here if the global loader hasn't executed yet
+      const ensureMermaid = async () => {
+        const has = (window && (window as any).mermaid);
+        if(has && (window as any).mermaid){
+          try{ (window as any).mermaid.run?.({ querySelector: '.mermaid' }); }catch{}
+          return;
+        }
+        const mod = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+        const mermaid = (mod && (mod.default||mod));
+        try{
+          mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'relaxed' });
+          mermaid.run?.({ querySelector: '.mermaid' });
+          mermaid.init?.(undefined, document.querySelectorAll('.mermaid'));
+        }catch{}
+      };
+      if('requestIdleCallback' in window){ (window as any).requestIdleCallback(ensureMermaid); } else { setTimeout(ensureMermaid, 0); }
+    }catch{}
+  </script>
 </Base>
 
 
