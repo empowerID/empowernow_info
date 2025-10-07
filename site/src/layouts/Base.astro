@@ -38,6 +38,9 @@ import '../styles/custom-styles.css';
 		<style>
 			html,body{margin:0;background:var(--navy);color:#fff;font-family:Inter,-apple-system,sans-serif}
 			main{min-height:60vh}
+			/* Offset fixed navbar on pages without a hero stage */
+			body[data-no-hero="true"] main{padding-top:96px}
+			@media (max-width: 768px){ body[data-no-hero="true"] main{padding-top:104px} }
 			footer{padding:32px 0;margin-top:80px}
 			footer a{text-decoration:none}
 			footer .btn{text-decoration:none}
@@ -170,7 +173,7 @@ import '../styles/custom-styles.css';
                                             <div class="mega-card-content">
                                                 <div class="h3">Enterprises <span class="pill">Governed Starter</span></div>
                                                 <div class="body">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
-                                                <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Quickstart ↗</a></div>
+                                                <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart ↗</a></div>
                                             </div>
                                         </div>
                                         <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>
@@ -191,7 +194,7 @@ import '../styles/custom-styles.css';
                             <button class="nav-link" id="btn-resources" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources" data-ev="nav_click" data-label="Resources">Resources</button>
                             <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown dropdown--center" data-menu>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Overview</a>
-                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="dropdown-item">Quickstart</a>
+                                <a role="menuitem" tabindex="-1" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="dropdown-item">Quickstart</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="dropdown-item">Adapter catalog</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Workflow examples</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/standards/`} class="dropdown-item">Standards</a>
@@ -229,7 +232,7 @@ import '../styles/custom-styles.css';
                         <a class="btn" href={`${import.meta.env.BASE_URL}company/`}>Company</a>
                         <div style="display:flex;gap:8px;margin-top:8px">
                             <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book Demo</a>
-                            <a class="btn" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a>
+                            <a class="btn" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart</a>
                         </div>
                     </div>
                 </div>
@@ -441,12 +444,94 @@ import '../styles/custom-styles.css';
 				}catch{}
 			})();
 		</script>
+		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+
+					let ticking = false;
+					const hasHeroStage = !!document.querySelector('.page-stage');
+					const threshold = hasHeroStage ? 50 : -1; // float immediately if no hero
+
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+
+					// Initialize state on load
+					updateNavState();
+
+					// Listen to scroll (passive for performance)
+					window.addEventListener('scroll', onScroll, { passive: true });
+				}catch{}
+			})();
+		</script>
 		<script type="module">
 			// Mermaid diagrams support (render elements with class="mermaid")
 			try {
 				import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs')
 					.then((m)=>{
-						try{ m.default.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'relaxed' }); }catch{}
+						try{
+							const mermaid = (m && (m.default||m));
+							mermaid.initialize({
+								startOnLoad: true,
+								theme: 'base',
+								securityLevel: 'loose',
+								flowchart: { useMaxWidth: false, htmlLabels: true, diagramPadding: 8 },
+								themeVariables: {
+									primaryColor: '#0B1C3D',
+									primaryBorderColor: '#00E7F6',
+									primaryTextColor: '#FFFFFF',
+									secondaryColor: '#6C4CFF',
+									secondaryBorderColor: '#B326FF',
+									secondaryTextColor: '#FFFFFF',
+									tertiaryColor: '#0E0E10',
+									tertiaryBorderColor: '#6C4CFF',
+									tertiaryTextColor: '#EDEDED',
+									background: '#0E0E10',
+									mainBkg: '#0B1C3D',
+									secondBkg: '#6C4CFF',
+									tertiaryBkg: '#0B1C3D',
+									lineColor: '#00E7F6',
+									textColor: '#EDEDED',
+									nodeBkg: '#0B1C3D',
+									nodeTextColor: '#EDEDED',
+									clusterBkg: 'rgba(11, 28, 61, 0.85)',
+									clusterBorder: 'rgba(0, 231, 246, 0.2)',
+									edgeLabelBackground: '#0B1C3D',
+									actorBorder: '#00E7F6',
+									actorBkg: '#0B1C3D',
+									actorTextColor: '#EDEDED',
+									actorLineColor: '#00E7F6',
+									labelBoxBkgColor: '#0B1C3D',
+									labelBoxBorderColor: '#00E7F6',
+									labelTextColor: '#EDEDED',
+									noteBkgColor: '#6C4CFF',
+									noteTextColor: '#FFFFFF',
+									noteBorderColor: '#B326FF',
+									fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+									fontSize: '14px'
+								}
+							});
+							// Ensure render on first load
+							requestAnimationFrame(()=>{
+								try{ mermaid.run && mermaid.run({ querySelector: '.mermaid' }); }catch{}
+								try{ mermaid.init && mermaid.init(undefined, document.querySelectorAll('.mermaid')); }catch{}
+							});
+						}catch{}
 					})
 				.catch(()=>{});
 			} catch {}

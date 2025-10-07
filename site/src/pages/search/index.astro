@@ -18,13 +18,22 @@ const canonical = '/search/';
 					var input = document.getElementById('q');
 					var results = document.getElementById('results');
 					if(!input || !results || !(window).pagefind) return;
-					input.addEventListener('input', async function(){
-						var q = input.value.trim();
-						if(!q){ results.innerHTML = ''; return; }
-						var res = await (window).pagefind.search(q);
+
+					async function run(q){
+						var term = (q||'').trim();
+						if(!term){ results.innerHTML = ''; return; }
+						var res = await (window).pagefind.search(term);
 						var items = await Promise.all(res.results.slice(0,20).map(function(r){ return r.data(); }));
 						results.innerHTML = items.map(function(it){ return '<a class=\'btn\' href=\''+(it.url)+'\'>'+(it.meta && it.meta.title || it.url)+'</a>'; }).join('');
-					});
+					}
+
+					input.addEventListener('input', function(){ run(input.value); });
+
+					try{
+						var u = new URL(location.href);
+						var q = u.searchParams.get('q') || '';
+						if(q){ input.value = q; run(q); }
+					}catch{}
 				}catch{}
 			}
 			var s = document.createElement('script');

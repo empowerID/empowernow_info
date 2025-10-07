@@ -1,6 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
-const title = 'Authorization Model — PDP, PEP, PIP, PAP';
+const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
 const base = import.meta.env.BASE_URL;
@@ -8,7 +8,7 @@ const slugs = ['ai-middleware-leadership','contracts','authz-model','idp-technic
 const labels: Record<string,string> = {
   'ai-middleware-leadership': 'AI Middleware Leadership',
   'contracts': 'ARIA Contracts',
-  'authz-model': 'Authorization Model',
+  'authz-model': 'Authorization Fundamentals',
   'idp-technical-overview': 'IdP Technical Overview'
 };
 const slug = 'authz-model';
@@ -18,7 +18,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
 ---
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
-    <h1 class="display" style="margin:0 0 10px">Authorization Model</h1>
+    <h1 class="display" style="margin:0 0 10px">Authorization Fundamentals</h1>
     <p style="color:#9ba3b7;max-width:90ch">PAP authors policy. PDP evaluates decisions using PIPs. PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
       <a class="btn btn-ghost" href={`${base}resources/`}>← All resources</a>
@@ -26,8 +26,8 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   </section>
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
-    <div class="panel-glass" style="padding:12px">
-      <div class="mermaid">flowchart LR
+    <div class="panel-glass" style="padding:12px;overflow:auto">
+      <pre class="mermaid" style="max-width:100%;white-space:pre;overflow:auto">flowchart LR
   subgraph PAP[Policy Administration Point]
     PAP1[Author policies]
   end
@@ -44,7 +44,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   PAP1 --> PDP1
   PDP1 -->|decision| IdPPEP
   PDP1 -->|decision| GWPEP
-  PDP1 -->|decision| SVCPEP</div>
+  PDP1 -->|decision| SVCPEP</pre>
     </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
@@ -69,6 +69,64 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
       <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
     </div>
   </section>
+  <script type="module">
+    try{
+      // Fallback: load Mermaid here if the global loader hasn't executed yet
+      const ensureMermaid = async () => {
+        const has = (window && (window as any).mermaid);
+        if(has && (window as any).mermaid){
+          try{ (window as any).mermaid.run?.({ querySelector: '.mermaid' }); }catch{}
+          return;
+        }
+        const mod = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+        const mermaid = (mod && (mod.default||mod));
+        try{
+          mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            securityLevel: 'relaxed',
+            themeVariables: {
+              primaryColor: '#0B1C3D',
+              primaryBorderColor: '#00E7F6',
+              primaryTextColor: '#FFFFFF',
+              secondaryColor: '#6C4CFF',
+              secondaryBorderColor: '#B326FF',
+              secondaryTextColor: '#FFFFFF',
+              tertiaryColor: '#0E0E10',
+              tertiaryBorderColor: '#6C4CFF',
+              tertiaryTextColor: '#EDEDED',
+              background: '#0E0E10',
+              mainBkg: '#0B1C3D',
+              secondBkg: '#6C4CFF',
+              tertiaryBkg: '#0B1C3D',
+              lineColor: '#00E7F6',
+              textColor: '#EDEDED',
+              nodeBkg: '#0B1C3D',
+              nodeTextColor: '#EDEDED',
+              clusterBkg: 'rgba(11, 28, 61, 0.85)',
+              clusterBorder: 'rgba(0, 231, 246, 0.2)',
+              edgeLabelBackground: '#0B1C3D',
+              actorBorder: '#00E7F6',
+              actorBkg: '#0B1C3D',
+              actorTextColor: '#EDEDED',
+              actorLineColor: '#00E7F6',
+              labelBoxBkgColor: '#0B1C3D',
+              labelBoxBorderColor: '#00E7F6',
+              labelTextColor: '#EDEDED',
+              noteBkgColor: '#6C4CFF',
+              noteTextColor: '#FFFFFF',
+              noteBorderColor: '#B326FF',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              fontSize: '14px'
+            }
+          });
+          mermaid.run?.({ querySelector: '.mermaid' });
+          mermaid.init?.(undefined, document.querySelectorAll('.mermaid'));
+        }catch{}
+      };
+      if('requestIdleCallback' in window){ (window as any).requestIdleCallback(ensureMermaid); } else { setTimeout(ensureMermaid, 0); }
+    }catch{}
+  </script>
 </Base>
 
 
