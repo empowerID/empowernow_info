@@ -454,6 +454,16 @@ a.nav-link:visited {
   transform: translateX(-50%) translateZ(0);
 }
 
+/* Remove underlines from all mega menu links */
+.mega a {
+  text-decoration: none !important;
+}
+
+.mega a:hover,
+.mega a:focus {
+  text-decoration: none !important;
+}
+
 /* Adjust mega menu position when nav is floating - closer spacing */
 nav.navbar[data-scrolled="true"] ~ * .mega,
 nav.navbar[data-scrolled="true"] .mega {
@@ -523,11 +533,15 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .mega-cta {
   color: var(--ink, #e9f0ff);
-  text-decoration: underline;
+  text-decoration: none !important;
   display: inline-block;
   margin-top: 10px;
   font-weight: 700;
-  text-underline-offset: 3px;
+}
+
+.mega-cta:hover,
+.mega-cta:focus {
+  text-decoration: none !important;
 }
 
 .mega-grid {
@@ -612,10 +626,22 @@ nav.navbar[data-scrolled="true"] .mega {
 
 .links .link {
   color: #e6eef8;
+  text-decoration: none !important;
+}
+
+.links .link:hover,
+.links .link:focus {
+  text-decoration: none !important;
 }
 
 .links .link-dim {
   color: #b3c1da;
+  text-decoration: none !important;
+}
+
+.links .link-dim:hover,
+.links .link-dim:focus {
+  text-decoration: none !important;
 }
 
 /* ============================================
@@ -650,6 +676,16 @@ nav.navbar[data-scrolled="true"] .mega {
   overflow: hidden;
   /* GPU acceleration */
   transform: translateZ(0);
+}
+
+/* Remove underlines from all dropdown links */
+.dropdown a {
+  text-decoration: none !important;
+}
+
+.dropdown a:hover,
+.dropdown a:focus {
+  text-decoration: none !important;
 }
 
 /* Gradient hairline at top */
@@ -717,6 +753,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid transparent;
+  text-decoration: none !important;
   transition: background 0.15s ease, border-color 0.15s ease;
   /* GPU acceleration */
   transform: translateZ(0);
@@ -726,4 +763,5 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 .dropdown-item:focus {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(0, 231, 246, 0.15);
+  text-decoration: none !important;
 }
