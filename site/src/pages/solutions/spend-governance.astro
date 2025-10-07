@@ -6,12 +6,20 @@ const description = 'Use ARIA Shield + Receipts + Data Collector to cap spend at
 const canonical = '/solutions/spend-governance/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<Solution title={title} description={description} canonical={canonical} headline="Spend Governance" outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline="Spend Governance" outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} primaryCTA={{ label: 'Watch 90‑sec demo', href: '/resources/demo/' }} secondaryCTA={{ label: 'Explore receipts', href: '/products/receipts/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Budgets set limits; ARIA Shield enforces stream caps; receipts capture actuals; Data Collector aggregates into dashboards and alerts.</p>
 			</section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">FAQ</h2>
+        <ul style="color:#9ba3b7;line-height:1.8">
+          <li><strong>How fast do budgets take effect?</strong> Immediately at stream‑time via Shield (HTTP 402 on exceed).</li>
+          <li><strong>How do we attribute spend?</strong> Receipts include decision, tool/schema, and cost fields per call.</li>
+          <li><strong>Can we alert on cap approaches?</strong> Yes. Analytics aggregates receipts and triggers alerts.</li>
+        </ul>
+      </section>
 		</fragment>
 	</Solution>
 </Base>
