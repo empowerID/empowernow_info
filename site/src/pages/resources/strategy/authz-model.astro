@@ -1,0 +1,74 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'Authorization Model — PDP, PEP, PIP, PAP';
+const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
+const canonical = '/resources/strategy/authz-model/';
+const base = import.meta.env.BASE_URL;
+const slugs = ['ai-middleware-leadership','contracts','authz-model','idp-technical-overview'];
+const labels: Record<string,string> = {
+  'ai-middleware-leadership': 'AI Middleware Leadership',
+  'contracts': 'ARIA Contracts',
+  'authz-model': 'Authorization Model',
+  'idp-technical-overview': 'IdP Technical Overview'
+};
+const slug = 'authz-model';
+const idx = slugs.indexOf(slug);
+const prevSlug = idx > 0 ? slugs[idx-1] : null;
+const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">Authorization Model</h1>
+    <p style="color:#9ba3b7;max-width:90ch">PAP authors policy. PDP evaluates decisions using PIPs. PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn btn-ghost" href={`${base}resources/`}>← All resources</a>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
+    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`mermaid
+flowchart LR
+  subgraph PAP[Policy Administration Point]
+    PAP1[Author policies]
+  end
+  subgraph PDP[Policy Decision Point]
+    PIP1[PIP: fetch attributes & context]
+    PDP1[Evaluate rules → decision + constraints + obligations]
+    PIP1 --> PDP1
+  end
+  subgraph PEP[Policy Enforcement Points]
+    IdPPEP[IdP (issuance): consent, step-up, budgets]
+    GWPEP[Gateway (runtime): params/egress, spend, model caps]
+    SVCPEP[Service (runtime): resource/domain checks]
+  end
+  PAP1 --> PDP1
+  PDP1 -->|decision| IdPPEP
+  PDP1 -->|decision| GWPEP
+  PDP1 -->|decision| SVCPEP
+`}</code></pre>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
+      <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
+      <li><strong>PIPs</strong>: trusted attribute/context providers (e.g., membership, search, geo).</li>
+      <li><strong>PDP</strong>: returns <em>decision</em> with <em>constraints</em> (sync) and <em>obligations</em> (async).</li>
+      <li><strong>PEPs</strong>: enforce at the right layer — IdP for issuance obligations; Gateway/Service for runtime constraints.</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Where we implement this</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>IdP (PEP)</strong>: RFC 8693 Token Exchange with consent obligations; DPoP; pairwise.</li>
+      <li><strong>Gateway (PEP)</strong>: runtime guardrails (params, egress, model caps, budgets).</li>
+      <li><strong>PDP</strong>: Draft‑04 AuthZEN endpoints; PIPs for membership/search; constraints/obligations.</li>
+      <li><strong>PAP</strong>: policy authoring + versioning; deployment to PDP.</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:0 0 64px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between">
+      <div>{prevSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${prevSlug}/`}>← {labels[prevSlug]}</a>)}</div>
+      <div><a class="btn" href={`${base}resources/`}>All resources</a></div>
+      <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
+    </div>
+  </section>
+</Base>
+
+
