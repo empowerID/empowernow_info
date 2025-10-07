@@ -3,11 +3,25 @@ import Base from '../../../layouts/Base.astro';
 const title = 'ARIA Contracts — Passport, Plan, Receipt';
 const description = 'The cryptographically‑secured contracts that carry context: ARIA Passport, Plan Contract, and Receipt.';
 const canonical = '/resources/strategy/contracts/';
+const base = import.meta.env.BASE_URL;
+const slugs = ['ai-middleware-leadership','contracts','idp-technical-overview'];
+const labels: Record<string,string> = {
+  'ai-middleware-leadership': 'AI Middleware Leadership',
+  'contracts': 'ARIA Contracts',
+  'idp-technical-overview': 'IdP Technical Overview'
+};
+const slug = 'contracts';
+const idx = slugs.indexOf(slug);
+const prevSlug = idx > 0 ? slugs[idx-1] : null;
+const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
 ---
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
     <h1 class="display" style="margin:0 0 10px">ARIA Contracts</h1>
     <p style="color:#9ba3b7;max-width:90ch">Key JSON contracts that make decisions provable and interoperable.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/`}>← All resources</a>
+    </div>
   </section>
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">ARIA Passport</h2>
@@ -45,6 +59,13 @@ const canonical = '/resources/strategy/contracts/';
   "usage": { "tokens": 2134, "usd": 0.21 }
 }
 `}</code></pre>
+  </section>
+  <section class="container" style="padding:0 0 64px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between">
+      <div>{prevSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${prevSlug}/`}>← {labels[prevSlug]}</a>)}</div>
+      <div><a class="btn" href={`${base}resources/`}>All resources</a></div>
+      <div>{nextSlug && (<a class="btn btn-ghost" href={`${base}resources/strategy/${nextSlug}/`}>{labels[nextSlug]} →</a>)}</div>
+    </div>
   </section>
 </Base>
 
