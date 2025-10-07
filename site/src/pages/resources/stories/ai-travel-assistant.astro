@@ -1,0 +1,50 @@
+---
+import Landing from '../../../layouts/Landing.astro';
+const title = 'AI Travel Assistant — Book within budget, auto‑audit';
+const description = 'A friendly, non‑technical walkthrough of safe AI delegation: you approve, we apply guardrails, and every action leaves a receipt.';
+const canonical = '/resources/stories/ai-travel-assistant/';
+---
+<Landing title={title} description={description} canonical={canonical} background="hero" chips={[ 'Budget caps', 'Approvals', 'Receipts' ]}>
+  <div slot="primary-ctas">
+    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+    <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA?</a>
+  </div>
+  <div slot="below">
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">The story</h2>
+      <p style="color:#9ba3b7;max-width:90ch">Meet your AI Travel Assistant. You approve what it can do (search and book), for how long, and how much it can spend. From there, every action is governed in real time and stamped with a receipt you can trust.</p>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">What happens when it acts</h2>
+      <ol class="numbered">
+        <li>You approve — with limits (scope, time, budget)</li>
+        <li>Guardrails apply — requests are checked at the edge</li>
+        <li>Receipt issued — decision, policy, and spend recorded</li>
+      </ol>
+    </section>
+    <section class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">Risks → Controls (plain English)</h2>
+      <div class="glass-card" style="padding:16px">
+        <table style="width:100%;border-collapse:collapse;color:#e8ecff">
+          <thead><tr><th style="text-align:left">Risk</th><th style="text-align:left">Control</th></tr></thead>
+          <tbody>
+            <tr><td>Overspend</td><td>Budget caps with safe stop</td></tr>
+            <tr><td>Goes off script</td><td>Scope allow‑lists (what it can do)</td></tr>
+            <tr><td>Wrong place/time</td><td>Geo/IP and time windows</td></tr>
+            <tr><td>No proof later</td><td>Signed, tamper‑evident receipts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="container" style="padding:8px 0 64px">
+      <h2 class="section-title">Why it matters</h2>
+      <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+        <li>Fewer approvals — set limits once, let routine work flow</li>
+        <li>Faster responses — batch checks reduce round‑trips</li>
+        <li>Clear evidence — every decision comes with a receipt</li>
+      </ul>
+    </section>
+  </div>
+</Landing>
+
+

@@ -9,6 +9,7 @@ const canonical = '/solutions/ai-agent-governance/';
     <div slot="primary-ctas">
         <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="gov_book_demo">Book demo</a>
         <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`} data-ev="cta_click" data-label="gov_strategy">Read strategy memo</a>
+        <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}docs/`} data-ev="cta_click" data-label="gov_quickstart">Open Quickstart</a>
     </div>
     <div slot="below">
         <section class="container" style="padding:8px 0 24px">
@@ -22,6 +23,28 @@ const canonical = '/solutions/ai-agent-governance/';
             </ul>
         </section>
         <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">How delegation works</h2>
+            <ol class="numbered">
+                <li>User consents</li>
+                <li>Guardrails applied (scope, time, location, budget)</li>
+                <li>Agent executes — receipt issued</li>
+            </ol>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">What we control</h2>
+            <div class="glass-card" style="padding:16px">
+                <table style="width:100%;border-collapse:collapse;color:#e8ecff">
+                    <thead><tr><th style="text-align:left">Area</th><th style="text-align:left">Examples</th></tr></thead>
+                    <tbody>
+                        <tr><td>Access scope</td><td>Which tools and operations</td></tr>
+                        <tr><td>Time window</td><td>Working hours or limited duration</td></tr>
+                        <tr><td>Location</td><td>Geo/IP allow‑lists</td></tr>
+                        <tr><td>Budget</td><td>Spend caps with safe stop</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
             <h2 class="section-title">Our solution</h2>
             <div class="glass-card" style="padding:16px">
                 <h3 style="margin:0 0 8px">Create once. Enforce everywhere. Prove every action.</h3>
@@ -31,6 +54,36 @@ const canonical = '/solutions/ai-agent-governance/';
                     <li><strong>Prove every action</strong> — <strong>Receipt Vault</strong> issues cryptographic receipts (decision context, policy hash, schema hash, spend)</li>
                 </ul>
             </div>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">Decisions with constraints & obligations</h2>
+            <p style="color:#9ba3b7;max-width:90ch">The PDP returns <strong>constraints</strong> (egress_allow, models_allow, data_scope, spend_budget) that PEPs enforce synchronously, and <strong>obligations</strong> (audit_log, run_workflow, consent) performed after.</p>
+            <div style="margin-top:8px"><a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP deep‑dive →</a></div>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">Threats → Controls</h2>
+            <div class="glass-card" style="padding:16px">
+                <table style="width:100%;border-collapse:collapse;color:#e8ecff">
+                    <thead><tr><th style="text-align:left">Threat</th><th style="text-align:left">Control</th><th style="text-align:left">Enforced by</th></tr></thead>
+                    <tbody>
+                        <tr><td>Schema drift</td><td>Schema pins (version/hash, grace window)</td><td>MCP Gateway</td></tr>
+                        <tr><td>Overspend</td><td>Pre‑gate budgets + stream‑time settle</td><td>PDP + Shield</td></tr>
+                        <tr><td>Prompt leakage</td><td>Egress allow‑lists, classification policies</td><td>Shield</td></tr>
+                        <tr><td>Replay/token theft</td><td>Pairwise sub, act.sub, optional DPoP</td><td>IdP + PEPs</td></tr>
+                        <tr><td>Missing audit</td><td>Signed, hash‑chained receipts</td><td>PEPs + Receipt Vault</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">How it works (end‑to‑end)</h2>
+            <ol class="numbered">
+                <li>Ingress with ARIA Passport (user ↔ agent binding)</li>
+                <li>Schema pin & optional plan validation</li>
+                <li>PDP decision → constraints & obligations</li>
+                <li>PEP enforcement (budgets, egress, params)</li>
+                <li>Tool call → Receipt emitted → Analytics updates budgets</li>
+            </ol>
         </section>
         <section class="container" style="padding:8px 0 24px">
             <h2 class="section-title">Proven DNA you can bank on</h2>
@@ -48,6 +101,7 @@ const canonical = '/solutions/ai-agent-governance/';
         </section>
         <section class="container" style="padding:8px 0 24px">
             <PricingCTA />
+            <div style="margin-top:12px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read the Strategy Memo →</a></div>
         </section>
     </div>
 </Landing>

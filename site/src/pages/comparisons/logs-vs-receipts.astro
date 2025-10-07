@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Logs/Observability vs Cryptographic Receipts';
+const description = 'Why receipts provide financial‑grade proof that logs and metrics cannot.';
+const canonical = '/comparisons/logs-vs-receipts/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">Logs vs Receipts</h1>
+    <p style="color:#9ba3b7;max-width:80ch">Observability is necessary, but it’s not proof.</p>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <div class="glass-card" style="padding:16px">
+      <table class="comparison" style="width:100%;border-collapse:collapse;color:#e8ecff">
+        <thead><tr><th style="text-align:left">Aspect</th><th style="text-align:left">Logs/Observability</th><th style="text-align:left">Cryptographic Receipts</th></tr></thead>
+        <tbody>
+          <tr><td>Integrity</td><td>Mutable, aggregations</td><td>Signed and hash‑chained</td></tr>
+          <tr><td>Context</td><td>Often partial</td><td>Decision + policy + schema context</td></tr>
+          <tr><td>Spend</td><td>Derived metrics</td><td>Recorded per action</td></tr>
+          <tr><td>Dispute resolution</td><td>Weak</td><td>Strong, verifiable proof</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+

@@ -1,0 +1,51 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'ARIA Contracts — Passport, Plan, Receipt';
+const description = 'The cryptographically‑secured contracts that carry context: ARIA Passport, Plan Contract, and Receipt.';
+const canonical = '/resources/strategy/contracts/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">ARIA Contracts</h1>
+    <p style="color:#9ba3b7;max-width:90ch">Key JSON contracts that make decisions provable and interoperable.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">ARIA Passport</h2>
+    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "sub": "user-pairwise",
+  "act": { "sub": "agent-123" },
+  "aud": "aria.gateway",
+  "aria": {
+    "schema_pins": [{ "tool": "billing.export", "hash": "sha256-..." }],
+    "plan_contract_jws": "eyJ...",
+    "budget": { "daily_usd": 25 }
+  }
+}
+`}</code></pre>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Plan Contract</h2>
+    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "index": 2,
+  "tool": "billing.export",
+  "params_fingerprint": "sha256-...",
+  "max_cost": 0.50
+}
+`}</code></pre>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <h2 class="section-title">Receipt</h2>
+    <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "policy_snapshot": { "spend_budget": 25, "egress_allow": ["https://api.example.com"] },
+  "params_hash": "sha256-...",
+  "prev_hash": "sha256-...",
+  "usage": { "tokens": 2134, "usd": 0.21 }
+}
+`}</code></pre>
+  </section>
+</Base>
+
+
