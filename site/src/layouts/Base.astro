@@ -2,6 +2,7 @@
 const { title = 'EmpowerNow', description = 'Identity & Authorization Fabric', canonical = '/', ogImage, hreflangs } = Astro.props as any;
 import '../styles/tokens.css';
 import '../styles/utilities.css';
+import '../styles/custom-styles.css';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -43,53 +44,7 @@ import '../styles/utilities.css';
 			.footer-divider{height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent);margin-bottom:60px}
 			.footer-icon-tooltip:hover .tooltip-text{visibility:visible !important;opacity:1 !important}
 			
-			/* ============================================
-			   ENHANCED FLOATING NAVIGATION
-			   ============================================ */
-			
-			/* Base navigation container - overlays hero, doesn't push it down */
-			nav.navbar{position:absolute;top:0;left:0;right:0;z-index:1000;padding:0;background:transparent;transition:padding 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)}
-			
-			/* Inner wrapper for animation - completely transparent at hero */
-			.navbar-inner{max-width:100%;margin:0 auto;position:relative;background:transparent !important;backdrop-filter:none;-webkit-backdrop-filter:none;border:none !important;border-radius:0;box-shadow:none;transition:all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);transform:translateZ(0)}
-			
-			/* Content container - force transparent background, no borders */
-			.navbar-inner .container{padding:16px 0;background:transparent !important;backdrop-filter:none !important;border:none !important;border-bottom:none !important;box-shadow:none !important;transition:padding 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
-			
-			/* Logo transition */
-			.navbar-logo{height:44px;width:auto;transition:height 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)}
-			
-			/* Floating state (when scrolled) - make nav sticky and add glass effect */
-			nav.navbar[data-scrolled="true"]{position:fixed;top:0;left:0;right:0;padding:16px 32px 0;background:transparent}
-			nav.navbar[data-scrolled="true"] .navbar-inner{max-width:1120px;padding:0 64px;border-radius:16px;background:rgba(11,28,61,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:2px solid rgba(0,231,246,.25);border-bottom:1px solid rgba(255,255,255,.08);border-left:1px solid rgba(255,255,255,.06);border-right:1px solid rgba(255,255,255,.06);box-shadow:0 0 30px rgba(0,231,246,.15),0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1)}
-			nav.navbar[data-scrolled="true"] .navbar-inner .container{padding:12px 0;max-width:1120px;margin:0 auto}
-			nav.navbar[data-scrolled="true"] .navbar-logo{height:40px}
-			
-			/* Gradient hairline enhancement */
-			nav.navbar[data-scrolled="true"] .navbar-inner::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan),var(--ultraviolet-magenta));opacity:.6;border-radius:2px;pointer-events:none}
-			
-			/* Mobile adjustments */
-			@media (max-width: 768px){
-				nav.navbar{padding:0;background:transparent}
-				nav.navbar[data-scrolled="true"]{padding:0;background:transparent}
-				nav.navbar .navbar-inner,nav.navbar[data-scrolled="true"] .navbar-inner{max-width:100%;border-radius:0;border-left:none;border-right:none}
-				nav.navbar[data-scrolled="true"] .navbar-inner{border-radius:0 0 12px 12px}
-				.navbar-logo,nav.navbar[data-scrolled="true"] .navbar-logo{height:40px}
-			}
-			
-			/* Reduced motion support */
-			@media (prefers-reduced-motion: reduce){
-				nav.navbar,nav.navbar .navbar-inner,nav.navbar .container,.navbar-logo{transition:none !important;animation:none !important}
-			}
-			
-			/* Enhanced focus for floating state */
-			nav.navbar[data-scrolled="true"] a:focus-visible,nav.navbar[data-scrolled="true"] button:focus-visible{outline:3px solid var(--pulse-cyan);outline-offset:4px;box-shadow:0 0 0 6px rgba(0,231,246,.2)}
-			
-			/* High contrast mode */
-			@media (prefers-contrast: high){
-				nav.navbar[data-scrolled="true"] .navbar-inner{background:rgba(11,28,61,.95);border-top-color:var(--cyan);border-bottom-color:rgba(255,255,255,.3)}
-			}
-			
+
 			/* ============================================
 			   EXISTING STYLES (PRESERVED)
 			   ============================================ */
