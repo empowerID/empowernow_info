@@ -25,7 +25,29 @@ const pretty = slug
   .replace('authzen-search','AuthZEN Search profile')
   .replace('oauth','OAuth 2.0');
 const title = `${pretty} — Primer`;
-const description = 'What it is, why it matters, enforcement points, and how it works.';
+const intros: Record<string, string> = {
+  'oauth': 'OAuth 2.0 is the framework for delegated authorization: clients obtain access tokens from an Authorization Server to call protected Resource Servers.',
+  'oidc': 'OpenID Connect is an identity layer on top of OAuth 2.0 that issues ID Tokens (JWT) and defines discovery and UserInfo for federated login.',
+  'pkce': 'PKCE (RFC 7636) protects the authorization code flow by binding the code to a one‑time verifier, preventing code interception on public clients.',
+  'rar': 'Rich Authorization Requests (RFC 9396) let clients request fine‑grained, typed permissions via authorization_details instead of coarse scopes.',
+  'par': 'Pushed Authorization Requests (RFC 9126) move large/structured authorization requests to a back‑channel, returning a short‑lived request_uri.',
+  'jarm': 'JARM wraps authorization responses in a signed JWT, improving integrity and client validation at the OAuth redirect back‑channel.',
+  'fapi-2-0': 'FAPI 2.0 is an OpenID security profile that hardens OAuth/OIDC with stricter requirements (e.g., PAR/JARM, sender‑constrained tokens).',
+  'scim': 'SCIM (RFC 7643/7644) standardizes identity schemas and a REST API for provisioning users, groups, and entitlements across systems.',
+  'ciba': 'CIBA enables decoupled, back‑channel user authentication where the client polls (or is notified) to complete login without a browser redirect.',
+  'mcp': 'The Model Context Protocol (MCP) standardizes how clients discover and invoke tools/resources from tool servers for AI agent contexts.',
+  'caep': 'CAEP (OIDF Shared Signals) defines event‑based signals (e.g., revocation, risk) that relying parties consume to adapt sessions and access.',
+  'token-exchange': 'OAuth 2.0 Token Exchange (RFC 8693) issues a new token in exchange for an existing one, commonly used for on‑behalf‑of delegation.',
+  'resource-indicators': 'Resource Indicators (RFC 8707) adds the resource parameter so the AS can mint a token with the correct audience for that API.',
+  'dpop': 'DPoP (RFC 9449) provides sender‑constrained tokens with a per‑request proof JWT that binds the token to a client‑held key.',
+  'mtls': 'OAuth mTLS (RFC 8705) authenticates clients with mutual‑TLS and binds access tokens to the client certificate (sender‑constrained).',
+  'dcr': 'Dynamic Client Registration (RFC 7591/7592) standardizes how OAuth clients register and later manage their metadata via a protected endpoint.',
+  'authzen': 'OpenID AuthZEN defines a standard authorization decision API and data model to externalize fine‑grained access control.',
+  'authzen-draft04': 'OpenID AuthZEN Draft‑04 consolidates models and endpoints: evaluation (single/batch) and query (search) with obligations/advice.',
+  'authzen-search': 'AuthZEN Search profile specifies POST /access/v1/query to return authorized items for a subject with server‑controlled pagination.'
+};
+const pageIntro = intros[slug] || 'Primer for this standard: what it is, how it works, and where it applies.';
+const description = pageIntro;
 const canonical = `/resources/standards/${slug}/`;
 // Navigation helpers
 const allSlugs = ['oauth','oidc','pkce','rar','par','jarm','fapi-2-0','scim','ciba','mcp','caep','token-exchange','resource-indicators','dpop','mtls','dcr','authzen','authzen-draft04','authzen-search'];
@@ -58,7 +80,7 @@ const base = import.meta.env.BASE_URL;
 <Base title={title} description={description} canonical={canonical}>
 	<section class="container" style="padding:96px 0 24px">
 		<h1 class="display" style="margin:0 0 8px">{title}</h1>
-		<p style="color:#9ba3b7">Short, factual overview. Links to docs where relevant.</p>
+		<p style="color:#9ba3b7">{pageIntro}</p>
 	</section>
     <section class="container" style="padding:0 0 16px">
         <a class="btn btn-ghost" href={`${base}resources/standards/`}>← All standards</a>
