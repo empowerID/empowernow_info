@@ -1,5 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import AuthorizationFundamentalsDiagram from '../../../components/AuthorizationFundamentalsDiagram.astro';
+import ABACAuthZEN from '../../../components/ABACAuthZEN.astro';
 const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
@@ -16,6 +18,7 @@ const idx = slugs.indexOf(slug);
 const prevSlug = idx > 0 ? slugs[idx-1] : null;
 const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
 ---
+---
 <Base title={title} description={description} canonical={canonical}>
   <section class="container" style="padding:48px 0 16px">
     <h1 class="display" style="margin:0 0 10px">Authorization Fundamentals</h1>
@@ -27,7 +30,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">PDP • PEP • PIP • PAP</h2>
     <div class="glass-card" style="padding:12px">
-      {await import('../../../components/AuthorizationFundamentalsDiagram.astro').then(m => m.default({}))}
+      <AuthorizationFundamentalsDiagram />
     </div>
     <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:8px 0 0">
       <li><strong>PAP</strong>: tooling/versioning for policies; change‑controlled.</li>
@@ -39,7 +42,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   <section class="container" style="padding:8px 0 24px">
     <h2 class="section-title">Attribute-Based Access Control (AuthZEN)</h2>
     <div class="glass-card" style="padding:12px">
-      {await import('../../../components/ABACAuthZEN.astro').then(m => m.default({}))}
+      <ABACAuthZEN />
     </div>
   </section>
   <section class="container" style="padding:8px 0 24px">
