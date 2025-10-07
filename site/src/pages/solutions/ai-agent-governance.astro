@@ -1,0 +1,55 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PricingCTA from '../../components/PricingCTA.astro';
+const title = 'AI Agent Governance — EmpowerNow';
+const description = 'Stop AI chaos—control spend, enforce policy, and get financial‑grade audit with a neutral Layer‑2 fabric.';
+const canonical = '/solutions/ai-agent-governance/';
+---
+<Landing title="Govern every AI action. Prove every outcome." description={description} canonical={canonical} chips={[ 'Budget control', 'Security enforcement', 'Immutable audit' ]} background="hero">
+    <div slot="primary-ctas">
+        <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="gov_book_demo">Book demo</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`} data-ev="cta_click" data-label="gov_strategy">Read strategy memo</a>
+    </div>
+    <div slot="below">
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">The governance gap</h2>
+            <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:6px 0 0">
+                <li><strong>Budgetary chaos</strong> — unpredictable, runaway spend</li>
+                <li><strong>Unauthorized actions</strong> — agents doing things they shouldn’t</li>
+                <li><strong>Security breaches</strong> — tool/agent injection and new attack surface</li>
+                <li><strong>Missing authorization</strong> — what is an agent actually allowed to do?</li>
+                <li><strong>No audit trail</strong> — no financial‑grade proof of decisions and spend</li>
+            </ul>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">Our solution</h2>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px">Create once. Enforce everywhere. Prove every action.</h3>
+                <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+                    <li><strong>Create tools once</strong> — No‑code <strong>CRUD Service</strong> turns any API/DB/workflow into a governed MCP tool</li>
+                    <li><strong>Enforce policy everywhere</strong> — <strong>ARIA Shield</strong> + <strong>MCP Gateway</strong> apply budgets, constraints, and allow‑lists across agents</li>
+                    <li><strong>Prove every action</strong> — <strong>Receipt Vault</strong> issues cryptographic receipts (decision context, policy hash, schema hash, spend)</li>
+                </ul>
+            </div>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">Proven DNA you can bank on</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7">
+                <span class="chip">Connector DNA</span>
+                <span class="chip">Authorization DNA</span>
+                <span class="chip">Enforcement DNA</span>
+                <span class="chip">Audit DNA</span>
+            </div>
+            <p style="color:#9ba3b7;max-width:90ch;margin:8px 0 0">Two decades of identity governance experience applied to the agent era. Neutral, OEM‑ready, and standards‑aligned (MCP • OAuth TE/RAR/DPoP • AuthZEN‑style).</p>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <h2 class="section-title">Universal middleware</h2>
+            <p style="color:#9ba3b7;max-width:90ch">EmpowerNow is independent of your identity stack and your agent platform. Create governed tools once; run across agents and platforms without lock‑in.</p>
+        </section>
+        <section class="container" style="padding:8px 0 24px">
+            <PricingCTA />
+        </section>
+    </div>
+</Landing>
+
+

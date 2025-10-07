@@ -3,13 +3,13 @@ import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
 const title = 'ARIA MCP Gateway | EmpowerNow';
-const description = 'MCP gateway that enforces plan steps and schema pins at the agent→tool boundary, validates params/egress, and emits receipts.';
+const description = 'Enforce policy everywhere: budget caps (402), per‑route constraints, tool allow‑lists, anti‑injection checks; BFF plumbing without exposing tokens.';
 const canonical = '/products/gateway/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"ARIA MCP Gateway","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="gateway" productIcon="🚦" eyebrow="🚦 ARIA MCP GATEWAY" headline="ARIA MCP Gateway" subhead="Stop off-plan & drifted tool calls—before execution." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Blocks risky tool calls pre-execution', 'Prevents schema drift with pins + grace windows', 'Params/egress allowlists at the edge', 'Signed receipts for compliance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="gateway" productIcon="🚦" eyebrow="🚦 ARIA MCP GATEWAY" headline="ARIA MCP Gateway" subhead="Enforce policy everywhere — pre‑exec governance for agents and tools." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Budget caps (402) and per‑route constraints', 'Tool allow‑lists and anti‑injection checks', 'Params/egress allowlists at the edge', 'BFF plumbing without exposing tokens', 'Signed receipts for compliance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

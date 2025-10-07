@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
 const title = 'CRUD Service | EmpowerNow';
-const description = 'No-code connectors/workflows that output MCP tools, OpenAI Functions, and Copilot actions. Author once—publish to many platforms.';
+const description = 'Turn any API/workflow/DB into a governed MCP tool — no code. Secure by design; pre‑approved actions; reusable across agents.';
 const canonical = '/products/crud/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"CRUD Service","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
@@ -17,14 +17,14 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		productIcon="⚙️"
 		eyebrow="⚙️ CRUD SERVICE"
 		headline="CRUD Service"
-		subhead="Create tools once—publish to MCP, Functions, and Copilot."
+		subhead="Create tools once — publish to MCP, Functions, and Copilot."
 		targetICP={[ 'Platform Engineering', 'DevOps', 'App Teams', 'Security' ]}
 		keyBenefits={[
-			'Idempotent operations with event_id dedupe',
-			'Policy-linked approvals with auditable paths',
-			'Retries and SLOs with circuit breakers',
-			'Connectors to APIs/DBs for quick tool creation',
-			'Cryptographic receipts for every critical step'
+			'Governed MCP tools from any API/DB — no code',
+			'Pre‑approved actions with policy‑linked approvals',
+			'Idempotency, retries, and SLOs built‑in',
+			'Reusable across agents and platforms',
+			'Emits cryptographic receipts for audit'
 		]}
 		primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }}
 		secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/' }}

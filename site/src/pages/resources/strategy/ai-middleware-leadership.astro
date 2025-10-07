@@ -1,0 +1,56 @@
+---
+import Base from '../../../layouts/Base.astro';
+import ArticleJsonLd from '../../../components/ArticleJsonLd.astro';
+const title = 'AI Middleware Leadership — Strategy Memo';
+const description = 'Why EmpowerNow targets AI agent governance: the governance gap, $100B middleware opportunity, and our 20‑year DNA.';
+const canonical = '/resources/strategy/ai-middleware-leadership/';
+const article = {
+  '@context':'https://schema.org', '@type':'Article',
+  headline: title, description,
+  author: { '@type':'Organization', name:'EmpowerNow' },
+  url: new URL(canonical, Astro.site),
+  datePublished: '2024-10-17'
+};
+---
+<Base title={title} description={description} canonical={canonical}>
+  <ArticleJsonLd data={article} />
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">AI Middleware Leadership</h1>
+    <p style="color:#9ba3b7;max-width:80ch">The AI Gold Rush created a governance crisis. This memo outlines the market, our solution, and why our 20‑year DNA is decisive.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">The governance gap</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li>Budgetary chaos • unauthorized actions • security breaches</li>
+      <li>Missing authorization for what agents are allowed to do</li>
+      <li>No financial‑grade audit for decisions and spend</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Create • Enforce • Prove</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li>Create tools once — CRUD Service (no‑code MCP tools)</li>
+      <li>Enforce policy everywhere — ARIA Shield + MCP Gateway</li>
+      <li>Prove every action — Receipt Vault (cryptographic receipts)</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Why us: 20‑year DNA</h2>
+    <p style="color:#9ba3b7;max-width:90ch">Connector DNA • Authorization DNA • Enforcement DNA • Audit DNA. We apply identity governance expertise to the agent era, neutral and standards‑aligned.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">The opportunity</h2>
+    <p style="color:#9ba3b7;max-width:90ch">AI middleware and governance is a $100B market. EmpowerNow is universal middleware—independent of identity stacks and agent platforms.</p>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book demo</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}solutions/ai-agent-governance/`}>Explore the solution</a>
+    </div>
+  </section>
+</Base>
+
+
