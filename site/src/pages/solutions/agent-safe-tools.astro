@@ -6,7 +6,7 @@ const description = 'Use MCP Gateway + ARIA Shield to verify agents, enforce con
 const canonical = '/solutions/agent-safe-tools/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <Solution title={title} description={description} canonical={canonical} headline="Agent‑Safe Tools" outcomes={[ 'Verified agents', 'Constrained tools', 'Auditable calls' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'Gateway Docs' } ]} wwwLinks={[ { href: '/products/gateway/', label: 'MCP Gateway' }, { href: '/products/aria-shield/', label: 'ARIA Shield' } ]} keywords={[ 'mcp', 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline="Agent‑Safe Tools" outcomes={[ 'Verified agents', 'Constrained tools', 'Auditable calls' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 90‑sec demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'Gateway Docs' } ]} wwwLinks={[ { href: '/products/gateway/', label: 'MCP Gateway' }, { href: '/products/aria-shield/', label: 'ARIA Shield' } ]} keywords={[ 'mcp', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
@@ -17,6 +17,29 @@ const canonical = '/solutions/agent-safe-tools/';
 					<li>Receipt is created with full context.</li>
 				</ol>
 			</section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">FAQ</h2>
+        <ul style="color:#9ba3b7;line-height:1.8">
+          <li><strong>How do schema pins work?</strong> Gateway validates tool/model schema hash/version and blocks drift pre‑exec.</li>
+          <li><strong>Can we restrict tools per agent?</strong> Yes. AuthZEN constraints and allow‑lists per agent/role.</li>
+          <li><strong>Do we get receipts?</strong> Every governed call emits a signed receipt for audit and chargeback.</li>
+        </ul>
+      </section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Related comparisons</h2>
+        <div class="grid-3">
+          <a class="glass-card" href={`${import.meta.env.BASE_URL}comparisons/gateway-vs-api-gateway/`} style="padding:16px"><h3 style="margin:0 0 8px">MCP Gateway vs API Gateway</h3><p style="color:#9ba3b7;margin:0">Schema pins and plan discipline vs routing/rate‑limits.</p></a>
+          <a class="glass-card" href={`${import.meta.env.BASE_URL}comparisons/authzen-vs-xacml/`} style="padding:16px"><h3 style="margin:0 0 8px">AuthZEN vs XACML</h3><p style="color:#9ba3b7;margin:0">Decisions your gateways can actually enforce.</p></a>
+        </div>
+      </section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Watch: Tool Governance in 90 seconds</h2>
+        <div class="glass-card" style="padding:12px">
+          <div style="position:relative;padding-top:56.25%">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Tool Governance demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+          </div>
+        </div>
+      </section>
 		</fragment>
         <fragment slot="standards">
             <section class="container" style="padding:8px 0 24px">

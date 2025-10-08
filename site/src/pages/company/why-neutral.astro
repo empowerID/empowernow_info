@@ -5,15 +5,65 @@ const description = 'We integrate and OEM with every platform. Neutrality expand
 const canonical = '/company/why-neutral/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="container" style="padding:48px 0 8px">
-        <h1>Why Neutral</h1>
-        <p style="color:#9ba3b7;max-width:880px">Like Switzerland hosts talks for all sides, we integrate with all vendors’ agents. Platforms become distribution partners, not competitors.</p>
-        <div class="glass-card" style="padding:16px;color:#9ba3b7">
-            <ul style="margin:0;line-height:1.8">
-                <li><strong>More channels</strong>: OEM/white‑label across ecosystems</li>
-                <li><strong>Lower CAC</strong>: sell‑through partners; faster procurement</li>
-                <li><strong>Trust</strong>: separate infra/contracts; OSS receipt verifier</li>
+    <!-- Hero -->
+    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+        <div class="container" style="max-width:1000px">
+            <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;text-align:center">Why Neutral</h1>
+            <p style="color:#9ba3b7;max-width:70ch;margin:0 auto 24px;line-height:1.5;text-align:center;font-size:1.1rem">Like Switzerland hosts talks for all sides, we integrate with all vendors' agents. Platforms become distribution partners, not competitors.</p>
+            <div class="glass-card" style="padding:20px;max-width:700px;margin:0 auto">
+                <ul style="color:#9ba3b7;line-height:1.8;margin:0;padding-left:20px">
+                    <li><strong>More channels</strong>: OEM/white‑label across ecosystems</li>
+                    <li><strong>Lower CAC</strong>: sell‑through partners; faster procurement</li>
+                    <li><strong>Trust</strong>: separate infra/contracts; OSS receipt verifier</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Additional content sections -->
+    <section class="container" style="padding:40px 0 24px">
+        <h2 class="section-title">The Switzerland strategy</h2>
+        <div class="grid-3">
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px;color:#e8ecff">Expand distribution</h3>
+                <p style="color:#9ba3b7;margin:0">We don't compete with platforms—we <strong>integrate</strong> and <strong>OEM</strong>. Every platform becomes a channel partner.</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px;color:#e8ecff">Lower CAC</h3>
+                <p style="color:#9ba3b7;margin:0">Partners sell through <strong>their relationships</strong>. Customers buy faster (already trusted vendor, existing contract).</p>
+            </div>
+            <div class="glass-card" style="padding:16px">
+                <h3 style="margin:0 0 8px;color:#e8ecff">Build trust</h3>
+                <p style="color:#9ba3b7;margin:0"><strong>Separate infrastructure</strong>, <strong>customer-controlled keys</strong>, and <strong>open-source verifiers</strong> prove we mean it.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding:16px 0 24px">
+        <h2 class="section-title">Who we coexist with</h2>
+        <div class="panel-glass" style="padding:20px">
+            <p style="color:#9ba3b7;margin:0 0 12px">We integrate with <strong>every major identity</strong> and <strong>agent platform</strong>:</p>
+            <ul style="color:#9ba3b7;line-height:1.8;margin:0 0 16px;padding-left:20px">
+                <li><strong>Identity/IGA/PAM</strong>: Okta, Microsoft Entra ID, SailPoint, EmpowerID, Ping, ForgeRock, CyberArk, Vault</li>
+                <li><strong>Agent platforms</strong>: OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock, LangChain</li>
             </ul>
+            <p style="color:#9ba3b7;margin:0"><em>We're <strong>Layer-2 middleware</strong>—we sit between identity and agents, enforcing policy without replacing either.</em></p>
+        </div>
+    </section>
+
+    <section class="container" style="padding:16px 0 64px">
+        <h2 class="section-title">OEM & white-label</h2>
+        <div class="glass-card" style="padding:20px">
+            <p style="color:#9ba3b7;margin:0 0 16px">Ship EmpowerNow under <strong>your brand</strong>. Many customers and partners do:</p>
+            <ul style="color:#9ba3b7;line-height:1.8;margin:0 0 20px;padding-left:20px">
+                <li><strong>Platform vendors</strong>: Embed governance in your agent platform</li>
+                <li><strong>IGA/PAM vendors</strong>: Extend your governance to AI agents</li>
+                <li><strong>Systems integrators</strong>: Deliver vertical solutions with built-in governance</li>
+            </ul>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+                <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}partners/`} data-ev="cta_click" data-label="partner_inquiry" data-position="why_neutral">Partner with us (OEM/SI)</a>
+                <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn about EmpowerID</a>
+            </div>
         </div>
     </section>
 </Base>

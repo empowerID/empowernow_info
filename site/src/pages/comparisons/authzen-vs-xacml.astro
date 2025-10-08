@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'AuthZEN vs XACML';
+const description = 'AuthZEN JSON decision transport vs XACML XML policy evaluation — practical differences, examples, and migration tips.';
+const canonical = '/comparisons/authzen-vs-xacml/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <nav aria-label="Breadcrumb" style="margin-bottom:8px"><a href={`${import.meta.env.BASE_URL}`}>Home</a> / <a href={`${import.meta.env.BASE_URL}comparisons/`}>Comparisons</a> / AuthZEN vs XACML</nav>
+    <h1 class="display" style="margin:0 0 10px">AuthZEN vs XACML</h1>
+    <p style="color:#9ba3b7;max-width:90ch">AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <div class="glass-card" style="padding:16px">
+      <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
+        <thead><tr><th style="text-align:left">Dimension</th><th style="text-align:left">XACML</th><th style="text-align:left">AuthZEN</th></tr></thead>
+        <tbody>
+          <tr><td>Primary scope</td><td>Policy language + XML request/response</td><td>Decision transport + interop between auth components</td></tr>
+          <tr><td>Message format</td><td>XML</td><td><strong>JSON</strong></td></tr>
+          <tr><td>Decision payload</td><td>Permit/Deny (+ obligations/advice)</td><td><strong>Permit/Deny</strong> (EmpowerNow adds extensions: constraints/obligations/TTL)</td></tr>
+          <tr><td>Policy authoring</td><td>XACML policy, combining algorithms</td><td>Out of scope (WG focuses on interop; various PAPs)</td></tr>
+          <tr><td>Gateway integration</td><td>Adapters vary by vendor</td><td>Gateway/Service PEPs consume JSON decisions</td></tr>
+          <tr><td>Developer ergonomics</td><td>Steeper (XML, policy semantics)</td><td><strong>Simpler</strong> (JSON messages)</td></tr>
+          <tr><td>Performance & streaming</td><td>XML parsing; vendor‑specific tuning</td><td><strong>JSON</strong> streaming‑friendly</td></tr>
+          <tr><td>Audit/receipts</td><td>Not standardized in core</td><td>Out of scope; pairs well with receipts</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">AuthZEN Working Group</h2>
+    <div class="glass-card" style="padding:12px">
+      <p style="color:#9ba3b7;margin:0">The <a href="https://openid.net/wg/authzen/">OpenID AuthZEN Working Group</a> documents common authorization patterns and standardizes mechanisms to communicate authorization information between components for better deployability and interoperability.</p>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Examples</h2>
+    <div class="glass-card" style="padding:12px">
+      <h3 style="margin:0 0 6px">XACML request (XML)</h3>
+      <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`<Request CombinedDecision="false" ReturnPolicyIdList="false">
+  <Attributes Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+    <Attribute AttributeId="user.role" IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">employee</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+    <Attribute AttributeId="resource.type">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">document</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:oasis:names:tc:xacml:3.0:attribute-category:action">
+    <Attribute AttributeId="action.id">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">view</AttributeValue>
+    </Attribute>
+  </Attributes>
+</Request>`}</code></pre>
+      <h3 style="margin:12px 0 6px">AuthZEN request (JSON)</h3>
+      <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`{
+  "subject": { "role": "employee" },
+  "resource": { "type": "document" },
+  "action": { "id": "view" },
+  "context": {}
+}`}</code></pre>
+      <h3 style="margin:12px 0 6px">Decision shape</h3>
+      <p style="color:#9ba3b7;margin:0 0 8px">AuthZEN specifies decision exchange; EmpowerNow adds optional extension fields used by PEPs for runtime enforcement.</p>
+      <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`{
+  "decision": "Permit",
+  "ttl": 3000,
+  "constraints": { "egress_allow": ["*.example.com"] },
+  "obligations": [ { "type": "audit_log", "reason": "policy:finance" } ]
+}`}</code></pre>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Migration playbook</h2>
+    <ol style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li>Inventory policies and attributes; keep ABAC model.</li>
+      <li>Map XACML categories to AuthZEN <code>subject</code>/<code>action</code>/<code>resource</code>/<code>context</code> JSON objects.</li>
+      <li>Introduce a PDP facade that can return AuthZEN decisions alongside existing XACML responses.</li>
+      <li>Adopt PEP middleware in gateways/services to consume JSON decisions and enforce extension fields.</li>
+      <li>Run dual for a period; deprecate XML flows per application as enforcement shifts to JSON.</li>
+    </ol>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">FAQ</h2>
+    <ul style="color:#9ba3b7;line-height:1.8">
+      <li><strong>Is AuthZEN a policy language?</strong> No. AuthZEN focuses on decision exchange and interoperability, not policy syntax.</li>
+      <li><strong>Do I rewrite policies?</strong> Usually no. Keep ABAC logic and map attributes/categories to JSON shapes.</li>
+      <li><strong>Can both coexist?</strong> Yes. Use a PDP adapter/facade to emit JSON decisions while XACML remains during transition.</li>
+      <li><strong>Where do constraints/obligations come from?</strong> They are EmpowerNow extensions carried in decisions for practical enforcement, not part of the current AuthZEN spec.</li>
+    </ul>
+  </section>
+  <script type="application/ld+json">{JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Is AuthZEN a replacement for XACML?","acceptedAnswer":{"@type":"Answer","text":"AuthZEN standardizes decision exchange between components; it does not define a new policy language. Many teams keep ABAC logic and switch the transport to JSON."}},
+      {"@type":"Question","name":"How hard is migration?","acceptedAnswer":{"@type":"Answer","text":"Map categories to JSON, introduce a PDP facade that returns AuthZEN decisions, and adopt PEP middleware to consume JSON decisions while XACML remains during transition."}}
+    ]
+  })}</script>
+</Base>
+

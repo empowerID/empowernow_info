@@ -5,20 +5,21 @@ export interface Props {
     sources: Source[];
     captions?: string; // VTT file path
     demoUrl?: string;  // full demo link
+    playButtonLabel?: string; // Custom label for play button
 }
-const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = Astro.props as Props;
+const { poster, sources = [], captions = '', demoUrl = '/resources/demo/', playButtonLabel = 'Play 90‑second demo' } = Astro.props as Props;
 ---
 <div class="demo-tile" style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.4);line-height:0;background:#000">
-    <video id="hero-video" poster={poster} preload="metadata" muted playsinline style="width:100%;height:auto;display:block" loading="lazy">
+    <video id="hero-video" poster={poster} preload="metadata" muted playsinline controls style="width:100%;height:auto;display:block" loading="lazy">
         {sources.map(s => <source src={s.src} type={s.type} />)}
         {captions && <track kind="captions" src={captions} srcLang="en" label="English" default />}
         Your browser does not support the video tag.
     </video>
     <div id="video-overlay" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35));display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;opacity:1;transition:opacity .3s ease;cursor:pointer">
-        <button class="btn btn-primary" id="play-button" aria-label="Play 90‑second demo">Play 90‑second demo</button>
-        <div style="color:#9ba3b7;font-size:.9rem">Click to play</div>
+        <button class="btn btn-primary" id="play-button" aria-label={playButtonLabel}>{playButtonLabel}</button>
+        <!-- <div style="color:#9ba3b7;font-size:.9rem">Click to play</div> -->
     </div>
-    <div id="ended-overlay" hidden style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35))">
+    <div id="ended-overlay" style="position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35))">
         <div style="display:flex;gap:10px;flex-wrap:wrap">
             <button class="btn btn-primary" id="replay-button">Replay</button>
             <a class="btn" id="full-demo-button" href={demoUrl}>Watch full demo</a>
@@ -28,13 +29,13 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
 <script define:vars={{ sources, poster, captions, demoUrl }}>
 (() => {
     try{
-        const video = document.getElementById('hero-video') as HTMLVideoElement | null;
-        const overlay = document.getElementById('video-overlay') as HTMLDivElement | null;
-        const endedOverlay = document.getElementById('ended-overlay') as HTMLDivElement | null;
-        const playBtn = document.getElementById('play-button') as HTMLButtonElement | null;
-        const replayBtn = document.getElementById('replay-button') as HTMLButtonElement | null;
-        const fullBtn = document.getElementById('full-demo-button') as HTMLAnchorElement | null;
-        const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
+        const video = document.getElementById('hero-video');
+        const overlay = document.getElementById('video-overlay');
+        const endedOverlay = document.getElementById('ended-overlay');
+        const playBtn = document.getElementById('play-button');
+        const replayBtn = document.getElementById('replay-button');
+        const fullBtn = document.getElementById('full-demo-button');
+        const dnt = navigator.doNotTrack==='1' || window.doNotTrack==='1';
 
         if(!video || !overlay || !endedOverlay) return;
 
@@ -55,16 +56,16 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
             io.observe(overlay);
         }
 
-        function pushWatch(percent:number){
+        function pushWatch(percent){
             if(dnt) return;
             try{
-                (window as any).dataLayer=(window as any).dataLayer||[];
-                (window as any).dataLayer.push({event:'hero_demo_watch', percent_viewed: percent, device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop'});
+                window.dataLayer=window.dataLayer||[];
+                window.dataLayer.push({event:'hero_demo_watch', percent_viewed: percent, device: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop'});
             }catch{}
         }
 
         const milestones = new Set([25,50,75,90]);
-        const seen = new Set<number>();
+        const seen = new Set();
 
         function onTime(){
             if(!video || !video.duration || !isFinite(video.duration)) return;
@@ -74,7 +75,7 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
                     seen.add(m);
                     pushWatch(m);
                     if(m === 90){
-                        endedOverlay.hidden = false;
+                        endedOverlay.style.display = 'flex';
                         overlay.style.opacity = '0';
                     }
                 }
@@ -83,11 +84,11 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
 
         function play(){
             if(!video) return;
-            endedOverlay.hidden = true;
-            overlay.style.opacity = '0';
+            endedOverlay.style.display = 'none';
+            overlay.style.display = 'none';
             video.currentTime = 0;
-            video.muted = true;
-            video.loop = true; // loop ~20–22s clip
+            video.muted = false; // Enable audio
+            video.loop = false; // Don't loop, show replay after end
             video.play().catch(()=>{});
         }
 
@@ -96,6 +97,12 @@ const { poster, sources = [], captions = '', demoUrl = '/resources/demo/' } = As
         replayBtn && replayBtn.addEventListener('click', (e)=>{ e.preventDefault(); play(); });
         fullBtn && fullBtn.addEventListener('click', ()=> pushWatch(100));
         video.addEventListener('timeupdate', onTime);
+        
+        // Show replay overlay when video ends
+        video.addEventListener('ended', ()=>{
+            endedOverlay.style.display = 'flex';
+            pushWatch(100);
+        });
     }catch{}
 })();
 </script>

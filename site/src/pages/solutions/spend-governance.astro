@@ -6,12 +6,35 @@ const description = 'Use ARIA Shield + Receipts + Data Collector to cap spend at
 const canonical = '/solutions/spend-governance/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<Solution title={title} description={description} canonical={canonical} headline="Spend Governance" outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline="Spend Governance" outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} primaryCTA={{ label: 'Watch 90‑sec demo', href: '/resources/demo/' }} secondaryCTA={{ label: 'Explore receipts', href: '/products/receipts/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Budgets set limits; ARIA Shield enforces stream caps; receipts capture actuals; Data Collector aggregates into dashboards and alerts.</p>
 			</section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">FAQ</h2>
+        <ul style="color:#9ba3b7;line-height:1.8">
+          <li><strong>How fast do budgets take effect?</strong> Immediately at stream‑time via Shield (HTTP 402 on exceed).</li>
+          <li><strong>How do we attribute spend?</strong> Receipts include decision, tool/schema, and cost fields per call.</li>
+          <li><strong>Can we alert on cap approaches?</strong> Yes. Analytics aggregates receipts and triggers alerts.</li>
+        </ul>
+      </section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Related comparisons</h2>
+        <div class="grid-3">
+          <a class="glass-card" href={`${import.meta.env.BASE_URL}comparisons/gateway-vs-api-gateway/`} style="padding:16px"><h3 style="margin:0 0 8px">MCP Gateway vs API Gateway</h3><p style="color:#9ba3b7;margin:0">Why you need pre‑exec policy and receipts, not just routing.</p></a>
+          <a class="glass-card" href={`${import.meta.env.BASE_URL}comparisons/authzen-vs-xacml/`} style="padding:16px"><h3 style="margin:0 0 8px">AuthZEN vs XACML</h3><p style="color:#9ba3b7;margin:0">Modern JSON decisions with constraints and obligations.</p></a>
+        </div>
+      </section>
+      <section class="container" style="padding:8px 0 24px">
+        <h2 class="section-title">Watch: Spend Governance in 90 seconds</h2>
+        <div class="glass-card" style="padding:12px">
+          <div style="position:relative;padding-top:56.25%">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Spend Governance demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
+          </div>
+        </div>
+      </section>
 		</fragment>
 	</Solution>
 </Base>

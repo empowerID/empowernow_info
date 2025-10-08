@@ -1,7 +1,8 @@
 ---
 import Landing from '../../layouts/Landing.astro';
+import ARIAAuthorizationPremium from '../../components/ARIAAuthorizationPremium.astro';
 const title = 'What is ARIA? — Agent Risk & Identity Authorization';
-const description = 'ARIA is our AI governance initiative: Shield (BFF PEP) + MCP Gateway (tool PEP) with a PDP that returns constraints/obligations and a Receipt Vault for provable audit.';
+const description = 'ARIA is our AI governance initiative: Shield (AI Model PEP) + MCP Gateway (tool PEP) with a PDP that returns constraints/obligations and a Receipt Vault for provable audit.';
 const canonical = '/products/aria/';
 ---
 <Landing title={title} description={description} canonical={canonical} background="hero" chips={[ 'Budget caps (402)', 'Egress control', 'Cryptographic receipts' ]}>
@@ -10,17 +11,66 @@ const canonical = '/products/aria/';
     <a class="btn" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read white paper</a>
   </div>
   <div slot="below">
-    <section class="container" style="padding:8px 0 24px">
+    <section id="how-it-works" class="container" style="padding:8px 0 24px">
       <h2 class="section-title">ARIA at a glance</h2>
       <p style="color:#9ba3b7;max-width:90ch">ARIA (Agent Risk & Identity Authorization) provides provable guardrails for AI: create governed tools, enforce policy at the edge, and prove every action with receipts.</p>
       <div class="glass-card" style="padding:16px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
-          <div><h3 style="margin:0 0 6px">ARIA Shield (BFF)</h3><p style="color:#9ba3b7;margin:0">Policy Enforcement Point for LLM traffic: sessions not tokens; budgets, egress, and stream‑time truncation.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn Shield →</a></div>
+          <div><h3 style="margin:0 0 6px">ARIA Shield</h3><p style="color:#9ba3b7;margin:0">Policy Enforcement Point for LLM traffic: sessions not tokens; budgets, egress, and stream‑time truncation.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn Shield →</a></div>
           <div><h3 style="margin:0 0 6px">MCP Gateway</h3><p style="color:#9ba3b7;margin:0">Policy Enforcement Point for tools: schema pins, plan steps, allow‑lists, signed receipts.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/gateway/`}>Learn Gateway →</a></div>
           <div><h3 style="margin:0 0 6px">PDP</h3><p style="color:#9ba3b7;margin:0">Decisions with <strong>constraints</strong> and <strong>obligations</strong>—a dialogue, not a gate.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP deep‑dive →</a></div>
           <div><h3 style="margin:0 0 6px">Receipt Vault</h3><p style="color:#9ba3b7;margin:0">Financial‑grade, tamper‑evident receipts with policy snapshot and spend.</p><a class="btn" href={`${import.meta.env.BASE_URL}products/receipts/`}>Receipts →</a></div>
         </div>
       </div>
+    </section>
+    <section id="how-it-works" class="container" style="padding:8px 0 24px">
+      <h2 class="section-title">How ARIA works</h2>
+      <div class="glass-card" style="padding:12px">
+        <ARIAAuthorizationPremium />
+      </div>
+      <h3 style="margin:12px 0 8px">Flow at a glance</h3>
+      <div class="glass-card" style="padding:12px">
+        <ol style="margin:0;line-height:1.9;color:#9ba3b7;padding-left:18px">
+          <li><strong>Delegate</strong>: Alice delegates a <em>Travel Agent</em> with scope (budget, tools) recorded in Membership (Neo4j PIP).</li>
+          <li><strong>Plan</strong>: The agent plans an itinerary via the LLM. The call goes through <strong>ARIA Shield</strong> (PEP‑1).
+            <div style="opacity:.8">Shield classifies the prompt and attaches attributes (models, egress domain, purpose).</div>
+          </li>
+          <li><strong>Pre‑check</strong>: Shield asks the <strong>PDP</strong> for a decision with context (delegator ↔ agent, classification).
+            <div style="opacity:.8">PDP reads delegation constraints from the <strong>PIP</strong> (Membership graph).</div>
+          </li>
+          <li><strong>Tool</strong>: The agent executes a tool (book flight) via <strong>ARIA MCP Gateway</strong> (PEP‑2).
+            <div style="opacity:.8">Gateway validates schema pins/plan steps before the model or tool runs.</div>
+          </li>
+          <li><strong>Decision</strong>: PDP returns <em>Permit</em> with <strong>constraints</strong> (egress_allow, models_allow, spend_budget) and
+            <strong>obligations</strong> (audit_log, receipt_emit, run_workflow) plus a TTL.</li>
+          <li><strong>Enforce</strong>: PEPs enforce in real time — Shield applies budget/egress/model caps; Gateway enforces schema and plan discipline.</li>
+          <li><strong>Prove</strong>: Both PEPs emit signed receipts. Analytics update spend and remaining budgets.</li>
+        </ol>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px">
+        <div class="glass-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">Actors & boundaries</h4>
+          <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
+            <thead><tr><th style="text-align:left">Actor</th><th style="text-align:left">Role</th><th style="text-align:left">Boundary</th></tr></thead>
+            <tbody>
+              <tr><td>Alice</td><td>Delegator</td><td>Grants scope in Membership (PIP)</td></tr>
+              <tr><td>Travel Agent</td><td>AI Agent</td><td>Uses tools under delegation</td></tr>
+              <tr><td>ARIA Shield</td><td>PEP‑1</td><td>LLM gateway: classify, cap, egress</td></tr>
+              <tr><td>ARIA MCP Gateway</td><td>PEP‑2</td><td>Tool gateway: schema/plan discipline</td></tr>
+              <tr><td>PDP</td><td>Decision</td><td>Returns constraints + obligations</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glass-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">What the PDP returns</h4>
+          <ul style="margin:0;line-height:1.8;color:#9ba3b7;padding-left:18px">
+            <li><strong>Decision</strong>: Permit/Deny with TTL for re‑use.</li>
+            <li><strong>Constraints</strong>: egress_allow, models_allow, spend_budget, data_scope.</li>
+            <li><strong>Obligations</strong>: audit_log, receipt_emit, run_workflow, consent.</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:12px"><a class="btn btn-ghost" href="#threats-controls">Skip to controls →</a></div>
     </section>
     <section class="container" style="padding:8px 0 24px">
       <h2 class="section-title">Decisions with constraints and obligations</h2>
@@ -41,7 +91,7 @@ const canonical = '/products/aria/';
         </div>
       </div>
     </section>
-    <section class="container" style="padding:8px 0 24px">
+    <section id="threats-controls" class="container" style="padding:8px 0 24px">
       <h2 class="section-title">Threats → Controls</h2>
       <div class="glass-card" style="padding:16px">
         <table style="width:100%;border-collapse:collapse;color:#e8ecff">

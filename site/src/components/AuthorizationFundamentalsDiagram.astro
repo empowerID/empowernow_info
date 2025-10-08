@@ -1,0 +1,54 @@
+---
+---
+<div class="authz-diagram" aria-label="Authorization model diagram (PDP • PEP • PIP • PAP)">
+  <style>
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+    .float{ animation: float 3.5s ease-in-out infinite }
+    @media (prefers-reduced-motion: reduce){ .float{ animation:none } }
+  </style>
+  <div style="width:100%;min-height:720px;background:#0E0E10;padding:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:12px">
+    <svg viewBox="0 0 1200 720" style="width:100%;max-width:1000px;max-height:720px">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0E0E10"/>
+          <stop offset="100%" stop-color="#0B1C3D" stop-opacity=".3"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="720" fill="url(#bg)"/>
+      <text x="600" y="56" fill="#00E7F6" font-size="28" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">Authorization model</text>
+      <!-- PAP -->
+      <g class="float" style="animation-delay:0s">
+        <rect x="80" y="110" width="280" height="120" rx="12" fill="rgba(0,231,246,.1)" stroke="#00E7F6"/>
+        <text x="220" y="150" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">PAP</text>
+        <text x="220" y="176" fill="#C5CAD9" font-size="13" text-anchor="middle" font-family="Inter, ui-sans-serif">Author policies</text>
+      </g>
+      <!-- PDP -->
+      <g class="float" style="animation-delay:.2s">
+        <rect x="460" y="160" width="280" height="180" rx="12" fill="rgba(11,28,61,.9)" stroke="#B326FF"/>
+        <text x="600" y="196" fill="#FFFFFF" font-size="18" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">PDP</text>
+        <text x="600" y="222" fill="#C5CAD9" font-size="13" text-anchor="middle" font-family="Inter, ui-sans-serif">Evaluate rules → decision</text>
+        <text x="600" y="242" fill="#C5CAD9" font-size="13" text-anchor="middle" font-family="Inter, ui-sans-serif">+ constraints + obligations</text>
+      </g>
+      <!-- PIP -->
+      <g class="float" style="animation-delay:.3s">
+        <rect x="80" y="290" width="280" height="120" rx="12" fill="rgba(108,76,255,.15)" stroke="#6C4CFF"/>
+        <text x="220" y="330" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">PIP</text>
+        <text x="220" y="356" fill="#C5CAD9" font-size="13" text-anchor="middle" font-family="Inter, ui-sans-serif">Fetch attributes & context</text>
+      </g>
+      <!-- PEPs -->
+      <g class="float" style="animation-delay:.4s">
+        <rect x="860" y="160" width="260" height="90" rx="12" fill="rgba(11,28,61,.9)" stroke="#00E7F6"/>
+        <text x="990" y="196" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">PEP (issuance: IdP)</text>
+        <rect x="860" y="270" width="260" height="90" rx="12" fill="rgba(11,28,61,.9)" stroke="#00E7F6"/>
+        <text x="990" y="306" fill="#FFFFFF" font-size="16" font-weight="700" text-anchor="middle" font-family="Inter, ui-sans-serif">PEP (runtime: Gateway/Service)</text>
+      </g>
+      <!-- Flows -->
+      <g stroke="#00E7F6" stroke-width="3" fill="none">
+        <line x1="360" y1="170" x2="460" y2="210"/>
+        <line x1="360" y1="350" x2="460" y2="260"/>
+        <line x1="740" y1="210" x2="860" y2="200"/>
+        <line x1="740" y1="210" x2="860" y2="310"/>
+      </g>
+    </svg>
+  </div>
+</div>

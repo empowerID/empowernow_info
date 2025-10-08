@@ -15,14 +15,14 @@ import AuroraText from '../components/AuroraText.astro';
 ---
 <Base title="EmpowerNow — Universal Agent Governance & Integration Layer" description="Create tools once. Enforce policy & spend controls across agent platforms, and prove every action with cryptographic receipts." canonical="/">
     <!-- Hero -->
-    <section class="hero-plate page-stage" data-section="hero" style={`padding:120px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
         <div class="container" style="display:flex;gap:48px;align-items:center;flex-wrap:wrap">
             <div style="flex:1 1 520px;min-width:300px">
                 <h1 class="display" style="margin:0 0 10px;line-height:1.2"><span style="background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.33">Create tools once.<br>Enforce policy everywhere.</span> <AuroraText><span style="font-size:1.15em">Prove every action.</span></AuroraText></h1>
                 <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5">No‑code tools for any agent platform with <strong>budget & content controls</strong> and <strong>cryptographic receipts</strong>.</p>
                 <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
                     <a class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑second demo</a>
-                    <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" data-position="hero" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
+                    <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" data-position="hero" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Open Quickstart</a>
                 </div>
                 <div class="hero-proof-chips" style="display:flex;flex-direction:column;gap:8px;color:#9ba3b7">
                     <ProofChip label="Author once → MCP / Functions / Copilot" icon="author" />
@@ -31,12 +31,12 @@ import AuroraText from '../components/AuroraText.astro';
                 </div>
             </div>
             <div class="parallax-glow hero-video-container" style="flex:1 1 420px;min-width:280px;position:relative">
-                <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`} sources={[{src:`${import.meta.env.BASE_URL}media/hero-demo.webm`,type:'video/webm'},{src:`${import.meta.env.BASE_URL}media/hero-demo.mp4`,type:'video/mp4'}]} captions={`${import.meta.env.BASE_URL}media/hero-demo.vtt`} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
+                <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`} sources={[{src:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`,type:'video/mp4'}]} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
             </div>
             <!-- Trust Strip -->
             <div class="panel-glass trust-strip" style="padding:20px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;width:100%">
                 <div style="display:flex;flex-direction:column;gap:12px;flex:1;min-width:300px">
-                    <span><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
+                    <span><strong>Designed by EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
                     <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
                 </div>
                 <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>
@@ -157,7 +157,7 @@ import AuroraText from '../components/AuroraText.astro';
     <!-- <section class="container" data-section="trust" style="padding:12px 0 12px">
         <div class="panel-glass trust-strip" style="padding:12px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
             <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:300px">
-                <span><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
+                <span><strong>Designed by EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</span>
                 <span><strong>Neutral by design</strong> — OEM/white‑label with any IGA/PAM and any agent platform.</span>
             </div>
             <a class="btn" href={`${import.meta.env.BASE_URL}company/built-by-empowerid/`}>Learn more</a>
@@ -504,7 +504,7 @@ import AuroraText from '../components/AuroraText.astro';
         
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center;margin-bottom:24px">
             <a class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch the demo</a>
-            <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Open Quickstart</a>
+            <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Open Quickstart</a>
             <a class="btn btn-ghost" data-ev="cta_click" data-label="book_demo" style="border:2px solid var(--pulse-cyan);color:var(--pulse-cyan)" href={`${import.meta.env.BASE_URL}demo/`}>Book a 15‑min demo</a>
             <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(0,231,246,0.1);border:1px solid rgba(0,231,246,0.3);border-radius:24px">
                 <img src={`${import.meta.env.BASE_URL}images/icons/icon-aa.png`} alt="AA compliant" style="width:20px;height:20px" />

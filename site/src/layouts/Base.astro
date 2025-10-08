@@ -2,6 +2,7 @@
 const { title = 'EmpowerNow', description = 'Identity & Authorization Fabric', canonical = '/', ogImage, hreflangs } = Astro.props as any;
 import '../styles/tokens.css';
 import '../styles/utilities.css';
+import '../styles/custom-styles.css';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +38,20 @@ import '../styles/utilities.css';
 		<style>
 			html,body{margin:0;background:var(--navy);color:#fff;font-family:Inter,-apple-system,sans-serif}
 			main{min-height:60vh}
+			/* Offset fixed navbar on pages without a hero stage */
+			body[data-no-hero="true"] main{padding-top:96px}
+			@media (max-width: 768px){ body[data-no-hero="true"] main{padding-top:104px} }
 			footer{padding:32px 0;margin-top:80px}
 			footer a{text-decoration:none}
 			footer .btn{text-decoration:none}
 			.footer-divider{height:1px;background:linear-gradient(90deg, transparent, rgba(0,231,246,.35), transparent);margin-bottom:60px}
 			.footer-icon-tooltip:hover .tooltip-text{visibility:visible !important;opacity:1 !important}
-			nav{position:sticky;top:0;z-index:1000}
+			
+
+			/* ============================================
+			   EXISTING STYLES (PRESERVED)
+			   ============================================ */
+			
 			.consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1100}
 			.sr-only-focusable{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 			.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:1090;transform:translateY(110%);transition:transform .25s ease;backdrop-filter:blur(8px);background:rgba(15,27,51,.72);border-top:1px solid rgba(255,255,255,.12)}
@@ -53,48 +62,17 @@ import '../styles/utilities.css';
 			a:visited{color:var(--on-bg)}
 			/* Visible focus ring for all focusable controls */
 			a:focus-visible, button:focus-visible, .btn:focus-visible, summary:focus-visible, [role="button"]:focus-visible, .chip:focus-visible { outline:2px solid var(--pulse-cyan); outline-offset:2px; border-radius:6px }
-			/* Nav underline grow */
-			.nav-link{position:relative;color:var(--nav-ink-dim);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-size:0% 2px;background-position:0 100%;transition:background-size .12s ease,color .12s ease; padding:.5rem .75rem;border-radius:999px; background:transparent; border:0; appearance:none; -webkit-appearance:none; font:inherit; cursor:pointer}
-			.nav-link:hover,.nav-link:focus{color:var(--nav-ink);background-size:100% 2px}
-			/* Mega menu */
-            .nav-group{position:relative}
-            /* Mega menu panel aligned to nav container */
-            .mega{position:fixed;left:50%;transform:translateX(-50%);top:64px; z-index:1010; width:min(1120px, calc(100vw - 32px)); background:#0F1B33; border:1px solid rgba(255,255,255,.06); border-radius:16px; box-shadow:0 12px 50px rgba(0,0,0,.35); isolation:isolate; overflow:hidden}
-            .mega::before{content:""; position:absolute; inset:0; background:#0F1B33; pointer-events:none}
-            .mega::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
-            .mega-inner{position:relative; z-index:1; display:grid;grid-template-columns:4fr 8fr;gap:18px;padding:16px 0 18px}
-            .mega-left{padding:16px 18px}
-            .mega-left .h3{color:var(--ink,#E9F0FF);font-weight:800;letter-spacing:-.01em}
-            .mega-left .body{color:var(--ink,#E9F0FF);opacity:.9}
-            .mega-cta{color:var(--ink,#E9F0FF); text-decoration:underline; display:inline-block; margin-top:10px; font-weight:700; text-underline-offset:3px}
-            .mega-grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px 18px;padding:0 0 2px}
-            @media (min-width: 1280px){ .mega-grid{ grid-template-columns:repeat(3, minmax(0,1fr)) } }
-            .mega-card{position:relative;display:grid;grid-template-rows:auto auto 1fr auto;row-gap:6px;background:rgba(255,255,255,.04);border-radius:14px;padding:16px 18px;border:1px solid rgba(255,255,255,.06)}
-            .mega-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.06);box-shadow:0 10px 22px rgba(0,0,0,.25)}
-            .mega-card:hover::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--quantum-violet,#7C5CFF),var(--pulse-cyan,#4CC9F0));border-top-left-radius:14px;border-top-right-radius:14px}
-            .mega-card:focus-within{outline:2px solid var(--ion-lime,#00E1A8); outline-offset:3px}
-            .mega-card .h3{font-size:20px;line-height:1.2;margin:0}
-            .clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-            .links{display:flex;gap:10px;margin-top:10px}
-            .links .link{color:#e6eef8}
-            .links .link-dim{color:#b3c1da}
-			/* Dropdown */
-            .dropdown{position:absolute; top:100%; right:0; background:#0F1B33; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:8px; min-width:320px; box-shadow:0 16px 48px rgba(0,229,255,.15); z-index:1010; isolation:isolate; overflow:hidden}
-            .dropdown::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,36,.82), rgba(12,20,36,.66)); pointer-events:none}
-            .dropdown > *{position:relative; z-index:1}
-            /* Centered variant (used by Resources) */
-            .dropdown--center{position:fixed; top:64px; left:50%; transform:translateX(-50%); right:auto}
-            .dropdown-item{display:block; padding:10px 12px; border-radius:10px}
-			.dropdown-item:hover,.dropdown-item:focus{background:rgba(255,255,255,.06)}
+			/* Nav styles moved to custom-styles.css */
 		</style>
 	</head>
     <body>
 		<a href="#main" class="sr-only-focusable">Skip to content</a>
-        <nav aria-label="Primary navigation">
-            <div class="container wrap" style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--nav-border)">
-				<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:-2px">
-					<img src={`${import.meta.env.BASE_URL}images/empowernow-logo.svg`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" style="height:44px;width:auto" />
-				</a>
+        <nav class="navbar" aria-label="Primary navigation" data-scrolled="false">
+			<div class="navbar-inner">
+				<div class="container wrap" style="display:flex;justify-content:space-between;align-items:center">
+					<a href={import.meta.env.BASE_URL} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:-2px">
+						<img src={`${import.meta.env.BASE_URL}images/empowernow-logo.svg`} alt="EmpowerNow" width="140" height="28" decoding="async" fetchpriority="high" class="navbar-logo" />
+					</a>
                 <button id="nav-open" class="btn" aria-controls="mobile-nav" aria-expanded="false" style="display:none">Menu</button>
                 <ul class="nav-links">
                     <li>
@@ -106,38 +84,69 @@ import '../styles/utilities.css';
                                         <div class="h3" style="margin:0 0 6px">Explore products</div>
                                         <div class="body">Create once → enforce everywhere → prove every action.</div>
                                         <a id="cta-products-hub" href={`${import.meta.env.BASE_URL}products/`} class="mega-cta">View all products →</a>
+                                        <img src={`${import.meta.env.BASE_URL}images/illustrations/illustration-cube-panels.png`} alt="" class="mega-illustration" width="240" height="auto" loading="lazy" />
                                     </div>
                                     <div class="mega-grid">
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">IdP</div>
-                                            <div class="body clamp-2">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/idp/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">PDP</div>
-                                            <div class="body clamp-2">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/pdp/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">CRUD Service</div>
-                                            <div class="body clamp-2">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/crud/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Data Collector</div>
-                                            <div class="body clamp-2">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/data-collector/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">ARIA Shield</div>
-                                            <div class="body clamp-2">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/aria-shield/`}>Learn more →</a></div>
-                                        </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">ARIA MCP Gateway</div>
-                                            <div class="body clamp-2">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/gateway/`}>Learn more →</a></div>
-                                        </div>
+                                        <a href={`${import.meta.env.BASE_URL}products/idp/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-idp.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">IdP</div>
+                                                    <div class="body">OAuth 2.1 + Token Exchange (RFC 8693); agent passports; pairwise subjects.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/pdp/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-pdp.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">PDP</div>
+                                                    <div class="body">OpenID AuthZEN PDP; standardized decisions with constraints/obligations/TTL.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/crud/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-crud-service.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">CRUD Service</div>
+                                                    <div class="body">No‑code connectors/workflows; MCP‑ready tools for MCP/Functions/Copilot; approvals & idempotency.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/data-collector/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-data-collector.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Data Collector</div>
+                                                    <div class="body">Identity/IGA inventory & lineage (accounts, entitlements, memberships, sources) feeding PDP/PIP.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/aria-shield/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-aria-shield.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">ARIA Shield</div>
+                                                    <div class="body">Runtime budgets (HTTP 402), streaming caps, zero‑token SPA; pre‑exec enforcement.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href={`${import.meta.env.BASE_URL}products/gateway/`} class="mega-card" role="menuitem" tabindex="-1">
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-mcp-gateway.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">ARIA MCP Gateway</div>
+                                                    <div class="body">Plan discipline & schema pins; deny off‑plan tool calls before execution.</div>
+                                                    <div class="links" style="display:none;"><span class="link">Learn more →</span></div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -151,28 +160,70 @@ import '../styles/utilities.css';
                                     <div class="mega-left">
                                         <div class="h3" style="margin:0 0 6px">Explore solutions</div>
                                         <div class="body">OEM/white‑label for platforms, bundles for SIs, starter kits for enterprises.</div>
-                                        <a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
+									<a id="cta-solutions-hub" href={`${import.meta.env.BASE_URL}solutions/`} class="mega-cta">View all solutions →</a>
+                                        <img src={`${import.meta.env.BASE_URL}images/illustrations/illustration-package-panels.png`} alt="" class="mega-illustration" width="240" height="auto" loading="lazy" />
+									<a href={`${import.meta.env.BASE_URL}products/aria/`} class="mega-cta">What is ARIA? →</a>
                                     </div>
                                     <div class="mega-grid">
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Agent Platforms (OEM/white‑label)</div>
-                                            <div class="body clamp-2">Embed IdP/PDP/CRUD, ARIA Shield & MCP Gateway under your brand.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Guide ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-enterprise.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Spend Governance</div>
+                                                    <div class="body">Budgets (402), stream caps, attribution; signed receipts for chargeback.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}products/receipts/`}>Receipts ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Systems Integrators (SI/GSI)</div>
-                                            <div class="body clamp-2">Vertical catalog kits + policy packs + delivery playbooks.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Partner →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Kit examples ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-agents.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Agent‑Safe Tools</div>
+                                                    <div class="body">MCP Gateway + Shield — schema pins, plan discipline, runtime caps.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Learn more →</a><a class="link-dim" href={`https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/`}>Docs ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Enterprises (Governed Starter)</div>
-                                            <div class="body clamp-2">20–50 endpoints; budgets 402; content/egress controls; receipts.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/spend-governance/`}>Get started →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Quickstart ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-si.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Delegated Authorization</div>
+                                                    <div class="body">Graph‑anchored delegations; per‑action constraints; explainable decisions.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/strategy/authz-model/`}>Model ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mega-card" role="menuitem" tabindex="-1">
-                                            <div class="h3">Zero‑Token SPAs</div>
-                                            <div class="body clamp-2">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
-                                            <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Docs ↗</a></div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/audit-receipts/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-zero-token.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Audit & Receipts</div>
+                                                    <div class="body">Provable evidence per call — share receipts with audit; chargeback spend.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/audit-receipts/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}products/receipts/`}>Sample ↗</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}products/crud/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-products-crud-service.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Tool Factory</div>
+                                                    <div class="body">Any API → governed tools in minutes. Publish once to MCP/Functions/Copilot.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}resources/`}>Adapter catalog ↗</a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mega-card-solution" role="menuitem" tabindex="-1" data-primary-link={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>
+                                            <div class="mega-card-wrapper">
+                                                <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-zero-token.png`} alt="" class="mega-card-icon" width="40" height="40" loading="lazy" />
+                                                <div class="mega-card-content">
+                                                    <div class="h3">Zero‑Token SPAs</div>
+                                                    <div class="body">BFF/Shield pattern; tokens stay in the backend; route‑level policy.</div>
+                                                    <div class="links"><a class="link" href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Learn more →</a><a class="link-dim" href={`${import.meta.env.BASE_URL}docs/`}>Docs ↗</a></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -184,14 +235,16 @@ import '../styles/utilities.css';
                             <button class="nav-link" id="btn-resources" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources" data-ev="nav_click" data-label="Resources">Resources</button>
                             <div id="menu-resources" role="menu" aria-labelledby="btn-resources" hidden class="dropdown dropdown--center" data-menu>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Overview</a>
-                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`} class="dropdown-item">Quickstart</a>
+                                <a role="menuitem" tabindex="-1" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="dropdown-item">Quickstart</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}products/crud/`} class="dropdown-item">Adapter catalog</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/`} class="dropdown-item">Workflow examples</a>
                                 <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}resources/standards/`} class="dropdown-item">Standards</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}comparisons/gateway-vs-api-gateway/`} class="dropdown-item">MCP vs API Gateway</a>
+                                <a role="menuitem" tabindex="-1" href={`${import.meta.env.BASE_URL}comparisons/authzen-vs-xacml/`} class="dropdown-item">AuthZEN vs XACML</a>
                             </div>
                         </div>
                     </li>
-					<li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs</a></li>
+					<li><a class="nav-link" href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener" data-ev="nav_click" data-label="Docs">Docs</a></li>
                     <li><a class="nav-link" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="nav_click" data-label="Pricing">Pricing</a></li>
                     <li>
                         <div class="nav-group">
@@ -205,7 +258,8 @@ import '../styles/utilities.css';
                     </li>
                     <li><a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`} data-ev="cta_click" data-label="nav_demo" data-cta-level="hard" data-product="na" data-persona="na" data-stage="na">Book Demo</a></li>
 				</ul>
-            </div>
+				</div>
+			</div>
             <div id="mobile-nav" hidden style="position:fixed;left:0;right:0;top:0;height:92vh;transform:translateY(-100%);transition:transform .18s ease; background:rgba(12,20,36,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);z-index:1050">
                 <div class="container" style="padding:16px">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -221,7 +275,7 @@ import '../styles/utilities.css';
                         <a class="btn" href={`${import.meta.env.BASE_URL}company/`}>Company</a>
                         <div style="display:flex;gap:8px;margin-top:8px">
                             <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/`}>Book Demo</a>
-                            <a class="btn" href={`${import.meta.env.BASE_URL}docs/crud-service/quickstart`}>Quickstart</a>
+                            <a class="btn" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart</a>
                         </div>
                     </div>
                 </div>
@@ -265,9 +319,10 @@ import '../styles/utilities.css';
                     <li><a href={`${import.meta.env.BASE_URL}products/aria-shield/`}>ARIA Shield</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}products/crud/`}>CRUD Service</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}products/data-collector/`}>Data Collector</a></li>
-                    <li><span style="color:#9ba3b7">VDS (Coming soon)</span></li>
                 </ul></div>
                 <div class="footer-col"><h4>Solutions</h4><ul>
+							<li><a href={`${import.meta.env.BASE_URL}products/aria/`}>ARIA overview</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}solutions/audit-receipts/`}>Audit & Receipts</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/zero-token-spas/`}>Zero‑token SPAs</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/agent-safe-tools/`}>Agent‑safe tools</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Delegated auth</a></li>
@@ -275,6 +330,8 @@ import '../styles/utilities.css';
                 <div class="footer-col"><h4>Resources</h4><ul>
                     <li><a href={`${import.meta.env.BASE_URL}resources/`}>Overview</a></li>
                     <li><a href={`${import.meta.env.BASE_URL}resources/standards/`}>Standards</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}comparisons/gateway-vs-api-gateway/`}>MCP vs API Gateway</a></li>
+                    <li><a href={`${import.meta.env.BASE_URL}comparisons/authzen-vs-xacml/`}>AuthZEN vs XACML</a></li>
                     <li><a href="https://empowerid.github.io/empowernow_docs/" target="_blank" rel="noopener">Docs ↗</a></li>
                 </ul></div>
                 <div class="footer-col"><h4>Company</h4><ul>
@@ -321,6 +378,64 @@ import '../styles/utilities.css';
 			</div>
 		</div>
 		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+					
+					let ticking = false;
+					const threshold = 50; // Scroll threshold in pixels
+					
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+					
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+					
+					// Initialize state on load
+					updateNavState();
+					
+			// Listen to scroll (passive for performance)
+			window.addEventListener('scroll', onScroll, { passive: true });
+		}catch{}
+	})();
+	</script>
+	<script>
+		// ============================================
+		// SOLUTION CARDS - Make entire card clickable
+		// ============================================
+		(function(){
+			try{
+				document.querySelectorAll('.mega-card-solution').forEach(card => {
+					const primaryLink = card.getAttribute('data-primary-link');
+					if (!primaryLink) return;
+					
+					card.addEventListener('click', (e) => {
+						// Don't navigate if clicking on a link inside
+						const target = e.target as HTMLElement;
+						if (target.tagName === 'A' || target.closest('a')) {
+							return;
+						}
+						
+						// Navigate to primary link
+						window.location.href = primaryLink;
+					});
+				});
+			}catch{}
+		})();
+	</script>
+	<script>
 			(function(){
 				try{
                     const consentKey = 'analytics_consent';
@@ -374,6 +489,98 @@ import '../styles/utilities.css';
 					});
 				}catch{}
 			})();
+		</script>
+		<script>
+			// ============================================
+			// ENHANCED FLOATING NAVIGATION - Scroll Detection
+			// ============================================
+			(function(){
+				try{
+					const nav = document.querySelector('nav.navbar');
+					if(!nav) return;
+
+					let ticking = false;
+					const hasHeroStage = !!document.querySelector('.page-stage');
+					const threshold = hasHeroStage ? 50 : -1; // float immediately if no hero
+
+					function updateNavState() {
+						const scrollY = window.scrollY;
+						const shouldFloat = scrollY > threshold;
+						nav.setAttribute('data-scrolled', shouldFloat ? 'true' : 'false');
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							window.requestAnimationFrame(updateNavState);
+							ticking = true;
+						}
+					}
+
+					// Initialize state on load
+					updateNavState();
+
+					// Listen to scroll (passive for performance)
+					window.addEventListener('scroll', onScroll, { passive: true });
+				}catch{}
+			})();
+		</script>
+		<script type="module">
+			// Mermaid diagrams support (render elements with class="mermaid")
+			try {
+				import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs')
+					.then((m)=>{
+						try{
+							const mermaid = (m && (m.default||m));
+							mermaid.initialize({
+								startOnLoad: true,
+								theme: 'base',
+								securityLevel: 'loose',
+								flowchart: { useMaxWidth: false, htmlLabels: true, diagramPadding: 8 },
+								themeVariables: {
+									primaryColor: '#0B1C3D',
+									primaryBorderColor: '#00E7F6',
+									primaryTextColor: '#FFFFFF',
+									secondaryColor: '#6C4CFF',
+									secondaryBorderColor: '#B326FF',
+									secondaryTextColor: '#FFFFFF',
+									tertiaryColor: '#0E0E10',
+									tertiaryBorderColor: '#6C4CFF',
+									tertiaryTextColor: '#EDEDED',
+									background: '#0E0E10',
+									mainBkg: '#0B1C3D',
+									secondBkg: '#6C4CFF',
+									tertiaryBkg: '#0B1C3D',
+									lineColor: '#00E7F6',
+									textColor: '#EDEDED',
+									nodeBkg: '#0B1C3D',
+									nodeTextColor: '#EDEDED',
+									clusterBkg: 'rgba(11, 28, 61, 0.85)',
+									clusterBorder: 'rgba(0, 231, 246, 0.2)',
+									edgeLabelBackground: '#0B1C3D',
+									actorBorder: '#00E7F6',
+									actorBkg: '#0B1C3D',
+									actorTextColor: '#EDEDED',
+									actorLineColor: '#00E7F6',
+									labelBoxBkgColor: '#0B1C3D',
+									labelBoxBorderColor: '#00E7F6',
+									labelTextColor: '#EDEDED',
+									noteBkgColor: '#6C4CFF',
+									noteTextColor: '#FFFFFF',
+									noteBorderColor: '#B326FF',
+									fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+									fontSize: '14px'
+								}
+							});
+							// Ensure render on first load
+							requestAnimationFrame(()=>{
+								try{ mermaid.run && mermaid.run({ querySelector: '.mermaid' }); }catch{}
+								try{ mermaid.init && mermaid.init(undefined, document.querySelectorAll('.mermaid')); }catch{}
+							});
+						}catch{}
+					})
+				.catch(()=>{});
+			} catch {}
 		</script>
         <script>
             (function(){
