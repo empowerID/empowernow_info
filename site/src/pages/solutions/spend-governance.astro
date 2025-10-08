@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 const title = 'Spend Governance — Control AI Costs';
 const description = 'Use ARIA Shield + Receipts + Data Collector to cap spend at stream‑time, emit receipts, and drive FinOps dashboards.';
 const canonical = '/solutions/spend-governance/';
@@ -30,9 +31,7 @@ const canonical = '/solutions/spend-governance/';
       <section class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Watch: Spend Governance in 90 seconds</h2>
         <div class="glass-card" style="padding:12px">
-          <div style="position:relative;padding-top:56.25%">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Spend Governance demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe>
-          </div>
+          <MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/solutions/spend/Controlling_Runaway_AI.mp4` }} aspect="16/9" title="Spend Governance demo" defer />
         </div>
       </section>
 		</fragment>
