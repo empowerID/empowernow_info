@@ -87,6 +87,13 @@
   --viz-4: #B326FF;  /* Magenta - comparison data */
   --viz-5: #5FB0FF;  /* Blue - auxiliary data */
   
+  /* Aurora Animation Colors - Used in AuroraText component */
+  --aurora-1: hsl(270, 100%, 63%);  /* Violet - base from primary palette */
+  --aurora-2: hsl(180, 100%, 63%);  /* Cyan - matches primary cyan */
+  --aurora-3: hsl(300, 100%, 63%);  /* Magenta - matches primary magenta */
+  --aurora-4: hsl(195, 100%, 63%);  /* Light Cyan - variation */
+  --aurora-5: hsl(270, 80%, 70%);   /* Light Violet - variation */
+  
   /* Transition Timing */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
