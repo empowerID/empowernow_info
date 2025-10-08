@@ -139,7 +139,8 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			</section>
 			<!-- Lightbox modal for maximizing images -->
 			<div id="img-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="img-lightbox-title" style="position:fixed;inset:0;background:rgba(0,0,0,.75);align-items:center;justify-content:center;z-index:9999;padding:20px">
-				<div style="position:relative;max-width:min(1200px,90vw);max-height:90vh">
+				<div style="position:relative;max-width:min(1200px,90vw);max-height:90vh;outline:none">
+					<h2 id="img-lightbox-title" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Image preview</h2>
 					<img id="img-lightbox-img" alt="" style="display:block;max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)" />
 					<button id="img-lightbox-close" aria-label="Close" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:8px;padding:6px 10px;cursor:pointer">✕</button>
 				</div>
@@ -162,8 +163,9 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				const lb=document.getElementById('img-lightbox');
 				const lbImg=document.getElementById('img-lightbox-img');
 				const lbClose=document.getElementById('img-lightbox-close');
-				function hideLb(){ if(lb){ lb.hidden=true; lb.style.display='none'; } }
-				function showLb(src){ if(lb && lbImg){ lbImg.src=src; lb.hidden=false; lb.style.display='flex'; } }
+				let lastFocus: HTMLElement | null = null;
+				function hideLb(){ if(lb){ lb.hidden=true; lb.style.display='none'; lb.setAttribute('aria-hidden','true'); lastFocus?.focus(); } }
+				function showLb(src){ if(lb && lbImg){ lastFocus = (document.activeElement as HTMLElement) || null; lbImg.src=src; lb.hidden=false; lb.style.display='flex'; lb.removeAttribute('aria-hidden'); (lb.querySelector('#img-lightbox-close') as HTMLElement)?.focus(); } }
 				document.querySelectorAll('img.enlargeable')?.forEach((img)=>{
 					img.addEventListener('click',()=>{
 						showLb((img as HTMLImageElement).src);
@@ -172,6 +174,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				});
 				lbClose?.addEventListener('click',hideLb);
 				lb?.addEventListener('click',(e)=>{ if(e.target===lb){ hideLb(); } });
+				document.addEventListener('keydown',(e)=>{ if(!lb?.hidden && e.key==='Escape'){ hideLb(); } });
 				// Delegate clicks for data-ev anchors/placeholders
 				document.addEventListener('click',(e)=>{
 					const t=(e.target as HTMLElement)?.closest('[data-ev]') as HTMLElement|null;
