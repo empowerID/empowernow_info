@@ -28,8 +28,43 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
-				<p style="color:#9ba3b7">Subject/Resource/Action/Context → PDP → Decision. PEPs enforce constraints (sync) and obligations (async). Batch decisions, TTL caching, and conservative merge across policy layers.
+				<p style="color:#9ba3b7">Subject/Resource/Action/Context → PDP → Decision. PEPs enforce constraints (sync) and obligations (async). Batch multiple checks in one call for faster pages and smoother agent runs. Deploy once to gateways/services; adopt incrementally via a PDP facade and PEP middleware.
                 </p>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">What it is</h2>
+				<p style="color:#9ba3b7;max-width:90ch">A standards‑credible authorization brain that evaluates ABAC + relationships and returns AuthZEN‑style decisions. EmpowerNow decision extensions add constraints (sync guardrails) and obligations (async actions) so gateways and services can enforce consistently.</p>
+			</section>
+
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">What you get</h2>
+				<ul style="color:#9ba3b7;line-height:1.8">
+					<li>Cost control for AI agents: stop runaway spend (HTTP 402), cap tokens, restrict models/egress</li>
+					<li>Fewer bespoke integrations: one JSON decision contract across PEPs and vendors</li>
+					<li>Faster delegated flows: model human↔human and human↔agent delegations once; reuse everywhere</li>
+					<li>Audit confidence: signed, hash‑chained receipts and human‑readable reasons</li>
+				</ul>
+			</section>
+
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Why it's unique</h2>
+				<ul style="color:#9ba3b7;line-height:1.8">
+					<li>Graph‑anchored ABAC: policy logic in YAML via Policy nodes; fast‑moving edge constraints (budget, trust, expiry) live in graph</li>
+					<li>Hybrid ReBAC + ABAC: delegations, teams, ownership from the Membership Service (Neo4j) without role explosion</li>
+					<li>Delegation kits: human↔human and human↔agent OBO with spend caps, trust levels, expiry, consent</li>
+					<li>AuthZEN interop: decision exchange aligned to the OpenID WG; extensions (constraints/obligations/TTL) are product‑level</li>
+					<li>Plan/schema pinning: deny off‑plan tool calls and catch schema drift pre‑exec (MCP Gateway)</li>
+					<li>Proof by receipts: signed, hash‑chained receipts for audit and chargeback</li>
+				</ul>
+			</section>
+
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">See it</h2>
+				<div class="glass-card" style="padding:12px">
+					<div style="aspect-ratio:16/9;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:10px">
+						<a class="btn" href={`${import.meta.env.BASE_URL}videos/products/pdp/The_Empower_Now_PDP.mp4`} style="margin:12px">▶ Play product video</a>
+					</div>
+				</div>
+			</section>
 				<div class="panel-glass" style="padding:12px;margin-top:8px">
 					<strong>Batch decisions = fewer round‑trips, lower latency.</strong>
 					<p style="color:#9ba3b7;margin:6px 0 0">Send multiple checks in one call for faster pages and smoother agent runs.</p>
@@ -116,6 +151,29 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                     </div>
                 </div>
             </section>
+
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Integrations</h2>
+				<p style="color:#9ba3b7;max-width:90ch">Works with your gateways, LLM providers, and data plane.</p>
+				<div class="status-row" style="flex-wrap:wrap">
+					<span class="chip chip--outline-violet">Envoy / Istio ext_authz</span>
+					<span class="chip chip--outline-violet">NGINX / Traefik</span>
+					<span class="chip chip--outline-violet">OpenAI / Azure OpenAI / Anthropic / Vertex AI</span>
+					<span class="chip chip--outline-violet">Redis / Kafka / ClickHouse</span>
+					<span class="chip chip--outline-violet">Neo4j Membership Service</span>
+				</div>
+			</section>
+
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Is this for me?</h2>
+				<div class="glass-card" style="padding:12px">
+					<ul style="color:#9ba3b7;line-height:1.8;margin:0">
+						<li><strong>Platform teams</strong>: standardize decisions across gateways and services</li>
+						<li><strong>Security architects</strong>: budgets/egress/models; explainability + receipts</li>
+						<li><strong>App teams</strong>: one middleware; fewer roles via delegations and ownership</li>
+					</ul>
+				</div>
+			</section>
 		</fragment>
 	</Product>
     <section class="container" style="padding:8px 0 24px">
