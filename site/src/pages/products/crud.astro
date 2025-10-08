@@ -26,6 +26,13 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			'Governed execution: schema pins, idempotency, retries',
 			'Cryptographic receipts and audit built‑in'
 		]}
+		benefitIcons={[
+			'icon-gear-spin.png',
+			'icon-clipboard-path.png',
+			'icon-rocket.png',
+			'icon-shield-aria.png',
+			'icon-receipt.png'
+		]}
 		primaryCTA={{ label: 'Quickstart', href: `https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/` }}
 		secondaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }}
 		tertiaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/crud-service/' }}
@@ -37,45 +44,92 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' } ]}
 		keywords={[ 'mcp','openai functions','copilot','idempotency' ]}
 	>
+		<fragment slot="hero-ambient">
+			<div class="page-stage" style="background:radial-gradient(40% 30% at 20% 15%, rgba(182,255,60,.12), transparent 60%), radial-gradient(35% 30% at 80% 20%, rgba(0,231,246,.10), transparent 60%), var(--bg-primary);position:absolute;inset:0;z-index:-1;pointer-events:none" aria-hidden="true"></div>
+		</fragment>
 		<fragment slot="cta-after">
 			<div style="margin-top:12px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read the Strategy Memo →</a></div>
 		</fragment>
 		<fragment slot="standards">
-			<div class="status-row">
-				<span class="chip chip--outline-cyan">MCP</span>
-				<span class="chip chip--outline-cyan">OpenAI Functions</span>
-				<span class="chip chip--outline-cyan">Microsoft Copilot</span>
+			<div class="partner-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:16px">
+				<div class="glass-card hover-rise" style="padding:16px;display:flex;align-items:center;gap:12px;border:1px solid rgba(182,255,60,.3)">
+					<img src={`${import.meta.env.BASE_URL}images/partners/anthropic-logo.svg`} alt="Anthropic" style="width:48px;height:48px" />
+					<span style="color:#e8ecff;font-weight:500">MCP</span>
+				</div>
+				<div class="glass-card hover-rise" style="padding:16px;display:flex;align-items:center;gap:12px;border:1px solid rgba(0,231,246,.3)">
+					<img src={`${import.meta.env.BASE_URL}images/partners/openai-logo.svg`} alt="OpenAI" style="width:48px;height:48px" />
+					<span style="color:#e8ecff;font-weight:500">OpenAI Functions</span>
+				</div>
+				<div class="glass-card hover-rise" style="padding:16px;display:flex;align-items:center;gap:12px;border:1px solid rgba(108,76,255,.3)">
+					<img src={`${import.meta.env.BASE_URL}images/partners/microsoft-logo.svg`} alt="Microsoft" style="width:48px;height:48px" />
+					<span style="color:#e8ecff;font-weight:500">Microsoft Copilot</span>
+				</div>
 			</div>
 		</fragment>
 		<fragment slot="examples">
-			<div class="card-grid">
-				<div class="ns-card"><h3>Create Contractor (Entra)</h3><p>Form + approval + retry.</p></div>
-				<div class="ns-card"><h3>Provision Repo (GitHub)</h3><p>Schema-pinned; egress allowlist.</p></div>
+			<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+				<div class="panel-glow hover-rise" style="padding:20px">
+					<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-shield-check.png`} alt="" style="width:40px;height:40px;flex-shrink:0;opacity:0.9" />
+						<h3 style="margin:0;color:#e8ecff;font-size:16px;font-weight:600">Create Contractor (Entra)</h3>
+					</div>
+					<p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">Form + approval + retry.</p>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:20px">
+					<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-gear-spin.png`} alt="" style="width:40px;height:40px;flex-shrink:0;opacity:0.9" />
+						<h3 style="margin:0;color:#e8ecff;font-size:16px;font-weight:600">Provision Repo (GitHub)</h3>
+					</div>
+					<p style="margin:0;color:#9ba3b7;line-height:1.6;font-size:14px">Schema-pinned; egress allowlist.</p>
+				</div>
 			</div>
 		</fragment>
 		<fragment slot="how">
-			<section class="container" id="crud-no-code" style="padding:8px 0 24px">
+			<section class="container reveal-on-scroll" id="crud-no-code" style="padding:8px 0 24px">
+				<div class="product-rail rail--crud" aria-hidden="true" style="margin-bottom:24px"></div>
 				<h2 class="section-title">How it works</h2>
-				<ol class="numbered">
-					<li>Receive operation → dedupe by <code>event_id</code> → persist.</li>
-					<li>Orchestrate approvals and execute with retries/SLOs.</li>
-					<li>Emit events and signed receipts; stream to analytics.</li>
+				<ol class="numbered" style="display:flex;flex-direction:column;gap:20px;list-style:none;padding:0">
+					<li style="display:flex;gap:16px;align-items:center">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-gear-spin.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+						<span style="color:#9ba3b7">Receive operation → dedupe by <code>event_id</code> → persist.</span>
+					</li>
+					<li style="display:flex;gap:16px;align-items:center">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-clipboard-path.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+						<span style="color:#9ba3b7">Orchestrate approvals and execute with retries/SLOs.</span>
+					</li>
+					<li style="display:flex;gap:16px;align-items:center">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-receipt.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+						<span style="color:#9ba3b7">Emit events and signed receipts; stream to analytics.</span>
+					</li>
 				</ol>
 			</section>
-			<section class="container" id="crud-publish-many" style="padding:8px 0 24px">
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" id="crud-publish-many" style="padding:8px 0 24px">
 				<h2 class="section-title">No‑code connectors</h2>
-				<p style="color:#9ba3b7">Connect Entra/Okta/AD/ServiceNow/Salesforce/SAP and custom APIs in minutes — no code. Author parameters once; enforce policy hooks everywhere.</p>
-				<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a><img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_list.png`} alt="Catalog of configured systems" width="360" height="202" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft);cursor:zoom-in" /><img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_fieldglass_designer.png`} alt="No‑code connector designer listing API commands" width="360" height="202" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft);cursor:zoom-in" /></div>
+				<p style="color:#9ba3b7;margin-bottom:16px">Connect Entra/Okta/AD/ServiceNow/Salesforce/SAP and custom APIs in minutes — no code. Author parameters once; enforce policy hooks everywhere.</p>
+				<div style="margin-bottom:12px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
+				<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+					<div class="glass-card hover-rise" style="padding:8px">
+						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_list.png`} alt="Catalog of configured systems" width="360" height="202" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
+					</div>
+					<div class="glass-card hover-rise" style="padding:8px">
+						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_fieldglass_designer.png`} alt="No‑code connector designer listing API commands" width="360" height="202" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
+					</div>
+				</div>
 			</section>
-			<section class="container" id="crud-compare" style="padding:8px 0 24px">
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" id="crud-compare" style="padding:8px 0 24px">
 				<h2 class="section-title">Author once → publish many</h2>
-				<p style="color:#9ba3b7">Turn any API/DB into agent‑safe tools and resources; publish across platforms with policy hooks: Anthropic MCP, OpenAI Functions, Microsoft Copilot, Google Vertex, AWS Bedrock, LangChain/LangGraph.</p>
-				<div style="margin-top:8px"><img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/mcp_prompts.png`} alt="MCP prompts catalog with tags" width="520" height="292" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft);cursor:zoom-in" /></div>
+				<p style="color:#9ba3b7;margin-bottom:16px">Turn any API/DB into agent‑safe tools and resources; publish across platforms with policy hooks: Anthropic MCP, OpenAI Functions, Microsoft Copilot, Google Vertex, AWS Bedrock, LangChain/LangGraph.</p>
+				<div class="glass-card hover-rise" style="padding:12px;max-width:600px">
+					<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/mcp_prompts.png`} alt="MCP prompts catalog with tags" width="520" height="292" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
+				</div>
 			</section>
-			<section class="container" id="crud-positioning" style="padding:8px 0 24px">
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" id="crud-positioning" style="padding:8px 0 24px">
 				<h2 class="section-title">How we compare to general automation platforms</h2>
-				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-					<div class="block-ghost">
+				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+					<div class="glass-card" style="padding:20px;border:1px solid rgba(255,255,255,.08)">
 						<div class="meta">General automation platforms</div>
 						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
 							<li>Breadth of SaaS connectors and templates</li>
@@ -83,7 +137,8 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 							<li>Light policy and audit by default</li>
 						</ul>
 					</div>
-					<div class="panel-glass" style="padding:10px">
+					<div class="panel-glow hover-rise" style="padding:20px">
+						<div class="product-rail rail--crud" aria-hidden="true" style="margin-bottom:12px"></div>
 						<div class="meta">CRUD Service</div>
 						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
 							<li>Enterprise IAM depth: approvals, policy, receipts</li>
@@ -92,13 +147,17 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 						</ul>
 					</div>
 				</div>
-				<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
+				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
 			</section>
-			<section class="container" id="crud-proof" style="padding:8px 0 24px">
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" id="crud-proof" style="padding:8px 0 24px">
 				<h2 class="section-title">With vs Without CRUD Service</h2>
-				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-					<div class="block-ghost">
-						<div class="meta">Without CRUD Service</div>
+				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+					<div class="glass-card" style="padding:20px;border:1px solid rgba(255,255,255,.08)">
+						<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+							<span style="font-size:32px;opacity:0.4">⏱️</span>
+							<div class="meta" style="color:#9ba3b7">Without CRUD Service</div>
+						</div>
 						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
 							<li>~6 weeks per API integration</li>
 							<li>Custom code, per platform</li>
@@ -106,8 +165,12 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 							<li>Unclear guardrails</li>
 						</ul>
 					</div>
-					<div class="panel-glass" style="padding:10px">
-						<div class="meta">With CRUD Service</div>
+					<div class="panel-glow hover-rise" style="padding:20px">
+						<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+							<img src={`${import.meta.env.BASE_URL}images/icons/icon-rocket.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
+							<div class="meta" style="color:#e8ecff">With CRUD Service</div>
+						</div>
+						<div class="product-rail rail--crud" aria-hidden="true" style="margin-bottom:12px"></div>
 						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
 							<li><strong>~5 minutes</strong> from API to tool</li>
 							<li><strong>No code</strong>, publish once</li>
@@ -117,23 +180,55 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					</div>
 				</div>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" style="padding:8px 0 24px">
 				<h2 class="section-title">Proof</h2>
-				<ul style="color:#9ba3b7;line-height:1.8">
-					<li><a data-ev="proof_click" data-label="quickstart" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Idempotency quickstart</a></li>
-					<li><a data-ev="proof_click" data-label="approvals" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/explanation/approvals-overview/`}>Approval path options</a></li>
-					<li><a data-ev="artifact_view" data-label="receipt-min" href={`${import.meta.env.BASE_URL}resources/artifacts/receipt-min.json`} download>Receipt sample (6 lines)</a></li>
-					<li><a data-ev="proof_click" data-label="demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a></li>
-				</ul>
-			</section>
-			<section class="container" id="crud-shots" style="padding:8px 0 24px">
-				<h2 class="section-title">Visual workflows</h2>
-				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-					<div class="glass-card" style="padding:8px;min-height:200px" aria-label="Visual workflow designer">
-						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/workflow_designfull.png`} alt="Visual workflow designer showing nodes and edges" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
+				<div class="glass-card" style="padding:20px">
+					<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+						<a data-ev="proof_click" data-label="quickstart" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2)">
+							<img src={`${import.meta.env.BASE_URL}images/icons/icon-rocket.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
+							<div>
+								<div style="color:#e8ecff;font-weight:500;font-size:14px">Idempotency quickstart</div>
+								<div style="color:#9ba3b7;font-size:13px">→</div>
+							</div>
+						</a>
+						<a data-ev="proof_click" data-label="approvals" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/explanation/approvals-overview/`} class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2)">
+							<img src={`${import.meta.env.BASE_URL}images/icons/icon-clipboard-path.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
+							<div>
+								<div style="color:#e8ecff;font-weight:500;font-size:14px">Approval path options</div>
+								<div style="color:#9ba3b7;font-size:13px">→</div>
+							</div>
+						</a>
+						<a data-ev="artifact_view" data-label="receipt-min" href={`${import.meta.env.BASE_URL}resources/artifacts/receipt-min.json`} download class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2)">
+							<img src={`${import.meta.env.BASE_URL}images/icons/icon-receipt.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
+							<div>
+								<div style="color:#e8ecff;font-weight:500;font-size:14px">Receipt sample (6 lines)</div>
+								<div style="color:#9ba3b7;font-size:13px">↓</div>
+							</div>
+						</a>
+						<a data-ev="proof_click" data-label="demo" href={`${import.meta.env.BASE_URL}resources/demo/`} class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2)">
+							<img src={`${import.meta.env.BASE_URL}images/icons/icon-eye-crosshair.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
+							<div>
+								<div style="color:#e8ecff;font-weight:500;font-size:14px">Watch 90‑sec demo</div>
+								<div style="color:#9ba3b7;font-size:13px">→</div>
+							</div>
+						</a>
 					</div>
-					<div class="glass-card" style="padding:8px;min-height:200px" aria-label="Workflow catalog">
-						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/workflow_list.png`} alt="Workflows catalog grid" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
+				</div>
+			</section>
+			<div class="section-divider"></div>
+			<section class="container reveal-on-scroll" id="crud-shots" style="padding:8px 0 24px">
+				<h2 class="section-title">Visual workflows</h2>
+				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+					<div class="glass-card hover-rise" style="padding:12px;min-height:200px" aria-label="Visual workflow designer">
+						<div style="position:relative;overflow:hidden;border-radius:8px">
+							<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/workflow_designfull.png`} alt="Visual workflow designer showing nodes and edges" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in;transition:transform 0.3s ease" />
+						</div>
+					</div>
+					<div class="glass-card hover-rise" style="padding:12px;min-height:200px" aria-label="Workflow catalog">
+						<div style="position:relative;overflow:hidden;border-radius:8px">
+							<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/workflow_list.png`} alt="Workflows catalog grid" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in;transition:transform 0.3s ease" />
+						</div>
 					</div>
 				</div>
 			</section>
@@ -147,10 +242,23 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			</div>
 		</fragment>
 	</Product>
+	<style>
+		.hover-rise:hover img {
+			transform: scale(1.02);
+		}
+	</style>
 	<script>
 		(function(){
 			try{
 				(window).dataLayer=(window).dataLayer||[];
+				// Reveal on scroll
+				if('IntersectionObserver' in window){
+					const els=[...document.querySelectorAll('.reveal-on-scroll')];
+					const io=new IntersectionObserver((entries)=>{
+						entries.forEach(e=>{ if(e.isIntersecting){ (e.target as HTMLElement).classList.add('is-visible'); io.unobserve(e.target); } });
+					},{threshold:.25});
+					els.forEach(el=> io.observe(el));
+				}
 				// Track views of product shots placeholders
 				const shots=document.getElementById('crud-shots');
 				if(shots && 'IntersectionObserver' in window){
