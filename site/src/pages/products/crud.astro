@@ -116,7 +116,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</div>
 			</section>
 			<!-- Lightbox modal for maximizing images -->
-			<div id="img-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="img-lightbox-title" style="position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px">
+			<div id="img-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="img-lightbox-title" style="position:fixed;inset:0;background:rgba(0,0,0,.75);align-items:center;justify-content:center;z-index:9999;padding:20px">
 				<div style="position:relative;max-width:min(1200px,90vw);max-height:90vh">
 					<img id="img-lightbox-img" alt="" style="display:block;max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)" />
 					<button id="img-lightbox-close" aria-label="Close" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:8px;padding:6px 10px;cursor:pointer">✕</button>
@@ -140,13 +140,16 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				const lb=document.getElementById('img-lightbox');
 				const lbImg=document.getElementById('img-lightbox-img');
 				const lbClose=document.getElementById('img-lightbox-close');
+				function hideLb(){ if(lb){ lb.hidden=true; lb.style.display='none'; } }
+				function showLb(src){ if(lb && lbImg){ lbImg.src=src; lb.hidden=false; lb.style.display='flex'; } }
 				document.querySelectorAll('img.enlargeable')?.forEach((img)=>{
 					img.addEventListener('click',()=>{
-						if(lb && lbImg){ lbImg.src = (img as HTMLImageElement).src; lb.hidden=false; (window).dataLayer.push({event:'image_maximize', src: lbImg.src}); }
+						showLb((img as HTMLImageElement).src);
+						(window).dataLayer.push({event:'image_maximize', src: (img as HTMLImageElement).src});
 					});
 				});
-				lbClose?.addEventListener('click',()=>{ if(lb){ lb.hidden=true; } });
-				lb?.addEventListener('click',(e)=>{ if(e.target===lb){ lb.hidden=true; } });
+				lbClose?.addEventListener('click',hideLb);
+				lb?.addEventListener('click',(e)=>{ if(e.target===lb){ hideLb(); } });
 				// Delegate clicks for data-ev anchors/placeholders
 				document.addEventListener('click',(e)=>{
 					const t=(e.target as HTMLElement)?.closest('[data-ev]') as HTMLElement|null;
