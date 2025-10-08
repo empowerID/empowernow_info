@@ -1,140 +1,291 @@
 /* ============================================
-   ENHANCED STUDIO BAR
+   ENHANCED STUDIO BAR - NeonFlux Design
 ============================================ */
 
 .studio-bar {
-  position: sticky;
-  top: 72px;
-  z-index: 50;
-  background: linear-gradient(
-    135deg,
-    rgba(8, 18, 40, 0.92) 0%,
-    rgba(11, 24, 48, 0.90) 50%,
-    rgba(14, 30, 56, 0.88) 100%
-  );
-  backdrop-filter: blur(24px) saturate(120%);
-  -webkit-backdrop-filter: blur(24px) saturate(120%);
-  border-top: 1px solid rgba(0, 231, 246, 0.15);
-  border-bottom: 2px solid rgba(0, 231, 246, 0.25);
-  box-shadow: 
-    0 4px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 0 30px rgba(0, 231, 246, 0.08);
-  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-/* Gradient hairline at top */
-.studio-bar::before {
-  content: "";
-  position: absolute;
+  position: fixed;
+  top: -100px;
   left: 0;
   right: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(108, 76, 255, 0.3) 20%,
-    rgba(0, 231, 246, 0.5) 50%,
-    rgba(179, 38, 255, 0.3) 80%,
-    transparent 100%
-  );
-  pointer-events: none;
+  z-index: 900;
+  background: rgba(11, 28, 61, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 231, 246, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translateY(0);
+  opacity: 0;
 }
 
+.studio-bar.is-sticky {
+  top: 64px;
+  opacity: 1;
+}
+
+.studio-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 16px;
+  min-height: 64px;
+}
+
+/* Studio Brand (Icon + Title) */
 .studio-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  color: var(--text-primary);
-  white-space: nowrap;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
+.studio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.studio-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.studio-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.studio-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary, #E8ECFF);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* Studio Tabs (Navigation Buttons) */
 .studio-tabs {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
   overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 231, 246, 0.3) transparent;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
 .studio-tabs::-webkit-scrollbar {
-  height: 4px;
+  display: none;
 }
 
-.studio-tabs::-webkit-scrollbar-thumb {
-  background: rgba(0, 231, 246, 0.3);
-  border-radius: 2px;
+.studio-tabs li {
+  flex-shrink: 0;
 }
 
-.studio-tabs a {
-  display: block;
+/* Studio Tab Button - NeonFlux Style */
+.studio-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px 18px;
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  color: var(--text-secondary, #B3BCD2);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-decoration: none !important;
   white-space: nowrap;
+  transition: all 0.25s ease;
   position: relative;
+  overflow: hidden;
 }
 
-.studio-tabs a:hover {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.05);
+.studio-tab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan, #00E7F6), var(--violet, #6C4CFF));
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.studio-tabs a.active,
-.studio-tabs a:target {
-  color: rgba(0, 231, 246, 1);
+.studio-tab-btn:hover {
+  color: var(--cyan, #00E7F6);
   background: rgba(0, 231, 246, 0.08);
-  border-bottom: 2px solid rgba(0, 231, 246, 0.8);
+  border-color: rgba(0, 231, 246, 0.3);
+  transform: translateY(-1px);
 }
 
+.studio-tab-btn:hover::before {
+  opacity: 0.6;
+}
+
+.studio-tab-btn:focus-visible {
+  outline: 2px solid var(--cyan, #00E7F6);
+  outline-offset: 2px;
+}
+
+.studio-tab-btn.is-active {
+  color: var(--cyan, #00E7F6);
+  background: rgba(0, 231, 246, 0.12);
+  border-color: rgba(0, 231, 246, 0.4);
+  box-shadow: 0 0 20px rgba(0, 231, 246, 0.2);
+}
+
+.studio-tab-btn.is-active::before {
+  opacity: 1;
+}
+
+/* Studio CTA (Docs Button) */
 .studio-cta {
   display: flex;
+  align-items: center;
   gap: 12px;
-  margin-left: auto;
+  flex-shrink: 0;
 }
 
-/* Adjust studio bar position when nav is floating */
-nav.navbar[data-scrolled="true"] ~ main .studio-bar,
-body[data-nav-floating="true"] .studio-bar {
-  top: 64px;
+.btn-docs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary, #E8ECFF);
+  background: rgba(108, 76, 255, 0.12);
+  border: 1px solid rgba(108, 76, 255, 0.3);
+  border-radius: 10px;
+  text-decoration: none !important;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-docs svg {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.btn-docs:hover {
+  background: rgba(108, 76, 255, 0.2);
+  border-color: rgba(108, 76, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(108, 76, 255, 0.25);
+}
+
+.btn-docs:hover svg {
+  transform: translateX(2px);
+}
+
+.btn-docs:focus-visible {
+  outline: 2px solid var(--violet, #6C4CFF);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .studio-title {
+    display: none; /* Hide title on tablets */
+  }
 }
 
 @media (max-width: 768px) {
-  .studio-bar {
-    top: 56px;
+  .studio-bar.is-sticky {
+    top: 60px; /* Adjust for smaller nav */
   }
-  
-  .studio-brand {
-    font-size: 14px;
+
+  .studio-bar-inner {
+    gap: 12px;
+    padding: 8px 12px;
+    min-height: 56px;
   }
-  
-  .studio-cta {
-    display: none;
+
+  .studio-icon {
+    width: 24px;
+    height: 24px;
   }
-  
-  .studio-tabs a {
+
+  .studio-tabs {
+    gap: 6px;
+  }
+
+  .studio-tab-btn {
     padding: 8px 14px;
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .btn-docs {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .btn-docs span {
+    display: none; /* Icon only on mobile */
   }
 }
 
 @media (max-width: 480px) {
-  .studio-tabs {
-    gap: 2px;
+  .studio-brand {
+    gap: 8px;
   }
-  
-  .studio-tabs a {
-    padding: 8px 12px;
-    font-size: 13px;
+
+  .studio-tabs {
+    gap: 4px;
+  }
+
+  .studio-tab-btn {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Scroll fade indicators */
+.studio-tabs::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to left, rgba(11, 28, 61, 0.85), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .studio-tabs::after {
+    opacity: 1;
+  }
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 140px; /* Account for both navs */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .studio-tab-btn,
+  .btn-docs {
+    transition: none;
   }
 }
 
