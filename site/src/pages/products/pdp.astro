@@ -2,20 +2,22 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
-const title = 'PDP | EmpowerNow';
-const description = 'Policy decisions with standardized constraints/obligations/TTL—budgets, content, egress, params—enforced by gateways and apps.';
+const title = 'OpenID AuthZEN–compliant PDP | EmpowerNow';
+const description = 'Interoperable JSON decisions for gateways/services. EmpowerNow extensions add constraints, obligations, and TTL. Built for AI agents and Hybrid ReBAC.';
 const canonical = '/products/pdp/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"AuthZEN PDP","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site)};
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="pdp" productIcon="🛡️" eyebrow="🛡️ PDP" headline="PDP" subhead="Standardized decisions with constraints, obligations, and TTL." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'One decision contract across agents/apps', 'Budget 402, content & egress limits, param allow‑lists', 'Conservative merge across policy layers', 'Explainable decisions with cache‑friendly TTL' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','oidc','caep' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="pdp" productIcon="🛡️" eyebrow="🛡️ PDP" headline="OpenID AuthZEN–compliant PDP" subhead="Interoperable JSON decisions for gateways and services. EmpowerNow extensions add constraints, obligations, and TTL." targetICP={[ 'Platform Teams', 'Security Architects', 'IAM' ]} keyBenefits={[ 'AuthZEN interop: one decision contract across apps/PEPs', 'AI Agent guardrails: Budget 402, streaming caps, egress/model allow‑lists', 'Hybrid ReBAC + ABAC via Membership Service PIP', 'Explainable decisions + signed receipts' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} tertiaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/website_copy/primers/primer_pdp_authzen', label: 'Primer: AuthZEN' } ]} wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' }, { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'authzen','oidc','caep','rebac','ai agents' ]}>
         <fragment slot="standards">
             <div class="status-row">
+                <a class="chip chip--outline-cyan" href={`https://openid.net/wg/authzen/`}>AuthZEN WG</a>
                 <a class="chip chip--outline-cyan" href={`${import.meta.env.BASE_URL}resources/standards/authzen-draft04/`}>AuthZEN Draft‑04</a>
                 <a class="chip chip--outline-cyan" href={`${import.meta.env.BASE_URL}resources/standards/oidc/`}>OIDC</a>
                 <a class="chip chip--outline-cyan" href={`${import.meta.env.BASE_URL}resources/standards/caep/`}>CAEP</a>
             </div>
+            <p style="color:#9ba3b7;margin-top:6px">Compatible with AuthZEN decision exchange; EmpowerNow decision extensions (constraints, obligations, TTL) enable practical enforcement.</p>
         </fragment>
         <fragment slot="examples">
             <div class="card-grid">
@@ -26,7 +28,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
-                <p style="color:#9ba3b7">Services call PDP with subject, resource, action, and context. PDP evaluates policy and returns a decision with constraints/obligations, TTL, and reasons for audit.
+				<p style="color:#9ba3b7">Subject/Resource/Action/Context → PDP → Decision. PEPs enforce constraints (sync) and obligations (async). Batch decisions, TTL caching, and conservative merge across policy layers.
                 </p>
 				<div class="panel-glass" style="padding:12px;margin-top:8px">
 					<strong>Batch decisions = fewer round‑trips, lower latency.</strong>
@@ -48,27 +50,61 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</div>
 			</section>
 			<section class="container" style="padding:8px 0 24px">
-				<h2 class="section-title">Decisions you can explain</h2>
-				<p style="color:#9ba3b7;max-width:90ch">PDP returns constraints and clear reasons, not just allow/deny—so security, engineering, and auditors share the same facts.</p>
+				<h2 class="section-title">AuthZEN compliance</h2>
+				<p style="color:#9ba3b7;max-width:90ch">Compatible with AuthZEN decision exchange across PDP/PEP/PIP/PAP. We keep ABAC; you adopt interoperable JSON. EmpowerNow adds decision extensions (constraints, obligations, TTL) for practical enforcement.</p>
+				<div class="status-row" style="margin-top:6px"><a class="chip chip--outline-cyan" href={`https://openid.net/wg/authzen/`}>OpenID AuthZEN WG</a></div>
+				<p style="color:#687089;margin-top:6px">Note: Extensions are product‑level and not part of the current AuthZEN spec.</p>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">AI Agent governance</h2>
+				<ul style="color:#9ba3b7;line-height:1.8">
+					<li>Budget holds and settle; HTTP 402 upgrade CTA</li>
+					<li>Model routing to mini; streaming token caps</li>
+					<li>Egress/model allow‑lists; consent obligations at issuance</li>
+				</ul>
+				<h3 style="margin-top:8px">Decision example (EmpowerNow extensions)</h3>
+				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "decision": "Permit",
+  "ttl": 3000,
+  "constraints": {
+    "models_allow": ["gpt-4o-mini"],
+    "egress_allow": ["*.example.com"],
+    "stream_tokens_max": 2048
+  },
+  "obligations": [
+    { "type": "budget_hold", "limit_usd": 2.00, "call_id": "abc-123" }
+  ],
+  "reasons": ["policy:agent.tools.invoke"]
+}
+`}</code></pre>
+			</section>
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">Hybrid ReBAC with Membership Service</h2>
+				<p style="color:#9ba3b7;max-width:90ch">Combine ABAC attributes with relationship edges (delegations, teams, ownership) from the Neo4j‑backed Membership Service PIP for dynamic, auditable access.</p>
+				<h3 style="margin-top:8px">Relationship data shape</h3>
+				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
+{
+  "relationships": [
+    { "type": "member_of_team", "subject": "user_123", "object": "team_finance" },
+    { "type": "delegates_to", "subject": "manager_9", "object": "user_123", "capabilities": ["approve"], "status": "active" }
+  ]
+}
+`}</code></pre>
 			</section>
             <section class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Proof</h2>
                 <ul style="color:#9ba3b7;line-height:1.8">
-                    <li>Explained decisions (what/why) link to receipts</li>
-                    <li>Budget/content/params enforced via obligations</li>
-                    <li>Integrates with Inventory freshness/lineage as PIP</li>
+                    <li>Explainable decisions with reasons; every action emits a signed receipt</li>
+                    <li>Budget/content/params enforced via constraints and obligations</li>
+                    <li>Integrates with Membership Service (ReBAC) and Inventory/Search as PIPs</li>
                 </ul>
-                <h3 style="margin-top:8px">Decision example (AuthZEN)</h3>
-                <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
-{
-  "decision": "Permit",
-  "constraints": [{ "id": "stream_tokens_max", "value": 2048 }],
-  "obligations": [{ "id": "budget_hold", "call_id": "abc-123", "limit_usd": 1.50 }],
-  "ttl_ms": 5000,
-  "reasons": ["policy:agent.tools.invoke"],
-  "version": "authzen-2025-09"
-}
-`}</code></pre>
+                <div class="panel-glass" style="padding:12px;margin-top:8px">
+                    <strong>Deep dive</strong>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+                        <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/pdp/deep-dive/`}>PDP architecture, PIPs, PEPs, budgeting, analytics →</a>
+                    </div>
+                </div>
             </section>
             <section class="container" style="padding:8px 0 24px">
             <div class="panel-glass" style="padding:12px">

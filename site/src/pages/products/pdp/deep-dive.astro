@@ -1,0 +1,61 @@
+---
+import Base from '../../../layouts/Base.astro';
+const title = 'PDP Deep Dive — Architecture, PIPs, PEPs, AI Governance';
+const description = 'Policy hierarchy (Global→Domain→App), PIPs (Membership, Analytics/Budget, Inventory/Search), PEP roles, budgeting lifecycle, content classification, UBA, and receipts.';
+const canonical = '/products/pdp/deep-dive/';
+---
+<Base title={title} description={description} canonical={canonical}>
+  <section class="container" style="padding:48px 0 16px">
+    <h1 class="display" style="margin:0 0 10px">PDP Deep Dive</h1>
+    <p style="color:#9ba3b7;max-width:90ch">Architecture and operations: policy hierarchy, PIPs, PEPs, budgeting lifecycle, content classification, behavior analytics, and receipts.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <a class="btn btn-ghost" href={`$${'{'}import.meta.env.BASE_URL{'}'}products/pdp/`}>← PDP product page</a>
+    </div>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Policy hierarchy</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>Global policies</strong>: baseline rules; backward compatible defaults.</li>
+      <li><strong>Domains</strong>: group related systems; define common resource types/actions; can override apps.</li>
+      <li><strong>Applications</strong>: app‑specific policy; allowed actions/resources, custom validation, and PIP selection; optional inheritance.</li>
+    </ul>
+    <p style="color:#9ba3b7;margin-top:8px">Doctrine in YAML (immutable); runtime parameters (e.g., budgets) in JSON on delegation edges. Short‑circuit by <code>PDP_application</code> attribute; denies override allows.</p>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">PIPs</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>Membership Service (Neo4j)</strong>: identities, relationships, delegations for Hybrid ReBAC.</li>
+      <li><strong>Analytics/Budget</strong>: daily/monthly limits; state from Kafka/Redis/ClickHouse.</li>
+      <li><strong>Inventory/Search</strong>: freshness, lineage; contextual attributes.</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">PEPs</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>ARIA Shield / BFF</strong>: super PEP for users and AI agents; budget enforcement; model routing.</li>
+      <li><strong>MCP Gateway</strong>: controls tool access; plan discipline and schema pinning.</li>
+      <li><strong>IdP</strong>: issuance obligations (e.g., consent on OBO token exchange).</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Budget lifecycle</h2>
+    <ol style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>Pre‑gate (PDP)</strong>: evaluate budget against live Analytics state; may return <code>budget_hold</code> obligation.</li>
+      <li><strong>Execute (PEP)</strong>: enforce constraints (stream caps, model allow‑list).</li>
+      <li><strong>Settle (PEP)</strong>: reconcile actual usage; release/charge hold.</li>
+    </ol>
+  </section>
+  <section class="container" style="padding:8px 0 24px">
+    <h2 class="section-title">Content classification & behavior analytics</h2>
+    <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0">
+      <li><strong>Classification</strong>: real‑time BERT Distil; batch deep analysis (“lazy mode”).</li>
+      <li><strong>Behavior</strong>: UBA with PGVector; outlier detection; prompt quality scoring.</li>
+    </ul>
+  </section>
+  <section class="container" style="padding:8px 0 64px">
+    <h2 class="section-title">Receipts</h2>
+    <p style="color:#9ba3b7;max-width:90ch">All decisions/actions produce signed, hash‑chained receipts for tamper‑evident audit.</p>
+  </section>
+</Base>
+
+
