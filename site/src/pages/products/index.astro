@@ -31,7 +31,7 @@ const canonical = '/products/';
             <div class="panel-glow" data-cat="build" style="padding:16px; grid-column: span 2">
                 <div class="product-rail rail--crud" aria-hidden="true"></div>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUD Service</h3></div>
-                <div style="color:#9ba3b7;margin:6px 0 10px">Turn any API/DB into agent‑safe tools (schema pins + policy hooks). Publish once to MCP / Copilot / OpenAI Functions.</div>
+                <div style="color:#9ba3b7;margin:6px 0 10px">Turn any API/DB into agent‑safe tools (schema pins + policy hooks). Publish once to MCP / Microsoft Copilot / OpenAI Functions.</div>
                 <div id="products-crud-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
                     <div class="block-ghost">
                         <div class="meta">Without CRUD Service</div>
@@ -254,14 +254,14 @@ const canonical = '/products/';
                     },{threshold:.6});
                     io.observe(sample);
                 }
-                const compare=document.querySelector('#products-crud-compare')||document.querySelector('div.glass-card h3:nth-child(1)');
+                const compare=document.querySelector('#products-crud-compare')||document.querySelector('.panel-glow .meta');
                 if(compare && 'IntersectionObserver' in window){
                     const io=new IntersectionObserver((entries)=>{
                         entries.forEach(e=>{ if(e.isIntersecting){ (window).dataLayer.push({event:'crud_compare_view'}); io.disconnect(); } });
                     },{threshold:.35});
                     io.observe(compare as Element);
                 }
-                const crudCard=document.querySelector('h3:contains("CRUDService")')?.parentElement?.parentElement;
+                const crudCard=document.querySelector('.panel-glow .product-rail.rail--crud')?.parentElement;
                 let t0=0; let sent=false;
                 function onIn(){ if(!sent){ t0=performance.now(); } }
                 function onOut(){ if(!sent && t0){ const ms=Math.round(performance.now()-t0); (window).dataLayer.push({event:'section_time', section:'crud_service', ms}); sent=true; } }
