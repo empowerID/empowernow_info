@@ -65,12 +65,12 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			<section class="container" id="crud-publish-many" style="padding:8px 0 24px">
 				<h2 class="section-title">No‑code connectors</h2>
 				<p style="color:#9ba3b7">Connect Entra/Okta/AD/ServiceNow/Salesforce/SAP and custom APIs in minutes — no code. Author parameters once; enforce policy hooks everywhere.</p>
-				<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a><img src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_list.png`} alt="Catalog of configured systems" width="360" height="202" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft)" /></div>
+				<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a><img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_list.png`} alt="Catalog of configured systems" width="360" height="202" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft);cursor:zoom-in" /></div>
 			</section>
 			<section class="container" id="crud-compare" style="padding:8px 0 24px">
 				<h2 class="section-title">Author once → publish many</h2>
 				<p style="color:#9ba3b7">Turn any API/DB into agent‑safe tools and resources; publish across platforms with policy hooks: Anthropic MCP, OpenAI Functions, Microsoft Copilot, Google Vertex, AWS Bedrock, LangChain/LangGraph.</p>
-				<div style="margin-top:8px"><img src={`${import.meta.env.BASE_URL}images/products/crud/mcp_prompts.png`} alt="MCP prompts catalog with tags" width="520" height="292" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft)" /></div>
+				<div style="margin-top:8px"><img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/mcp_prompts.png`} alt="MCP prompts catalog with tags" width="520" height="292" loading="lazy" style="border-radius:10px;border:1px solid var(--border-soft);cursor:zoom-in" /></div>
 			</section>
 			<section class="container" id="crud-proof" style="padding:8px 0 24px">
 				<h2 class="section-title">With vs Without CRUD Service</h2>
@@ -108,13 +108,20 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				<h2 class="section-title">Product shots</h2>
 				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 					<div class="glass-card" style="padding:8px;min-height:200px" aria-label="Visual workflow designer">
-						<img src={`${import.meta.env.BASE_URL}images/products/crud/workflow_designfull.png`} alt="Visual workflow designer showing nodes and edges" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px" />
+						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/workflow_designfull.png`} alt="Visual workflow designer showing nodes and edges" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
 					</div>
 					<div class="glass-card" style="padding:8px;min-height:200px" aria-label="Connector designer (Publish as MCP Tools/Resources)">
-						<img src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_fieldglass_designer.png`} alt="No‑code connector designer listing API commands" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px" />
+						<img class="enlargeable" src={`${import.meta.env.BASE_URL}images/products/crud/systemdefinitions_fieldglass_designer.png`} alt="No‑code connector designer listing API commands" width="720" height="405" loading="lazy" style="display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in" />
 					</div>
 				</div>
 			</section>
+			<!-- Lightbox modal for maximizing images -->
+			<div id="img-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="img-lightbox-title" style="position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px">
+				<div style="position:relative;max-width:min(1200px,90vw);max-height:90vh">
+					<img id="img-lightbox-img" alt="" style="display:block;max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)" />
+					<button id="img-lightbox-close" aria-label="Close" style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:8px;padding:6px 10px;cursor:pointer">✕</button>
+				</div>
+			</div>
 		</fragment>
 	</Product>
 	<script>
@@ -129,6 +136,17 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					},{threshold:.5});
 					io.observe(shots);
 				}
+				// Simple lightbox for images
+				const lb=document.getElementById('img-lightbox');
+				const lbImg=document.getElementById('img-lightbox-img');
+				const lbClose=document.getElementById('img-lightbox-close');
+				document.querySelectorAll('img.enlargeable')?.forEach((img)=>{
+					img.addEventListener('click',()=>{
+						if(lb && lbImg){ lbImg.src = (img as HTMLImageElement).src; lb.hidden=false; (window).dataLayer.push({event:'image_maximize', src: lbImg.src}); }
+					});
+				});
+				lbClose?.addEventListener('click',()=>{ if(lb){ lb.hidden=true; } });
+				lb?.addEventListener('click',(e)=>{ if(e.target===lb){ lb.hidden=true; } });
 				// Delegate clicks for data-ev anchors/placeholders
 				document.addEventListener('click',(e)=>{
 					const t=(e.target as HTMLElement)?.closest('[data-ev]') as HTMLElement|null;
