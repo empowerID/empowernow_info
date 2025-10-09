@@ -5,6 +5,7 @@ export async function getStaticPaths() {
 }
 const { slug } = Astro.params as { slug: string };
 import Base from '../../../layouts/Base.astro';
+import BreadcrumbsJsonLd from '../../../components/BreadcrumbsJsonLd.astro';
 const pretty = slug
   .replace('oidc','OpenID Connect (OIDC)')
   .replace('rar','Rich Authorization Requests (RAR)')
@@ -78,11 +79,21 @@ const nextLabel = nextSlug ? label(nextSlug) : null;
 const base = import.meta.env.BASE_URL;
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="container" style="padding:96px 0 24px">
-		<h1 class="display" style="margin:0 0 8px">{title}</h1>
-		<p style="color:#9ba3b7">{pageIntro}</p>
-	</section>
-    <section class="container" style="padding:0 0 16px">
+	<BreadcrumbsJsonLd items={[
+		{name:'Resources',item:`${base}resources/`},
+		{name:'Standards',item:`${base}resources/standards/`},
+		{name:pretty,item:`${base}resources/standards/${slug}/`}
+	]} />
+	
+	<header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+		<div class="container" style="position:relative;z-index:1">
+			<div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">STANDARD</div>
+			<h1 class="display" style={`margin:0 0 16px;font-size:clamp(2.25rem,4.5vw,3.6rem)`}>{title}</h1>
+			<p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>{pageIntro}</p>
+		</div>
+	</header>
+
+    <section class="container" style="padding:48px 0 16px">
         <a class="btn btn-ghost" href={`${base}resources/standards/`}>← All standards</a>
     </section>
     <section class="container" style="padding:8px 0 80px">
