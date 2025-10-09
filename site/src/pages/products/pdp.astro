@@ -73,17 +73,189 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					<p style="color:#9ba3b7;margin:6px 0 0">Send multiple checks in one call for faster pages and smoother agent runs.</p>
 				</div>
 				<div class="diagram vignette" style="margin-top:12px">
-					<div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px;position:relative;z-index:1">
-						<div class="node">Subject</div>
-						<div class="flow"></div>
-						<div class="node">Resource</div>
-						<div class="flow"></div>
-						<div class="node">Action</div>
-					</div>
-					<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin-top:10px;position:relative;z-index:1">
-						<div class="node">Context</div>
-						<div class="node pdp">PDP</div>
-						<div class="node">Decision</div>
+					<div style="width:100%;padding:12px;border-radius:12px;background-image:linear-gradient(135deg,#020617,#0a1226 40%,#020617);overflow:auto">
+						<style>
+							@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+							@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+							@keyframes flowDown{0%{stroke-dashoffset:1000}100%{stroke-dashoffset:0}}
+							@keyframes gentleGlow{0%,100%{filter:drop-shadow(0 0 12px rgba(255,217,61,.6))}50%{filter:drop-shadow(0 0 20px rgba(255,217,61,.9))}}
+							.float{animation:float 4s ease-in-out infinite}
+							.pulse{animation:pulse 2s ease-in-out infinite}
+							.flow{stroke-dasharray:15 10;animation:flowDown 2s linear infinite}
+							.gentleGlow{animation:gentleGlow 2s ease-in-out infinite}
+						</style>
+						<div style="width:100%;max-width:1600px;margin:0 auto">
+							<svg viewBox="0 0 1600 1220" xmlns="http://www.w3.org/2000/svg">
+								<defs>
+									<linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" stop-color="#FFD93D"/>
+										<stop offset="50%" stop-color="#FFFFFF"/>
+										<stop offset="100%" stop-color="#FFD93D"/>
+									</linearGradient>
+									<linearGradient id="layerGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+										<stop offset="0%" stop-color="#1a4d5e" stop-opacity="0.95"/>
+										<stop offset="100%" stop-color="#0d2631" stop-opacity="0.95"/>
+									</linearGradient>
+									<linearGradient id="layerGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+										<stop offset="0%" stop-color="#5e1d5e" stop-opacity="0.95"/>
+										<stop offset="100%" stop-color="#3a0d52" stop-opacity="0.95"/>
+									</linearGradient>
+									<linearGradient id="layerGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+										<stop offset="0%" stop-color="#1d5e3a" stop-opacity="0.95"/>
+										<stop offset="100%" stop-color="#0d3120" stop-opacity="0.95"/>
+									</linearGradient>
+									<linearGradient id="innovationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+										<stop offset="0%" stop-color="#FF6B35"/>
+										<stop offset="100%" stop-color="#FFD93D"/>
+									</linearGradient>
+									<filter id="glow">
+										<feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+										<feMerge>
+											<feMergeNode in="coloredBlur"/>
+											<feMergeNode in="SourceGraphic"/>
+										</feMerge>
+									</filter>
+									<filter id="glowStrong">
+										<feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+										<feMerge>
+											<feMergeNode in="coloredBlur"/>
+											<feMergeNode in="SourceGraphic"/>
+										</feMerge>
+									</filter>
+									<marker id="arrowYellow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+										<path d="M0,0 L0,8 L10,4 z" fill="#FFD93D"/>
+									</marker>
+									<marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+										<path d="M0,0 L0,8 L10,4 z" fill="#FF66FF"/>
+									</marker>
+									<marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+										<path d="M0,0 L0,8 L10,4 z" fill="#00FFA3"/>
+									</marker>
+								</defs>
+								<text x="800" y="45" fill="#1A2332" font-size="52" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">Graph-Anchored ABAC</text>
+								<text x="800" y="75" fill="url(#titleGrad)" font-size="52" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">Graph-Anchored ABAC</text>
+								<text x="800" y="105" fill="#E8EDF5" font-size="18" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Patent-Pending Hybrid: ReBAC Speed + ABAC Expressiveness</text>
+								<g class="gentleGlow">
+									<rect x="1280" y="20" width="280" height="100" rx="16" fill="url(#innovationGrad)" stroke="#FFD93D" stroke-width="4" filter="url(#glowStrong)"/>
+									<text x="1420" y="55" fill="#0A0E27" font-size="20" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">🚀 THE INNOVATION</text>
+									<text x="1420" y="78" fill="#0A0E27" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Policies ARE graph nodes</text>
+									<text x="1420" y="98" fill="#0A0E27" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">WITH pointers to ABAC</text>
+								</g>
+								<g>
+									<rect x="40" y="140" width="380" height="200" rx="12" fill="rgba(255, 107, 53, 0.15)" stroke="#FF6B35" stroke-width="3"/>
+									<text x="230" y="170" fill="#FF6B35" font-size="18" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">❌ TRADITIONAL ABAC</text>
+									<text x="60" y="200" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• Flat policy lookup</text>
+									<text x="75" y="220" fill="#C5D5E8" font-size="12" font-family="system-ui, -apple-system">No relationships = no context</text>
+									<text x="60" y="250" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• External policy store only</text>
+									<text x="75" y="270" fill="#C5D5E8" font-size="12" font-family="system-ui, -apple-system">Separate DB query per decision</text>
+									<text x="60" y="300" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• Limited expressiveness</text>
+									<text x="75" y="320" fill="#FF6B35" font-size="13" font-weight="700" font-family="system-ui, -apple-system">Can't leverage graph topology</text>
+								</g>
+								<text x="230" y="380" fill="#FFD93D" font-size="36" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">VS</text>
+								<g>
+									<rect x="40" y="400" width="380" height="200" rx="12" fill="rgba(0, 255, 163, 0.15)" stroke="#00FFA3" stroke-width="3"/>
+									<text x="230" y="430" fill="#00FFA3" font-size="18" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">✅ GRAPH-ANCHORED ABAC</text>
+									<text x="60" y="460" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• Graph traversal first</text>
+									<text x="75" y="480" fill="#C5D5E8" font-size="12" font-family="system-ui, -apple-system">Relationships provide context</text>
+									<text x="60" y="510" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• Policies IN graph + pointers</text>
+									<text x="75" y="530" fill="#C5D5E8" font-size="12" font-family="system-ui, -apple-system">Single query, rich rules</text>
+									<text x="60" y="560" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">• Best of both worlds</text>
+									<text x="75" y="580" fill="#00FFA3" font-size="13" font-weight="700" font-family="system-ui, -apple-system">Speed + Expressiveness 🚀</text>
+								</g>
+								<g class="float">
+									<rect x="470" y="140" width="1090" height="220" rx="16" fill="url(#layerGrad1)" stroke="#00E7F6" stroke-width="4" filter="url(#glow)"/>
+									<text x="500" y="175" fill="#00E7F6" font-size="26" font-weight="900" font-family="system-ui, -apple-system">STEP 1: GRAPH LAYER (ReBAC)</text>
+									<text x="500" y="200" fill="#E8EDF5" font-size="15" font-weight="600" font-family="system-ui, -apple-system">Fast relationship traversal • Identity topology • Neo4j</text>
+									<g transform="translate(570, 260)">
+										<circle cx="0" cy="0" r="40" fill="rgba(0, 231, 246, 0.25)" stroke="#00E7F6" stroke-width="4" filter="url(#glow)"/>
+										<circle cx="0" cy="-10" r="12" fill="none" stroke="#00E7F6" stroke-width="3"/>
+										<path d="M -14 14 Q 0 8 14 14" fill="none" stroke="#00E7F6" stroke-width="3" stroke-linecap="round"/>
+										<text x="0" y="62" fill="#00E7F6" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Patrick</text>
+									</g>
+									<g transform="translate(820, 260)">
+										<circle cx="0" cy="0" r="40" fill="rgba(0, 231, 246, 0.25)" stroke="#00E7F6" stroke-width="4" filter="url(#glow)"/>
+										<circle cx="0" cy="0" r="22" fill="none" stroke="#00E7F6" stroke-width="3"/>
+										<circle cx="0" cy="0" r="12" fill="none" stroke="#00E7F6" stroke-width="2"/>
+										<text x="0" y="62" fill="#00E7F6" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">AITravel</text>
+									</g>
+									<g transform="translate(1070, 260)">
+										<rect x="-35" y="-30" width="70" height="60" rx="10" fill="rgba(0, 231, 246, 0.25)" stroke="#00E7F6" stroke-width="4" filter="url(#glow)"/>
+										<line x1="-20" y1="-12" x2="20" y2="-12" stroke="#00E7F6" stroke-width="3"/>
+										<line x1="-20" y1="0" x2="20" y2="0" stroke="#00E7F6" stroke-width="3"/>
+										<line x1="-20" y1="12" x2="10" y2="12" stroke="#00E7F6" stroke-width="3"/>
+										<text x="0" y="62" fill="#00E7F6" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Flight</text>
+									</g>
+									<line x1="610" y1="260" x2="780" y2="260" stroke="#FFD93D" stroke-width="6" marker-end="url(#arrowYellow)" filter="url(#glow)"/>
+									<text x="695" y="245" fill="#FFD93D" font-size="15" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">DELEGATES_TO</text>
+									<line x1="860" y1="260" x2="1030" y2="260" stroke="#00FFA3" stroke-width="6" marker-end="url(#arrowGreen)" filter="url(#glow)"/>
+									<text x="945" y="245" fill="#00FFA3" font-size="15" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">HAS_CAPABILITY</text>
+								</g>
+								<line x1="1015" y1="370" x2="1015" y2="420" stroke="#FFD93D" stroke-width="8" marker-end="url(#arrowYellow)" filter="url(#glowStrong)" class="pulse"/>
+								<g class="float">
+									<rect x="470" y="430" width="1090" height="240" rx="16" fill="url(#layerGrad2)" stroke="#FF66FF" stroke-width="4" filter="url(#glowStrong)"/>
+									<text x="500" y="465" fill="#FF66FF" font-size="26" font-weight="900" font-family="system-ui, -apple-system">STEP 2: POLICY ANCHOR LAYER ⚓</text>
+									<text x="500" y="490" fill="#E8EDF5" font-size="15" font-weight="600" font-family="system-ui, -apple-system">THE INNOVATION: Policy nodes embedded IN the graph</text>
+									<text x="500" y="510" fill="#E8EDF5" font-size="15" font-weight="600" font-family="system-ui, -apple-system">Each node points to external ABAC documents • Enables conflict resolution</text>
+									<g transform="translate(600, 590)">
+										<circle cx="0" cy="0" r="50" fill="rgba(255, 102, 255, 0.3)" stroke="#FF66FF" stroke-width="5" filter="url(#glowStrong)" class="pulse"/>
+										<text x="0" y="-5" fill="#FF66FF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Policy</text>
+										<text x="0" y="12" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Node</text>
+									</g>
+									<g transform="translate(900, 590)">
+										<circle cx="0" cy="0" r="50" fill="rgba(255, 102, 255, 0.3)" stroke="#FF66FF" stroke-width="5" filter="url(#glowStrong)" class="pulse"/>
+										<text x="0" y="-5" fill="#FF66FF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Policy</text>
+										<text x="0" y="12" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Node</text>
+									</g>
+									<g transform="translate(1200, 590)">
+										<circle cx="0" cy="0" r="50" fill="rgba(255, 102, 255, 0.3)" stroke="#FF66FF" stroke-width="5" filter="url(#glowStrong)" class="pulse"/>
+										<text x="0" y="-5" fill="#FF66FF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Policy</text>
+										<text x="0" y="12" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Node</text>
+									</g>
+									<line x1="820" y1="315" x2="600" y2="540" stroke="#FF66FF" stroke-width="5" stroke-dasharray="10 5" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow"/>
+								</g>
+								<line x1="1015" y1="680" x2="1015" y2="730" stroke="#FFD93D" stroke-width="8" marker-end="url(#arrowYellow)" filter="url(#glowStrong)" class="pulse"/>
+								<g class="float">
+									<rect x="470" y="740" width="1090" height="250" rx="16" fill="url(#layerGrad3)" stroke="#00FFA3" stroke-width="4" filter="url(#glow)"/>
+									<text x="500" y="775" fill="#00FFA3" font-size="26" font-weight="900" font-family="system-ui, -apple-system">STEP 3: ATTRIBUTE LAYER (ABAC)</text>
+									<text x="500" y="800" fill="#E8EDF5" font-size="15" font-weight="600" font-family="system-ui, -apple-system">External policy documents • Rich rules • Version controlled</text>
+									<g transform="translate(540, 880)">
+										<rect x="0" y="0" width="220" height="70" rx="10" fill="rgba(0, 255, 163, 0.2)" stroke="#00FFA3" stroke-width="3"/>
+										<text x="110" y="25" fill="#00FFA3" font-size="16" font-weight="800" text-anchor="middle" font-family="Courier New, monospace">budget.yaml</text>
+										<text x="15" y="45" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">spend_cap: $3000</text>
+										<text x="15" y="62" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">remaining: $2280</text>
+									</g>
+									<g transform="translate(820, 880)">
+										<rect x="0" y="0" width="220" height="70" rx="10" fill="rgba(0, 255, 163, 0.2)" stroke="#00FFA3" stroke-width="3"/>
+										<text x="110" y="25" fill="#00FFA3" font-size="16" font-weight="800" text-anchor="middle" font-family="Courier New, monospace">service.yaml</text>
+										<text x="15" y="45" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">airlines: [AA,UA]</text>
+										<text x="15" y="62" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">class: economy</text>
+									</g>
+									<g transform="translate(1100, 880)">
+										<rect x="0" y="0" width="220" height="70" rx="10" fill="rgba(0, 255, 163, 0.2)" stroke="#00FFA3" stroke-width="3"/>
+										<text x="110" y="25" fill="#00FFA3" font-size="16" font-weight="800" text-anchor="middle" font-family="Courier New, monospace">audit.yaml</text>
+										<text x="15" y="45" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">obligations:</text>
+										<text x="15" y="62" fill="#E8EDF5" font-size="13" font-weight="600" font-family="Courier New, monospace">- log_access</text>
+									</g>
+									<line x1="600" y1="640" x2="630" y2="875" stroke="#00FFA3" stroke-width="6" stroke-dasharray="15 8" marker-end="url(#arrowGreen)" filter="url(#glowStrong)" class="flow"/>
+									<rect x="480" y="820" width="100" height="30" rx="6" fill="rgba(0, 255, 163, 0.15)" stroke="#00FFA3" stroke-width="2"/>
+									<text x="530" y="840" fill="#00FFA3" font-size="13" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">POINTER</text>
+									<line x1="900" y1="640" x2="915" y2="875" stroke="#00FFA3" stroke-width="6" stroke-dasharray="15 8" marker-end="url(#arrowGreen)" filter="url(#glowStrong)" class="flow"/>
+									<rect x="860" y="820" width="100" height="30" rx="6" fill="rgba(0, 255, 163, 0.15)" stroke="#00FFA3" stroke-width="2"/>
+									<text x="910" y="840" fill="#00FFA3" font-size="13" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">POINTER</text>
+									<line x1="1200" y1="640" x2="1200" y2="875" stroke="#00FFA3" stroke-width="6" stroke-dasharray="15 8" marker-end="url(#arrowGreen)" filter="url(#glowStrong)" class="flow"/>
+									<rect x="1150" y="820" width="100" height="30" rx="6" fill="rgba(0, 255, 163, 0.15)" stroke="#00FFA3" stroke-width="2"/>
+									<text x="1200" y="840" fill="#00FFA3" font-size="13" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">POINTER</text>
+								</g>
+								<line x1="1015" y1="1000" x2="1015" y2="1050" stroke="#FFD93D" stroke-width="8" marker-end="url(#arrowYellow)" filter="url(#glowStrong)" class="pulse"/>
+								<g>
+									<rect x="470" y="1060" width="1090" height="80" rx="12" fill="rgba(255, 217, 61, 0.2)" stroke="#FFD93D" stroke-width="4" filter="url(#glowStrong)"/>
+									<text x="1015" y="1095" fill="#FFD93D" font-size="24" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">STEP 4: MERGE POLICIES → CONFLICT RESOLUTION → DECISION ⚖️</text>
+									<text x="1015" y="1125" fill="#E8EDF5" font-size="15" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Hierarchical policy merge with precedence rules • Final authorization decision</text>
+								</g>
+								<text x="800" y="1170" fill="#FFFFFF" font-size="17" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Patent Claim: Policies embedded AS first-class graph nodes + pointers to external ABAC</text>
+								<text x="800" y="1195" fill="#C5D5E8" font-size="15" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">= Best of both worlds: Graph traversal speed + Policy expressiveness</text>
+							</svg>
+						</div>
 					</div>
 				</div>
 			</section>
