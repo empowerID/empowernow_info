@@ -9,7 +9,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="gateway" productIcon="🚦" eyebrow="🚦 ARIA MCP GATEWAY" headline="ARIA MCP Gateway" subhead="Enforce policy everywhere — pre‑exec governance for agents and tools." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Budget caps (402) and per‑route constraints', 'Tool allow‑lists and anti‑injection checks', 'Params/egress allowlists at the edge', 'BFF plumbing without exposing tokens', 'Signed receipts for compliance' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="gateway" eyebrow="ARIA MCP GATEWAY" headline="ARIA MCP Gateway" subhead="Enforce policy everywhere — pre‑exec governance for agents and tools." targetICP={[ 'Platform Teams', 'Security', 'Regulated' ]} keyBenefits={[ 'Budget caps (402) and per‑route constraints', 'Tool allow‑lists and anti‑injection checks', 'Params/egress allowlists at the edge', 'BFF plumbing without exposing tokens', 'Signed receipts for compliance' ]} benefitIcons={[ 'icon-shield-cost.png', 'icon-shield-aria.png', 'icon-lock-nodes.png', 'icon-link-oauth.png', 'icon-receipt.png' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/mcp-gateway/', label: 'MCP Gateway Docs' } ]} wwwLinks={[ { href: '/solutions/agent-safe-tools/', label: 'Agent-Safe Tools' } ]} keywords={[ 'mcp','gateway','pep' ]} heroIllustration="images/illustrations/illustration-cube-panels.png" heroIllustrationAlt="Visual representation of gateway architecture with modular enforcement layers" heroIllustrationWidth={600} heroIllustrationHeight={450}>
 		<fragment slot="cta-after">
             <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
 				<a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read the Strategy Memo →</a>
@@ -19,7 +19,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			</div>
 		</fragment>
 		<fragment slot="how">
-			<section class="container" style="padding:8px 0 24px">
+			<section id="gateway-how-it-works" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<ol class="numbered">
 					<li>Validate ARIA Passport and session.</li>
@@ -28,11 +28,11 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					<li>Write a signed, hash‑chained receipt.</li>
 				</ol>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="gateway-guardrails" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Guardrails at the edge</h2>
-				<p style="color:#9ba3b7;max-width:90ch">Gateway enforces the PDP’s guardrails where calls enter: scope and parameter allow‑lists, egress rules, anti‑injection checks, and budget stops. Safe by default, fast in practice.</p>
+				<p style="color:#9ba3b7;max-width:90ch">Gateway enforces the PDP's guardrails where calls enter: scope and parameter allow‑lists, egress rules, anti‑injection checks, and budget stops. Safe by default, fast in practice.</p>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="gateway-plan-jws" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Plan JWS (per step)</h2>
 				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
 {
@@ -45,7 +45,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 `}</code></pre>
 				<p style="color:#9ba3b7">Gateway verifies the JWS signature and payload fields to ensure the call matches the planned step.</p>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="gateway-schema-pins" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Schema pins & allowlists</h2>
 				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
 {
@@ -56,7 +56,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 `}</code></pre>
 				<p style="color:#9ba3b7">Pins prevent drift; parameters and egress are enforced at the boundary with PDP constraints.</p>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="gateway-budget-control" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Budget control: pre‑gate + settle</h2>
 				<p style="color:#9ba3b7;max-width:90ch">The PDP checks live budgets before a call (no tokens spent). For streams, Shield reserves a cap and truncates output the instant the budget boundary is reached.</p>
 			</section>

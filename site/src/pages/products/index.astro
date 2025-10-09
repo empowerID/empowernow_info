@@ -32,25 +32,38 @@ const canonical = '/products/';
                 <div class="product-rail rail--crud" aria-hidden="true"></div>
                 <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">CRUD Service</h3></div>
                 <div style="color:#9ba3b7;margin:6px 0 10px">Turn any API/DB into agent‑safe tools (schema pins + policy hooks). Publish once to MCP / Microsoft Copilot / OpenAI Functions.</div>
-                <div id="products-crud-compare" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-                    <div class="block-ghost">
-                        <div class="meta">Without CRUD Service</div>
-                        <ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-                            <li>~6 weeks per API integration</li>
-                            <li>Custom code, per platform</li>
-                            <li>One stack at a time</li>
-                            <li>Unclear guardrails</li>
-                        </ul>
-                    </div>
-                    <div class="panel-glass" style="padding:10px">
-                        <div class="meta">With CRUD Service</div>
-                        <ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-                            <li><strong>~5 minutes</strong> from API to tool</li>
-                            <li><strong>No code</strong>, publish once</li>
-                            <li><strong>MCP, Copilot, OpenAI Functions</strong></li>
-                            <li><strong>Schema pins + policy hooks built‑in</strong></li>
-                        </ul>
-                    </div>
+                <div id="products-crud-compare" class="comparison-table-wrapper" style="margin-top:8px">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Without CRUD Service</th>
+                                <th>With CRUD Service</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Time to integrate</td>
+                                <td>~6 weeks per API integration</td>
+                                <td><strong>~5 minutes</strong> from API to tool</td>
+                            </tr>
+                            <tr>
+                                <td>Development</td>
+                                <td>Custom code, per platform</td>
+                                <td><strong>No code</strong>, publish once</td>
+                            </tr>
+                            <tr>
+                                <td>Platform support</td>
+                                <td>One stack at a time</td>
+                                <td><strong>MCP, Copilot, OpenAI Functions</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Governance</td>
+                                <td>Unclear guardrails</td>
+                                <td><strong>Schema pins + policy hooks built‑in</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div style="margin-top:8px;color:#9ba3b7;font-size:.85rem">Times are representative; shown live in demo.</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><a class="btn btn-primary" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Quickstart</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/crud/`}>Open product</a></div>
@@ -200,17 +213,61 @@ const canonical = '/products/';
     </section>
     <section class="container" style="padding:64px 0">
         <h2 class="section-title">Included by tier</h2>
-        <div class="glass-card" style="padding:16px">
-            <div style="display:grid;grid-template-columns:180px repeat(3,140px);gap:8px;align-items:center">
-                <div></div><div><strong>Starter</strong></div><div><strong>Pro</strong></div><div><strong>Enterprise</strong></div>
-                <div>Tool Registry</div><div>✔</div><div>✔</div><div>✔</div>
-                <div>MCP Gateway</div><div>✔</div><div>✔</div><div>✔</div>
-                <div>CRUD Service</div><div>✔</div><div>✔</div><div>✔</div>
-                <div>AuthZEN PDP (core)</div><div>✔</div><div>✔</div><div>✔</div>
-                <div>ARIA Shield</div><div></div><div>✔</div><div>✔</div>
-                <div>Receipt Vault</div><div></div><div>✔</div><div>✔</div>
-                <div>Data Collector</div><div></div><div>✔</div><div>✔</div>
-            </div>
+        <div class="panel-glow comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Starter</th>
+                        <th>Pro</th>
+                        <th>Enterprise</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tool Registry</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>MCP Gateway</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>CRUD Service</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>AuthZEN PDP (core)</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>ARIA Shield</td>
+                        <td></td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>Receipt Vault</td>
+                        <td></td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                    <tr>
+                        <td>Data Collector</td>
+                        <td></td>
+                        <td>✔</td>
+                        <td>✔</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
     <section class="container" style="padding:64px 0">

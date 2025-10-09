@@ -9,9 +9,9 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-    <Product title={title} description={description} canonical={canonical} productKey="collector" productIcon="🧭" eyebrow="🧭 DATA COLLECTOR" headline="Data Collector" subhead="Keep identity facts fresh for accurate policy." targetICP={[ 'FinOps', 'Platform Teams', 'IAM' ]} keyBenefits={[ 'Fresh, normalized identity facts for decisions', 'Source lineage for audit and forensics', 'Reduces false positives/negatives in policy checks', 'Lightweight to deploy; fits existing IGA' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/', label: 'Collector/Registry Docs' } ]} wwwLinks={[ { href: '/solutions/spend-governance/', label: 'Spend Governance' } ]} keywords={[ 'inventory','lineage','finops' ]}>
+    <Product title={title} description={description} canonical={canonical} productKey="collector" eyebrow="DATA COLLECTOR" headline="Data Collector" subhead="Keep identity facts fresh for accurate policy." targetICP={[ 'FinOps', 'Platform Teams', 'IAM' ]} keyBenefits={[ 'Fresh, normalized identity facts for decisions', 'Source lineage for audit and forensics', 'Reduces false positives/negatives in policy checks', 'Lightweight to deploy; fits existing IGA' ]} benefitIcons={[ 'icon-mm-products-data-collector.png', 'icon-clipboard-path.png', 'icon-eye-crosshair.png', 'icon-gear-spin.png' ]} primaryCTA={{ label: 'Book demo', href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/registry/', label: 'Collector/Registry Docs' } ]} wwwLinks={[ { href: '/solutions/spend-governance/', label: 'Spend Governance' } ]} keywords={[ 'inventory','lineage','finops' ]} heroIllustration="images/illustrations/illustration-package-panels.png" heroIllustrationAlt="Visual representation of data collection and inventory management with organized components" heroIllustrationWidth={600} heroIllustrationHeight={450}>
         <fragment slot="how">
-            <section class="container" style="padding:8px 0 24px">
+            <section id="collector-lineage" class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Lineage & freshness</h2>
                 <div class="diagram vignette" style="margin-top:12px">
                     <div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px">
@@ -28,7 +28,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                     </div>
                 </div>
             </section>
-            <section id="standards" class="container" style="padding:8px 0 24px">
+            <section id="collector-standards" class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Standards</h2>
                 <div class="status-row">
                     <span class="chip chip--outline-cyan">SCIM</span>
@@ -36,14 +36,14 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                     <span class="chip chip--outline-cyan">CAEP</span>
                 </div>
             </section>
-            <section id="examples" class="container" style="padding:8px 0 24px">
+            <section id="collector-examples" class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Examples</h2>
                 <div class="card-grid">
                     <div class="ns-card"><h3>Entitlement freshness feed → PDP</h3><p>Accurate decisions.</p></div>
                     <div class="ns-card"><h3>Lineage for audit queries</h3><p>Traceability.</p></div>
                 </div>
             </section>
-            <section class="container" style="padding:8px 0 24px">
+            <section id="collector-clickhouse" class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Optional: ClickHouse query</h2>
                 <pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
 SELECT policy, sum(cost_usd) AS spend

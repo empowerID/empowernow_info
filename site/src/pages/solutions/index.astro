@@ -65,27 +65,38 @@ const items = [
     <section class="container cv-auto" data-section="create" style="padding:64px 0">
 		<h2 class="section-title">Create tools in minutes (CRUD Service)</h2>
 		<p style="color:#9ba3b7;max-width:70ch;margin:6px 0 12px">Turn any API/DB into agent‑safe tools with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
-        <div id="solutions-crud-compare" class="grid-3" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-            <div class="glass-card" style="padding:16px">
-                <div class="product-rail rail--crud" aria-hidden="true"></div>
-				<h3 class="nf-h3" style="margin:0 0 8px">Without CRUD Service</h3>
-				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
-					<li>~6 weeks per API integration</li>
-					<li>Custom code, per platform</li>
-					<li>One stack at a time</li>
-					<li>Unclear guardrails</li>
-				</ul>
-			</div>
-            <div class="glass-card" style="padding:16px;border-color:var(--color-accent);box-shadow:0 0 24px rgba(0,231,246,.25)">
-                <div class="product-rail rail--crud" aria-hidden="true"></div>
-				<h3 class="nf-h3" style="margin:0 0 8px">With CRUD Service</h3>
-				<ul style="margin:0;color:#9ba3b7;line-height:1.7;padding-left:18px">
-					<li><strong>~5 minutes</strong> from API to tool</li>
-					<li><strong>No code</strong>, publish once</li>
-					<li><strong>MCP, Copilot, OpenAI Functions</strong></li>
-					<li><strong>Schema pins + policy hooks built‑in</strong></li>
-				</ul>
-			</div>
+        <div id="solutions-crud-compare" class="panel-glow comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Without CRUD Service</th>
+                        <th>With CRUD Service</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Time to integrate</td>
+                        <td>~6 weeks per API integration</td>
+                        <td><strong>~5 minutes</strong> from API to tool</td>
+                    </tr>
+                    <tr>
+                        <td>Development</td>
+                        <td>Custom code, per platform</td>
+                        <td><strong>No code</strong>, publish once</td>
+                    </tr>
+                    <tr>
+                        <td>Platform support</td>
+                        <td>One stack at a time</td>
+                        <td><strong>MCP, Copilot, OpenAI Functions</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Governance</td>
+                        <td>Unclear guardrails</td>
+                        <td><strong>Schema pins + policy hooks built‑in</strong></td>
+                    </tr>
+                </tbody>
+            </table>
 		</div>
 		<p style="opacity:.7;margin-top:8px;font-size:14px"><em>Times are representative; shown live in demo.</em></p>
 		<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
