@@ -31,8 +31,7 @@ import '../styles/custom-styles.css';
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-		<!-- Removed unused preload to avoid console warning -->
-		<!-- <link rel="preload" as="image" href={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} fetchpriority="high" /> -->
+		<link rel="preload" as="image" href={`${import.meta.env.BASE_URL}images/en-logo-dark.png`} fetchpriority="high" />
 		{String(canonical||'/') === '/' && (
 			<link rel="preload" as="image" href={`${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`} fetchpriority="high" imagesizes="(max-width: 768px) 100vw, 480px" />
 		)}

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 import JsonLd from '../../components/JsonLd.astro';
 const title = 'CRUD Service | EmpowerNow';
 const description = 'Turn any API/workflow/DB into a governed MCP tool — no code. Secure by design; pre‑approved actions; reusable across agents.';
@@ -37,6 +38,14 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		wwwLinks={[ { href: '/solutions/delegated-authorization/', label: 'Delegated Authorization' } ]}
 		keywords={[ 'mcp','openai functions','copilot','idempotency' ]}
 	>
+		<fragment slot="proof">
+			<section class="container" style="padding:8px 0 24px">
+				<h2 class="section-title">See it</h2>
+				<div class="glass-card" style="padding:12px">
+					<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/crud/CRUD_Service__AI_Workflows.mp4` }} aspect="16/9" title="CRUD Service — AI Workflows" defer />
+				</div>
+			</section>
+		</fragment>
 		<fragment slot="cta-after">
 			<div style="margin-top:12px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/ai-middleware-leadership/`}>Read the Strategy Memo →</a></div>
 		</fragment>
