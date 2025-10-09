@@ -136,56 +136,71 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			<div class="section-divider"></div>
 			<section class="container reveal-on-scroll" id="crud-positioning" style="padding:8px 0 24px">
 				<h2 class="section-title">How we compare to general automation platforms</h2>
-				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-					<div class="glass-card" style="padding:20px;border:1px solid rgba(255,255,255,.08)">
-						<div class="meta">General automation platforms</div>
-						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-							<li>Breadth of SaaS connectors and templates</li>
-							<li>Great for quick, citizen‑developer automation</li>
-							<li>Light policy and audit by default</li>
-						</ul>
-					</div>
-					<div class="panel-glow hover-rise" style="padding:20px">
-						<div class="product-rail rail--crud" aria-hidden="true" style="margin-bottom:12px"></div>
-						<div class="meta">CRUD Service</div>
-						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-							<li>Enterprise IAM depth: approvals, policy, receipts</li>
-							<li>Visual workflows + no‑code connectors</li>
-							<li>Publish as MCP tools/resources across runtimes</li>
-						</ul>
-					</div>
+				<div class="panel-glow comparison-table-wrapper">
+					<table class="comparison-table">
+						<thead>
+							<tr>
+								<th>Capability</th>
+								<th>General automation platforms</th>
+								<th>CRUD Service</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Connector breadth</td>
+								<td>Breadth of SaaS connectors and templates</td>
+								<td>Enterprise IAM depth: approvals, policy, receipts</td>
+							</tr>
+							<tr>
+								<td>Use case focus</td>
+								<td>Great for quick, citizen‑developer automation</td>
+								<td>Visual workflows + no‑code connectors</td>
+							</tr>
+							<tr>
+								<td>Policy & audit</td>
+								<td>Light policy and audit by default</td>
+								<td>Publish as MCP tools/resources across runtimes</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}solutions/delegated-authorization/`}>Reference architecture</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a></div>
 			</section>
 			<div class="section-divider"></div>
 			<section class="container reveal-on-scroll" id="crud-proof" style="padding:8px 0 24px">
 				<h2 class="section-title">With vs Without CRUD Service</h2>
-				<div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-					<div class="glass-card" style="padding:20px;border:1px solid rgba(255,255,255,.08)">
-						<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-							<span style="font-size:32px;opacity:0.4">⏱️</span>
-							<div class="meta" style="color:#9ba3b7">Without CRUD Service</div>
-						</div>
-						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-							<li>~6 weeks per API integration</li>
-							<li>Custom code, per platform</li>
-							<li>One stack at a time</li>
-							<li>Unclear guardrails</li>
-						</ul>
-					</div>
-					<div class="panel-glow hover-rise" style="padding:20px">
-						<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-							<img src={`${import.meta.env.BASE_URL}images/icons/icon-rocket.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
-							<div class="meta" style="color:#e8ecff">With CRUD Service</div>
-						</div>
-						<div class="product-rail rail--crud" aria-hidden="true" style="margin-bottom:12px"></div>
-						<ul style="color:#9ba3b7;line-height:1.7;margin:6px 0 0;padding-left:18px">
-							<li><strong>~5 minutes</strong> from API to tool</li>
-							<li><strong>No code</strong>, publish once</li>
-							<li><strong>MCP, Copilot, OpenAI Functions</strong></li>
-							<li><strong>Schema pins + policy hooks built‑in</strong></li>
-						</ul>
-					</div>
+				<div class="panel-glow comparison-table-wrapper">
+					<table class="comparison-table">
+						<thead>
+							<tr>
+								<th>Aspect</th>
+								<th>Without CRUD Service</th>
+								<th>With CRUD Service</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Time to integrate</td>
+								<td>~6 weeks per API integration</td>
+								<td><strong>~5 minutes</strong> from API to tool</td>
+							</tr>
+							<tr>
+								<td>Development approach</td>
+								<td>Custom code, per platform</td>
+								<td><strong>No code</strong>, publish once</td>
+							</tr>
+							<tr>
+								<td>Platform support</td>
+								<td>One stack at a time</td>
+								<td><strong>MCP, Copilot, OpenAI Functions</strong></td>
+							</tr>
+							<tr>
+								<td>Governance</td>
+								<td>Unclear guardrails</td>
+								<td><strong>Schema pins + policy hooks built‑in</strong></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</section>
 			<div class="section-divider"></div>
