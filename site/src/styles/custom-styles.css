@@ -1177,3 +1177,100 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   border-color: rgba(0, 231, 246, 0.15);
   text-decoration: none !important;
 }
+
+/* ============================================
+   COMPARISON TABLES - NeonFlux Design
+============================================ */
+
+/* Comparison table container */
+.comparison-table-wrapper {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Base table styles */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header row */
+.comparison-table thead tr {
+  background: rgba(108, 76, 255, 0.08);
+  border-bottom: 2px solid rgba(108, 76, 255, 0.3);
+}
+
+.comparison-table thead th {
+  text-align: left;
+  padding: 20px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* First column header */
+.comparison-table thead th:first-child {
+  color: #e8ecff;
+}
+
+/* Middle column(s) header */
+.comparison-table thead th:not(:first-child):not(:last-child) {
+  color: #b3bcd2;
+}
+
+/* Last column header - highlighted with cyan */
+.comparison-table thead th:last-child {
+  color: rgba(0, 231, 246, 0.95);
+  background: rgba(0, 231, 246, 0.05);
+}
+
+/* Body rows */
+.comparison-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Remove border from last row */
+.comparison-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.comparison-table tbody td {
+  padding: 18px 24px;
+  font-size: 14px;
+}
+
+/* First column - dimension/capability names */
+.comparison-table tbody td:first-child {
+  color: #e8ecff;
+  font-weight: 500;
+}
+
+/* Middle column(s) - competitors */
+.comparison-table tbody td:not(:first-child):not(:last-child) {
+  color: #9ba3b7;
+}
+
+/* Last column - EmpowerNow advantages */
+.comparison-table tbody td:last-child {
+  color: #b3bcd2;
+  background: rgba(0, 231, 246, 0.02);
+}
+
+/* Highlighted text in last column */
+.comparison-table tbody td:last-child strong {
+  color: rgba(0, 231, 246, 0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .comparison-table thead th,
+  .comparison-table tbody td {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .comparison-table thead th {
+    font-size: 13px;
+  }
+}

@@ -19,40 +19,40 @@ const canonical = '/comparisons/gateway-vs-api-gateway/';
     </section>
   </header>
   <section class="container" style="padding:8px 0 24px">
-    <div class="panel-glow" style="padding:0;overflow:hidden">
-      <table style="width:100%;border-collapse:collapse">
+    <div class="panel-glow comparison-table-wrapper">
+      <table class="comparison-table">
         <thead>
-          <tr style="background:rgba(108,76,255,0.08);border-bottom:2px solid rgba(108,76,255,0.3)">
-            <th style="text-align:left;padding:20px 24px;color:#e8ecff;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Capability</th>
-            <th style="text-align:left;padding:20px 24px;color:#b3bcd2;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em">API Gateway</th>
-            <th style="text-align:left;padding:20px 24px;color:rgba(0,231,246,0.95);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;background:rgba(0,231,246,0.05)">MCP Gateway</th>
+          <tr>
+            <th>Capability</th>
+            <th>API Gateway</th>
+            <th>MCP Gateway</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
-            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Routing/Rate limits</td>
-            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Yes</td>
-            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)">Works with API GW</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
-            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Schema pin validation</td>
-            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">No</td>
-            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Yes</strong> (hash/version)</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
-            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Plan discipline</td>
-            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">No</td>
-            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Yes</strong> (deny off‑plan pre‑exec)</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
-            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">AuthZEN constraints</td>
-            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">No</td>
-            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Yes</strong></td>
+          <tr>
+            <td>Routing/Rate limits</td>
+            <td>Yes</td>
+            <td>Works with API GW</td>
           </tr>
           <tr>
-            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Receipts</td>
-            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">No</td>
-            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Yes</strong> (signed evidence)</td>
+            <td>Schema pin validation</td>
+            <td>No</td>
+            <td><strong>Yes</strong> (hash/version)</td>
+          </tr>
+          <tr>
+            <td>Plan discipline</td>
+            <td>No</td>
+            <td><strong>Yes</strong> (deny off‑plan pre‑exec)</td>
+          </tr>
+          <tr>
+            <td>AuthZEN constraints</td>
+            <td>No</td>
+            <td><strong>Yes</strong></td>
+          </tr>
+          <tr>
+            <td>Receipts</td>
+            <td>No</td>
+            <td><strong>Yes</strong> (signed evidence)</td>
           </tr>
         </tbody>
       </table>
