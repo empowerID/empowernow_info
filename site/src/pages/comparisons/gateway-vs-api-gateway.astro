@@ -1,15 +1,23 @@
 ---
 import Base from '../../layouts/Base.astro';
+import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
 const title = 'MCP Gateway vs API Gateway';
 const description = 'Why an MCP-aware policy gateway is required for agent tools vs. a traditional API gateway.';
 const canonical = '/comparisons/gateway-vs-api-gateway/';
 ---
 <Base title={title} description={description} canonical={canonical}>
-  <section class="container" style="padding:48px 0 16px">
-    <nav aria-label="Breadcrumb" style="margin-bottom:8px"><a href={`${import.meta.env.BASE_URL}`}>Home</a> / <a href={`${import.meta.env.BASE_URL}comparisons/`}>Comparisons</a> / MCP vs API Gateway</nav>
-    <h1 class="display" style="margin:0 0 10px">MCP Gateway vs API Gateway</h1>
-    <p style="color:#9ba3b7;max-width:90ch">API gateways route and rate‑limit. MCP Gateway validates <em>plan steps</em> and <em>schema pins</em>, enforces AuthZEN constraints, and emits receipts. They solve different problems and often run together.</p>
-  </section>
+  <BreadcrumbsJsonLd items={[
+    { name: 'Home', item: new URL(import.meta.env.BASE_URL || '/', Astro.site).toString() },
+    { name: 'Comparisons', item: new URL(`${import.meta.env.BASE_URL}comparisons/`, Astro.site).toString() },
+    { name: 'MCP Gateway vs API Gateway', item: new URL(`${import.meta.env.BASE_URL}${String(canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
+  ]} />
+  <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+    <section class="container" style="position:relative;z-index:1">
+      <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">COMPARISON</div>
+      <h1 class="display" style="margin:0 0 20px;font-size:clamp(2.25rem,4.5vw,3.6rem);line-height:1.1;font-weight:800">MCP Gateway vs API Gateway</h1>
+      <p style="color:#b3bcd2;max-width:860px;font-size:clamp(1.0125rem,1.8vw,1.2375rem);line-height:1.5;margin:0">API gateways route and rate‑limit. MCP Gateway validates <em>plan steps</em> and <em>schema pins</em>, enforces AuthZEN constraints, and emits receipts. They solve different problems and often run together.</p>
+    </section>
+  </header>
   <section class="container" style="padding:8px 0 24px">
     <div class="glass-card" style="padding:16px">
       <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
@@ -32,32 +40,3 @@ const canonical = '/comparisons/gateway-vs-api-gateway/';
     </ul>
   </section>
 </Base>
----
-import Base from '../../layouts/Base.astro';
-const title = 'AI Gateway (ARIA Shield) vs Network API Gateway';
-const description = 'Clarifying roles: ARIA Shield enforces budgets, authorization, and tool allow‑lists for agents; API gateways route and rate‑limit.';
-const canonical = '/comparisons/gateway-vs-api-gateway/';
----
-<Base title={title} description={description} canonical={canonical}>
-  <section class="container" style="padding:48px 0 16px">
-    <h1 class="display" style="margin:0 0 10px">AI Gateway vs API Gateway</h1>
-    <p style="color:#9ba3b7;max-width:80ch">They complement each other but are not the same.</p>
-  </section>
-  <section class="container" style="padding:8px 0 64px">
-    <div class="glass-card" style="padding:16px">
-      <table class="comparison" style="width:100%;border-collapse:collapse;color:#e8ecff">
-        <thead><tr><th style="text-align:left">Capability</th><th style="text-align:left">ARIA Shield (AI Gateway)</th><th style="text-align:left">API Gateway</th></tr></thead>
-        <tbody>
-          <tr><td>Budget enforcement</td><td>402 pre‑exec caps per route/agent</td><td>Not applicable</td></tr>
-          <tr><td>Tool allow‑lists</td><td>Yes (MCP tools/resources)</td><td>No (generic routing)</td></tr>
-          <tr><td>Schema pins</td><td>Yes, detects drift</td><td>No</td></tr>
-          <tr><td>Authorization</td><td>PDP decisions with constraints/obligations</td><td>Basic authn/z; not policy‑aware per tool</td></tr>
-          <tr><td>Routing & rate limits</td><td>Basic where needed</td><td>Primary strength</td></tr>
-          <tr><td>Audit</td><td>Signed, hash‑chained receipts</td><td>Request logs</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-</Base>
-
-
