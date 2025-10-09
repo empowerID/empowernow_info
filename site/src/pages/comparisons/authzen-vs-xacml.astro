@@ -19,18 +19,56 @@ const canonical = '/comparisons/authzen-vs-xacml/';
     </section>
   </header>
   <section class="container" style="padding:8px 0 24px">
-    <div class="glass-card" style="padding:16px">
-      <table style="width:100%;border-collapse:collapse;color:#9ba3b7">
-        <thead><tr><th style="text-align:left">Dimension</th><th style="text-align:left">XACML</th><th style="text-align:left">AuthZEN</th></tr></thead>
+    <div class="panel-glow" style="padding:0;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:rgba(108,76,255,0.08);border-bottom:2px solid rgba(108,76,255,0.3)">
+            <th style="text-align:left;padding:20px 24px;color:#e8ecff;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em">Dimension</th>
+            <th style="text-align:left;padding:20px 24px;color:#b3bcd2;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em">XACML</th>
+            <th style="text-align:left;padding:20px 24px;color:rgba(0,231,246,0.95);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;background:rgba(0,231,246,0.05)">AuthZEN</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>Primary scope</td><td>Policy language + XML request/response</td><td>Decision transport + interop between auth components</td></tr>
-          <tr><td>Message format</td><td>XML</td><td><strong>JSON</strong></td></tr>
-          <tr><td>Decision payload</td><td>Permit/Deny (+ obligations/advice)</td><td><strong>Permit/Deny</strong> (EmpowerNow adds extensions: constraints/obligations/TTL)</td></tr>
-          <tr><td>Policy authoring</td><td>XACML policy, combining algorithms</td><td>Out of scope (WG focuses on interop; various PAPs)</td></tr>
-          <tr><td>Gateway integration</td><td>Adapters vary by vendor</td><td>Gateway/Service PEPs consume JSON decisions</td></tr>
-          <tr><td>Developer ergonomics</td><td>Steeper (XML, policy semantics)</td><td><strong>Simpler</strong> (JSON messages)</td></tr>
-          <tr><td>Performance & streaming</td><td>XML parsing; vendor‑specific tuning</td><td><strong>JSON</strong> streaming‑friendly</td></tr>
-          <tr><td>Audit/receipts</td><td>Not standardized in core</td><td>Out of scope; pairs well with receipts</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Primary scope</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Policy language + XML request/response</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)">Decision transport + interop between auth components</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Message format</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">XML</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">JSON</strong></td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Decision payload</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Permit/Deny (+ obligations/advice)</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Permit/Deny</strong> (EmpowerNow adds extensions: constraints/obligations/TTL)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Policy authoring</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">XACML policy, combining algorithms</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)">Out of scope (WG focuses on interop; various PAPs)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Gateway integration</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Adapters vary by vendor</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)">Gateway/Service PEPs consume JSON decisions</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Developer ergonomics</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Steeper (XML, policy semantics)</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">Simpler</strong> (JSON messages)</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.06)">
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Performance & streaming</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">XML parsing; vendor‑specific tuning</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)"><strong style="color:rgba(0,231,246,0.95)">JSON</strong> streaming‑friendly</td>
+          </tr>
+          <tr>
+            <td style="padding:18px 24px;color:#e8ecff;font-weight:500;font-size:14px">Audit/receipts</td>
+            <td style="padding:18px 24px;color:#9ba3b7;font-size:14px">Not standardized in core</td>
+            <td style="padding:18px 24px;color:#b3bcd2;font-size:14px;background:rgba(0,231,246,0.02)">Out of scope; pairs well with receipts</td>
+          </tr>
         </tbody>
       </table>
     </div>
