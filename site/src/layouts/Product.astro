@@ -21,8 +21,6 @@ interface Props {
 	keywords?: string[];
 	/** product key for gradient mapping: idp|pdp|crud|collector|shield|gateway|vds|nowconnect */
 	productKey?: string;
-	/** optional icon shown in studio bar - supports: emoji string, SVG markup string (starting with '<'), image URL (http/https), or relative path (images/...) */
-	productIcon?: string;
 	/** optional custom background image path (relative to BASE_URL, e.g., "images/backgrounds/bg-crud-hero.jpg") */
 	heroBackground?: string;
 	/** optional illustration image for right side of hero (relative to BASE_URL) */
@@ -104,22 +102,6 @@ const heroLayoutClass = hasHeroIllustration ? 'hero-split' : 'hero-single';
     <nav class="studio-bar" aria-label="Product sections">
         <div class="container studio-bar-inner">
             <div class="studio-brand">
-                {p.productIcon && (
-                    <span class="studio-icon" aria-hidden="true">
-                        {p.productIcon.startsWith('<') ? (
-                            <Fragment set:html={p.productIcon} />
-                        ) : p.productIcon.startsWith('http') || p.productIcon.startsWith('/') || p.productIcon.startsWith('images/') ? (
-                            <img 
-                                src={p.productIcon.startsWith('http') ? p.productIcon : `${import.meta.env.BASE_URL}${p.productIcon}`} 
-                                alt="" 
-                                width="24" 
-                                height="24"
-                            />
-                        ) : (
-                            <span>{p.productIcon}</span>
-                        )}
-                    </span>
-                )}
                 <span class="studio-title">{p.headline}</span>
             </div>
             <ul class="studio-tabs" role="tablist" id="studio-tabs-list">
