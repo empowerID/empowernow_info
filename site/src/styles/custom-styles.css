@@ -29,6 +29,8 @@
   gap: 24px;
   padding: 12px 16px;
   min-height: 64px;
+  overflow: hidden; /* Prevent container overflow */
+  min-width: 0; /* Allow flex children to shrink */
 }
 
 /* Studio Brand (Icon + Title) */
@@ -73,7 +75,7 @@
 .studio-tabs {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -82,14 +84,18 @@
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap; /* Force single line */
+  min-width: 0; /* Allow flex shrinking */
 }
 
 .studio-tabs::-webkit-scrollbar {
-  display: none;
+  display: none; /* Hide scrollbar for cleaner look */
 }
 
 .studio-tabs li {
-  flex-shrink: 0;
+  flex-shrink: 0; /* Prevent tab shrinking */
+  flex-basis: auto; /* Natural width */
 }
 
 /* Studio Tab Button - NeonFlux Style */
@@ -97,8 +103,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 18px;
-  font-size: 14px;
+  padding: 9px 16px; /* Slightly more compact for many tabs */
+  font-size: 13.5px; /* Slightly smaller for many tabs */
   font-weight: 600;
   color: var(--text-secondary, #B3BCD2);
   background: rgba(255, 255, 255, 0.04);
@@ -109,6 +115,8 @@
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
+  max-width: 220px; /* Prevent extremely long tab labels */
+  text-overflow: ellipsis;
 }
 
 .studio-tab-btn::before {
