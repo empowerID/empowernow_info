@@ -18,7 +18,7 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 	<JsonLd data={jsonLdProduct} />
     <Product title={title} description={description} canonical={canonical} productKey="shield" productIcon="🧊" eyebrow="🧊 ARIA SHIELD" headline="ARIA Shield" subhead="Enforce budgets & streaming caps at runtime—zero-token SPA." targetICP={[ 'Enterprise SaaS', 'Regulated', 'Platform Teams' ]} keyBenefits={[ 'Zero-token SPA for safer apps', 'Real-time spend & stream control', 'Friendly UX on budget exceed (upgrade CTA)', 'Cryptographic receipts for audit' ]} benefitIcons={[ 'icon-shield-aria.png', 'icon-calculator.png', 'icon-price-tag.png', 'icon-receipt.png' ]} primaryCTA={{ label: primaryCtaLabel, href: `${import.meta.env.BASE_URL}demo/` }} secondaryCTA={{ label: 'Read docs', href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/' }} tertiaryCTA={{ label: 'Quickstart', href: `${import.meta.env.BASE_URL}docs/` }} docsLinks={[{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' }, { href: 'https://empowerid.github.io/empowernow_docs/docs/services/aria-shield/', label: 'ARIA Shield Docs' }]} wwwLinks={[{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' }, { href: '/deep-dives/', label: 'Deep Dives' }]} keywords={[ 'bff', 'authzen' ]} heroIllustration="images/illustrations/illustration-cube-panels.png" heroIllustrationAlt="Visual representation of ARIA Shield security architecture with layered defense" heroIllustrationWidth={600} heroIllustrationHeight={450}>
 		<fragment slot="how">
-			<section class="container" style="padding:8px 0 24px">
+			<section id="shield-how-it-works" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<ol class="numbered">
 					<li>Edge authenticates SPA with HTTP-only cookies, not tokens.</li>
@@ -27,7 +27,7 @@ const primaryCtaLabel = variant === 'A' ? 'Book demo' : 'Get a demo';
 					<li>Receipts are signed and chained; budgets settle to actuals.</li>
 				</ol>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="shield-budget-semantics" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Budget semantics (HTTP 402)</h2>
 				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
 HTTP/1.1 402 Payment Required
@@ -43,7 +43,7 @@ Content-Type: application/json
 `}</code></pre>
 				<p style="color:#9ba3b7">When a route exceeds its budget, Shield returns a deterministic 402 with <code>call_id</code> and remaining budget. On permit, the hold is settled to actuals and linked in the receipt.</p>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="shield-streaming-caps" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Streaming caps</h2>
 				<pre class="glass-card" style="padding:12px;overflow:auto"><code>{`
 // Pseudocode
@@ -55,7 +55,7 @@ shield.stream(model, request, caps, onChunk);
 		</fragment>
 		<fragment slot="proof">
 			<LogoWall logos={[{alt:'Example',src:`${import.meta.env.BASE_URL}favicon.svg`}]} title="Trusted by" />
-			<section class="container" style="padding:8px 0 24px">
+			<section id="shield-videos" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Videos</h2>
 				<div class="card-grid">
 					<div class="ns-card">

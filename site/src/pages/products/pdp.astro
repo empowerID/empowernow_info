@@ -26,16 +26,17 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
             </div>
         </fragment>
 		<fragment slot="how">
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-how-it-works" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Subject/Resource/Action/Context → PDP → Decision. PEPs enforce constraints (sync) and obligations (async). Batch multiple checks in one call for faster pages and smoother agent runs. Deploy once to gateways/services; adopt incrementally via a PDP facade and PEP middleware.
                 </p>
-			<section class="container" style="padding:8px 0 24px">
+			</section>
+			<section id="pdp-what-it-is" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">What it is</h2>
 				<p style="color:#9ba3b7;max-width:90ch">A standards‑credible authorization brain that evaluates ABAC + relationships and returns AuthZEN‑style decisions. EmpowerNow decision extensions add constraints (sync guardrails) and obligations (async actions) so gateways and services can enforce consistently.</p>
 			</section>
 
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-what-you-get" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">What you get</h2>
 				<ul style="color:#9ba3b7;line-height:1.8">
 					<li>Cost control for AI agents: stop runaway spend (HTTP 402), cap tokens, restrict models/egress</li>
@@ -45,7 +46,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</ul>
 			</section>
 
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-why-unique" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Why it's unique</h2>
 				<ul style="color:#9ba3b7;line-height:1.8">
 					<li>Graph‑anchored ABAC: policy logic in YAML via Policy nodes; fast‑moving edge constraints (budget, trust, expiry) live in graph</li>
@@ -57,7 +58,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</ul>
 			</section>
 
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-see-it" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">See it</h2>
 				<div class="glass-card" style="padding:12px">
 					<div style="aspect-ratio:16/9;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:10px">
@@ -67,7 +68,6 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 						</video>
 					</div>
 				</div>
-			</section>
 				<div class="panel-glass" style="padding:12px;margin-top:8px">
 					<strong>Batch decisions = fewer round‑trips, lower latency.</strong>
 					<p style="color:#9ba3b7;margin:6px 0 0">Send multiple checks in one call for faster pages and smoother agent runs.</p>
@@ -87,13 +87,13 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					</div>
 				</div>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-authzen-compliance" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">AuthZEN compliance</h2>
 				<p style="color:#9ba3b7;max-width:90ch">Compatible with AuthZEN decision exchange across PDP/PEP/PIP/PAP. We keep ABAC; you adopt interoperable JSON. EmpowerNow adds decision extensions (constraints, obligations, TTL) for practical enforcement.</p>
 				<div class="status-row" style="margin-top:6px"><a class="chip chip--outline-cyan" href={`https://openid.net/wg/authzen/`}>OpenID AuthZEN WG</a></div>
 				<p style="color:#687089;margin-top:6px">Note: Extensions are product‑level and not part of the current AuthZEN spec.</p>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-ai-governance" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">AI Agent governance</h2>
 				<ul style="color:#9ba3b7;line-height:1.8">
 					<li>Budget holds and settle; HTTP 402 upgrade CTA</li>
@@ -117,7 +117,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 }
 `}</code></pre>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-hybrid-rebac" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Hybrid ReBAC with Membership Service</h2>
 				<p style="color:#9ba3b7;max-width:90ch">Combine ABAC attributes with relationship edges (delegations, teams, ownership) from the Neo4j‑backed Membership Service PIP for dynamic, auditable access.</p>
 				<h3 style="margin-top:8px">Relationship data shape</h3>
@@ -130,7 +130,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 }
 `}</code></pre>
 			</section>
-            <section class="container" style="padding:8px 0 24px">
+            <section id="pdp-proof" class="container" style="padding:8px 0 24px">
                 <h2 class="section-title">Proof</h2>
                 <ul style="color:#9ba3b7;line-height:1.8">
                     <li>Explainable decisions with reasons; every action emits a signed receipt</li>
@@ -144,7 +144,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                     </div>
                 </div>
             </section>
-            <section class="container" style="padding:8px 0 24px">
+            <section id="pdp-read-next" class="container" style="padding:8px 0 24px">
             <div class="panel-glass" style="padding:12px">
                     <strong>Read next</strong>
                     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
@@ -155,7 +155,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
                 </div>
             </section>
 
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-integrations" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Integrations</h2>
 				<p style="color:#9ba3b7;max-width:90ch">Works with your gateways, LLM providers, and data plane.</p>
 				<div class="status-row" style="flex-wrap:wrap">
@@ -167,7 +167,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 				</div>
 			</section>
 
-			<section class="container" style="padding:8px 0 24px">
+			<section id="pdp-is-this-for-me" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Is this for me?</h2>
 				<div class="glass-card" style="padding:12px">
 					<ul style="color:#9ba3b7;line-height:1.8;margin:0">
@@ -179,7 +179,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 			</section>
 		</fragment>
 	</Product>
-    <section class="container" style="padding:8px 0 24px">
+    <section id="pdp-compare" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Compare</h2>
         <div class="glass-card" style="padding:16px;color:#9ba3b7">
             <ul style="margin:0;line-height:1.8">

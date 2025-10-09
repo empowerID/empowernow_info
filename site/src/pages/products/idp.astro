@@ -28,7 +28,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
             </div>
         </fragment>
 		<fragment slot="how">
-			<section class="container" style="padding:8px 0 24px">
+			<section id="idp-why-purpose-built" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Why purpose‑built for agents</h2>
 				<ul style="color:#9ba3b7;line-height:1.8;margin:6px 0 0;padding-left:18px">
 					<li>Agent→user binding; authorize on <code>sub</code>, record <code>act.sub</code>, keep client in <code>azp</code></li>
@@ -38,7 +38,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 					<li>Resource‑targeted audiences (RFC 8707) → fewer 401s</li>
 				</ul>
 			</section>
-			<section class="container" style="padding:8px 0 24px">
+			<section id="idp-federation" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Using External IdPs with EmpowerNow</h2>
 				<p style="color:#9ba3b7">Federate to your corporate IdP (Microsoft Entra ID, Okta, Auth0) for login, then complete OAuth/OIDC locally so you retain control of token issuance, claims, and policy.</p>
 				<h3>Use cases</h3>
@@ -111,20 +111,20 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		</fragment>
 	</Product>
     <!-- Audience control callout (RFC 8707) -->
-    <section class="container" style="padding:8px 0 16px">
+    <section id="idp-audience-control" class="container" style="padding:8px 0 16px">
         <div class="panel-glass" style="padding:16px">
             <h2 class="section-title" style="margin-top:0">Audience control (RFC 8707)</h2>
             <p style="color:#9ba3b7;max-width:90ch;margin:0">Set the <code>resource</code> and we mint the right audience—no more 401s from mismatched <code>aud</code>.</p>
         </div>
     </section>
     <!-- Identity ARNs & federation mapping -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-identity-arns" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Identity ARNs & federation</h2>
         <p style="color:#9ba3b7;max-width:90ch">Identity‑first subjects across IdPs (account ARN → identity ARN) mean you write policy once and reuse everywhere.</p>
         <div style="margin-top:8px"><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}resources/strategy/contracts/`}>Identity ARNs explainer →</a></div>
     </section>
     <!-- Consent at issuance -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-consent" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Consent at issuance</h2>
         <p style="color:#9ba3b7;max-width:90ch">If policy requires consent, issuance pauses with a standards‑friendly <code>authorization_pending</code> and resumes when approved.</p>
         <ul style="display:flex;gap:8px;flex-wrap:wrap;color:#9ba3b7;margin:10px 0 0">
@@ -134,12 +134,12 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
         </ul>
     </section>
     <!-- Dev‑tool access (PATs) -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-dev-tool-access" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Dev‑tool access (PATs)</h2>
         <p style="color:#9ba3b7;max-width:90ch">Scoped Personal Access Tokens for OpenAI/Anthropic proxies—no vendor keys in clients. Introspect, short cache, enforce scopes, emit receipts.</p>
     </section>
     <!-- Passport → PDP → Gateway → Receipt chain -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-passport-usage" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">How the Passport is used</h2>
         <ul style="color:#9ba3b7;line-height:1.8;padding-left:18px;margin:0 0 10px">
             <li>Passport</li>
@@ -150,7 +150,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
         <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href={`${import.meta.env.BASE_URL}products/gateway/`}>Gateway</a><a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/receipts/`}>Receipts</a></div>
     </section>
     <!-- AI scenarios -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-ai-scenarios" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">AI scenarios</h2>
         <div class="card-grid">
             <div class="ns-card"><h3>Agent on‑behalf‑of</h3><p>OBO with <code>sub/act/azp</code> and delegation id.</p></div>
@@ -159,7 +159,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
         </div>
     </section>
     <!-- Proof & performance -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-proof" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Proof & performance</h2>
         <div class="glass-card" style="padding:16px">
             <ul style="margin:0;color:#9ba3b7;line-height:1.8;padding-left:18px">
@@ -170,7 +170,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
         </div>
     </section>
     <!-- FAQ -->
-    <section class="container" style="padding:8px 0 24px">
+    <section id="idp-faq" class="container" style="padding:8px 0 24px">
         <h2 class="section-title">FAQ</h2>
         <div class="glass-card" style="padding:16px;color:#9ba3b7">
             <ul style="margin:0;line-height:1.8">
