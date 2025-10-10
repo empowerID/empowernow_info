@@ -11,13 +11,13 @@ const canonical = '/comparisons/authzen-vs-xacml/';
     { name: 'Comparisons', item: new URL(`${import.meta.env.BASE_URL}comparisons/`, Astro.site).toString() },
     { name: 'AuthZEN vs XACML', item: new URL(`${import.meta.env.BASE_URL}${String(canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
   ]} />
-  <header class="hero-plate page-stage" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-    <section class="container hero-container" style="position:relative;z-index:1">
+  <section class="hero-plate page-stage" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+    <div class="container hero-container">
       <div class="hero__eyebrow">COMPARISON</div>
       <h1 class="display hero__headline">AuthZEN vs XACML</h1>
-      <p class="hero__subhead">AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.</p>
-    </section>
-  </header>
+      <p class="hero__subhead" set:html={`AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.`} />
+    </div>
+  </section>
   <section class="container" style="padding:8px 0 24px">
     <div class="panel-glow comparison-table-wrapper">
       <table class="comparison-table">

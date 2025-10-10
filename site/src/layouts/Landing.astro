@@ -16,10 +16,10 @@ const containerClass = background === 'hero' ? 'hero-container' : '';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <section class="hero-plate page-stage" style={sectionStyle} data-suppress-sticky>
-        <div class={`container ${containerClass} hero-layout--grid`}>
-            <div>
+        <div class={`container ${containerClass} hero-layout--split`}>
+            <div class="hero__content">
                 <h1 class="display hero__headline"><slot name="heading">{title}</slot></h1>
-                <p class="hero__body" style="max-width:720px"><slot name="subhead">{description}</slot></p>
+                <p class="hero__body" style="max-width:720px" set:html={description}><slot name="subhead" /></p>
                 {(chips?.length>0) && (
                     <ul class="hero__chips" style="padding:0;margin:12px 0 0;list-style:none">
                         {chips.map(c => <li class="chip chip--outline-cyan">{c}</li>)}
@@ -30,7 +30,7 @@ const containerClass = background === 'hero' ? 'hero-container' : '';
                 </div>
                 <slot name="left-extra" />
             </div>
-            <div>
+            <div class="hero__visual">
                 <slot />
             </div>
         </div>

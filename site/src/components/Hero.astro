@@ -64,10 +64,10 @@ const hasVisual = !!(p.illustration || Astro.slots.has('visual'));
             <>
               {p.eyebrow && <div class="hero__eyebrow">{p.eyebrow}</div>}
               
-              <h1 class="display hero__headline">{p.headline}</h1>
+              <h1 class="display hero__headline" set:html={p.headline} />
               
-              {p.subhead && <p class="hero__subhead">{p.subhead}</p>}
-              {p.body && <p class="hero__body">{p.body}</p>}
+              {p.subhead && <p class="hero__subhead" set:html={p.subhead} />}
+              {p.body && <p class="hero__body" set:html={p.body} />}
               
               {p.chips && p.chips.length > 0 && (
                 <div class="hero__chips">
@@ -144,10 +144,10 @@ const hasVisual = !!(p.illustration || Astro.slots.has('visual'));
               <img
                 src={`${base}${p.illustration}`}
                 alt={p.illustrationAlt || ''}
-                width={p.illustrationWidth || 400}
-                height={p.illustrationHeight || 400}
+                width={p.illustrationWidth || 360}
+                height={p.illustrationHeight || 360}
                 loading="eager"
-                style="display:block;max-width:400px;height:auto;border-radius:12px"
+                style="display:block;max-width:360px;height:auto;border-radius:12px"
               />
             )}
           </div>

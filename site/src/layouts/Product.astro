@@ -65,7 +65,7 @@ const base = import.meta.env.BASE_URL;
         <div slot="content">
             {p.eyebrow && <div class="hero__eyebrow">{p.eyebrow}</div>}
             <h1 class="display hero__headline">{p.headline}</h1>
-            {p.subhead && <p class="hero__subhead">{p.subhead}</p>}
+            {p.subhead && <p class="hero__subhead" set:html={p.subhead} />}
             {p.targetICP && p.targetICP.length>0 && (
                 <div class="hero__chips">
                     {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">{t}</span>)}

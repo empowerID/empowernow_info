@@ -1283,6 +1283,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 .hero-plate {
   position: relative;
   width: 100%;
+  min-height: 500px;
 }
 
 /* Hero Container - Holds content */
@@ -1332,7 +1333,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   height: auto;
 }
 .hero__visual img {
-  max-width: 400px; /* 30% smaller: was ~800px effective max, now 560px */
+  max-width: 360px; /* 30% smaller: was ~800px effective max, now 560px */
   height: auto;
 }
 
