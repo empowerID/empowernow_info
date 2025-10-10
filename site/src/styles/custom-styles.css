@@ -1289,7 +1289,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 .hero-container {
   position: relative;
   z-index: 1;
-  padding: 160px 0 64px;
+  padding: 128px 0 64px; /* 15% reduction: 160px - 24px = 136px */
 }
 
 /* Hero Layouts */
@@ -1324,6 +1324,16 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 560px; /* 30% smaller: was ~800px effective max, now 560px */
+}
+
+.hero__visual video {
+  max-width: 100%;
+  height: auto;
+}
+.hero__visual img {
+  max-width: 400px; /* 30% smaller: was ~800px effective max, now 560px */
+  height: auto;
 }
 
 .hero__visual--video {
@@ -1423,7 +1433,7 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .hero-container {
-    padding: 120px 0 48px;
+    padding: 102px 0 48px; /* 15% reduction: 120px - 18px = 102px */
   }
   
   .hero-layout--split {

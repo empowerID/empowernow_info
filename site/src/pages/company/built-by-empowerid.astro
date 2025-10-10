@@ -7,17 +7,17 @@ const canonical = '/company/built-by-empowerid/';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <!-- Hero -->
-    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="display:flex;gap:48px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1 1 520px;min-width:300px">
-                <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Neutral by design. Built by EmpowerID.</h1>
-                <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5"><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+    <section class="hero-plate page-stage" data-section="hero" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+        <div class="container hero-container hero-layout--split">
+            <div class="hero__content">
+                <h1 class="display hero__headline" style="background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Neutral by design. Built by EmpowerID.</h1>
+                <p class="hero__body"><strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.</p>
+                <div class="hero__actions">
                     <a class="btn btn-primary" data-ev="cta_click" data-label="partner_oem" data-position="hero" href={`${import.meta.env.BASE_URL}partners/`}>Partner with us (OEM/SI)</a>
                     <a class="btn btn-ghost" data-ev="cta_click" data-label="book_demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Book a 15‑minute demo</a>
                 </div>
             </div>
-            <div class="parallax-glow" style="flex:1 1 420px;min-width:280px">
+            <div class="hero__visual hero__visual--video parallax-glow">
                 <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/video-placeholder/company-video-placeholder.jpg`} sources={[{src:`${import.meta.env.BASE_URL}videos/company/Empower_Now__Strategic_Pivot.mp4`,type:'video/mp4'}]} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} playButtonLabel="Play video" />
             </div>
         </div>

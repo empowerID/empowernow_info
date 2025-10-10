@@ -1,11 +1,10 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
 const title = 'Standards Fundamentals (Primers)';
 const description = 'SEO-friendly primers for OAuth, OIDC, PKCE, RAR, PAR, JARM, FAPI 2.0, SCIM, CIBA, MCP, CAEP, Token Exchange, Resource Indicators, DPoP, mTLS, DCR, AuthZEN.';
 const canonical = '/resources/standards/';
 const base = import.meta.env.BASE_URL;
-const heroBackground = `${base}images/backgrounds/bg-homepage-hero.jpg`;
-const heroIllustration = `${base}images/illustrations/large/resources/hero-resources-standards.png`;
 const items = [
 	{ slug:'oauth', label:'OAuth 2.0' },
 	{ slug:'oidc', label:'OpenID Connect (OIDC)' },
@@ -28,17 +27,15 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-	<section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${heroBackground});background-size:cover;background-position:center;background-repeat:no-repeat`}>
-		<div class="container hero-split" style="position:relative;z-index:1">
-			<div class="hero-content">
-				<h1 class="display" style="margin:0 0 8px">Standards Fundamentals</h1>
-				<p style="color:#9ba3b7;max-width:860px">Concise primers: why it matters, how it works, and where it's enforced (Gateway, Shield, PDP, IdP).</p>
-			</div>
-			<div class="hero-visual">
-				<img src={heroIllustration} alt="Visual representation of standards fundamentals including OAuth, OIDC, and authorization protocols" width={800} height={600} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px" />
-			</div>
-		</div>
-	</section>
+	<Hero
+		headline="Standards Fundamentals"
+		body="Concise primers: why it matters, how it works, and where it's enforced (Gateway, Shield, PDP, IdP)."
+		illustration="images/illustrations/large/resources/hero-resources-standards.png"
+		illustrationAlt="Visual representation of standards fundamentals including OAuth, OIDC, and authorization protocols"
+		illustrationWidth={800}
+		illustrationHeight={600}
+		showAAIcon={false}
+	/>
 	<section class="container" style="padding:8px 0 80px">
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
 			{items.map(i => (
@@ -54,48 +51,5 @@ const items = [
 		</div>
 	</section>
 </Base>
-
-<style>
-	/* Hero layout styles */
-	.hero-split {
-		display: flex;
-		gap: 48px;
-		align-items: center;
-		flex-wrap: wrap;
-	}
-
-	.hero-content {
-		flex: 1 1 520px;
-		min-width: 300px;
-	}
-
-	.hero-visual {
-		flex: 1 1 400px;
-		min-width: 280px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	/* Mobile: stack vertically, illustration on top */
-	@media (max-width: 768px) {
-		.hero-split {
-			flex-direction: column-reverse;
-		}
-
-		.hero-visual {
-			width: 100%;
-			max-width: 400px;
-			margin: 0 auto 32px;
-		}
-	}
-
-	/* Tablet: reduce gaps */
-	@media (min-width: 769px) and (max-width: 1024px) {
-		.hero-split {
-			gap: 32px;
-		}
-	}
-</style>
 
 

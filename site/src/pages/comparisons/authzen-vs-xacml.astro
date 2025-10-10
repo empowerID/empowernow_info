@@ -11,11 +11,11 @@ const canonical = '/comparisons/authzen-vs-xacml/';
     { name: 'Comparisons', item: new URL(`${import.meta.env.BASE_URL}comparisons/`, Astro.site).toString() },
     { name: 'AuthZEN vs XACML', item: new URL(`${import.meta.env.BASE_URL}${String(canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
   ]} />
-  <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-    <section class="container" style="position:relative;z-index:1">
-      <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">COMPARISON</div>
-      <h1 class="display" style="margin:0 0 20px;font-size:clamp(2.25rem,4.5vw,3.6rem);line-height:1.1;font-weight:800">AuthZEN vs XACML</h1>
-      <p style="color:#b3bcd2;max-width:860px;font-size:clamp(1.0125rem,1.8vw,1.2375rem);line-height:1.5;margin:0">AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.</p>
+  <header class="hero-plate page-stage" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+    <section class="container hero-container" style="position:relative;z-index:1">
+      <div class="hero__eyebrow">COMPARISON</div>
+      <h1 class="display hero__headline">AuthZEN vs XACML</h1>
+      <p class="hero__subhead">AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.</p>
     </section>
   </header>
   <section class="container" style="padding:8px 0 24px">

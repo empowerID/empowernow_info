@@ -144,10 +144,10 @@ const hasVisual = !!(p.illustration || Astro.slots.has('visual'));
               <img
                 src={`${base}${p.illustration}`}
                 alt={p.illustrationAlt || ''}
-                width={p.illustrationWidth || 800}
-                height={p.illustrationHeight || 600}
+                width={p.illustrationWidth || 400}
+                height={p.illustrationHeight || 400}
                 loading="eager"
-                style="display:block;max-width:100%;height:auto;border-radius:12px"
+                style="display:block;max-width:400px;height:auto;border-radius:12px"
               />
             )}
           </div>
