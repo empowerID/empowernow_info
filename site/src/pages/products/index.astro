@@ -6,8 +6,8 @@ const canonical = '/products/';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="position:relative;z-index:1;display:flex;gap:28px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1 1 520px;min-width:300px">
+        <div class="container hero-split" style="position:relative;z-index:1">
+            <div class="hero-content">
                 <h1 class="display" style="margin:0 0 8px">The Platform That Makes AI Agents Actually Work</h1>
                 <p style="color:#9ba3b7;max-width:70ch;margin:12px 0 18px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Then enforce policy and prove every action.</p>
                 <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -15,7 +15,9 @@ const canonical = '/products/';
                     <a href={`${import.meta.env.BASE_URL}resources/demo/`} class="btn btn-ghost" data-ev="cta_click" data-label="products-hero-demo">Watch 90‑sec demo</a>
                 </div>
             </div>
-            <div style="flex:1 1 380px;min-width:280px"><div style="color:#9ba3b7">API → CRUD Service → MCP/Copilot/Functions</div></div>
+            <div class="hero-visual">
+                <img src={`${import.meta.env.BASE_URL}images/illustrations/large/products/hero-products-main.png`} alt="Visual representation of the unified EmpowerNow platform ecosystem showing interconnected products" width={800} height={600} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px" />
+            </div>
         </div>
     </section>
     <section class="container" style="padding:40px 0 16px">
