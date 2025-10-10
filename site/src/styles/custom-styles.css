@@ -1379,6 +1379,21 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   line-height: 1.33;
 }
 
+/* Aurora Text (for inline HTML) */
+.aurora-text {
+  background: radial-gradient(circle at 30% 50%, #b326ff 0%, #00e7f6 60%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aurora-shift 3s ease-in-out infinite;
+}
+
+@keyframes aurora-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 .hero__subhead {
   color: #b3bcd2;
   max-width: 860px;

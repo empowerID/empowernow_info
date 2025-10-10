@@ -3,10 +3,12 @@ import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import MediaVideo from '../../components/MediaVideo.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'CRUD Service | EmpowerNow';
 const description = 'Turn any API/workflow/DB into a governed MCP tool — no code. Secure by design; pre‑approved actions; reusable across agents.';
 const canonical = '/products/crud/';
 const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":"CRUD Service","brand":{"@type":"Brand","name":"EmpowerNow"},"description":description,"url":new URL(canonical, Astro.site),"category":"Workflow Automation","audience":{"@type":"Audience","audienceType":"Enterprise IAM, Platform Engineering, DevOps, App Teams, Security"},"offers":{"@type":"Offer","priceCurrency":"USD","price":"500","priceSpecification":{"@type":"UnitPriceSpecification","price":"500","priceCurrency":"USD","unitText":"governed endpoint / month"}}};
+const headline = `<span class="aurora-text">CRUD</span> <span class="h1-gradient">Service</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
@@ -16,7 +18,7 @@ const jsonLdProduct = {"@context":"https://schema.org","@type":"Product","name":
 		canonical={canonical}
 		productKey="crud"
 		eyebrow="CRUD SERVICE"
-		headline="CRUD Service"
+		headline={headline}
 		subhead="No‑code connectors and visual workflows. Publish tools/resources to MCP, Functions, and Microsoft Copilot."
 		targetICP={[ 'Platform Engineering', 'DevOps', 'App Teams', 'Security' ]}
 		keyBenefits={[
