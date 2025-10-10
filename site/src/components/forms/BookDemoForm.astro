@@ -7,9 +7,9 @@ interface Props {
 const { helper = 'Tell us a bit about you and we will reach out shortly.', endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined, mailto = (import.meta.env.PUBLIC_SALES_EMAIL as string | undefined) ?? 'sales@empowernow.ai' } = Astro.props as Props;
 const base = import.meta.env.BASE_URL;
 ---
-<section class="container" style="padding:24px 0 48px">
+<div style="width:100%;max-width:700px">
     <p style="color:#9ba3b7;max-width:860px;margin:0 0 8px">{helper}</p>
-    <div class="glass-card" style="padding:16px;border-radius:12px">
+    <div class="glass-card" style="padding:20px;border-radius:12px">
         <form id="demo-form" method="post" action={endpoint ? endpoint : `mailto:${mailto}`} enctype={endpoint ? 'application/x-www-form-urlencoded' : 'text/plain'} novalidate>
             <div class="form-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
                 <div>
@@ -169,6 +169,6 @@ const base = import.meta.env.BASE_URL;
         select.input option[disabled]{ color:#6f7d98 }
         @media (max-width: 900px){ .form-grid { grid-template-columns: 1fr !important; } }
     </style>
-</section>
+</div>
 
 

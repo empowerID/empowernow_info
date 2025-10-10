@@ -7,12 +7,14 @@ interface Props {
     chips?: string[];
     background?: 'hero' | null;
     bgImage?: string;
+    rightSide?: 'visual' | 'form'; // Specify if right side is a form (needs more width)
 }
-const { title, description = '', canonical = '/', chips = [], background = null, bgImage } = Astro.props as Props;
+const { title, description = '', canonical = '/', chips = [], background = null, bgImage, rightSide = 'visual' } = Astro.props as Props;
 const base = import.meta.env.BASE_URL;
 const bgUrl = background === 'hero' ? `${base}images/backgrounds/bg-homepage-hero.jpg` : (bgImage ? (bgImage.startsWith('http') ? bgImage : `${base}${bgImage.replace(/^\//,'')}`) : '');
 const sectionStyle = bgUrl ? `background-image:url(${bgUrl});background-size:cover;background-position:center;background-repeat:no-repeat` : '';
 const containerClass = background === 'hero' ? 'hero-container' : '';
+const rightSideClass = rightSide === 'form' ? 'hero__form' : 'hero__visual';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <section class="hero-plate page-stage" style={sectionStyle} data-suppress-sticky>
@@ -30,7 +32,7 @@ const containerClass = background === 'hero' ? 'hero-container' : '';
                 </div>
                 <slot name="left-extra" />
             </div>
-            <div class="hero__visual">
+            <div class={rightSideClass}>
                 <slot />
             </div>
         </div>
