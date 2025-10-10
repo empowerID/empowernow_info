@@ -1,12 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Delegated Authorization — Safely Act on Behalf';
 const description = 'Use AuthZEN PDP + Membership to represent roles and delegations; enforce per‑action constraints across services.';
 const canonical = '/solutions/delegated-authorization/';
+const headline = `<span class="aurora-text">Delegated</span> <span class="h1-gradient">Authorization</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <Solution title={title} description={description} canonical={canonical} headline="Delegated Authorization" outcomes={[ 'Principled delegation', 'Per‑action constraints', 'Auditable access' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' } ]} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' }, { href: '/products/membership/', label: 'Membership' } ]} keywords={[ 'authzen' ]} heroIllustration="images/illustrations/large/services/hero-services-delegated-authorization.png" heroIllustrationAlt="Visual representation of delegated authorization showing constrained empowerment flow" heroIllustrationWidth={800} heroIllustrationHeight={600}>
+    <Solution title={title} description={description} canonical={canonical} headline={headline} outcomes={[ 'Principled delegation', 'Per‑action constraints', 'Auditable access' ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/pdp/', label: 'PDP Docs' } ]} wwwLinks={[ { href: '/products/pdp/', label: 'AuthZEN PDP' }, { href: '/products/membership/', label: 'Membership' } ]} keywords={[ 'authzen' ]} heroIllustration="images/illustrations/large/services/hero-services-delegated-authorization.png" heroIllustrationAlt="Visual representation of delegated authorization showing constrained empowerment flow" heroIllustrationWidth={800} heroIllustrationHeight={600}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

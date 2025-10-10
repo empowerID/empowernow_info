@@ -1,9 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Solutions — EmpowerNow';
 const description = 'Create tools once. Enforce policy and budgets across any agent platform. Prove every action with receipts.';
 const canonical = '/solutions/';
+const headline = `<span class="h1-gradient">Create. Control.</span> <span class="aurora-text">Prove.</span>`;
 const items = [
 	{ href: '/solutions/spend-governance/', title: 'Spend Governance', desc: 'Budgets 402 + caps + receipts' },
 	{ href: '/solutions/agent-safe-tools/', title: 'Agent‑Safe Tools', desc: 'MCP Gateway + ARIA Shield' },
@@ -15,7 +17,7 @@ const items = [
 ---
 <Base title={title} description={description} canonical={canonical}>
     <Hero
-        headline="Create. Control. Prove."
+        headline={headline}
         body="Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Enforce policy and budgets across platforms. <strong>Prove</strong> every action with receipts."
         illustration="images/illustrations/large/services/hero-services-main.png"
         illustrationAlt="Visual representation of outcome-focused solutions showing control, create, and prove capabilities"
