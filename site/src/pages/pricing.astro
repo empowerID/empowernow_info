@@ -1,31 +1,34 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import AuroraText from '../components/AuroraText.astro';
 const title = 'Pricing & ROI — EmpowerNow';
 const description = 'Simple, credible pricing with a lightweight ROI calculator to estimate savings and payback.';
 const canonical = '/pricing/';
+const headline = `<span class="aurora-text">Pricing</span>`;
+const body = `Start small and expand as you govern more endpoints and agents.
+<br/><br/>
+• <strong>$500 / governed endpoint / month</strong> (typical)<br/>
+• <strong>Decisions</strong> priced per 100k<br/>
+• <strong>Receipts</strong> priced per 10k<br/>
+• <strong>Author seats</strong> for Automation/Studios (optional)<br/>
+• <strong>OEM/white‑label</strong> and volume tiers available`;
 ---
 <Base title={title} description={description} canonical={canonical}>
     <Hero
-        headline="Pricing"
-        body="Start small and expand as you govern more endpoints and agents."
+        headline={headline}
+        body={body}
         illustration="images/illustrations/large/hero-pricing.png"
         illustrationAlt="Visual representation of transparent pricing and ROI calculator"
         illustrationWidth={600}
         illustrationHeight={400}
         showAAIcon={false}
-    />
-    <section class="container" style="padding:8px 0 8px">
-        <div class="glass-card" style="padding:16px;color:#9ba3b7">
-            <ul style="margin:0;line-height:1.8">
-                <li><strong>$500 / governed endpoint / month</strong> (typical)</li>
-                <li><strong>Decisions</strong> priced per 100k</li>
-                <li><strong>Receipts</strong> priced per 10k</li>
-                <li><strong>Author seats</strong> for Automation/Studios (optional)</li>
-                <li><strong>OEM/white‑label</strong> and volume tiers available</li>
-            </ul>
+    >
+        <div slot="actions" class="hero__actions">
+            <a href={`${import.meta.env.BASE_URL}demo/`} class="btn btn-primary" data-ev="cta_click" data-label="pricing-hero-book-demo">Book demo</a>
+            <a href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="btn btn-ghost" data-ev="cta_click" data-label="pricing-hero-quickstart">Start Quickstart</a>
         </div>
-    </section>
+    </Hero>
 
     <section class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Quick ROI estimate</h2>

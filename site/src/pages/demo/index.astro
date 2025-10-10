@@ -1,19 +1,23 @@
 ---
 import Landing from '../../layouts/Landing.astro';
 import BookDemoForm from '../../components/forms/BookDemoForm.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Book a 15‑minute demo — EmpowerNow';
 const description = 'Ship zero‑token SPAs and policy‑guarded agents in days, not months.';
 const canonical = '/demo/';
 const salesEmail = (import.meta as any).env.PUBLIC_SALES_EMAIL || 'sales@empowernow.ai';
 const ogImage = new URL(`${import.meta.env.BASE_URL}images/empowernow-logo.svg`, Astro.site).toString();
 ---
-<Landing title={title} description={description} canonical={canonical} chips={[ 'Calendar in 1 click', 'Tailored to your stack', 'Privacy‑first' ]} background="hero">
+<Landing title={title} description={description} canonical={canonical} chips={[ 'Calendar in 1 click', 'Tailored to your stack', 'Privacy‑first' ]} background="hero" rightSide="form">
+    <div slot="heading">
+        <AuroraText>15‑minute demo</AuroraText> <span class="h1-smaller h1-gradient">— EmpowerNow</span>
+    </div>
     <div slot="primary-ctas">
         <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}demo/?schedule=now`} data-ev="cta_click" data-label="schedule_now" data-cta-level="hard">Schedule now</a>
         <a class="btn" href={`${import.meta.env.BASE_URL}pricing/`} data-ev="cta_click" data-label="pricing_top" data-cta-level="soft">Pricing</a>
     </div>
     <div slot="left-extra">
-        <img src={`${import.meta.env.BASE_URL}images/illustrations/large/hero-book-demo.png`} alt="Visual representation of booking a tailored 15-minute demo with calendar and meeting features" width={420} height={315} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px;margin-top:24px" />
+        <img src={`${import.meta.env.BASE_URL}images/illustrations/large/hero-book-demo.png`} alt="Visual representation of booking a tailored 15-minute demo with calendar and meeting features" width={360} height={315} loading="eager" style="display:block;max-width:320px;height:auto;border-radius:12px;margin-top:24px" />
     </div>
     <BookDemoForm helper="Tell us a bit about you and we will reach out shortly." mailto={salesEmail} />
     <div slot="below">

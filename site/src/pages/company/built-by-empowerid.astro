@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import HeroDemoTile from '../../components/HeroDemoTile.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Built by EmpowerID — Neutral by Design';
 const description = 'EmpowerNow is the AI-focused Identity Fabric from EmpowerID—neutral Layer-2 governance with separate infrastructure and OEM readiness.';
 const canonical = '/company/built-by-empowerid/';
@@ -10,7 +11,7 @@ const canonical = '/company/built-by-empowerid/';
     <section class="hero-plate page-stage" data-section="hero" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
         <div class="container hero-container hero-layout--split">
             <div class="hero__content">
-                <h1 class="display hero__headline" style="background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Neutral by design. Built by EmpowerID.</h1>
+                <h1 class="display hero__headline"><span class="h1-gradient">Neutral by design.<br>Built by</span> <AuroraText>EmpowerID</AuroraText><span class="h1-gradient">.</span></h1>
                 <p class="hero__body" set:html={`<strong>EmpowerID</strong>—IGA/PAM since <strong>2005</strong>, powering mission‑critical programs in aerospace, automotive, retail, and manufacturing.`} />
                 <div class="hero__actions">
                     <a class="btn btn-primary" data-ev="cta_click" data-label="partner_oem" data-position="hero" href={`${import.meta.env.BASE_URL}partners/`}>Partner with us (OEM/SI)</a>

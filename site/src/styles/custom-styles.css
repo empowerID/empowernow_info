@@ -1314,8 +1314,8 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 
 /* Hero Content (Left Side) */
 .hero__content {
-  flex: 1 1 520px;
-  min-width: 300px;
+  flex: 1 1 480px;
+  min-width: 0; /* Allow flex to shrink below 300px if needed */
 }
 
 /* Hero Visual (Right Side) */
@@ -1340,6 +1340,16 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
 .hero__visual--video {
   /* Specific styling for video containers */
   position: relative;
+}
+
+/* Hero Form (Right Side - for forms that need more width) */
+.hero__form {
+  flex: 1.2 1 500px; /* 20% more flex than visual, larger base */
+  min-width: 0; /* Allow flex to shrink */
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  max-width: none; /* No max width constraint */
 }
 
 /* Hero Typography */
@@ -1484,6 +1494,13 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
     width: 100%;
     max-width: 400px;
     margin: 0 auto 32px;
+  }
+  
+  .hero__form {
+    width: 100%;
+    max-width: 100%;
+    margin: 32px 0 0;
+    justify-content: center;
   }
   
   .hero__headline {
