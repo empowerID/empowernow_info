@@ -7,6 +7,8 @@ const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
 const base = import.meta.env.BASE_URL;
+const heroBackground = `${base}images/backgrounds/bg-homepage-hero.jpg`;
+const heroIllustration = `${base}images/illustrations/large/resources/hero-resources-standards-authorization-fundamentals.png`;
 const slugs = ['ai-middleware-leadership','contracts','authz-model','idp-technical-overview'];
 const labels: Record<string,string> = {
   'ai-middleware-leadership': 'AI Middleware Leadership',
@@ -26,12 +28,17 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     {name:'Authorization Fundamentals',item:`${base}resources/strategy/authz-model/`}
   ]} />
   
-  <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-    <div class="container" style="position:relative;z-index:1">
-      <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">STRATEGY</div>
-      <h1 class="display" style={`margin:0 0 16px;font-size:clamp(2.25rem,4.5vw,3.6rem)`}>Authorization Fundamentals</h1>
-      <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PAP authors policy. PDP evaluates decisions using PIPs</p>
-      <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
+  <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${heroBackground});background-size:cover;background-position:center;background-repeat:no-repeat`}>
+    <div class="container hero-split" style="position:relative;z-index:1">
+      <div class="hero-content">
+        <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">STRATEGY</div>
+        <h1 class="display" style={`margin:0 0 16px;font-size:clamp(2.25rem,4.5vw,3.6rem)`}>Authorization Fundamentals</h1>
+        <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PAP authors policy. PDP evaluates decisions using PIPs</p>
+        <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
+      </div>
+      <div class="hero-visual">
+        <img src={heroIllustration} alt="Visual representation of authorization fundamentals showing PAP, PDP, PIP, and PEP architecture" width={800} height={600} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px" />
+      </div>
     </div>
   </header>
 
@@ -145,5 +152,48 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     ]
   })}</script>
 </Base>
+
+<style>
+	/* Hero layout styles */
+	.hero-split {
+		display: flex;
+		gap: 48px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.hero-content {
+		flex: 1 1 520px;
+		min-width: 300px;
+	}
+
+	.hero-visual {
+		flex: 1 1 400px;
+		min-width: 280px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* Mobile: stack vertically, illustration on top */
+	@media (max-width: 768px) {
+		.hero-split {
+			flex-direction: column-reverse;
+		}
+
+		.hero-visual {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto 32px;
+		}
+	}
+
+	/* Tablet: reduce gaps */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.hero-split {
+			gap: 32px;
+		}
+	}
+</style>
 
 
