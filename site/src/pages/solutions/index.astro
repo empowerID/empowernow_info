@@ -1,8 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Solutions — EmpowerNow';
 const description = 'Create tools once. Enforce policy and budgets across any agent platform. Prove every action with receipts.';
 const canonical = '/solutions/';
+const headline = `<span class="h1-gradient">Create. Control.</span> <span class="aurora-text">Prove.</span>`;
 const items = [
 	{ href: '/solutions/spend-governance/', title: 'Spend Governance', desc: 'Budgets 402 + caps + receipts' },
 	{ href: '/solutions/agent-safe-tools/', title: 'Agent‑Safe Tools', desc: 'MCP Gateway + ARIA Shield' },
@@ -13,31 +17,24 @@ const items = [
 ];
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <!-- Zone A: Hero (full-bleed) -->
-    <section class="hero-plate page-stage cv-auto" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-		<div class="container" style="position:relative;z-index:1;display:flex;gap:28px;align-items:center;flex-wrap:wrap">
-			<div style="flex:1 1 520px;min-width:300px">
-				<h1 class="display" style="margin:0 0 8px">Create. Control. Prove.</h1>
-				<p style="color:#9ba3b7;max-width:70ch;margin:0 0 14px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Enforce policy and budgets across platforms. <strong>Prove</strong> every action with receipts.</p>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-                    <a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
-                <a class="btn btn-ghost" data-ev="cta_click" data-label="solutions-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a>
+    <Hero
+        headline={headline}
+        body="Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Enforce policy and budgets across platforms. <strong>Prove</strong> every action with receipts."
+        illustration="images/illustrations/large/services/hero-services-main.png"
+        illustrationAlt="Visual representation of outcome-focused solutions showing control, create, and prove capabilities"
+        illustrationWidth={800}
+        illustrationHeight={600}
+        showAAIcon={false}
+        containerClass="cv-auto"
+    >
+        <fragment slot="actions">
+            <div class="hero__actions" style="margin-top:8px">
+                <a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
+                <button type="button" class="btn btn-ghost" data-ev="cta_click" data-label="solutions-demo" onclick="document.getElementById('demo-video-trigger')?.click()">Watch 90‑sec demo</button>
                 <a class="btn btn-ghost" data-ev="cta_click" data-label="solutions-aria" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA?</a>
-                </div>
-			</div>
-			<figure style="flex:1 1 380px;min-width:280px;margin:0" aria-label="API to CRUD Service to Platforms diagram">
-				<div class="diagram vignette" style="margin:0">
-					<div style="display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px">
-						<div class="node">API</div>
-						<div class="flow"></div>
-						<div class="node">CRUD<br/>Service</div>
-						<div class="flow"></div>
-						<div class="node">Platforms</div>
-					</div>
-				</div>
-			</figure>
-		</div>
-	</section>
+            </div>
+        </fragment>
+    </Hero>
 
     <!-- Zone B: Problem cards -->
     <section class="container cv-auto" data-section="problems" style="padding:64px 0">
@@ -255,4 +252,73 @@ const items = [
             }catch{}
         })();
     </script>
+
+    <!-- Hidden video for lightbox -->
+    <div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+        <MediaVideo 
+            src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+            poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+            title="The AI Gold Rush: EmpowerNow 90-second demo"
+            mode="modal"
+            autoPlay={true}
+            muted={false}
+            aspect="16/9"
+        />
+    </div>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
+        })();
+    </script>
+
 </Base>
+
+<style>
+	/* Hero layout styles */
+	.hero-split {
+		display: flex;
+		gap: 48px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.hero-content {
+		flex: 1 1 520px;
+		min-width: 300px;
+	}
+
+	.hero-visual {
+		flex: 1 1 400px;
+		min-width: 280px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* Mobile: stack vertically, illustration on top */
+	@media (max-width: 768px) {
+		.hero-split {
+			flex-direction: column-reverse;
+		}
+
+		.hero-visual {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto 32px;
+		}
+	}
+
+	/* Tablet: reduce gaps */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.hero-split {
+			gap: 32px;
+		}
+	}
+</style>

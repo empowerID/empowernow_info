@@ -1,27 +1,34 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import AuroraText from '../components/AuroraText.astro';
 const title = 'Pricing & ROI — EmpowerNow';
 const description = 'Simple, credible pricing with a lightweight ROI calculator to estimate savings and payback.';
 const canonical = '/pricing/';
+const headline = `<span class="aurora-text">Pricing</span>`;
+const body = `Start small and expand as you govern more endpoints and agents.
+<br/><br/>
+• <strong>$500 / governed endpoint / month</strong> (typical)<br/>
+• <strong>Decisions</strong> priced per 100k<br/>
+• <strong>Receipts</strong> priced per 10k<br/>
+• <strong>Author seats</strong> for Automation/Studios (optional)<br/>
+• <strong>OEM/white‑label</strong> and volume tiers available`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="position:relative;z-index:1">
-            <h1>Pricing</h1>
-            <p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Start small and expand as you govern more endpoints and agents.</p>
+    <Hero
+        headline={headline}
+        body={body}
+        illustration="images/illustrations/large/hero-pricing.png"
+        illustrationAlt="Visual representation of transparent pricing and ROI calculator"
+        illustrationWidth={600}
+        illustrationHeight={400}
+        showAAIcon={false}
+    >
+        <div slot="actions" class="hero__actions">
+            <a href={`${import.meta.env.BASE_URL}demo/`} class="btn btn-primary" data-ev="cta_click" data-label="pricing-hero-book-demo">Book demo</a>
+            <a href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="btn btn-ghost" data-ev="cta_click" data-label="pricing-hero-quickstart">Start Quickstart</a>
         </div>
-    </section>
-    <section class="container" style="padding:8px 0 8px">
-        <div class="glass-card" style="padding:16px;color:#9ba3b7">
-            <ul style="margin:0;line-height:1.8">
-                <li><strong>$500 / governed endpoint / month</strong> (typical)</li>
-                <li><strong>Decisions</strong> priced per 100k</li>
-                <li><strong>Receipts</strong> priced per 10k</li>
-                <li><strong>Author seats</strong> for Automation/Studios (optional)</li>
-                <li><strong>OEM/white‑label</strong> and volume tiers available</li>
-            </ul>
-        </div>
-    </section>
+    </Hero>
 
     <section class="container" style="padding:8px 0 24px">
         <h2 class="section-title">Quick ROI estimate</h2>
@@ -93,7 +100,64 @@ const canonical = '/pricing/';
     <style>
         .glass-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px }
         .glass-chip { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 999px; padding: 8px 12px }
-        .input { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.08); color: inherit; padding: 8px 10px; border-radius: 8px }
+        .input { 
+            background: rgba(255,255,255,.02); 
+            border: 1px solid rgba(255,255,255,.08); 
+            color: inherit; 
+            padding: 8px 10px; 
+            border-radius: 8px; 
+            min-width: 0; 
+            box-sizing: border-box;
+        }
         label { display:block; font-size:.9rem; color:#9ba3b7; margin:0 0 6px }
+        
+        /* Prevent grid children from overflowing */
+        .glass-card > div[style*="grid"] > div { min-width: 0; }
+        
+        /* Responsive: collapse to single column on small screens */
+        @media (max-width: 768px) {
+            .glass-card > div[style*="grid"] { grid-template-columns: 1fr !important; }
+        }
+
+        /* Hero layout styles */
+        .hero-split {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 520px;
+            min-width: 300px;
+        }
+
+        .hero-visual {
+            flex: 1 1 400px;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mobile: stack vertically, illustration on top */
+        @media (max-width: 768px) {
+            .hero-split {
+                flex-direction: column-reverse;
+            }
+
+            .hero-visual {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto 32px;
+            }
+        }
+
+        /* Tablet: reduce gaps */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-split {
+                gap: 32px;
+            }
+        }
     </style>
 </Base>

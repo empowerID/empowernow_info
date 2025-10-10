@@ -1,21 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Company — EmpowerNow';
 const description = 'Create once. Enforce everywhere. Prove everything. EmpowerNow is the universal agent governance & integration layer.';
 const canonical = '/company/';
+const headline = `<span class="h1-smaller h1-gradient">Create tools once.<br/> Enforce policy everywhere.<br/></span> <span class="aurora-text">Prove every action.</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <!-- Hero -->
-    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="max-width:1100px">
-            <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;text-align:center">Create tools once. Enforce policy everywhere. Prove every action.</h1>
-            <p style="color:#9ba3b7;max-width:80ch;margin:0 auto 24px;line-height:1.5;text-align:center">EmpowerNow is the <strong>universal agent governance & integration layer</strong>. Teams <strong>create tools once</strong>, <strong>enforce policy & spend controls</strong> across <strong>OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock</strong>, and <strong>prove</strong> every action with cryptographic receipts.</p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
-                <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="company-hero-demo" data-position="hero">Watch 90‑sec demo</a>
+    <Hero
+        headline={headline}
+        body="EmpowerNow is the <strong>universal agent governance & integration layer</strong>. Teams <strong>create tools once</strong>, <strong>enforce policy & spend controls</strong> across <strong>OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock</strong>, and <strong>prove</strong> every action with cryptographic receipts."
+        illustration="images/illustrations/large/hero-about-company.png"
+        illustrationAlt="Visual representation of EmpowerNow company mission: Create, Enforce, and Prove"
+        illustrationWidth={800}
+        illustrationHeight={600}
+        showAAIcon={false}
+    >
+        <fragment slot="actions">
+            <div class="hero__actions">
+                <button type="button" class="btn btn-primary" data-ev="cta_click" data-label="company-hero-demo" data-position="hero" onclick="document.getElementById('demo-video-trigger')?.click()">Watch 90‑sec demo</button>
                 <a class="btn btn-ghost" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} data-ev="cta_click" data-label="company-hero-quickstart" data-position="hero">Open Quickstart</a>
             </div>
-        </div>
-    </section>
+        </fragment>
+    </Hero>
 
     <!-- Why EmpowerNow (3 cards) -->
     <section class="container" style="padding:40px 0 24px">
@@ -150,6 +159,75 @@ const canonical = '/company/';
         </div>
         <div style="margin-top:10px"><a href="mailto:identityfabric@empowernow.ai" class="card-cta">identityfabric@empowernow.ai</a></div>
     </section>
+
+    <!-- Hidden video for lightbox -->
+    <div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+        <MediaVideo 
+            src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+            poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+            title="The AI Gold Rush: EmpowerNow 90-second demo"
+            mode="modal"
+            autoPlay={true}
+            muted={false}
+            aspect="16/9"
+        />
+    </div>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
+        })();
+    </script>
+
 </Base>
+
+<style>
+	/* Hero layout styles */
+	.hero-split {
+		display: flex;
+		gap: 48px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.hero-content {
+		flex: 1 1 520px;
+		min-width: 300px;
+	}
+
+	.hero-visual {
+		flex: 1 1 400px;
+		min-width: 280px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* Mobile: stack vertically, illustration on top */
+	@media (max-width: 768px) {
+		.hero-split {
+			flex-direction: column-reverse;
+		}
+
+		.hero-visual {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto 32px;
+		}
+	}
+
+	/* Tablet: reduce gaps */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.hero-split {
+			gap: 32px;
+		}
+	}
+</style>
 
 

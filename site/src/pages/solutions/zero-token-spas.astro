@@ -2,18 +2,20 @@
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Zero‑Token SPAs — Secure by Design';
 const description = 'Move tokens out of the browser. Use a BFF to deliver session UX, AuthZEN policy, stream-time caps, and signed receipts.';
 const canonical = '/solutions/zero-token-spas/';
+const headline = `<span class="aurora-text">Zero‑Token</span> <span class="h1-gradient">SPAs</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <Solution title={title} description={description} canonical={canonical} headline="Zero‑Token SPAs" outcomes={[ 'Eliminate token theft', 'Policy on every call', 'Audit‑ready proof' ]} faq={[ { q:'What is a Zero‑Token SPA?', a:'A SPA that never stores OAuth/OIDC tokens in the browser. The BFF holds tokens server‑side and authenticates via HTTP‑only cookies.' }, { q:'Does this work with OAuth/OIDC/PKCE?', a:'Yes. OAuth/OIDC flows terminate at the BFF with PKCE; the SPA uses a SameSite, HTTP‑only session cookie.' } ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[
+    <Solution title={title} description={description} canonical={canonical} headline={headline} outcomes={[ 'Eliminate token theft', 'Policy on every call', 'Audit‑ready proof' ]} faq={[ { q:'What is a Zero‑Token SPA?', a:'A SPA that never stores OAuth/OIDC tokens in the browser. The BFF holds tokens server‑side and authenticates via HTTP‑only cookies.' }, { q:'Does this work with OAuth/OIDC/PKCE?', a:'Yes. OAuth/OIDC flows terminate at the BFF with PKCE; the SPA uses a SameSite, HTTP‑only session cookie.' } ]} primaryCTA={{ label: 'Open Quickstart', href: '/docs/' }} secondaryCTA={{ label: 'Watch 10‑min demo', href: '/resources/demo/' }} docsLinks={[
 		{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' },
 		{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/bff_gateway/', label: 'BFF Gateway' }
 	]} wwwLinks={[
 		{ href: '/products/aria-shield/', label: 'ARIA Shield' },
 		{ href: '/deep-dives/', label: 'Deep Dives' }
-	]} keywords={[ 'bff', 'authzen' ]}>
+	]} keywords={[ 'bff', 'authzen' ]} heroIllustration="images/illustrations/large/services/hero-services-zero-token-spas.png" heroIllustrationAlt="Visual representation of zero-token SPA architecture with BFF pattern" heroIllustrationWidth={800} heroIllustrationHeight={600}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

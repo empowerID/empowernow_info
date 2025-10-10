@@ -2,12 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
 import MediaVideo from '../../components/MediaVideo.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Spend Governance — Control AI Costs';
 const description = 'Use ARIA Shield + Receipts + Data Collector to cap spend at stream‑time, emit receipts, and drive FinOps dashboards.';
 const canonical = '/solutions/spend-governance/';
+const headline = `<span class="aurora-text">Spend</span> <span class="h1-gradient">Governance</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <Solution title={title} description={description} canonical={canonical} headline="Spend Governance" outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} primaryCTA={{ label: 'Watch 90‑sec demo', href: '/resources/demo/' }} secondaryCTA={{ label: 'Explore receipts', href: '/products/receipts/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]}>
+    <Solution title={title} description={description} canonical={canonical} headline={headline} outcomes={[ 'Prevent overruns', 'Hold budgets at stream‑time', 'Audit actuals' ]} primaryCTA={{ label: 'Watch 90‑sec demo', href: '/resources/demo/' }} secondaryCTA={{ label: 'Explore receipts', href: '/products/receipts/' }} docsLinks={[ { href: 'https://empowerid.github.io/empowernow_docs/docs/services/bff/explanation/overview/', label: 'BFF Overview' } ]} wwwLinks={[ { href: '/products/aria-shield/', label: 'ARIA Shield' }, { href: '/products/receipts/', label: 'Receipt Vault' }, { href: '/products/data-collector/', label: 'Data Collector' } ]} keywords={[ 'bff', 'authzen' ]} heroIllustration="images/illustrations/large/services/hero-services-spend-governance.png" heroIllustrationAlt="Visual representation of spend governance with budget control and enforcement" heroIllustrationWidth={800} heroIllustrationHeight={600}>
 		<fragment slot="how">
 			<section class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">How it works</h2>

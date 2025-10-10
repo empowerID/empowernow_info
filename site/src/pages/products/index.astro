@@ -1,23 +1,28 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'Products — EmpowerNow';
 const description = 'IdP, PDP, ARIA MCP Gateway, ARIA Shield, Data Collector, CRUD Service. Bundled: Tool Registry, Receipt Vault, Membership.';
 const canonical = '/products/';
+const headline = `<span class="h1-gradient">The Platform That Makes</span> <span class="aurora-text">AI Agents</span> <span class="h1-gradient">Actually Work</span>`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="position:relative;z-index:1;display:flex;gap:28px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1 1 520px;min-width:300px">
-                <h1 class="display" style="margin:0 0 8px">The Platform That Makes AI Agents Actually Work</h1>
-                <p style="color:#9ba3b7;max-width:70ch;margin:12px 0 18px">Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Then enforce policy and prove every action.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                    <a href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="btn btn-primary" data-ev="cta_click" data-label="products-hero-quickstart">Start Quickstart</a>
-                    <a href={`${import.meta.env.BASE_URL}resources/demo/`} class="btn btn-ghost" data-ev="cta_click" data-label="products-hero-demo">Watch 90‑sec demo</a>
-                </div>
-            </div>
-            <div style="flex:1 1 380px;min-width:280px"><div style="color:#9ba3b7">API → CRUD Service → MCP/Copilot/Functions</div></div>
+    <Hero
+        headline={headline}
+        body="Turn any API into a <strong>secure agent tool</strong> in <strong>5 minutes</strong>. Then enforce policy and prove every action."
+        illustration="images/illustrations/large/products/hero-products-main.png"
+        illustrationAlt="Visual representation of the unified EmpowerNow platform ecosystem showing interconnected products"
+        illustrationWidth={800}
+        illustrationHeight={600}
+        showAAIcon={false}
+    >
+        <div slot="actions" class="hero__actions">
+            <a href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="btn btn-primary" data-ev="cta_click" data-label="products-hero-quickstart">Start Quickstart</a>
+            <button type="button" class="btn btn-ghost" data-ev="cta_click" data-label="products-hero-demo" onclick="document.getElementById('demo-video-trigger')?.click()">Watch 90‑sec demo</button>
         </div>
-    </section>
+    </Hero>
     <section class="container" style="padding:40px 0 16px">
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0" role="tablist" aria-label="Products categories">
             <button class="btn" role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" data-tab="build">Build</button>
@@ -330,6 +335,31 @@ const canonical = '/products/';
                     el.addEventListener('mouseenter', ()=>{ (window).dataLayer.push({event:'badge_info_open', badge: el.getAttribute('data-badge-info')}); });
                 });
             }catch{}
+        })();
+    </script>
+
+    <!-- Hidden video for lightbox -->
+    <div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+        <MediaVideo 
+            src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+            poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+            title="The AI Gold Rush: EmpowerNow 90-second demo"
+            mode="modal"
+            autoPlay={true}
+            muted={false}
+            aspect="16/9"
+        />
+    </div>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
         })();
     </script>
 

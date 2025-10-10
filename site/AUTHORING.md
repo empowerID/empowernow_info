@@ -60,6 +60,92 @@ SEO/Schema:
 - `comparisons/[competitor].astro`: fills a table + JSON‑LD (Article) and breadcrumbs
 - `industries/[industry].astro`: headline, outcomes, and cross‑links
 
+### Hero Component (`Hero.astro`)
+The `Hero.astro` component provides a unified, flexible hero header system across all pages. It supports illustrations, videos, chips, CTAs, and custom content via slots.
+
+**Required props:**
+- `headline` (string): Main H1 text
+
+**Optional props:**
+- `layout` ('split' | 'single' | 'grid' | 'custom'): Hero layout style (default: 'split')
+- `background` (string): Path to background image (relative to BASE_URL)
+- `eyebrow` (string): Small text label above headline
+- `subhead` (string): Larger descriptive text below headline
+- `body` (string): Body paragraph text (alternative to subhead)
+- `illustration` (string): Path to illustration (relative to BASE_URL)
+- `illustrationAlt` (string): Alt text for illustration
+- `illustrationWidth` (number): Illustration width in pixels
+- `illustrationHeight` (number): Illustration height in pixels
+- `chips` (string[]): Array of chip labels to display
+- `chipStyle` ('outline-cyan' | 'outline-violet' | 'solid'): Chip visual style
+- `primaryCTA`, `secondaryCTA`, `tertiaryCTA` ({ label, href }): Call-to-action buttons
+- `showAAIcon` (boolean): Display AA compliance icon (default: true)
+- `containerClass` (string): Additional classes for container
+- `contentClass` (string): Additional classes for content area
+
+**Slots (all optional):**
+- `default`: Replaces all hero content (full custom hero)
+- `content`: Replaces text content only (headline, subhead, chips)
+- `visual`: Replaces illustration/video
+- `actions`: Replaces CTAs
+- `extra`: Additional content after actions
+
+**Examples:**
+
+Simple hero with props:
+```astro
+<Hero
+  headline="Create. Control. Prove."
+  body="Turn any API into a <strong>secure agent tool</strong>."
+  illustration="images/hero-example.png"
+  illustrationAlt="Example illustration"
+  primaryCTA={{ label: "Get Started", href: "/demo/" }}
+/>
+```
+
+Hero with custom actions:
+```astro
+<Hero headline="Products" body="Build once, deploy everywhere.">
+  <div slot="actions" class="hero__actions">
+    <a class="btn btn-primary" href="/products/">View Products</a>
+    <a class="btn btn-ghost" href="/docs/">Documentation</a>
+  </div>
+</Hero>
+```
+
+Hero with chips:
+```astro
+<Hero
+  headline="Solutions"
+  chips={['Budget Control', 'Policy Enforcement', 'Audit Receipts']}
+  chipStyle="outline-cyan"
+/>
+```
+
+**Typography sizing:**
+- Headlines and subheads are 25% smaller than the original Product hero design
+- Responsive sizing via CSS clamp (scales between mobile and desktop)
+- All sizing is controlled by CSS classes in `custom-styles.css`
+
+**Layouts:**
+- `split`: Two-column with content on left, visual on right (default, stacks on mobile)
+- `single`: Full-width content only
+- `grid`: 5fr/7fr grid layout (used by Landing pages)
+- `custom`: Minimal wrapper for fully custom heroes
+
+**CSS Classes:**
+All hero styling uses unified CSS classes in `custom-styles.css`:
+- `.hero-plate`: Full-bleed background wrapper
+- `.hero-container`: Content wrapper with padding
+- `.hero-layout--split`, `.hero-layout--grid`: Layout variants
+- `.hero__content`: Left content area
+- `.hero__visual`: Right visual area (illustration/video)
+- `.hero__headline`, `.hero__subhead`, `.hero__body`: Typography
+- `.hero__eyebrow`: Small label text
+- `.hero__actions`: CTA button container
+- `.hero__chips`: Chip container
+- `.hero__aa-icon`: AA compliance icon with tooltip
+
 ## 3) Where new content belongs
 - New product feature or service → `src/pages/products/<slug>.astro` using `Product.astro`
 - New solution/outcome narrative → `src/pages/solutions/<slug>.astro` using `Solution.astro`

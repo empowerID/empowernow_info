@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import HeroComposite from '../components/HeroComposite.astro';
 import DemoTile from '../components/DemoTile.astro';
-import HeroDemoTile from '../components/HeroDemoTile.astro';
+import MediaVideo from '../components/MediaVideo.astro';
 import ProofChip from '../components/ProofChip.astro';
 import StatusPills from '../components/StatusPills.astro';
 import CodeCard from '../components/CodeCard.astro';
@@ -13,14 +13,14 @@ import SavingsCalculator from '../components/SavingsCalculator.astro';
 import AuroraText from '../components/AuroraText.astro';
 ---
 <Base title="EmpowerNow — Universal Agent Governance & Integration Layer" description="Create tools once. Enforce policy & spend controls across agent platforms, and prove every action with cryptographic receipts." canonical="/">
-    <!-- Hero -->
-    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="display:flex;gap:48px;align-items:center;flex-wrap:wrap">
-            <div style="flex:1 1 520px;min-width:300px">
-                <h1 class="display" style="margin:0 0 10px;line-height:1.2"><span style="background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.33">Create tools once.<br>Enforce policy everywhere.</span> <AuroraText><span style="font-size:1.15em">Prove every action.</span></AuroraText></h1>
-                <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5">No‑code tools for any agent platform with <strong>budget & content controls</strong> and <strong>cryptographic receipts</strong>.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
-                    <a class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" data-position="hero" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑second demo</a>
+    <!-- Hero - Custom homepage hero using unified CSS classes -->
+    <section class="hero-plate page-stage" data-section="hero" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+        <div class="container hero-container hero-layout--split">
+            <div class="hero__content">
+                <h1 class="display hero__headline" style="line-height:1.2"><span class="h1-smaller h1-gradient">Create tools once.<br>Enforce policy everywhere.</span> <AuroraText>Prove every action.</AuroraText></h1>
+                <p class="hero__body">No‑code tools for any agent platform with <strong>budget & content controls</strong> and <strong>cryptographic receipts</strong>.</p>
+                <div class="hero__actions" style="margin-bottom:20px">
+                    <button type="button" class="btn btn-primary" data-ev="cta_click" data-label="watch_demo" data-position="hero" onclick="document.getElementById('hero-video-trigger')?.click()">Watch 90‑second demo</button>
                     <a class="btn btn-ghost" data-ev="cta_click" data-label="quickstart" data-position="hero" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`}>Open Quickstart</a>
                 </div>
                 <div class="hero-proof-chips" style="display:flex;flex-direction:column;gap:8px;color:#9ba3b7">
@@ -29,8 +29,16 @@ import AuroraText from '../components/AuroraText.astro';
                     <ProofChip label="Receipts auditors accept" icon="receipt" />
                 </div>
             </div>
-            <div class="parallax-glow hero-video-container" style="flex:1 1 420px;min-width:280px;position:relative">
-                <HeroDemoTile poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`} sources={[{src:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`,type:'video/mp4'}]} demoUrl={`${import.meta.env.BASE_URL}resources/demo/`} />
+            <div class="hero__visual hero__visual--video parallax-glow" id="hero-video-wrapper">
+                <MediaVideo 
+                    src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+                    poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+                    title="The AI Gold Rush: EmpowerNow 90-second demo"
+                    mode="modal"
+                    autoPlay={true}
+                    muted={false}
+                    aspect="16/9"
+                />
             </div>
             <!-- Trust Strip -->
             <div class="panel-glass trust-strip" style="padding:20px;color:#9ba3b7;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;width:100%">
@@ -42,6 +50,18 @@ import AuroraText from '../components/AuroraText.astro';
             </div>
         </div>
     </section>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('hero-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'hero-video-trigger';
+                }
+            }
+        })();
+    </script>
     <!-- Delegate safely band -->
     <section class="container reveal-on-scroll" data-section="delegate-safely" style="padding:8px 0 24px">
         <div class="glass-card" style="padding:16px">

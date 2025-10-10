@@ -1,8 +1,10 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
 import AuthorizationFundamentalsDiagram from '../../../components/AuthorizationFundamentalsDiagram.astro';
 import ABACAuthZEN from '../../../components/ABACAuthZEN.astro';
 import BreadcrumbsJsonLd from '../../../components/BreadcrumbsJsonLd.astro';
+import AuroraText from '../../../components/AuroraText.astro';
 const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
@@ -26,14 +28,22 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     {name:'Authorization Fundamentals',item:`${base}resources/strategy/authz-model/`}
   ]} />
   
-  <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-    <div class="container" style="position:relative;z-index:1">
-      <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">STRATEGY</div>
-      <h1 class="display" style={`margin:0 0 16px;font-size:clamp(2.25rem,4.5vw,3.6rem)`}>Authorization Fundamentals</h1>
-      <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PAP authors policy. PDP evaluates decisions using PIPs</p>
-      <p style={`color:#9ba3b7;max-width:90ch;font-size:clamp(1.0125rem,1.8vw,1.2375rem)`}>PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
+  <Hero
+    eyebrow="STRATEGY"
+    headline="Authorization Fundamentals"
+    illustration="images/illustrations/large/resources/hero-resources-standards-authorization-fundamentals.png"
+    illustrationAlt="Visual representation of authorization fundamentals showing PAP, PDP, PIP, and PEP architecture"
+    illustrationWidth={800}
+    illustrationHeight={600}
+    showAAIcon={false}
+  >
+    <div slot="content">
+      <div class="hero__eyebrow">STRATEGY</div>
+      <h1 class="display hero__headline"><AuroraText>Authorization</AuroraText> <span class="h1-gradient">Fundamentals</span></h1>
+      <p class="hero__subhead">PAP authors policy. PDP evaluates decisions using PIPs</p>
+      <p class="hero__subhead" style="margin-top:8px">PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
     </div>
-  </header>
+  </Hero>
 
   <section class="container" style="padding:48px 0 16px">
     <p style="color:#9ba3b7;max-width:90ch">Modern Attribute‑Based Access Control (ABAC) using <strong>OpenID AuthZEN</strong>. PAP authors versioned policy, PDP evaluates decisions with PIPs, and PEPs enforce <em>constraints</em> (sync) and <em>obligations</em> (async) at the correct boundary (IdP at issuance; Gateway/Service at runtime). <strong>Note:</strong> <em>constraints</em> and <em>obligations</em> shown here are EmpowerNow extensions to the AuthZEN decision and are not part of the current AuthZEN specification.</p>
@@ -145,5 +155,48 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
     ]
   })}</script>
 </Base>
+
+<style>
+	/* Hero layout styles */
+	.hero-split {
+		display: flex;
+		gap: 48px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.hero-content {
+		flex: 1 1 520px;
+		min-width: 300px;
+	}
+
+	.hero-visual {
+		flex: 1 1 400px;
+		min-width: 280px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	/* Mobile: stack vertically, illustration on top */
+	@media (max-width: 768px) {
+		.hero-split {
+			flex-direction: column-reverse;
+		}
+
+		.hero-visual {
+			width: 100%;
+			max-width: 400px;
+			margin: 0 auto 32px;
+		}
+	}
+
+	/* Tablet: reduce gaps */
+	@media (min-width: 769px) and (max-width: 1024px) {
+		.hero-split {
+			gap: 32px;
+		}
+	}
+</style>
 
 
