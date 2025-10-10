@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 import AuroraText from '../../components/AuroraText.astro';
 const title = 'Solutions — EmpowerNow';
 const description = 'Create tools once. Enforce policy and budgets across any agent platform. Prove every action with receipts.';
@@ -29,7 +30,7 @@ const items = [
         <fragment slot="actions">
             <div class="hero__actions" style="margin-top:8px">
                 <a class="btn btn-primary" data-ev="cta_click" data-label="solutions-quickstart" href={`${import.meta.env.BASE_URL}products/crud/`}>Start Quickstart</a>
-                <a class="btn btn-ghost" data-ev="cta_click" data-label="solutions-demo" href={`${import.meta.env.BASE_URL}resources/demo/`}>Watch 90‑sec demo</a>
+                <button type="button" class="btn btn-ghost" data-ev="cta_click" data-label="solutions-demo" onclick="document.getElementById('demo-video-trigger')?.click()">Watch 90‑sec demo</button>
                 <a class="btn btn-ghost" data-ev="cta_click" data-label="solutions-aria" href={`${import.meta.env.BASE_URL}products/aria/`}>What is ARIA?</a>
             </div>
         </fragment>
@@ -251,6 +252,32 @@ const items = [
             }catch{}
         })();
     </script>
+
+    <!-- Hidden video for lightbox -->
+    <div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+        <MediaVideo 
+            src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+            poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+            title="The AI Gold Rush: EmpowerNow 90-second demo"
+            mode="modal"
+            autoPlay={true}
+            muted={false}
+            aspect="16/9"
+        />
+    </div>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
+        })();
+    </script>
+
 </Base>
 
 <style>

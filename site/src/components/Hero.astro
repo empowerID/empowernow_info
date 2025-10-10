@@ -86,28 +86,56 @@ const hasVisual = !!(p.illustration || Astro.slots.has('visual'));
           ) : (
             <div class="hero__actions">
               {p.primaryCTA && (
-                <a 
-                  class="btn btn-primary" 
-                  href={p.primaryCTA.href} 
-                  data-ev="cta_click" 
-                  data-label={p.primaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
-                  data-position="hero_primary"
-                  aria-label={`Primary: ${p.primaryCTA.label}`}
-                >
-                  {p.primaryCTA.label}
-                </a>
+                p.primaryCTA.href === '/resources/demo/' ? (
+                  <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    onclick="document.getElementById('demo-video-trigger')?.click()"
+                    data-ev="cta_click" 
+                    data-label={p.primaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                    data-position="hero_primary"
+                    aria-label={`Primary: ${p.primaryCTA.label}`}
+                  >
+                    {p.primaryCTA.label}
+                  </button>
+                ) : (
+                  <a 
+                    class="btn btn-primary" 
+                    href={p.primaryCTA.href} 
+                    data-ev="cta_click" 
+                    data-label={p.primaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                    data-position="hero_primary"
+                    aria-label={`Primary: ${p.primaryCTA.label}`}
+                  >
+                    {p.primaryCTA.label}
+                  </a>
+                )
               )}
               {p.secondaryCTA && (
-                <a 
-                  class="btn btn-secondary" 
-                  href={p.secondaryCTA.href} 
-                  data-ev="cta_click" 
-                  data-label={p.secondaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
-                  data-position="hero_secondary"
-                  aria-label={`Secondary: ${p.secondaryCTA.label}`}
-                >
-                  {p.secondaryCTA.label}
-                </a>
+                p.secondaryCTA.href === '/resources/demo/' ? (
+                  <button 
+                    type="button"
+                    class="btn btn-secondary" 
+                    onclick="document.getElementById('demo-video-trigger')?.click()"
+                    data-ev="cta_click" 
+                    data-label={p.secondaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                    data-position="hero_secondary"
+                    aria-label={`Secondary: ${p.secondaryCTA.label}`}
+                  >
+                    {p.secondaryCTA.label}
+                  </button>
+                ) : (
+                  <a 
+                    class="btn btn-secondary" 
+                    href={p.secondaryCTA.href} 
+                    data-ev="cta_click" 
+                    data-label={p.secondaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                    data-position="hero_secondary"
+                    aria-label={`Secondary: ${p.secondaryCTA.label}`}
+                  >
+                    {p.secondaryCTA.label}
+                  </a>
+                )
               )}
               {p.tertiaryCTA && (
                 <a 

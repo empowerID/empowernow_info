@@ -231,13 +231,13 @@ const headline = `<span class="aurora-text">CRUD</span> <span class="h1-gradient
 								<div style="color:#9ba3b7;font-size:13px">↓</div>
 							</div>
 						</a>
-						<a data-ev="proof_click" data-label="demo" href={`${import.meta.env.BASE_URL}resources/demo/`} class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2)">
-							<img src={`${import.meta.env.BASE_URL}images/icons/icon-eye-crosshair.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
-							<div>
-								<div style="color:#e8ecff;font-weight:500;font-size:14px">Watch 90‑sec demo</div>
-								<div style="color:#9ba3b7;font-size:13px">→</div>
-							</div>
-						</a>
+					<button type="button" data-ev="proof_click" data-label="demo" onclick="document.getElementById('demo-video-trigger')?.click()" class="glass-card hover-rise" style="padding:16px;display:flex;gap:12px;align-items:center;text-decoration:none;border:1px solid rgba(182,255,60,.2);background:transparent;cursor:pointer;width:100%">
+						<img src={`${import.meta.env.BASE_URL}images/icons/icon-eye-crosshair.png`} alt="" style="width:40px;height:40px;flex-shrink:0" />
+						<div>
+							<div style="color:#e8ecff;font-weight:500;font-size:14px">Watch 90‑sec demo</div>
+							<div style="color:#9ba3b7;font-size:13px">→</div>
+						</div>
+					</button>
 					</div>
 				</div>
 			</section>
@@ -316,4 +316,30 @@ const headline = `<span class="aurora-text">CRUD</span> <span class="h1-gradient
 			}catch{}
 		})();
 	</script>
+
+	<!-- Hidden video for lightbox -->
+	<div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+		<MediaVideo 
+			src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+			poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+			title="The AI Gold Rush: EmpowerNow 90-second demo"
+			mode="modal"
+			autoPlay={true}
+			muted={false}
+			aspect="16/9"
+		/>
+	</div>
+	<script>
+		// Add ID to video trigger button for CTA access
+		(function() {
+			const wrapper = document.getElementById('demo-video-wrapper');
+			if (wrapper) {
+				const videoBtn = wrapper.querySelector('.mv-defer');
+				if (videoBtn) {
+					videoBtn.id = 'demo-video-trigger';
+				}
+			}
+		})();
+	</script>
+
 	</Base>

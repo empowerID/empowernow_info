@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 import AuroraText from '../../components/AuroraText.astro';
 const title = 'Products — EmpowerNow';
 const description = 'IdP, PDP, ARIA MCP Gateway, ARIA Shield, Data Collector, CRUD Service. Bundled: Tool Registry, Receipt Vault, Membership.';
@@ -19,7 +20,7 @@ const headline = `<span class="h1-gradient">The Platform That Makes</span> <span
     >
         <div slot="actions" class="hero__actions">
             <a href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} class="btn btn-primary" data-ev="cta_click" data-label="products-hero-quickstart">Start Quickstart</a>
-            <a href={`${import.meta.env.BASE_URL}resources/demo/`} class="btn btn-ghost" data-ev="cta_click" data-label="products-hero-demo">Watch 90‑sec demo</a>
+            <button type="button" class="btn btn-ghost" data-ev="cta_click" data-label="products-hero-demo" onclick="document.getElementById('demo-video-trigger')?.click()">Watch 90‑sec demo</button>
         </div>
     </Hero>
     <section class="container" style="padding:40px 0 16px">
@@ -334,6 +335,31 @@ const headline = `<span class="h1-gradient">The Platform That Makes</span> <span
                     el.addEventListener('mouseenter', ()=>{ (window).dataLayer.push({event:'badge_info_open', badge: el.getAttribute('data-badge-info')}); });
                 });
             }catch{}
+        })();
+    </script>
+
+    <!-- Hidden video for lightbox -->
+    <div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+        <MediaVideo 
+            src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+            poster={`${import.meta.env.BASE_URL}images/video-placeholder/hero-video-placeholder.jpg`}
+            title="The AI Gold Rush: EmpowerNow 90-second demo"
+            mode="modal"
+            autoPlay={true}
+            muted={false}
+            aspect="16/9"
+        />
+    </div>
+    <script>
+        // Add ID to video trigger button for CTA access
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
         })();
     </script>
 

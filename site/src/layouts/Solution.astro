@@ -34,6 +34,7 @@ const faqJson = p.faq && p.faq.length ? {
 import CrossSiteLinks from '../components/CrossSiteLinks.astro';
 import RelatedContent from '../components/RelatedContent.astro';
 import Hero from '../components/Hero.astro';
+import MediaVideo from '../components/MediaVideo.astro';
 import { relatedFor } from '../lib/keywords';
 import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro';
 const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
@@ -64,6 +65,31 @@ const base = import.meta.env.BASE_URL;
 <slot name="related" />
 {(p.docsLinks && p.docsLinks.length) || (p.wwwLinks && p.wwwLinks.length) ? <CrossSiteLinks docsLinks={p.docsLinks} wwwLinks={p.wwwLinks} /> : null}
 {relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
+
+<!-- Hidden video for lightbox -->
+<div style="position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none" id="demo-video-wrapper">
+	<MediaVideo 
+		src={{mp4:`${base}videos/homepage/The_AI_Gold_Rush.mp4`}}
+		poster={`${base}images/video-placeholder/hero-video-placeholder.jpg`}
+		title="The AI Gold Rush: EmpowerNow 90-second demo"
+		mode="modal"
+		autoPlay={true}
+		muted={false}
+		aspect="16/9"
+	/>
+</div>
+<script>
+	// Add ID to video trigger button for CTA access
+	(function() {
+		const wrapper = document.getElementById('demo-video-wrapper');
+		if (wrapper) {
+			const videoBtn = wrapper.querySelector('.mv-defer');
+			if (videoBtn) {
+				videoBtn.id = 'demo-video-trigger';
+			}
+		}
+	})();
+</script>
 
 <style>
 	/* Hero layout styles now in custom-styles.css (unified hero system) */
