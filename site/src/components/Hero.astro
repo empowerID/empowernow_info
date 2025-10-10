@@ -1,0 +1,159 @@
+---
+interface CTA { label: string; href: string; }
+interface Props {
+  // Layout
+  layout?: 'split' | 'single' | 'grid' | 'custom';
+  background?: string; // Path to background image (relative to BASE_URL)
+  
+  // Text Content
+  eyebrow?: string;
+  headline: string;
+  subhead?: string;
+  body?: string;
+  
+  // Visual Content
+  illustration?: string; // Path to illustration (relative to BASE_URL)
+  illustrationAlt?: string;
+  illustrationWidth?: number;
+  illustrationHeight?: number;
+  
+  // Interactive Elements
+  chips?: string[];
+  chipStyle?: 'outline-cyan' | 'outline-violet' | 'solid';
+  primaryCTA?: CTA;
+  secondaryCTA?: CTA;
+  tertiaryCTA?: CTA;
+  showAAIcon?: boolean;
+  
+  // Additional Props
+  containerClass?: string;
+  contentClass?: string;
+  
+  // Slot Support
+  // Slots: default (replaces all content), content (replaces text content), visual (replaces illustration), actions (replaces CTAs), extra (after actions)
+}
+
+const p = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+// Determine layout class
+const layoutClass = `hero-layout--${p.layout || 'split'}`;
+
+// Build background URL
+const bgUrl = p.background 
+  ? (p.background.startsWith('http') ? p.background : `${base}${p.background}`)
+  : `${base}images/backgrounds/bg-homepage-hero.jpg`;
+
+// Determine if we have visual content
+const hasVisual = !!(p.illustration || Astro.slots.has('visual'));
+---
+
+<section 
+  class="hero-plate page-stage"
+  style={`background-image:url(${bgUrl});background-size:cover;background-position:center;background-repeat:no-repeat`}
+>
+  <div class={`container hero-container ${layoutClass} ${p.containerClass || ''}`}>
+    {Astro.slots.has('default') ? (
+      <slot />
+    ) : (
+      <>
+        <div class={`hero__content ${p.contentClass || ''}`}>
+          {Astro.slots.has('content') ? (
+            <slot name="content" />
+          ) : (
+            <>
+              {p.eyebrow && <div class="hero__eyebrow">{p.eyebrow}</div>}
+              
+              <h1 class="display hero__headline">{p.headline}</h1>
+              
+              {p.subhead && <p class="hero__subhead">{p.subhead}</p>}
+              {p.body && <p class="hero__body">{p.body}</p>}
+              
+              {p.chips && p.chips.length > 0 && (
+                <div class="hero__chips">
+                  {p.chips.map(chip => (
+                    <span class={`chip chip--${p.chipStyle || 'outline-cyan'}`}>
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          
+          {Astro.slots.has('actions') ? (
+            <slot name="actions" />
+          ) : (
+            <div class="hero__actions">
+              {p.primaryCTA && (
+                <a 
+                  class="btn btn-primary" 
+                  href={p.primaryCTA.href} 
+                  data-ev="cta_click" 
+                  data-label={p.primaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                  data-position="hero_primary"
+                  aria-label={`Primary: ${p.primaryCTA.label}`}
+                >
+                  {p.primaryCTA.label}
+                </a>
+              )}
+              {p.secondaryCTA && (
+                <a 
+                  class="btn btn-secondary" 
+                  href={p.secondaryCTA.href} 
+                  data-ev="cta_click" 
+                  data-label={p.secondaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                  data-position="hero_secondary"
+                  aria-label={`Secondary: ${p.secondaryCTA.label}`}
+                >
+                  {p.secondaryCTA.label}
+                </a>
+              )}
+              {p.tertiaryCTA && (
+                <a 
+                  class="btn btn-secondary" 
+                  href={p.tertiaryCTA.href} 
+                  data-ev="cta_click" 
+                  data-label={p.tertiaryCTA.label.toLowerCase().replace(/\s+/g, '_')}
+                  data-position="hero_tertiary"
+                  aria-label={`Tertiary: ${p.tertiaryCTA.label}`}
+                >
+                  {p.tertiaryCTA.label}
+                </a>
+              )}
+              {p.showAAIcon !== false && (
+                <div class="hero__aa-icon">
+                  <img 
+                    src={`${base}images/icons/icon-aa.png`} 
+                    alt="AA compliant" 
+                  />
+                  <span class="hero__aa-tooltip">AA compliant</span>
+                </div>
+              )}
+            </div>
+          )}
+          
+          <slot name="extra" />
+        </div>
+        
+        {hasVisual && (
+          <div class="hero__visual">
+            {Astro.slots.has('visual') ? (
+              <slot name="visual" />
+            ) : p.illustration && (
+              <img
+                src={`${base}${p.illustration}`}
+                alt={p.illustrationAlt || ''}
+                width={p.illustrationWidth || 800}
+                height={p.illustrationHeight || 600}
+                loading="eager"
+                style="display:block;max-width:100%;height:auto;border-radius:12px"
+              />
+            )}
+          </div>
+        )}
+      </>
+    )}
+  </div>
+</section>
+

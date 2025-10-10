@@ -40,16 +40,9 @@ import { relatedFor } from '../lib/keywords';
 import CrossSiteLinks from '../components/CrossSiteLinks.astro';
 import RelatedContent from '../components/RelatedContent.astro';
 import BreadcrumbsJsonLd from '../components/BreadcrumbsJsonLd.astro';
+import Hero from '../components/Hero.astro';
 const relatedLinks = Array.isArray(p.keywords) ? relatedFor(p.keywords) : [];
-
-// Dynamic hero background URL
-const heroBackgroundUrl = p.heroBackground 
-	? `${import.meta.env.BASE_URL}${p.heroBackground}`
-	: `${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`;
-
-// Check if hero has illustration (slot or prop)
-const hasHeroIllustration = Astro.slots.has('hero-illustration') || !!p.heroIllustration;
-const heroLayoutClass = hasHeroIllustration ? 'hero-split' : 'hero-single';
+const base = import.meta.env.BASE_URL;
 ---
 {p.jsonLdProduct && <script type="application/ld+json">{JSON.stringify(p.jsonLdProduct)}</script>}
 <BreadcrumbsJsonLd items={[
@@ -58,47 +51,41 @@ const heroLayoutClass = hasHeroIllustration ? 'hero-split' : 'hero-single';
 	{ name: p.headline, item: new URL(`${import.meta.env.BASE_URL}${String(p.canonical||'').replace(/^\//,'')}`, Astro.site).toString() },
 ]} />
 <div class={`product-root ${p.productKey ? `product--${p.productKey}` : ''}`}>
-    <header class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${heroBackgroundUrl});background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <section class={`container ${heroLayoutClass}`} style="position:relative;z-index:1">
-            <div class="hero-content">
-                {p.eyebrow && <div class="eyebrow" style="font-size:14px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,231,246,0.85);margin:0 0 16px">{p.eyebrow}</div>}
-                <h1 class="display" style="margin:0 0 20px;font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;font-weight:800">{p.headline}</h1>
-                {p.subhead && <p style="color:#b3bcd2;max-width:860px;font-size:clamp(1.125rem,2vw,1.375rem);line-height:1.5;margin:0 0 24px">{p.subhead}</p>}
-                {p.targetICP && p.targetICP.length>0 && (
-                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin:0 0 32px">
-                        {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">{t}</span>)}
-                        {p.targetICP.length>2 && <span class="chip chip--more" style="padding:8px 16px;font-size:14px">+{p.targetICP.length-2} more</span>}
-                    </div>
-                )}
-                <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-                    {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary" style="padding:14px 32px;font-size:16px;font-weight:700">{p.primaryCTA.label}</a>}
-                    {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.secondaryCTA.label}</a>}
-                    {p.tertiaryCTA && <a class="btn btn-secondary" href={p.tertiaryCTA.href} aria-label={`Tertiary: ${p.tertiaryCTA.label}`} data-ev="cta_click" data-label={p.tertiaryCTA.label} data-position="hero_tertiary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.tertiaryCTA.label}</a>}
-                    <div class="footer-icon-tooltip" style="position:relative;display:inline-block">
-                        <img src={`${import.meta.env.BASE_URL}images/icons/icon-aa.png`} alt="AA compliant" style="width:32px;height:32px;cursor:help;transition:transform 0.2s ease" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
-                        <span class="tooltip-text" style="visibility:hidden;background-color:rgba(0,0,0,.9);color:#00E7F6;text-align:center;border-radius:6px;padding:6px 12px;position:absolute;z-index:1;bottom:125%;left:50%;margin-left:-50px;opacity:0;transition:opacity 0.2s;font-size:13px;white-space:nowrap;border:1px solid rgba(0,231,246,0.3)">AA compliant</span>
-                    </div>
-                </div>
-                <slot name="cta-after" />
-            </div>
-            {hasHeroIllustration && (
-                <div class="hero-visual">
-                    <slot name="hero-illustration">
-                        {p.heroIllustration && (
-                            <img 
-                                src={`${import.meta.env.BASE_URL}${p.heroIllustration}`}
-                                alt={p.heroIllustrationAlt || ''}
-                                width={p.heroIllustrationWidth || 480}
-                                height={p.heroIllustrationHeight || 360}
-                                loading="eager"
-                                style="display:block;max-width:100%;height:auto;border-radius:12px"
-                            />
-                        )}
-                    </slot>
+    <Hero
+        layout="split"
+        background={p.heroBackground}
+        eyebrow={p.eyebrow}
+        headline={p.headline}
+        subhead={p.subhead}
+        illustration={p.heroIllustration}
+        illustrationAlt={p.heroIllustrationAlt}
+        illustrationWidth={p.heroIllustrationWidth || 480}
+        illustrationHeight={p.heroIllustrationHeight || 360}
+    >
+        <div slot="content">
+            {p.eyebrow && <div class="hero__eyebrow">{p.eyebrow}</div>}
+            <h1 class="display hero__headline">{p.headline}</h1>
+            {p.subhead && <p class="hero__subhead">{p.subhead}</p>}
+            {p.targetICP && p.targetICP.length>0 && (
+                <div class="hero__chips">
+                    {p.targetICP.slice(0,2).map((t) => <span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">{t}</span>)}
+                    {p.targetICP.length>2 && <span class="chip chip--more" style="padding:8px 16px;font-size:14px">+{p.targetICP.length-2} more</span>}
                 </div>
             )}
-        </section>
-    </header>
+        </div>
+        <div slot="actions" class="hero__actions">
+            {p.primaryCTA && <a class="btn btn-primary" href={p.primaryCTA.href} aria-label={`Primary: ${p.primaryCTA.label}`} data-ev="cta_click" data-label={p.primaryCTA.label} data-position="hero_primary" style="padding:14px 32px;font-size:16px;font-weight:700">{p.primaryCTA.label}</a>}
+            {p.secondaryCTA && <a class="btn btn-secondary" href={p.secondaryCTA.href} aria-label={`Secondary: ${p.secondaryCTA.label}`} data-ev="cta_click" data-label={p.secondaryCTA.label} data-position="hero_secondary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.secondaryCTA.label}</a>}
+            {p.tertiaryCTA && <a class="btn btn-secondary" href={p.tertiaryCTA.href} aria-label={`Tertiary: ${p.tertiaryCTA.label}`} data-ev="cta_click" data-label={p.tertiaryCTA.label} data-position="hero_tertiary" style="padding:14px 32px;font-size:16px;font-weight:600">{p.tertiaryCTA.label}</a>}
+            <div class="hero__aa-icon">
+                <img src={`${base}images/icons/icon-aa.png`} alt="AA compliant" />
+                <span class="hero__aa-tooltip">AA compliant</span>
+            </div>
+        </div>
+        <div slot="extra">
+            <slot name="cta-after" />
+        </div>
+    </Hero>
     <nav class="studio-bar" aria-label="Product sections">
         <div class="container studio-bar-inner">
             <div class="studio-brand">
@@ -232,57 +219,6 @@ const heroLayoutClass = hasHeroIllustration ? 'hero-split' : 'hero-single';
 {relatedLinks.length > 0 && <RelatedContent internalLinks={relatedLinks} />}
 
 <style>
-	/* Hero layout styles */
-	.hero-single {
-		/* Default single-column layout (existing behavior) */
-	}
-
-	.hero-split {
-		display: flex;
-		gap: 48px;
-		align-items: center;
-		flex-wrap: wrap;
-	}
-
-	.hero-content {
-		flex: 1 1 520px;
-		min-width: 300px;
-	}
-
-	.hero-visual {
-		flex: 1 1 400px;
-		min-width: 280px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	/* Mobile: stack vertically, illustration on top */
-	@media (max-width: 768px) {
-		.hero-split {
-			flex-direction: column-reverse;
-		}
-
-		.hero-visual {
-			width: 100%;
-			max-width: 400px;
-			margin: 0 auto 32px;
-		}
-	}
-
-	/* Tablet: reduce gaps */
-	@media (min-width: 769px) and (max-width: 1024px) {
-		.hero-split {
-			gap: 32px;
-		}
-	}
-
-	/* Tooltip styles - ensure they work in hero context */
-	.footer-icon-tooltip:hover .tooltip-text {
-		visibility: visible !important;
-		opacity: 1 !important;
-	}
-	
 	/* Why it wins grid - responsive 2-column layout */
 	@media (max-width: 768px) {
 		#why div[style*="grid-template-columns"] {
@@ -290,7 +226,8 @@ const heroLayoutClass = hasHeroIllustration ? 'hero-split' : 'hero-single';
 		}
 	}
 	
-	/* Studio Bar styles moved to custom-styles.css for centralized management */
+	/* Hero layout styles now in custom-styles.css (unified hero system) */
+	/* Studio Bar styles in custom-styles.css for centralized management */
 </style>
 
 <script>

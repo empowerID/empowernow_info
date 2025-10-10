@@ -1,28 +1,27 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
 const title = 'Company — EmpowerNow';
 const description = 'Create once. Enforce everywhere. Prove everything. EmpowerNow is the universal agent governance & integration layer.';
 const canonical = '/company/';
-const heroBackground = `${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`;
-const heroIllustration = `${import.meta.env.BASE_URL}images/illustrations/large/hero-about-company.png`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <!-- Hero -->
-    <section class="hero-plate page-stage" data-section="hero" style={`padding:160px 0 64px;background-image:url(${heroBackground});background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container hero-split" style="position:relative;z-index:1">
-            <div class="hero-content">
-                <h1 class="display" style="margin:0 0 10px;background:linear-gradient(90deg,var(--quantum-violet),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2">Create tools once. Enforce policy everywhere. Prove every action.</h1>
-                <p style="color:#9ba3b7;max-width:70ch;margin:0 0 24px;line-height:1.5">EmpowerNow is the <strong>universal agent governance & integration layer</strong>. Teams <strong>create tools once</strong>, <strong>enforce policy & spend controls</strong> across <strong>OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock</strong>, and <strong>prove</strong> every action with cryptographic receipts.</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                    <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="company-hero-demo" data-position="hero">Watch 90‑sec demo</a>
-                    <a class="btn btn-ghost" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} data-ev="cta_click" data-label="company-hero-quickstart" data-position="hero">Open Quickstart</a>
-                </div>
+    <Hero
+        headline="Create tools once. Enforce policy everywhere. Prove every action."
+        body="EmpowerNow is the <strong>universal agent governance & integration layer</strong>. Teams <strong>create tools once</strong>, <strong>enforce policy & spend controls</strong> across <strong>OpenAI, Anthropic MCP, Microsoft Copilot, Google Vertex, AWS Bedrock</strong>, and <strong>prove</strong> every action with cryptographic receipts."
+        illustration="images/illustrations/large/hero-about-company.png"
+        illustrationAlt="Visual representation of EmpowerNow company mission: Create, Enforce, and Prove"
+        illustrationWidth={800}
+        illustrationHeight={600}
+        showAAIcon={false}
+    >
+        <fragment slot="actions">
+            <div class="hero__actions">
+                <a class="btn btn-primary" href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="company-hero-demo" data-position="hero">Watch 90‑sec demo</a>
+                <a class="btn btn-ghost" href={`https://empowerid.github.io/empowernow_docs/docs/services/crud-service/how-to/mcp-quickstart/`} data-ev="cta_click" data-label="company-hero-quickstart" data-position="hero">Open Quickstart</a>
             </div>
-            <div class="hero-visual">
-                <img src={heroIllustration} alt="Visual representation of EmpowerNow company mission: Create, Enforce, and Prove" width={800} height={600} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px" />
-            </div>
-        </div>
-    </section>
+        </fragment>
+    </Hero>
 
     <!-- Why EmpowerNow (3 cards) -->
     <section class="container" style="padding:40px 0 24px">

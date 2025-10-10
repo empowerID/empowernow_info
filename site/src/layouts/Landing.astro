@@ -11,21 +11,21 @@ interface Props {
 const { title, description = '', canonical = '/', chips = [], background = null, bgImage } = Astro.props as Props;
 const base = import.meta.env.BASE_URL;
 const bgUrl = background === 'hero' ? `${base}images/backgrounds/bg-homepage-hero.jpg` : (bgImage ? (bgImage.startsWith('http') ? bgImage : `${base}${bgImage.replace(/^\//,'')}`) : '');
-const pad = background === 'hero' ? '120px 0 64px' : '48px 0 16px';
-const sectionStyle = `${`padding:${pad}`}${bgUrl ? `;background-image:url(${bgUrl});background-size:cover;background-position:center;background-repeat:no-repeat` : ''}`;
+const sectionStyle = bgUrl ? `background-image:url(${bgUrl});background-size:cover;background-position:center;background-repeat:no-repeat` : '';
+const containerClass = background === 'hero' ? 'hero-container' : '';
 ---
 <Base title={title} description={description} canonical={canonical}>
     <section class="hero-plate page-stage" style={sectionStyle} data-suppress-sticky>
-        <div class="container hero" style="display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:start">
+        <div class={`container ${containerClass} hero-layout--grid`}>
             <div>
-                <h1 class="display" style="margin:0 0 10px"><slot name="heading">{title}</slot></h1>
-                <p style="color:#9ba3b7;max-width:720px"><slot name="subhead">{description}</slot></p>
+                <h1 class="display hero__headline"><slot name="heading">{title}</slot></h1>
+                <p class="hero__body" style="max-width:720px"><slot name="subhead">{description}</slot></p>
                 {(chips?.length>0) && (
-                    <ul style="display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:12px 0 0;list-style:none;color:#9ba3b7">
+                    <ul class="hero__chips" style="padding:0;margin:12px 0 0;list-style:none">
                         {chips.map(c => <li class="chip chip--outline-cyan">{c}</li>)}
                     </ul>
                 )}
-                <div style="display:flex;gap:10px;margin-top:12px">
+                <div class="hero__actions" style="margin-top:12px">
                     <slot name="primary-ctas" />
                 </div>
                 <slot name="left-extra" />
@@ -40,7 +40,7 @@ const sectionStyle = `${`padding:${pad}`}${bgUrl ? `;background-image:url(${bgUr
         <slot name="below" />
     </section>
     <style>
-        @media (max-width: 900px){ .hero { grid-template-columns: 1fr } }
+        /* Hero layout styles now in custom-styles.css (unified hero system) */
     </style>
 </Base>
 
