@@ -3,12 +3,19 @@ import Base from '../layouts/Base.astro';
 const title = 'Pricing & ROI — EmpowerNow';
 const description = 'Simple, credible pricing with a lightweight ROI calculator to estimate savings and payback.';
 const canonical = '/pricing/';
+const heroBackground = `${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg`;
+const heroIllustration = `${import.meta.env.BASE_URL}images/illustrations/large/hero-pricing.png`;
 ---
 <Base title={title} description={description} canonical={canonical}>
-    <section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
-        <div class="container" style="position:relative;z-index:1">
-            <h1>Pricing</h1>
-            <p style="color:#9ba3b7;max-width:880px;margin:6px 0 16px">Start small and expand as you govern more endpoints and agents.</p>
+    <section class="hero-plate page-stage" style={`padding:160px 0 64px;background-image:url(${heroBackground});background-size:cover;background-position:center;background-repeat:no-repeat`}>
+        <div class="container hero-split" style="position:relative;z-index:1">
+            <div class="hero-content">
+                <h1>Pricing</h1>
+                <p style="color:#9ba3b7;max-width:70ch;margin:6px 0 16px">Start small and expand as you govern more endpoints and agents.</p>
+            </div>
+            <div class="hero-visual">
+                <img src={heroIllustration} alt="Visual representation of transparent pricing and ROI calculator" width={600} height={400} loading="eager" style="display:block;max-width:100%;height:auto;border-radius:12px" />
+            </div>
         </div>
     </section>
     <section class="container" style="padding:8px 0 8px">
@@ -110,6 +117,47 @@ const canonical = '/pricing/';
         /* Responsive: collapse to single column on small screens */
         @media (max-width: 768px) {
             .glass-card > div[style*="grid"] { grid-template-columns: 1fr !important; }
+        }
+
+        /* Hero layout styles */
+        .hero-split {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 520px;
+            min-width: 300px;
+        }
+
+        .hero-visual {
+            flex: 1 1 400px;
+            min-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mobile: stack vertically, illustration on top */
+        @media (max-width: 768px) {
+            .hero-split {
+                flex-direction: column-reverse;
+            }
+
+            .hero-visual {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto 32px;
+            }
+        }
+
+        /* Tablet: reduce gaps */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-split {
+                gap: 32px;
+            }
         }
     </style>
 </Base>

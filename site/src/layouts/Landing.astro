@@ -16,7 +16,7 @@ const sectionStyle = `${`padding:${pad}`}${bgUrl ? `;background-image:url(${bgUr
 ---
 <Base title={title} description={description} canonical={canonical}>
     <section class="hero-plate page-stage" style={sectionStyle} data-suppress-sticky>
-        <div class="container hero" style="display:grid;grid-template-columns:5fr 7fr;gap:16px;align-items:center">
+        <div class="container hero" style="display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:start">
             <div>
                 <h1 class="display" style="margin:0 0 10px"><slot name="heading">{title}</slot></h1>
                 <p style="color:#9ba3b7;max-width:720px"><slot name="subhead">{description}</slot></p>
@@ -28,6 +28,7 @@ const sectionStyle = `${`padding:${pad}`}${bgUrl ? `;background-image:url(${bgUr
                 <div style="display:flex;gap:10px;margin-top:12px">
                     <slot name="primary-ctas" />
                 </div>
+                <slot name="left-extra" />
             </div>
             <div>
                 <slot />
