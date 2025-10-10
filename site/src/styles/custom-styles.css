@@ -1359,6 +1359,26 @@ nav.navbar[data-scrolled="true"] .dropdown--center {
   font-weight: 800;
 }
 
+/* H1 Size Variations */
+.h1-smaller {
+  font-size: 0.75em; /* 75% of parent h1 size */
+  font-weight: 700;
+}
+
+.h1-smallest {
+  font-size: 0.6em; /* 60% of parent h1 size */
+  font-weight: 600;
+}
+
+/* H1 Standard Gradient */
+.h1-gradient {
+  background: linear-gradient(90deg, var(--quantum-violet), var(--pulse-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.33;
+}
+
 .hero__subhead {
   color: #b3bcd2;
   max-width: 860px;
