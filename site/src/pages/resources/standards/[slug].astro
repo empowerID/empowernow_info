@@ -27,6 +27,7 @@ const pretty = slug
   .replace('authzen-search','AuthZEN Search profile')
   .replace('oauth','OAuth 2.0');
 const title = `${pretty} — Primer`;
+const headline = `<span class="h1-gradient">${title}</span>`;
 const intros: Record<string, string> = {
   'oauth': 'OAuth 2.0 is the framework for delegated authorization: clients obtain access tokens from an Authorization Server to call protected Resource Servers.',
   'oidc': 'OpenID Connect is an identity layer on top of OAuth 2.0 that issues ID Tokens (JWT) and defines discovery and UserInfo for federated login.',
@@ -92,7 +93,7 @@ const heroIllustration = isAuthZEN
 	
 	<Hero
 		eyebrow="STANDARD"
-		headline={title}
+		headline={headline}
 		body={pageIntro}
 		illustration={heroIllustration}
 		illustrationAlt={`Visual representation of ${pretty} standard`}

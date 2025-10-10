@@ -4,6 +4,7 @@ import Hero from '../../../components/Hero.astro';
 import AuthorizationFundamentalsDiagram from '../../../components/AuthorizationFundamentalsDiagram.astro';
 import ABACAuthZEN from '../../../components/ABACAuthZEN.astro';
 import BreadcrumbsJsonLd from '../../../components/BreadcrumbsJsonLd.astro';
+import AuroraText from '../../../components/AuroraText.astro';
 const title = 'Authorization Fundamentals — PDP, PEP, PIP, PAP';
 const description = 'How policy is authored (PAP), evaluated (PDP with PIPs), and enforced (PEPs) across IdP, Gateway, and services.';
 const canonical = '/resources/strategy/authz-model/';
@@ -38,7 +39,7 @@ const nextSlug = idx < slugs.length-1 ? slugs[idx+1] : null;
   >
     <div slot="content">
       <div class="hero__eyebrow">STRATEGY</div>
-      <h1 class="display hero__headline">Authorization Fundamentals</h1>
+      <h1 class="display hero__headline"><AuroraText>Authorization</AuroraText> <span class="h1-gradient">Fundamentals</span></h1>
       <p class="hero__subhead">PAP authors policy. PDP evaluates decisions using PIPs</p>
       <p class="hero__subhead" style="margin-top:8px">PEPs enforce constraints and obligations at the right boundary (IdP at issuance; Gateway/services at runtime).</p>
     </div>

@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import BreadcrumbsJsonLd from '../../components/BreadcrumbsJsonLd.astro';
+import AuroraText from '../../components/AuroraText.astro';
 const title = 'AuthZEN vs XACML';
 const description = 'AuthZEN JSON decision transport vs XACML XML policy evaluation — practical differences, examples, and migration tips.';
 const canonical = '/comparisons/authzen-vs-xacml/';
@@ -14,7 +15,7 @@ const canonical = '/comparisons/authzen-vs-xacml/';
   <section class="hero-plate page-stage" style={`background-image:url(${import.meta.env.BASE_URL}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
     <div class="container hero-container">
       <div class="hero__eyebrow">COMPARISON</div>
-      <h1 class="display hero__headline">AuthZEN vs XACML</h1>
+      <h1 class="display hero__headline"><AuroraText>AuthZEN</AuroraText> <span class="h1-gradient">vs XACML</span></h1>
       <p class="hero__subhead" set:html={`AuthZEN focuses on interoperable <strong>JSON</strong> authorization decision exchange across PDP/PEP/PIP/PAP components; XACML defines an XML policy language and request/response model. EmpowerNow includes product‑level extension fields like <em>constraints</em>, <em>obligations</em>, and <em>TTL</em> in decisions for practical enforcement — these are not part of the current AuthZEN specification.`} />
     </div>
   </section>
