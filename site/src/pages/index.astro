@@ -492,17 +492,20 @@ import AuroraText from '../components/AuroraText.astro';
         </div>
     </section>
     <div class="section-divider"></div>
-    <section class="container reveal-on-scroll" data-section="tool-factory" style="padding:24px 0">
-        <div class="glass-card" style="padding:32px">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <section class="container reveal-on-scroll" data-section="tool-factory" style="padding:32px 0 48px">
+        <div class="panel-glow" style="padding:40px">
+            <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center">
                 <div>
-                    <h2 style="font-size:36px;margin:0 0 12px">Turn any API/DB into an agent‑safe tool — no code</h2>
-                    <p style="color:#9ba3b7;margin:0">Paste an endpoint, get an MCP‑ready tool with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
+                    <h2 style="font-size:clamp(28px,4vw,42px);margin:0 0 16px;line-height:1.2;background:linear-gradient(90deg,var(--lime-green),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Turn any API/DB into an agent‑safe tool — no code</h2>
+                    <p style="color:#B3BCD2;margin:0 0 24px;font-size:17px;line-height:1.7">Paste an endpoint, get an MCP‑ready tool with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap">
+                        <a class="btn btn-primary" data-ev="cta_click" data-label="tf-quickstart" data-position="tool-factory" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
+                        <a class="btn btn-ghost" data-ev="cta_click" data-label="tf-adapters" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
+                        <a class="btn btn-ghost" data-ev="cta_click" data-label="tf-examples" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/`}>Workflow examples</a>
+                    </div>
                 </div>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                    <a class="btn btn-primary" data-ev="cta_click" data-label="tf-quickstart" data-position="tool-factory" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
-                    <a class="btn" data-ev="cta_click" data-label="tf-adapters" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/research/`}>Adapter catalog</a>
-                    <a class="btn" data-ev="cta_click" data-label="tf-examples" data-position="tool-factory" href={`${import.meta.env.BASE_URL}resources/`}>Workflow examples</a>
+                <div style="display:flex;align-items:center;justify-content:center">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/medium/compliance-shield-300.png`} alt="Agent-safe tool creation" style="width:100%;max-width:300px;height:auto" />
                 </div>
             </div>
         </div>
