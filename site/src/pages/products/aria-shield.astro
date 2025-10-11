@@ -57,19 +57,35 @@ shield.stream(model, request, caps, onChunk);
 		</fragment>
 		<fragment slot="proof">
 			<LogoWall logos={[{alt:'Example',src:`${import.meta.env.BASE_URL}favicon.svg`}]} title="Trusted by" />
-			<section id="shield-videos" class="container" style="padding:8px 0 24px">
-				<h2 class="section-title">Videos</h2>
-				<div class="card-grid">
-					<div class="ns-card">
-						<h3>The Unlikely Hero of AI Security</h3>
-						<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/The_Unlikely_Hero_of_AI_Security.mp4` }} aspect="16/9" title="The Unlikely Hero of AI Security" defer />
-					</div>
-					<div class="ns-card">
-						<h3>Onboarding Your AI</h3>
-						<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/Onboarding_Your_AI.mp4` }} aspect="16/9" title="Onboarding Your AI" defer />
-					</div>
+		<section id="shield-videos" class="container" style="padding:8px 0 24px">
+			<h2 class="section-title">Videos</h2>
+			<div class="card-grid">
+				<div class="panel-glow" style="padding:16px">
+					<h3 style="margin-bottom:12px">The Unlikely Hero of AI Security</h3>
+					<MediaVideo 
+						src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/The_Unlikely_Hero_of_AI_Security.mp4` }} 
+						poster={`${import.meta.env.BASE_URL}images/video-placeholder/The_Unlikely_Hero_of_AI_Security.jpg`}
+						aspect="16/9" 
+						title="The Unlikely Hero of AI Security" 
+						autoPlay={true}
+						muted={false}
+						defer 
+					/>
 				</div>
-			</section>
+				<div class="panel-glow" style="padding:16px">
+					<h3 style="margin-bottom:12px">Onboarding Your AI</h3>
+					<MediaVideo 
+						src={{ mp4: `${import.meta.env.BASE_URL}videos/products/aria/Onboarding_Your_AI.mp4` }} 
+						poster={`${import.meta.env.BASE_URL}images/video-placeholder/Onboarding_Your_AI.jpg`}
+						aspect="16/9" 
+						title="Onboarding Your AI" 
+						autoPlay={true}
+						muted={false}
+						defer 
+					/>
+				</div>
+			</div>
+		</section>
 			<PricingCTA title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref={`${import.meta.env.BASE_URL}demo/`} primaryLabel="Book demo" />
 		</fragment>
 		<fragment slot="related">
