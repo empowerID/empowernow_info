@@ -4,14 +4,18 @@ const { caption } = Astro.props as Props;
 ---
 <figure style="margin:0">
   <style>
-    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
-    @keyframes pulse { 0%,100% { opacity:.6 } 50% { opacity:1 } }
+    @keyframes float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+    @keyframes pulse { 0%, 100% { opacity:.7 } 50% { opacity:1 } }
+    @keyframes flowRight { 0% { stroke-dashoffset: 1000 } 100% { stroke-dashoffset: 0 } }
+    @keyframes gentleGlow { 0%, 100% { filter: drop-shadow(0 0 10px rgba(99,102,241,.5)) } 50% { filter: drop-shadow(0 0 18px rgba(99,102,241,.8)) } }
     .float{ animation: float 3s ease-in-out infinite }
-    .pulse{ animation: pulse 2.5s ease-in-out infinite }
-    @media (prefers-reduced-motion: reduce){ .float,.pulse{ animation: none !important } }
+    .pulse{ animation: pulse 2s ease-in-out infinite }
+    .flow{ stroke-dasharray:12 8; animation: flowRight 2s linear infinite }
+    .gentleGlow{ animation: gentleGlow 2.5s ease-in-out infinite }
+    @media (prefers-reduced-motion: reduce){ .float,.pulse,.flow,.gentleGlow{ animation:none !important } }
   </style>
-  <div style="width:100%;min-height:200px;background:linear-gradient(135deg,#0f172a,#0b1226);padding:8px;display:flex;align-items:center;justify-content:center;border-radius:12px">
-    <svg viewBox="0 0 1600 1420" style="width:100%;height:auto" aria-labelledby="title desc" role="img">
+  <div style="width:100%;min-height:200px;background:linear-gradient(135deg,#0f172a,#1e1b4b);padding:8px;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden">
+    <svg viewBox="0 0 1600 1420" style="width:100%;height:auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
       <title id="title">ARIA: AI Agent Governance</title>
       <desc id="desc">Identities, delegations, policy bindings, lifecycle, and runtime enforcement.</desc>
       <defs>
@@ -20,39 +24,259 @@ const { caption } = Astro.props as Props;
           <stop offset="50%" stop-color="#FFFFFF" />
           <stop offset="100%" stop-color="#6366F1" />
         </linearGradient>
+        <linearGradient id="personGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#3B82F6" stop-opacity=".9" />
+          <stop offset="100%" stop-color="#1E40AF" stop-opacity=".9" />
+        </linearGradient>
+        <linearGradient id="agentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#8B5CF6" stop-opacity=".9" />
+          <stop offset="100%" stop-color="#5B21B6" stop-opacity=".9" />
+        </linearGradient>
+        <linearGradient id="serviceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#10B981" stop-opacity=".9" />
+          <stop offset="100%" stop-color="#047857" stop-opacity=".9" />
+        </linearGradient>
+        <linearGradient id="policyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#F59E0B" stop-opacity=".9" />
+          <stop offset="100%" stop-color="#D97706" stop-opacity=".9" />
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="4" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glowStrong"><feGaussianBlur stdDeviation="8" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#3B82F6" /></marker>
+        <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#8B5CF6" /></marker>
+        <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#10B981" /></marker>
+        <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="4" orient="auto"><path d="M0,0 L0,8 L10,4 z" fill="#F59E0B" /></marker>
       </defs>
 
+      <!-- ARIA badge -->
+      <g>
+        <rect x="40" y="20" width="140" height="90" rx="12" fill="rgba(99,102,241,.25)" stroke="#6366F1" stroke-width="3" filter="url(#glow)" />
+        <text x="110" y="50" fill="#6366F1" font-size="28" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">ARIA</text>
+        <text x="110" y="70" fill="#E8EDF5" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Agent Risk &</text>
+        <text x="110" y="85" fill="#E8EDF5" font-size="10" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Identity Authorization</text>
+      </g>
+
       <!-- Title -->
-      <text x="800" y="80" fill="url(#titleGrad)" font-size="40" font-weight="900" text-anchor="middle">ARIA: AI Agent Governance</text>
+      <text x="800" y="45" fill="#1A2332" font-size="48" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">ARIA: AI Agent Governance</text>
+      <text x="800" y="75" fill="url(#titleGrad)" font-size="48" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">ARIA: AI Agent Governance</text>
+      <text x="800" y="105" fill="#E8EDF5" font-size="16" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Agent Risk & Identity Authorization</text>
+      <text x="800" y="125" fill="#C5D5E8" font-size="14" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">First-class identities with ownership, delegation, and policy enforcement</text>
 
-      <!-- 1. Identity Model -->
-      <g>
-        <rect x="40" y="120" width="1520" height="220" rx="16" fill="rgba(59,130,246,0.08)" stroke="#3B82F6" stroke-width="3" />
-        <text x="60" y="160" fill="#3B82F6" font-size="20" font-weight="900">1. IDENTITY MODEL: First‑Class Graph Objects</text>
-        <text x="60" y="185" fill="#E8EDF5" font-size="14">Person • AIAgent • Service • Policy (YAML)</text>
+      <!-- Innovation badge -->
+      <g class="gentleGlow">
+        <rect x="1180" y="20" width="380" height="90" rx="14" fill="rgba(99,102,241,.2)" stroke="#6366F1" stroke-width="3" filter="url(#glowStrong)" />
+        <text x="1370" y="50" fill="#6366F1" font-size="18" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">🎯 ARIA INNOVATION</text>
+        <text x="1370" y="72" fill="#E8EDF5" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Agents ARE first-class Identity objects</text>
+        <text x="1370" y="92" fill="#E8EDF5" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Risk + Identity unified governance</text>
       </g>
 
-      <!-- 2. Relationships -->
-      <g>
-        <rect x="40" y="360" width="1520" height="260" rx="16" fill="rgba(139,92,246,0.08)" stroke="#8B5CF6" stroke-width="3" />
-        <text x="60" y="400" fill="#8B5CF6" font-size="20" font-weight="900">2. RELATIONSHIPS: Ownership + Delegation + Policy Binding</text>
-        <text x="60" y="425" fill="#E8EDF5" font-size="14">CONTROLLED_BY • DELEGATES_TO • POLICY_REF</text>
+      <!-- SECTION 1: Identity Model -->
+      <rect x="40" y="155" width="1520" height="280" rx="16" fill="rgba(59,130,246,.08)" stroke="#3B82F6" stroke-width="3" />
+      <text x="60" y="190" fill="#3B82F6" font-size="24" font-weight="900" font-family="system-ui, -apple-system">1. IDENTITY MODEL: First-Class Graph Objects</text>
+      <text x="60" y="215" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">All identities (Person, AIAgent, Service) live in Neo4j with consistent governance</text>
+
+      <!-- Person node -->
+      <g class="float">
+        <circle cx="180" cy="295" r="55" fill="url(#personGrad)" stroke="#3B82F6" stroke-width="4" filter="url(#glow)" />
+        <circle cx="180" cy="280" r="18" fill="none" stroke="#FFFFFF" stroke-width="3" />
+        <path d="M 160 315 Q 180 307 200 315" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+        <text x="180" y="375" fill="#3B82F6" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">:Person</text>
+        <text x="180" y="393" fill="#C5D5E8" font-size="13" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">(Alice)</text>
       </g>
 
-      <!-- 3. Lifecycle -->
-      <g>
-        <rect x="40" y="640" width="1520" height="200" rx="16" fill="rgba(16,185,129,0.08)" stroke="#10B981" stroke-width="3" />
-        <text x="60" y="675" fill="#10B981" font-size="20" font-weight="900">3. LIFECYCLE: Registration → Delegation → Verification → Revocation</text>
+      <!-- AIAgent node -->
+      <g class="float">
+        <rect x="425" y="240" width="110" height="110" rx="12" fill="url(#agentGrad)" stroke="#8B5CF6" stroke-width="4" filter="url(#glow)" />
+        <circle cx="480" cy="285" r="12" fill="#FFFFFF" opacity=".9" />
+        <circle cx="465" cy="310" r="8" fill="#FFFFFF" opacity=".7" />
+        <circle cx="495" cy="310" r="8" fill="#FFFFFF" opacity=".7" />
+        <text x="480" y="375" fill="#A78BFA" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">:AIAgent</text>
+        <text x="480" y="393" fill="#C5D5E8" font-size="13" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">(Travel Bot)</text>
       </g>
 
-      <!-- 4. Runtime -->
-      <g>
-        <rect x="40" y="860" width="1520" height="220" rx="16" fill="rgba(99,102,241,0.08)" stroke="#6366F1" stroke-width="3" />
-        <text x="60" y="895" fill="#6366F1" font-size="20" font-weight="900">4. RUNTIME: OBO Token Exchange + Policy Enforcement</text>
-        <text x="60" y="920" fill="#E8EDF5" font-size="14">PDP evaluates; PEPs enforce constraints (sync) and obligations (async)</text>
+      <!-- Service node -->
+      <g class="float">
+        <rect x="725" y="240" width="110" height="110" rx="12" fill="url(#serviceGrad)" stroke="#10B981" stroke-width="4" filter="url(#glow)" />
+        <circle cx="780" cy="295" r="30" fill="none" stroke="#FFFFFF" stroke-width="3" />
+        <circle cx="780" cy="295" r="18" fill="none" stroke="#FFFFFF" stroke-width="2" />
+        <circle cx="780" cy="295" r="6" fill="#FFFFFF" />
+        <text x="780" y="375" fill="#10B981" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">:Service</text>
+        <text x="780" y="393" fill="#C5D5E8" font-size="13" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">(AITravel SvcP)</text>
       </g>
 
-      <text x="800" y="1120" fill="#C5D5E8" font-size="14" text-anchor="middle">Use with AuthZEN PDP, Membership Service (Neo4j), and gateway PEPs</text>
+      <!-- Policy node -->
+      <g class="float">
+        <rect x="1025" y="240" width="110" height="110" rx="12" fill="url(#policyGrad)" stroke="#F59E0B" stroke-width="4" filter="url(#glow)" />
+        <line x1="1050" y1="270" x2="1110" y2="270" stroke="#FFFFFF" stroke-width="3" />
+        <line x1="1050" y1="295" x2="1110" y2="295" stroke="#FFFFFF" stroke-width="3" />
+        <line x1="1050" y1="320" x2="1095" y2="320" stroke="#FFFFFF" stroke-width="3" />
+        <text x="1080" y="375" fill="#F59E0B" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">:Policy</text>
+        <text x="1080" y="393" fill="#C5D5E8" font-size="13" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">(YAML Doctrine)</text>
+      </g>
+
+      <!-- Benefits -->
+      <rect x="1240" y="235" width="280" height="150" rx="10" fill="rgba(99,102,241,.12)" stroke="#6366F1" stroke-width="2" />
+      <text x="1380" y="260" fill="#6366F1" font-size="15" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">✅ Benefits</text>
+      <text x="1260" y="285" fill="#E8EDF5" font-size="13" font-weight="600" font-family="system-ui, -apple-system">• Unified identity model</text>
+      <text x="1260" y="305" fill="#E8EDF5" font-size="13" font-weight="600" font-family="system-ui, -apple-system">• Consistent governance</text>
+      <text x="1260" y="325" fill="#E8EDF5" font-size="13" font-weight="600" font-family="system-ui, -apple-system">• Graph traversal = context</text>
+      <text x="1260" y="345" fill="#E8EDF5" font-size="13" font-weight="600" font-family="system-ui, -apple-system">• Discoverable ownership</text>
+      <text x="1260" y="365" fill="#E8EDF5" font-size="13" font-weight="600" font-family="system-ui, -apple-system">• Auditable lineage</text>
+
+      <!-- SECTION 2: Relationships -->
+      <rect x="40" y="465" width="1520" height="360" rx="16" fill="rgba(139,92,246,.08)" stroke="#8B5CF6" stroke-width="3" />
+      <text x="60" y="500" fill="#8B5CF6" font-size="24" font-weight="900" font-family="system-ui, -apple-system">2. RELATIONSHIPS: Ownership + Delegation</text>
+      <text x="60" y="525" fill="#E8EDF5" font-size="14" font-weight="600" font-family="system-ui, -apple-system">Explicit graph edges capture control, delegation, and policy bindings</text>
+
+      <!-- Ownership example -->
+      <g>
+        <text x="120" y="565" fill="#10B981" font-size="16" font-weight="800" font-family="system-ui, -apple-system">A. CONTROLLED_BY (Ownership)</text>
+        <circle cx="180" cy="635" r="45" fill="url(#agentGrad)" stroke="#8B5CF6" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="180" y="640" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Agent</text>
+        <line x1="225" y1="635" x2="325" y2="635" stroke="#10B981" stroke-width="5" marker-end="url(#arrowGreen)" filter="url(#glow)" class="flow" />
+        <text x="275" y="625" fill="#10B981" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">CONTROLLED_BY</text>
+        <circle cx="370" cy="635" r="45" fill="url(#personGrad)" stroke="#3B82F6" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="370" y="640" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Owner</text>
+        <rect x="100" y="695" width="340" height="80" rx="8" fill="rgba(16,185,129,.12)" stroke="#10B981" stroke-width="2" />
+        <text x="270" y="718" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• Discoverable: Who owns this agent?</text>
+        <text x="270" y="738" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• Auditable: All controllers queryable</text>
+        <text x="270" y="758" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• PUT/GET/DELETE via API</text>
+      </g>
+
+      <!-- Delegation example -->
+      <g>
+        <text x="600" y="565" fill="#8B5CF6" font-size="16" font-weight="800" font-family="system-ui, -apple-system">B. DELEGATES_TO (Consent + Scope)</text>
+        <circle cx="660" cy="635" r="45" fill="url(#personGrad)" stroke="#3B82F6" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="660" y="640" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Alice</text>
+        <line x1="705" y1="635" x2="915" y2="635" stroke="#8B5CF6" stroke-width="5" marker-end="url(#arrowPurple)" filter="url(#glowStrong)" class="flow" />
+        <rect x="735" y="580" width="165" height="70" rx="6" fill="rgba(139,92,246,.2)" stroke="#8B5CF6" stroke-width="2" />
+        <text x="817" y="600" fill="#A78BFA" font-size="11" font-weight="800" text-anchor="middle" font-family="Courier New, monospace">DELEGATES_TO {</text>
+        <text x="755" y="618" fill="#E8EDF5" font-size="10" font-weight="600" font-family="Courier New, monospace">status: active</text>
+        <text x="755" y="632" fill="#E8EDF5" font-size="10" font-weight="600" font-family="Courier New, monospace">capabilities: [...]</text>
+        <text x="755" y="646" fill="#E8EDF5" font-size="10" font-weight="600" font-family="Courier New, monospace">}</text>
+        <circle cx="960" cy="635" r="45" fill="url(#agentGrad)" stroke="#8B5CF6" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="960" y="630" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Travel</text>
+        <text x="960" y="645" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Bot</text>
+        <rect x="590" y="695" width="420" height="80" rx="8" fill="rgba(139,92,246,.12)" stroke="#8B5CF6" stroke-width="2" />
+        <text x="800" y="718" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Properties: status, capabilities[], constraints,</text>
+        <text x="800" y="738" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">trust_level, service_id, jkt, expires_at</text>
+        <text x="800" y="758" fill="#A78BFA" font-size="12" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Source of truth: "who can do what on behalf of whom"</text>
+      </g>
+
+      <!-- Policy binding -->
+      <g>
+        <text x="1120" y="565" fill="#F59E0B" font-size="16" font-weight="800" font-family="system-ui, -apple-system">C. POLICY_REF (Static Rules)</text>
+        <circle cx="1180" cy="635" r="45" fill="url(#agentGrad)" stroke="#8B5CF6" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="1180" y="640" fill="#FFFFFF" font-size="14" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">Agent</text>
+        <line x1="1225" y1="635" x2="1335" y2="635" stroke="#F59E0B" stroke-width="5" stroke-dasharray="10 5" marker-end="url(#arrowOrange)" filter="url(#glow)" class="flow" />
+        <text x="1280" y="625" fill="#F59E0B" font-size="13" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">POLICY_REF</text>
+        <rect x="1335" y="590" width="90" height="90" rx="10" fill="url(#policyGrad)" stroke="#F59E0B" stroke-width="3" filter="url(#glow)" class="pulse" />
+        <text x="1380" y="630" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle" font-family="Courier New, monospace">budget</text>
+        <text x="1380" y="647" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle" font-family="Courier New, monospace">.yaml</text>
+        <rect x="1090" y="695" width="380" height="80" rx="8" fill="rgba(245,158,11,.12)" stroke="#F59E0B" stroke-width="2" />
+        <text x="1280" y="718" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• Versioned YAML policies (static doctrine)</text>
+        <text x="1280" y="738" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• PDP evaluates policy + delegation constraints</text>
+        <text x="1280" y="758" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">• Emits decisions + obligations → PEP enforces</text>
+      </g>
+
+      <!-- SECTION 3: Lifecycle -->
+      <rect x="40" y="855" width="1520" height="220" rx="16" fill="rgba(16,185,129,.08)" stroke="#10B981" stroke-width="3" />
+      <text x="60" y="890" fill="#10B981" font-size="24" font-weight="900" font-family="system-ui, -apple-system">3. LIFECYCLE: Registration → Delegation → Verification → Revocation</text>
+
+      <!-- Timeline steps -->
+      <g>
+        <circle cx="150" cy="965" r="35" fill="url(#serviceGrad)" stroke="#10B981" stroke-width="3" filter="url(#glow)" />
+        <text x="150" y="970" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">1</text>
+        <text x="150" y="1020" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Register</text>
+        <text x="150" y="1038" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Create Service</text>
+        <text x="150" y="1053" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">+ Agent instance</text>
+        <line x1="185" y1="965" x2="275" y2="965" stroke="#10B981" stroke-width="4" marker-end="url(#arrowGreen)" class="flow" />
+
+        <circle cx="310" cy="965" r="35" fill="url(#personGrad)" stroke="#10B981" stroke-width="3" filter="url(#glow)" />
+        <text x="310" y="970" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">2</text>
+        <text x="310" y="1020" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Link Owner</text>
+        <text x="310" y="1038" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">CONTROLLED_BY</text>
+        <text x="310" y="1053" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">relationship</text>
+        <line x1="345" y1="965" x2="475" y2="965" stroke="#10B981" stroke-width="4" marker-end="url(#arrowGreen)" class="flow" />
+
+        <circle cx="510" cy="965" r="35" fill="url(#agentGrad)" stroke="#10B981" stroke-width="3" filter="url(#glow)" />
+        <text x="510" y="970" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">3</text>
+        <text x="510" y="1020" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Delegate</text>
+        <text x="510" y="1038" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">DELEGATES_TO</text>
+        <text x="510" y="1053" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">+ constraints</text>
+        <line x1="545" y1="965" x2="675" y2="965" stroke="#10B981" stroke-width="4" marker-end="url(#arrowGreen)" class="flow" />
+
+        <circle cx="710" cy="965" r="35" fill="rgba(99,102,241,.9)" stroke="#10B981" stroke-width="3" filter="url(#glow)" />
+        <text x="710" y="970" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">4</text>
+        <text x="710" y="1020" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Verify</text>
+        <text x="710" y="1038" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Active delegation</text>
+        <text x="710" y="1053" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">+ optional jkt</text>
+        <line x1="745" y1="965" x2="875" y2="965" stroke="#10B981" stroke-width="4" marker-end="url(#arrowGreen)" class="flow" />
+
+        <circle cx="910" cy="965" r="35" fill="rgba(239,68,68,.9)" stroke="#10B981" stroke-width="3" filter="url(#glow)" />
+        <text x="910" y="970" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">5</text>
+        <text x="910" y="1020" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">Revoke</text>
+        <text x="910" y="1038" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Immediate or</text>
+        <text x="910" y="1053" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">scheduled expiry</text>
+      </g>
+
+      <!-- API surface -->
+      <rect x="1000" y="905" width="520" height="150" rx="10" fill="rgba(99,102,241,.12)" stroke="#6366F1" stroke-width="2" />
+      <text x="1260" y="930" fill="#6366F1" font-size="15" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">📡 API Surface (Already Available)</text>
+      <text x="1020" y="955" fill="#E8EDF5" font-size="12" font-weight="600" font-family="Courier New, monospace">POST /api/v1/agents/service-principals</text>
+      <text x="1020" y="975" fill="#E8EDF5" font-size="12" font-weight="600" font-family="Courier New, monospace">POST /api/v1/agents/user-bound-agents</text>
+      <text x="1020" y="995" fill="#E8EDF5" font-size="12" font-weight="600" font-family="Courier New, monospace">PUT /api/v1/agents/&#123;id&#125;/control</text>
+      <text x="1020" y="1015" fill="#E8EDF5" font-size="12" font-weight="600" font-family="Courier New, monospace">POST /api/v1/delegations (create/verify)</text>
+      <text x="1020" y="1035" fill="#E8EDF5" font-size="12" font-weight="600" font-family="Courier New, monospace">POST /api/v1/delegations/&#123;id&#125;/revoke</text>
+
+      <!-- SECTION 4: Runtime Flow -->
+      <rect x="40" y="1105" width="1520" height="240" rx="16" fill="rgba(99,102,241,.08)" stroke="#6366F1" stroke-width="3" />
+      <text x="60" y="1140" fill="#6366F1" font-size="24" font-weight="900" font-family="system-ui, -apple-system">4. RUNTIME: ARIA Authorization Flow (OBO Token Exchange + Policy Enforcement)</text>
+
+      <!-- OBO flow diagram -->
+      <g>
+        <rect x="80" y="1175" width="180" height="120" rx="10" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width="2" />
+        <text x="170" y="1200" fill="#8B5CF6" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">AGENT REQUEST</text>
+        <text x="170" y="1223" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Subject: AI Agent</text>
+        <text x="170" y="1243" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Resource: Alice</text>
+        <text x="170" y="1263" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Action: book_flight</text>
+        <text x="170" y="1283" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="Courier New, monospace">(OBO token)</text>
+        <line x1="260" y1="1235" x2="360" y2="1235" stroke="#6366F1" stroke-width="5" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow" />
+
+        <rect x="360" y="1175" width="180" height="120" rx="10" fill="rgba(245,158,11,.15)" stroke="#F59E0B" stroke-width="2" />
+        <text x="450" y="1200" fill="#F59E0B" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">PDP EVALUATION</text>
+        <text x="450" y="1223" fill="#E8EDF5" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">1. Verify DELEGATES_TO</text>
+        <text x="450" y="1243" fill="#E8EDF5" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">2. Check constraints</text>
+        <text x="450" y="1263" fill="#E8EDF5" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">3. Evaluate policy YAML</text>
+        <text x="450" y="1283" fill="#E8EDF5" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">4. Merge + resolve conflicts</text>
+        <line x1="540" y1="1235" x2="640" y2="1235" stroke="#6366F1" stroke-width="5" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow" />
+
+        <rect x="640" y="1175" width="180" height="120" rx="10" fill="rgba(16,185,129,.15)" stroke="#10B981" stroke-width="2" />
+        <text x="730" y="1200" fill="#10B981" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">DECISION</text>
+        <text x="730" y="1230" fill="#10B981" font-size="16" font-weight="900" text-anchor="middle" font-family="system-ui, -apple-system">✅ PERMIT</text>
+        <text x="730" y="1255" fill="#E8EDF5" font-size="11" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Obligations:</text>
+        <text x="730" y="1275" fill="#C5D5E8" font-size="11" font-weight="600" text-anchor="middle" font-family="Courier New, monospace">[log_access, notify_user]</text>
+        <line x1="820" y1="1235" x2="920" y2="1235" stroke="#6366F1" stroke-width="5" marker-end="url(#arrowPurple)" filter="url(#glow)" class="flow" />
+
+        <rect x="920" y="1175" width="180" height="120" rx="10" fill="rgba(59,130,246,.15)" stroke="#3B82F6" stroke-width="2" />
+        <text x="1010" y="1200" fill="#3B82F6" font-size="14" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">PEP ENFORCEMENT</text>
+        <text x="1010" y="1223" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Execute action</text>
+        <text x="1010" y="1243" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Apply obligations</text>
+        <text x="1010" y="1263" fill="#E8EDF5" font-size="12" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Emit to Kafka</text>
+        <text x="1010" y="1283" fill="#10B981" font-size="12" font-weight="700" text-anchor="middle" font-family="system-ui, -apple-system">→ Flight booked!</text>
+      </g>
+
+      <!-- Observability -->
+      <rect x="1150" y="1170" width="380" height="130" rx="10" fill="rgba(99,102,241,.12)" stroke="#6366F1" stroke-width="2" />
+      <text x="1340" y="1195" fill="#6366F1" font-size="15" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">📊 Observability</text>
+      <text x="1170" y="1220" fill="#E8EDF5" font-size="12" font-weight="600" font-family="system-ui, -apple-system">• Metrics: verification latency, orphan checks</text>
+      <text x="1170" y="1240" fill="#E8EDF5" font-size="12" font-weight="600" font-family="system-ui, -apple-system">• Logs: correlation IDs, decision reasons</text>
+      <text x="1170" y="1260" fill="#E8EDF5" font-size="12" font-weight="600" font-family="system-ui, -apple-system">• Events: Kafka for cache invalidation</text>
+      <text x="1170" y="1280" fill="#E8EDF5" font-size="12" font-weight="600" font-family="system-ui, -apple-system">• Audit: All delegations fully traceable</text>
+
+      <!-- Bottom summary -->
+      <text x="800" y="1375" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" font-family="system-ui, -apple-system">ARIA: Agent Risk & Identity Authorization - First-class identities with explicit ownership, delegation, and unified policy enforcement</text>
+      <text x="800" y="1400" fill="#C5D5E8" font-size="14" font-weight="600" text-anchor="middle" font-family="system-ui, -apple-system">Enables: Discoverable ownership • Auditable consent • Runtime verification • Immediate revocation • Full observability</text>
     </svg>
   </div>
   {caption && (<figcaption style="color:#9ba3b7;margin-top:8px">{caption}</figcaption>)}
