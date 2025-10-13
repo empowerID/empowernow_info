@@ -51,10 +51,22 @@ const headline = `<span class="aurora-text">CRUD</span> <span class="h1-gradient
 		heroIllustrationHeight={600}
 	>
 		<fragment slot="proof">
-			<section id="crud-video" class="container" style="padding:8px 0 24px">
-				<h2 class="section-title">See it</h2>
-				<div class="glass-card" style="padding:12px">
-					<MediaVideo src={{ mp4: `${import.meta.env.BASE_URL}videos/products/crud/CRUD_Service__AI_Workflows.mp4` }} aspect="16/9" title="CRUD Service — AI Workflows" defer />
+			<section id="crud-video" style="padding:32px 0 48px">
+				<div class="container">
+					<h2 class="section-title" style="margin-bottom:24px">See it</h2>
+				</div>
+				<div class="panel-glow" style="padding:16px;max-width:1200px;margin:0 auto;width:100%">
+					<div style="max-width:900px;margin:0 auto;width:100%">
+						<MediaVideo 
+							src={{ mp4: `${import.meta.env.BASE_URL}videos/products/crud/CRUD_Service__AI_Workflows.mp4` }} 
+							poster={`${import.meta.env.BASE_URL}images/video-placeholder/CRUD_Service__AI_Workflows.jpg`}
+							aspect="16/9" 
+							title="CRUD Service — AI Workflows" 
+							autoPlay={true}
+							muted={false}
+							defer 
+						/>
+					</div>
 				</div>
 			</section>
 		</fragment>

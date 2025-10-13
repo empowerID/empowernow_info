@@ -2,6 +2,7 @@
 import Landing from '../../layouts/Landing.astro';
 import BookDemoForm from '../../components/forms/BookDemoForm.astro';
 import AuroraText from '../../components/AuroraText.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 const title = 'Book a 15‑minute demo — EmpowerNow';
 const description = 'Ship zero‑token SPAs and policy‑guarded agents in days, not months.';
 const canonical = '/demo/';
@@ -21,17 +22,75 @@ const ogImage = new URL(`${import.meta.env.BASE_URL}images/empowernow-logo.svg`,
     </div>
     <BookDemoForm helper="Tell us a bit about you and we will reach out shortly." mailto={salesEmail} />
     <div slot="below">
-        <h2 class="section-title">What we'll cover</h2>
-        <ul style="color:#9ba3b7;line-height:1.8">
-            <li>AuthZEN decisions with constraints/obligations/TTL and receipts</li>
-            <li>Pre‑execution budgets, egress controls, and safety rails for agents</li>
-            <li>Zero‑token SPA pattern with BFF/Shield</li>
-            <li>Adapter catalog and governance metrics</li>
-        </ul>
-        <div style="margin-top:16px">
-            <a href={`${import.meta.env.BASE_URL}resources/demo/`} data-ev="cta_click" data-label="watch_demo_text" style="color:#b3c1da">Prefer to watch a short demo video?</a>
+        <h2 style="font-size:clamp(28px,4vw,36px);margin:0 0 24px;color:#E8ECFF;font-weight:600;text-align:center">What we'll cover</h2>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:24px;max-width:1000px;margin-left:auto;margin-right:auto">
+            <div class="glass-card hover-rise" style="padding:24px">
+                <div style="display:flex;align-items:start;gap:16px">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/icon-lock-authzen.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                    <div>
+                        <div style="color:#E8ECFF;font-weight:600;font-size:18px;margin-bottom:8px">AuthZEN decisions</div>
+                        <p style="color:#9ba3b7;font-size:15px;margin:0;line-height:1.6">Constraints, obligations, TTL, and cryptographic receipts</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card hover-rise" style="padding:24px">
+                <div style="display:flex;align-items:start;gap:16px">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/icon-402.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                    <div>
+                        <div style="color:#E8ECFF;font-weight:600;font-size:18px;margin-bottom:8px">Pre-execution controls</div>
+                        <p style="color:#9ba3b7;font-size:15px;margin:0;line-height:1.6">Budgets, egress controls, and safety rails for agents</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card hover-rise" style="padding:24px">
+                <div style="display:flex;align-items:start;gap:16px">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/icon-mm-services-zero-token.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                    <div>
+                        <div style="color:#E8ECFF;font-weight:600;font-size:18px;margin-bottom:8px">Zero-token SPA pattern</div>
+                        <p style="color:#9ba3b7;font-size:15px;margin:0;line-height:1.6">BFF/Shield architecture for secure web applications</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card hover-rise" style="padding:24px">
+                <div style="display:flex;align-items:start;gap:16px">
+                    <img src={`${import.meta.env.BASE_URL}images/icons/icon-gear-spin.png`} alt="" style="width:56px;height:56px;flex-shrink:0" />
+                    <div>
+                        <div style="color:#E8ECFF;font-weight:600;font-size:18px;margin-bottom:8px">Adapter catalog</div>
+                        <p style="color:#9ba3b7;font-size:15px;margin:0;line-height:1.6">Governance metrics and ready-to-use integrations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:32px">
+            <p style="color:#b3c1da;margin-bottom:12px">
+                <a href="#" data-ev="cta_click" data-label="watch_demo_text" onclick="event.preventDefault();document.getElementById('demo-video-trigger')?.click()">Prefer to watch a short demo video? →</a>
+            </p>
+        </div>
+        <!-- Hidden video for lightbox - positioned off-screen but in DOM -->
+        <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" id="demo-video-wrapper">
+            <MediaVideo 
+                src={{mp4:`${import.meta.env.BASE_URL}videos/homepage/The_AI_Gold_Rush.mp4`}}
+                poster={`${import.meta.env.BASE_URL}images/video-placeholder/The_AI_Gold_Rush.jpg`}
+                title="The AI Gold Rush: EmpowerNow 90-second demo"
+                mode="modal"
+                autoPlay={true}
+                muted={false}
+                aspect="16/9"
+            />
         </div>
     </div>
+    <script>
+        (function() {
+            const wrapper = document.getElementById('demo-video-wrapper');
+            if (wrapper) {
+                const videoBtn = wrapper.querySelector('.mv-defer');
+                if (videoBtn) {
+                    videoBtn.id = 'demo-video-trigger';
+                }
+            }
+        })();
+    </script>
 </Landing>
+
 
 

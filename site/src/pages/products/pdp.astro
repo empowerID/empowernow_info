@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
 import AuroraText from '../../components/AuroraText.astro';
 const title = 'OpenID AuthZEN–compliant PDP | EmpowerNow';
 const description = 'Interoperable JSON decisions for gateways/services. EmpowerNow extensions add constraints, obligations, and TTL. Built for AI agents and Hybrid ReBAC.';
@@ -60,17 +61,25 @@ const headline = `<span class="h1-gradient">OpenID AuthZEN–compliant</span> <s
 				</ul>
 			</section>
 
-			<section id="pdp-see-it" class="container" style="padding:8px 0 24px">
-				<h2 class="section-title">See it</h2>
-				<div class="glass-card" style="padding:12px">
-					<div style="aspect-ratio:16/9;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:10px">
-						<video controls playsinline preload="metadata" style="width:100%;height:100%;border-radius:8px;outline:none" poster="">
-							<source src="/videos/products/pdp/The_Empower_Now_PDP.mp4" type="video/mp4" />
-							Your browser does not support the video tag.
-						</video>
-					</div>
+		<section id="pdp-see-it" style="padding:32px 0 48px">
+			<div class="container">
+				<h2 class="section-title" style="margin-bottom:24px">See it</h2>
+			</div>
+			<div class="panel-glow" style="padding:16px;max-width:1200px;margin:0 auto;width:100%">
+				<div style="max-width:900px;margin:0 auto;width:100%">
+					<MediaVideo 
+						src={{ mp4: `${import.meta.env.BASE_URL}videos/products/pdp/The_Empower_Now_PDP.mp4` }}
+						poster={`${import.meta.env.BASE_URL}images/video-placeholder/The_Empower_Now_PDP.jpg`}
+						aspect="16/9" 
+						title="The EmpowerNow PDP" 
+						autoPlay={true}
+						muted={false}
+						defer 
+					/>
 				</div>
-				<div class="panel-glass" style="padding:12px;margin-top:8px">
+			</div>
+			<div class="container" style="margin-top:24px">
+				<div class="panel-glass" style="padding:12px">
 					<strong>Batch decisions = fewer round‑trips, lower latency.</strong>
 					<p style="color:#9ba3b7;margin:6px 0 0">Send multiple checks in one call for faster pages and smoother agent runs.</p>
 				</div>
@@ -260,7 +269,8 @@ const headline = `<span class="h1-gradient">OpenID AuthZEN–compliant</span> <s
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 			<section id="pdp-authzen-compliance" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">AuthZEN compliance</h2>
 				<p style="color:#9ba3b7;max-width:90ch">Compatible with AuthZEN decision exchange across PDP/PEP/PIP/PAP. We keep ABAC; you adopt interoperable JSON. EmpowerNow adds decision extensions (constraints, obligations, TTL) for practical enforcement.</p>
