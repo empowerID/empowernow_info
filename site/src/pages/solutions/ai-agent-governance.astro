@@ -1,6 +1,7 @@
 ---
 import Landing from '../../layouts/Landing.astro';
 import PricingCTA from '../../components/PricingCTA.astro';
+import AIAgentGovernance from '../../components/AIAgentGovernance.tsx';
 const title = 'AI Agent Governance — EmpowerNow';
 const description = 'Stop AI chaos—control spend, enforce policy, and get financial‑grade audit with a neutral Layer‑2 fabric.';
 const canonical = '/solutions/ai-agent-governance/';
@@ -24,11 +25,13 @@ const canonical = '/solutions/ai-agent-governance/';
         </section>
         <section class="container" style="padding:8px 0 24px">
             <h2 class="section-title">How delegation works</h2>
-            <ol class="numbered">
-                <li>User consents</li>
-                <li>Guardrails applied (scope, time, location, budget)</li>
-                <li>Agent executes — receipt issued</li>
-            </ol>
+            <div class="glass-card" style="padding:12px">
+                <AIAgentGovernance client:visible caption="Where agents, PDP, and Membership meet — identities, delegations, policy, and enforcement." />
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+                    <a class="btn" href={`${import.meta.env.BASE_URL}products/pdp/`}>PDP deep‑dive →</a>
+                    <a class="btn btn-ghost" href={`${import.meta.env.BASE_URL}products/membership/`}>Explore Membership →</a>
+                </div>
+            </div>
         </section>
         <section class="container" style="padding:8px 0 24px">
             <h2 class="section-title">What we control</h2>
