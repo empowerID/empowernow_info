@@ -21,8 +21,7 @@ export default function AIAgentGovernance({ caption }: Props) {
               </linearGradient>
             </defs>
             {/* Title */}
-            <text x="800" y="60" fill="#E8EDF5" fontSize="40" fontWeight="900" textAnchor="middle">ARIA: AI Agent Governance</text>
-            <text x="800" y="90" fill="url(#titleGrad)" fontSize="40" fontWeight="900" textAnchor="middle">ARIA: AI Agent Governance</text>
+            <text x="800" y="80" fill="url(#titleGrad)" fontSize="40" fontWeight="900" textAnchor="middle">ARIA: AI Agent Governance</text>
             {/* Simple blocks indicating the 4 sections from the full diagram */}
             <g>
               <rect x="40" y="120" width="1520" height="220" rx="16" fill="rgba(59,130,246,0.08)" stroke="#3B82F6" strokeWidth="3" />
