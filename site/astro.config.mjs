@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import { EnumChangefreq } from 'sitemap';
 
@@ -11,6 +12,7 @@ export default defineConfig({
 	trailingSlash: 'always',
 	outDir: '../docs',
 	integrations: [
+		react(),
 		mdx(),
 		sitemap({
 			filter: (page) => !page.includes('/drafts/'),
