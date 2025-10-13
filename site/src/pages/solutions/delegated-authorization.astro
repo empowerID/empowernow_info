@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Solution from '../../layouts/Solution.astro';
-import AIAgentGovernance from '../../components/AIAgentGovernance.tsx';
+import AIAgentGovernance from '../../components/AIAgentGovernance.astro';
 import AuroraText from '../../components/AuroraText.astro';
 const title = 'Delegated Authorization — Safely Act on Behalf';
 const description = 'Use AuthZEN PDP + Membership to represent roles and delegations; enforce per‑action constraints across services.';
@@ -15,7 +15,7 @@ const headline = `<span class="aurora-text">Delegated</span> <span class="h1-gra
 				<h2 class="section-title">How it works</h2>
 				<p style="color:#9ba3b7">Membership models orgs, teams, roles, and delegations. PDP evaluates each request with these relationships and policy to return decisions.</p>
 				<div class="glass-card" style="padding:12px;margin-top:8px">
-					<AIAgentGovernance client:visible caption="Delegated authorization for people and agents — identities, relationships, consent/OBO, policy, and enforcement." />
+                    <AIAgentGovernance caption="Delegated authorization for people and agents — identities, relationships, consent/OBO, policy, and enforcement." />
 					<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
 						<a class="btn" href={`/products/pdp/`}>PDP deep‑dive →</a>
 						<a class="btn btn-ghost" href={`/products/membership/`}>Explore Membership →</a>

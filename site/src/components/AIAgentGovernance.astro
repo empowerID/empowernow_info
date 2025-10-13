@@ -1,0 +1,61 @@
+---
+export interface Props { caption?: string }
+const { caption } = Astro.props as Props;
+---
+<figure style="margin:0">
+  <style>
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+    @keyframes pulse { 0%,100% { opacity:.6 } 50% { opacity:1 } }
+    .float{ animation: float 3s ease-in-out infinite }
+    .pulse{ animation: pulse 2.5s ease-in-out infinite }
+    @media (prefers-reduced-motion: reduce){ .float,.pulse{ animation: none !important } }
+  </style>
+  <div style="width:100%;min-height:200px;background:linear-gradient(135deg,#0f172a,#0b1226);padding:8px;display:flex;align-items:center;justify-content:center;border-radius:12px">
+    <svg viewBox="0 0 1600 1420" style="width:100%;height:auto" aria-labelledby="title desc" role="img">
+      <title id="title">ARIA: AI Agent Governance</title>
+      <desc id="desc">Identities, delegations, policy bindings, lifecycle, and runtime enforcement.</desc>
+      <defs>
+        <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#6366F1" />
+          <stop offset="50%" stop-color="#FFFFFF" />
+          <stop offset="100%" stop-color="#6366F1" />
+        </linearGradient>
+      </defs>
+
+      <!-- Title -->
+      <text x="800" y="80" fill="url(#titleGrad)" font-size="40" font-weight="900" text-anchor="middle">ARIA: AI Agent Governance</text>
+
+      <!-- 1. Identity Model -->
+      <g>
+        <rect x="40" y="120" width="1520" height="220" rx="16" fill="rgba(59,130,246,0.08)" stroke="#3B82F6" stroke-width="3" />
+        <text x="60" y="160" fill="#3B82F6" font-size="20" font-weight="900">1. IDENTITY MODEL: First‑Class Graph Objects</text>
+        <text x="60" y="185" fill="#E8EDF5" font-size="14">Person • AIAgent • Service • Policy (YAML)</text>
+      </g>
+
+      <!-- 2. Relationships -->
+      <g>
+        <rect x="40" y="360" width="1520" height="260" rx="16" fill="rgba(139,92,246,0.08)" stroke="#8B5CF6" stroke-width="3" />
+        <text x="60" y="400" fill="#8B5CF6" font-size="20" font-weight="900">2. RELATIONSHIPS: Ownership + Delegation + Policy Binding</text>
+        <text x="60" y="425" fill="#E8EDF5" font-size="14">CONTROLLED_BY • DELEGATES_TO • POLICY_REF</text>
+      </g>
+
+      <!-- 3. Lifecycle -->
+      <g>
+        <rect x="40" y="640" width="1520" height="200" rx="16" fill="rgba(16,185,129,0.08)" stroke="#10B981" stroke-width="3" />
+        <text x="60" y="675" fill="#10B981" font-size="20" font-weight="900">3. LIFECYCLE: Registration → Delegation → Verification → Revocation</text>
+      </g>
+
+      <!-- 4. Runtime -->
+      <g>
+        <rect x="40" y="860" width="1520" height="220" rx="16" fill="rgba(99,102,241,0.08)" stroke="#6366F1" stroke-width="3" />
+        <text x="60" y="895" fill="#6366F1" font-size="20" font-weight="900">4. RUNTIME: OBO Token Exchange + Policy Enforcement</text>
+        <text x="60" y="920" fill="#E8EDF5" font-size="14">PDP evaluates; PEPs enforce constraints (sync) and obligations (async)</text>
+      </g>
+
+      <text x="800" y="1120" fill="#C5D5E8" font-size="14" text-anchor="middle">Use with AuthZEN PDP, Membership Service (Neo4j), and gateway PEPs</text>
+    </svg>
+  </div>
+  {caption && (<figcaption style="color:#9ba3b7;margin-top:8px">{caption}</figcaption>)}
+</figure>
+
+
