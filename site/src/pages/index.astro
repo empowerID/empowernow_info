@@ -124,10 +124,10 @@ import AuroraText from '../components/AuroraText.astro';
                         </div>
                     </div>
                     
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px">
+                    <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:24px">
                         <div class="glass-card hover-rise" style="padding:20px">
-                            <div style="display:flex;flex-direction:column;gap:12px">
-                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/spend-runaway-56.png`} alt="" style="width:48px;height:48px" />
+                            <div style="display:flex;align-items:start;gap:16px">
+                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/spend-runaway-56.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
                                 <div>
                                     <div style="color:#E8ECFF;font-weight:600;font-size:16px;margin-bottom:4px">Unpredictable spend</div>
                                     <p style="color:#9ba3b7;font-size:14px;margin:0;line-height:1.6">No budget caps = surprise invoices</p>
@@ -136,8 +136,8 @@ import AuroraText from '../components/AuroraText.astro';
                         </div>
                         
                         <div class="glass-card hover-rise" style="padding:20px">
-                            <div style="display:flex;flex-direction:column;gap:12px">
-                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/attack-surface-56.png`} alt="" style="width:48px;height:48px" />
+                            <div style="display:flex;align-items:start;gap:16px">
+                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/attack-surface-56.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
                                 <div>
                                     <div style="color:#E8ECFF;font-weight:600;font-size:16px;margin-bottom:4px">New attack surface</div>
                                     <p style="color:#9ba3b7;font-size:14px;margin:0;line-height:1.6">Every agent call is a potential breach</p>
@@ -146,8 +146,8 @@ import AuroraText from '../components/AuroraText.astro';
                         </div>
                         
                         <div class="glass-card hover-rise" style="padding:20px">
-                            <div style="display:flex;flex-direction:column;gap:12px">
-                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/audit-missing-56.png`} alt="" style="width:48px;height:48px" />
+                            <div style="display:flex;align-items:start;gap:16px">
+                                <img src={`${import.meta.env.BASE_URL}images/icons/medium/audit-missing-56.png`} alt="" style="width:48px;height:48px;flex-shrink:0" />
                                 <div>
                                     <div style="color:#E8ECFF;font-weight:600;font-size:16px;margin-bottom:4px">No financial‑grade audit</div>
                                     <p style="color:#9ba3b7;font-size:14px;margin:0;line-height:1.6">Logs aren't proof; auditors need receipts</p>
@@ -174,7 +174,7 @@ import AuroraText from '../components/AuroraText.astro';
                         <p style="color:#B3BCD2;font-size:16px;margin:0">20 years of identity & access management expertise built into every layer</p>
                     </div>
                     
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
                         <div class="glass-card hover-rise" style="padding:24px">
                             <div style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
                                 <img src={`${import.meta.env.BASE_URL}images/icons/medium/connector-dna-64.png`} alt="" style="width:64px;height:64px" />
@@ -510,7 +510,7 @@ import AuroraText from '../components/AuroraText.astro';
         <div class="panel-glow" style="padding:40px">
             <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center">
                 <div>
-                    <h2 style="font-size:clamp(28px,4vw,42px);margin:0 0 16px;line-height:1.2;background:linear-gradient(90deg,var(--lime-green),var(--pulse-cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Turn any API/DB into an agent‑safe tool — no code</h2>
+                    <h2 style="font-size:clamp(28px,4vw,42px);margin:0 0 16px;line-height:1.2;color:#E8ECFF;background:linear-gradient(90deg,#BCFF3D,#00E7F6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Turn any API/DB into an agent‑safe tool — no code</h2>
                     <p style="color:#B3BCD2;margin:0 0 24px;font-size:17px;line-height:1.7">Paste an endpoint, get an MCP‑ready tool with schema pins and policy hooks. Publish once to MCP / Copilot / Functions.</p>
                     <div style="display:flex;gap:12px;flex-wrap:wrap">
                         <a class="btn btn-primary" data-ev="cta_click" data-label="tf-quickstart" data-position="tool-factory" href={`${import.meta.env.BASE_URL}products/crud/`}>Quickstart</a>
