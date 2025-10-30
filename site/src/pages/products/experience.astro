@@ -98,11 +98,9 @@ const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Li
 			slot="visual"
 			src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/The_End_of_Forms.mp4`}}
 			poster={`${import.meta.env.BASE_URL}images/video-placeholder/the-end-of-forms.jpg`}
-			title="The End of Forms - Build 'Wow' Apps Not Boring Forms"
-			mode="modal"
-			autoPlay={true}
-			muted={false}
+			title="The End of Forms: Build 'Wow' Apps Not Boring Forms"
 			aspect="16/9"
+			defer
 		/>
 
 		<fragment slot="how">
@@ -297,83 +295,6 @@ const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Li
 		</fragment>
 
 		<fragment slot="proof">
-			<!-- Prominent Video Showcase Section -->
-			<section id="experience-videos" class="container" style="padding:8px 0 40px">
-				<h2 class="section-title">🎬 Watch Experience in Action</h2>
-				<p style="color:#9ba3b7;max-width:860px;margin:0 0 32px">
-					See how EmpowerNow Experience transforms development with AI-driven plugin generation and enterprise-grade security.
-				</p>
-				
-				<!-- Featured Video - Large -->
-				<div class="panel-glow" style="padding:0;overflow:hidden;margin-bottom:32px;background:rgba(11,28,61,0.5)">
-					<div style="padding:24px 24px 0">
-						<h3 style="margin:0 0 8px;color:#00E7F6;font-size:24px;font-weight:600">The End of Forms</h3>
-						<p style="margin:0 0 20px;color:#9ba3b7;font-size:16px">See how Experience breaks free from rigid forms and enables true application development</p>
-					</div>
-					<MediaVideo 
-						src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/The_End_of_Forms.mp4`}}
-						poster={`${import.meta.env.BASE_URL}images/video-placeholder/the-end-of-forms.jpg`}
-						title="The End of Forms - Build 'Wow' Apps Not Boring Forms"
-						mode="modal"
-						autoPlay={false}
-						muted={false}
-						aspect="16/9"
-					/>
-				</div>
-
-				<!-- Additional Demo Videos Grid -->
-				<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:32px">
-					<div class="glass-card hover-rise" style="padding:20px">
-						<h4 style="margin:0 0 12px;color:#e8ecff;font-size:18px;font-weight:600">Vibe Coding in Action</h4>
-						<MediaVideo 
-							src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/Vibe_Coding_Demo.mp4`}}
-							poster={`${import.meta.env.BASE_URL}images/video-placeholder/vibe-coding-demo.jpg`}
-							title="Vibe Coding - Tell AI What You Want"
-							mode="modal"
-							autoPlay={false}
-							muted={false}
-							aspect="16/9"
-						/>
-						<p style="margin:12px 0 0;color:#9ba3b7;font-size:14px;line-height:1.6">
-							See how developers use plain language like "make it more wow" to generate complex UIs instantly.
-						</p>
-					</div>
-
-					<div class="glass-card hover-rise" style="padding:20px">
-						<h4 style="margin:0 0 12px;color:#e8ecff;font-size:18px;font-weight:600">Security & Governance</h4>
-						<MediaVideo 
-							src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/Security_Demo.mp4`}}
-							poster={`${import.meta.env.BASE_URL}images/video-placeholder/security-demo.jpg`}
-							title="Enterprise Security - BFF, PDP, and Zero-Token"
-							mode="modal"
-							autoPlay={false}
-							muted={false}
-							aspect="16/9"
-						/>
-						<p style="margin:12px 0 0;color:#9ba3b7;font-size:14px;line-height:1.6">
-							Learn how Experience enforces enterprise security with BFF Gateway, PDP authorization, and zero-token architecture.
-						</p>
-					</div>
-
-					<div class="glass-card hover-rise" style="padding:20px">
-						<h4 style="margin:0 0 12px;color:#e8ecff;font-size:18px;font-weight:600">Plugin Deployment</h4>
-						<MediaVideo 
-							src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/Plugin_Deployment_Demo.mp4`}}
-							poster={`${import.meta.env.BASE_URL}images/video-placeholder/plugin-deployment-demo.jpg`}
-							title="Plugin Deployment - From Code to Production"
-							mode="modal"
-							autoPlay={false}
-							muted={false}
-							aspect="16/9"
-						/>
-						<p style="margin:12px 0 0;color:#9ba3b7;font-size:14px;line-height:1.6">
-							See how plugins are deployed, validated, and monitored with instant quarantine capabilities.
-						</p>
-					</div>
-				</div>
-			</section>
-
-			<div class="row-hairline" style="margin:48px 0"></div>
 
 			<section id="experience-comparison" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Why Experience vs. Traditional Approaches</h2>
@@ -480,13 +401,18 @@ const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Li
 		</fragment>
 	</Product>
 	
-	<!-- Add video styling like home page -->
+	<!-- Add parallax video effect like home page -->
 	<script>
 		if (matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) {
 			const videoVisual = document.querySelector('.hero__visual');
-			if (videoVisual && videoVisual.querySelector('.mv-wrap')) {
-				// Add parallax-glow class for visual effect
-				videoVisual.classList.add('parallax-glow', 'hero__visual--video');
+			if (videoVisual) {
+				// Add video and parallax classes if not already present
+				if (!videoVisual.classList.contains('parallax-glow')) {
+					videoVisual.classList.add('parallax-glow');
+				}
+				if (!videoVisual.classList.contains('hero__visual--video')) {
+					videoVisual.classList.add('hero__visual--video');
+				}
 				
 				// Add parallax mouse movement effect
 				document.addEventListener('mousemove', (e) => {
