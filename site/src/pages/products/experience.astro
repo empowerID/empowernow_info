@@ -1,16 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Product from '../../layouts/Product.astro';
+import MediaVideo from '../../components/MediaVideo.astro';
+import AuroraText from '../../components/AuroraText.astro';
 import PricingCTA from '../../components/PricingCTA.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
-import MediaVideo from '../../components/MediaVideo.astro';
-import LogoWall from '../../components/LogoWall.astro';
-import AuroraText from '../../components/AuroraText.astro';
 
 const title = 'EmpowerNow Experience | Build "Wow" Apps Without the Limitations';
 const description = 'AI-driven UI creation for modern SaaS experiences. Build sophisticated apps in hours, not months. Zero-token security, plugin-based extensibility, and enterprise governance built in.';
 const canonical = '/products/experience/';
+const base = import.meta.env.BASE_URL;
 
 const jsonLdProduct = {
 	"@context": "https://schema.org",
@@ -26,85 +25,142 @@ const jsonLdProduct = {
 		"priceCurrency": "USD",
 		"price": "0",
 		"description": "Contact for pricing"
-	},
-	"aggregateRating": {
-		"@type": "AggregateRating",
-		"ratingValue": "4.9",
-		"reviewCount": "127"
 	}
 };
-
-const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Limitations`;
 ---
 
 <Base title={title} description={description} canonical={canonical}>
 	<JsonLd data={jsonLdProduct} />
-	<Product 
-		title={title} 
-		description={description} 
-		canonical={canonical} 
-		productKey="experience" 
-		eyebrow="EMPOWERNOW EXPERIENCE" 
-		headline={headline}
-		subhead="Unleash AI-driven UI creation to deliver the modern SaaS experience your users expect. Build sophisticated apps in hours, not months—with enterprise security and governance built in."
-		targetICP={[
-			'Enterprise SaaS',
-			'ISVs & Platform Teams',
-			'Digital Transformation',
-			'Identity & Security'
-		]}
-		keyBenefits={[
-			'Vibe Code Your UI—AI generates plugins from plain language',
-			'Hours instead of months—build full admin interfaces rapidly',
-			'Enterprise security—BFF Gateway, zero-token SPA, PDP everywhere',
-			'Plugin-based extensibility—tenant-specific features without forking',
-			'Dynamic authorization—PDP returns constraints and obligations',
-			'Advanced approval workflows—tamper-proof, decoupled, MCP-ready'
-		]}
-		benefitIcons={[
-			'icon-gear-spin.png',
-			'icon-rocket.png',
-			'icon-shield-aria.png',
-			'icon-clipboard-path.png',
-			'icon-policy-pick.png',
-			'icon-receipt.png'
-		]}
-		primaryCTA={{ 
-			label: 'Book demo', 
-			href: `${import.meta.env.BASE_URL}demo/` 
-		}}
-		secondaryCTA={{ 
-			label: 'Read docs', 
-			href: 'https://empowerid.github.io/empowernow_docs/docs/services/experience/' 
-		}}
-		tertiaryCTA={{ 
-			label: 'Quickstart', 
-			href: 'https://empowerid.github.io/empowernow_docs/docs/services/experience/quickstart/' 
-		}}
-		docsLinks={[
-			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/experience/', label: 'Experience Overview' },
-			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/experience/experience_plugins/', label: 'Plugin System' },
-			{ href: 'https://empowerid.github.io/empowernow_docs/docs/services/experience/quickstart/', label: 'Quickstart Guide' }
-		]}
-		wwwLinks={[
-			{ href: '/solutions/zero-token-spas/', label: 'Zero-Token SPAs' },
-			{ href: '/products/aria-shield/', label: 'ARIA Shield' },
-			{ href: '/products/pdp/', label: 'PDP Authorization' }
-		]}
-		keywords={['experience', 'ui', 'plugins', 'bff', 'authzen', 'spa']}
-	>
-		<!-- Override hero visual with video (like home page) -->
-		<MediaVideo 
-			slot="visual"
-			src={{mp4:`${import.meta.env.BASE_URL}videos/products/experience/The_End_of_Forms.mp4`}}
-			poster={`${import.meta.env.BASE_URL}images/video-placeholder/the-end-of-forms.jpg`}
-			title="The End of Forms: Build 'Wow' Apps Not Boring Forms"
-			aspect="16/9"
-			defer
-		/>
+	
+	<div class="product-root product--experience">
+		<!-- Custom Hero Section with Video (like home page) -->
+		<section class="hero-plate page-stage" style={`background-image:url(${base}images/backgrounds/bg-homepage-hero.jpg);background-size:cover;background-position:center;background-repeat:no-repeat`}>
+			<div class="container hero-container hero-layout--split">
+				<div class="hero__content">
+					<div class="hero__eyebrow">EMPOWERNOW EXPERIENCE</div>
+					<h1 class="display hero__headline">Build <AuroraText>"Wow"</AuroraText> Apps, Skip the Limitations</h1>
+					<p class="hero__body">Unleash AI-driven UI creation to deliver the modern SaaS experience your users expect. Build sophisticated apps in hours, not months—with enterprise security and governance built in.</p>
+					
+					<div class="hero__chips">
+						<span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">Enterprise SaaS</span>
+						<span class="chip chip--outline-violet" style="padding:8px 16px;font-size:14px;font-weight:600">ISVs & Platform Teams</span>
+						<span class="chip chip--more" style="padding:8px 16px;font-size:14px">+2 more</span>
+					</div>
+					
+					<div class="hero__actions">
+						<a class="btn btn-primary" href={`${base}demo/`} data-ev="cta_click" data-label="book_demo" data-position="hero">Book demo</a>
+						<a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/experience/" data-ev="cta_click" data-label="read_docs" data-position="hero">Read docs</a>
+						<a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/experience/quickstart/" data-ev="cta_click" data-label="quickstart" data-position="hero">Quickstart</a>
+					</div>
+				</div>
+				
+				<div class="hero__visual hero__visual--video parallax-glow" id="experience-video-wrapper">
+					<MediaVideo 
+						src={{mp4:`${base}videos/products/experience/The_End_of_Forms.mp4`}}
+						poster={`${base}images/video-placeholder/the-end-of-forms.jpg`}
+						title="The End of Forms: Build 'Wow' Apps Not Boring Forms"
+						aspect="16/9"
+						defer
+					/>
+				</div>
+			</div>
+		</section>
 
-		<fragment slot="how">
-			<section id="experience-transform-speed" class="container" style="padding:8px 0 24px">
+		<!-- Studio Bar Navigation -->
+		<nav class="studio-bar" aria-label="Product sections">
+			<div class="container studio-bar-inner">
+				<div class="studio-brand">
+					<span class="studio-title">Experience</span>
+				</div>
+				<ul class="studio-tabs" role="tablist" id="studio-tabs-list"></ul>
+				<div class="studio-cta">
+					<a class="btn btn-docs" href="https://empowerid.github.io/empowernow_docs/docs/services/experience/" data-ev="nav_click" data-label="docs" data-position="studio_bar">
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+							<path d="M3 2.5C3 2.22386 3.22386 2 3.5 2H9.08579C9.2158 2 9.34051 2.05268 9.43303 2.14645L12.8536 5.56711C12.9473 5.65963 13 5.78434 13 5.91421V13.5C13 13.7761 12.7761 14 12.5 14H3.5C3.22386 14 3 13.7761 3 13.5V2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M9 2V5.5C9 5.77614 9.22386 6 9.5 6H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+						<span>Docs</span>
+					</a>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Why it wins -->
+		<section id="why" class="container reveal-on-scroll" style="padding:40px 0 80px">
+			<h2 style="font-size:2rem;font-weight:700;color:#e8ecff;margin:0 0 24px">Why it wins</h2>
+			<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:16px">
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-gear-spin.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Vibe Code Your UI—AI generates plugins from plain language</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-rocket.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Hours instead of months—build full admin interfaces rapidly</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-shield-aria.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Enterprise security—BFF Gateway, zero-token SPA, PDP everywhere</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-clipboard-path.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Plugin-based extensibility—tenant-specific features without forking</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-policy-pick.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Dynamic authorization—PDP returns constraints and obligations</p>
+						</div>
+					</div>
+				</div>
+				<div class="panel-glow hover-rise" style="padding:24px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden">
+					<div class="product-rail rail--experience" aria-hidden="true" style="position:absolute;top:0;left:0;right:0;height:3px;margin:0"></div>
+					<div style="display:flex;align-items:center;gap:20px">
+						<div style="flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
+							<img src={`${base}images/icons/icon-receipt.png`} alt="" style="width:56px;height:56px;opacity:0.85" aria-hidden="true" />
+						</div>
+						<div style="flex:1;min-width:0">
+							<p style="margin:0;color:#e8ecff;font-size:16px;line-height:1.5;font-weight:500">Advanced approval workflows—tamper-proof, decoupled, MCP-ready</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-hairline" style="margin-top:64px"></div>
+		</section>
+
+		<!-- Content Sections -->
+		<section id="experience-transform-speed" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">🚀 Transform Your Development Speed</h2>
 				<p style="color:#9ba3b7;max-width:860px;margin:0 0 24px">
 					Forget months of development time. EmpowerNow Experience leverages AI and efficient frameworks to dramatically accelerate application delivery.
@@ -292,11 +348,8 @@ const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Li
 					</div>
 				</div>
 			</section>
-		</fragment>
 
-		<fragment slot="proof">
-
-			<section id="experience-comparison" class="container" style="padding:8px 0 24px">
+		<section id="experience-comparison" class="container" style="padding:8px 0 24px">
 				<h2 class="section-title">Why Experience vs. Traditional Approaches</h2>
 				<div class="panel-glow" style="padding:0;overflow:hidden">
 					<table class="comparison-table" style="width:100%;border-collapse:collapse">
@@ -379,41 +432,185 @@ const headline = `Build <span class="aurora-text">"Wow"</span> Apps, Skip the Li
 				</div>
 			</section>
 
-			<div class="row-hairline" style="margin:48px 0"></div>
+		<div class="row-hairline" style="margin:48px 0"></div>
 
-			<PricingCTA 
-				title="Ready to Experience the 'Wow'?" 
-				sub="Stop building based on outdated models. Contact us for a demonstration and see how quickly you can generate secure, visually stunning, and highly functional applications." 
-				primaryHref={`${import.meta.env.BASE_URL}demo/`} 
-				primaryLabel="Book demo" 
-			/>
-		</fragment>
+		<PricingCTA 
+			title="Ready to Experience the 'Wow'?" 
+			sub="Stop building based on outdated models. Contact us for a demonstration and see how quickly you can generate secure, visually stunning, and highly functional applications." 
+			primaryHref={`${base}demo/`} 
+			primaryLabel="Book demo" 
+		/>
 
-		<fragment slot="related">
-			<RelatedContent 
-				internalLinks={[
-					{href:'/products/aria-shield/',label:'ARIA Shield (BFF)'},
-					{href:'/products/pdp/',label:'PDP Authorization'},
-					{href:'/products/crud/',label:'Orchestration Service'},
-					{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'}
-				]} 
-			/>
-		</fragment>
-	</Product>
+		<!-- Related Content -->
+		<section class="container" style="padding:8px 0 24px">
+			<h2 class="section-title">Related reading</h2>
+			<div style="display:flex;gap:12px;flex-wrap:wrap">
+				<a class="btn" href={`${base}products/aria-shield/`}>ARIA Shield (BFF)</a>
+				<a class="btn" href={`${base}products/pdp/`}>PDP Authorization</a>
+				<a class="btn" href={`${base}products/crud/`}>Orchestration Service</a>
+				<a class="btn" href={`${base}solutions/zero-token-spas/`}>Zero-Token SPAs</a>
+			</div>
+		</section>
+
+		<!-- What's next grid -->
+		<section class="container reveal-on-scroll" style="padding:24px 0 48px">
+			<h2 class="section-title">What's next?</h2>
+			<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:16px">
+				<div class="panel-glow hover-rise" style="padding:24px;text-align:center">
+					<h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Book a demo</h3>
+					<p style="margin:0 0 16px;color:#9ba3b7;line-height:1.6;font-size:14px">See AI-driven plugin generation live.</p>
+					<a class="btn btn-primary" href={`${base}demo/`} style="font-size:14px">Book demo</a>
+				</div>
+				<div class="glass-card hover-rise" style="padding:24px;text-align:center">
+					<h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Read the docs</h3>
+					<p style="margin:0 0 16px;color:#9ba3b7;line-height:1.6;font-size:14px">Dive into Experience and plugins.</p>
+					<a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/experience/" target="_blank" rel="noopener" style="font-size:14px">Docs ↗</a>
+				</div>
+				<div class="glass-card hover-rise" style="padding:24px;text-align:center">
+					<h3 style="margin:0 0 8px;color:#e8ecff;font-size:18px;font-weight:600">Quickstart guide</h3>
+					<p style="margin:0 0 16px;color:#9ba3b7;line-height:1.6;font-size:14px">Build your first plugin in minutes.</p>
+					<a class="btn btn-ghost" href="https://empowerid.github.io/empowernow_docs/docs/services/experience/quickstart/" target="_blank" rel="noopener" style="font-size:14px">Quickstart ↗</a>
+				</div>
+			</div>
+		</section>
+	</div>
 	
+	<!-- Reveal on scroll animations -->
+	<script>
+		if ('IntersectionObserver' in window) {
+			const elements = [...document.querySelectorAll('.reveal-on-scroll')];
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('is-visible');
+						observer.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.25 });
+			elements.forEach((el) => observer.observe(el));
+		}
+	</script>
+
+	<!-- Studio Bar Navigation -->
+	<script>
+		(function() {
+			const studioBar = document.querySelector('.studio-bar');
+			const tabsList = document.getElementById('studio-tabs-list');
+			const heroSection = document.querySelector('.hero-plate');
+			
+			if (!studioBar || !tabsList || !heroSection) return;
+			
+			// Find all sections with section-title h2
+			const sectionTitles = document.querySelectorAll('h2.section-title');
+			const sections = [];
+			
+			sectionTitles.forEach((title) => {
+				let section = title.parentElement;
+				while (section && section.tagName !== 'SECTION') {
+					section = section.parentElement;
+				}
+				if (section && section.hasAttribute('id') && section.offsetHeight > 50) {
+					const id = section.getAttribute('id');
+					const label = title.textContent?.trim();
+					if (id && label) {
+						sections.push({ id, label, element: section });
+					}
+				}
+			});
+
+			// Add "Why it wins" section
+			const whySection = document.getElementById('why');
+			if (whySection && whySection.offsetHeight > 50) {
+				sections.unshift({ id: 'why', label: 'Why it wins', element: whySection });
+			}
+
+			// Create tabs
+			sections.forEach((sec) => {
+				const li = document.createElement('li');
+				li.setAttribute('role', 'presentation');
+				const a = document.createElement('a');
+				a.setAttribute('role', 'tab');
+				a.setAttribute('href', `#${sec.id}`);
+				a.className = 'studio-tab-btn';
+				const span = document.createElement('span');
+				span.textContent = sec.label;
+				a.appendChild(span);
+				li.appendChild(a);
+				tabsList.appendChild(li);
+			});
+
+			const tabButtons = document.querySelectorAll('.studio-tab-btn');
+			const sectionElements = sections.map(s => s.element);
+			const stickyOffset = heroSection.offsetHeight - 80;
+
+			function updateSticky() {
+				if (!studioBar) return;
+				if (window.scrollY > stickyOffset) {
+					studioBar.classList.add('is-sticky');
+				} else {
+					studioBar.classList.remove('is-sticky');
+				}
+			}
+
+			function updateActiveTab() {
+				const scrollPos = window.scrollY + 250;
+				let activeId = '';
+				
+				sectionElements.forEach((section) => {
+					const top = section.offsetTop;
+					const bottom = top + section.offsetHeight;
+					if (scrollPos >= top - 150 && scrollPos < bottom + 50) {
+						activeId = section.getAttribute('id') || '';
+					}
+				});
+
+				tabButtons.forEach((btn) => {
+					const btnId = (btn.getAttribute('href') || '').replace('#', '');
+					if (btnId === activeId) {
+						btn.classList.add('is-active');
+						btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+					} else {
+						btn.classList.remove('is-active');
+					}
+				});
+			}
+
+			tabButtons.forEach((btn) => {
+				btn.addEventListener('click', (e) => {
+					e.preventDefault();
+					const id = (btn.getAttribute('href') || '').replace('#', '');
+					const section = document.getElementById(id);
+					if (section) {
+						const top = section.offsetTop - 150;
+						window.scrollTo({ top, behavior: 'smooth' });
+						tabButtons.forEach((b) => b.classList.remove('is-active'));
+						btn.classList.add('is-active');
+					}
+				});
+			});
+
+			let ticking = false;
+			window.addEventListener('scroll', () => {
+				if (!ticking) {
+					window.requestAnimationFrame(() => {
+						updateSticky();
+						updateActiveTab();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}, { passive: true });
+
+			updateSticky();
+			updateActiveTab();
+		})();
+	</script>
+
 	<!-- Add parallax video effect like home page -->
 	<script>
 		if (matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)').matches) {
-			const videoVisual = document.querySelector('.hero__visual');
+			const videoVisual = document.querySelector('.hero__visual--video');
 			if (videoVisual) {
-				// Add video and parallax classes if not already present
-				if (!videoVisual.classList.contains('parallax-glow')) {
-					videoVisual.classList.add('parallax-glow');
-				}
-				if (!videoVisual.classList.contains('hero__visual--video')) {
-					videoVisual.classList.add('hero__visual--video');
-				}
-				
 				// Add parallax mouse movement effect
 				document.addEventListener('mousemove', (e) => {
 					const rect = videoVisual.getBoundingClientRect();
