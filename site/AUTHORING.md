@@ -529,7 +529,7 @@ SEO
 - Title: `PDP | EmpowerNow`
 - Meta: `Policy decisions with standardized constraints/obligations/TTL—budgets, content, egress, params—enforced by gateways and apps.`
 
-#### 3) CRUD Service
+#### 3) Orchestration Service
 
 - Icon/gradient: ⚙️  • lime 400 → cyan 500
 - Docs: `/docs/crud-service`
@@ -537,7 +537,7 @@ SEO
 Hero
 
 - Kicker: ⚙️ CRUD SERVICE
-- H1: CRUD Service
+- H1: Orchestration Service
 - Promise: Create tools once—publish to MCP, Functions, and Copilot.
 - Explainer: No‑code connectors/workflows that output MCP Tools/Resources/Prompts and adapters for OpenAI Functions & Copilot actions.
 
@@ -558,7 +558,7 @@ Standards: `MCP • OpenAI Function Calling • Copilot Studio`
 
 SEO
 
-- Title: `CRUD Service | EmpowerNow`
+- Title: `Orchestration Service | EmpowerNow`
 - Meta: `No-code connectors/workflows that output MCP tools, OpenAI Functions, and Copilot actions. Author once—publish to many platforms.`
 
 #### 4) Data Collector
@@ -706,7 +706,7 @@ Why it wins
 - No inbound holes; outbound‑only relays
 - Simple deployment; cloud or self‑hosted
 - Observability & controls built‑in
-- Works with CRUD Service and gateways
+- Works with Orchestration Service and gateways
 
 How it works
 
@@ -729,7 +729,7 @@ Map icon and gradient per product. Use a product context class to activate gradi
 | --- | --- | --- |
 | IdP | 🔐 | indigo 600 → cyan 500 |
 | PDP | 🛡️ | violet 500 → magenta 500 |
-| CRUD Service | ⚙️ | lime 400 → cyan 500 |
+| Orchestration Service | ⚙️ | lime 400 → cyan 500 |
 | Data Collector | 🧭 | teal 400 → cyan 500 |
 | ARIA Shield | 🧊 | cyan 500 → violet 500 |
 | ARIA MCP Gateway | 🚦 | cyan 500 → violet 500 |

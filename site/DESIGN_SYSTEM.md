@@ -43,7 +43,7 @@ nav { background: rgba(11,28,61,.8); border-bottom: 1px solid rgba(0,231,246,.2)
 
 ## Neon‑Flux Re‑Art Direction
 
-North star: Neon instruments on a dark stage. The dark background is the stage, neon elements are the instruments that guide attention (hero, CRUD Service, primary CTAs, proof atoms).
+North star: Neon instruments on a dark stage. The dark background is the stage, neon elements are the instruments that guide attention (hero, Orchestration Service, primary CTAs, proof atoms).
 
 ### Palette & Roles
 
@@ -60,7 +60,7 @@ Accessibility rule: cyan on dark must meet AA; avoid cyan body paragraphs. Use `
 
 Use three variants consistently:
 
-- Glow Panel (hero highlights / CRUD Service)
+- Glow Panel (hero highlights / Orchestration Service)
   - Soft radial halo + thin neon edge → primary attention.
 - Glass Panel (secondary sections / control stack)
   - Frosted dark with 1px soft border.
@@ -104,7 +104,7 @@ Use three variants consistently:
 
 ### Hierarchy Guidelines
 
-- Glow: hero headline, CRUD Service panel, one control highlight.
+- Glow: hero headline, Orchestration Service panel, one control highlight.
 - Glass: control stack, role paths, pricing anchor.
 - Ghost: “Works with” rails, status strip, section intros.
 
