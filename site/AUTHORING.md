@@ -536,7 +536,7 @@ SEO
 
 Hero
 
-- Kicker: ⚙️ CRUD SERVICE
+- Kicker: ⚙️ ORCHESTRATION SERVICE
 - H1: Orchestration Service
 - Promise: Create tools once—publish to MCP, Functions, and Copilot.
 - Explainer: No‑code connectors/workflows that output MCP Tools/Resources/Prompts and adapters for OpenAI Functions & Copilot actions.
