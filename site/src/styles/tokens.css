@@ -51,6 +51,7 @@
 	--accent-idp: #C245FF; /* softened magenta */
 	--accent-receipts: #5F89FF; /* blue-violet trust */
 	--accent-collector: #6EF2F2; /* aqua tint */
+	--accent-experience: #FF6EC7; /* vibrant pink-magenta for UI/UX focus */
 
 	/* Product gradient tokens (hero/studio bar start→mid) */
 	/* Use with per-page product classes to map into --grad-start-soft/--grad-mid-soft */
@@ -70,6 +71,8 @@
 	--grad-vds-mid:#06B6D4;  /* cyan 500 */
 	--grad-nowconnect-start:#10B981; /* emerald 500 */
 	--grad-nowconnect-mid:#06B6D4;  /* cyan 500 */
+	--grad-experience-start:#FF6EC7; /* pink */
+	--grad-experience-mid:#A855F7;  /* purple 500 */
 
 	/* Borders & layers */
 	--border-soft:rgba(255,255,255,.18);

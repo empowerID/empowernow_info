@@ -131,12 +131,14 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .rail--idp{background:linear-gradient(90deg,var(--accent-idp),transparent)}
 .rail--receipts{background:linear-gradient(90deg,var(--accent-receipts),transparent)}
 .rail--collector{background:linear-gradient(90deg,var(--accent-collector),transparent)}
+.rail--experience{background:linear-gradient(90deg,var(--accent-experience),transparent)}
 .rail--gateway{box-shadow:0 0 14px rgba(108,76,255,.35)}
 .rail--pdp{box-shadow:0 0 14px rgba(179,38,255,.35)}
 .rail--idp{box-shadow:0 0 14px rgba(194,69,255,.28)}
 .rail--shield{box-shadow:0 0 14px rgba(90,132,255,.28)}
 .rail--receipts{box-shadow:0 0 14px rgba(95,137,255,.28)}
 .rail--collector{box-shadow:0 0 14px rgba(110,242,242,.28)}
+.rail--experience{box-shadow:0 0 14px rgba(255,110,199,.35)}
 .icon-accent{stroke-width:1.8;fill:none}
 .icon--crud{stroke:var(--accent-crud)}
 .icon--gateway{stroke:var(--accent-gateway)}
@@ -145,6 +147,7 @@ footer a:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
 .icon--idp{stroke:var(--accent-idp)}
 .icon--receipts{stroke:var(--accent-receipts)}
 .icon--collector{stroke:var(--accent-collector)}
+.icon--experience{stroke:var(--accent-experience)}
 .trust-strip{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
 .trust-strip .btn{transition:transform .12s ease}
 .trust-strip .btn:hover{transform:translateY(-2px)}
