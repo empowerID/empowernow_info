@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Product from '../../layouts/Product.astro';
-import PricingCTA from '../../components/PricingCTA.astro';
+import CTABar from '../../components/CTABar.astro';
 import RelatedContent from '../../components/RelatedContent.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import MediaVideo from '../../components/MediaVideo.astro';
@@ -86,7 +86,7 @@ shield.stream(model, request, caps, onChunk);
 				</div>
 			</div>
 		</section>
-			<PricingCTA title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref={`${import.meta.env.BASE_URL}demo/`} primaryLabel="Book demo" />
+			<CTABar title="Ready to see streaming caps and receipts?" sub="Watch the 10-minute tour or talk to us for a deep dive." primaryHref={`${import.meta.env.BASE_URL}demo/`} primaryLabel="Book demo" />
 		</fragment>
 		<fragment slot="related">
 			<RelatedContent internalLinks={[{href:'/solutions/zero-token-spas/',label:'Zero-Token SPAs'},{href:'/resources/',label:'Resources'}]} />

@@ -40,14 +40,14 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Ast
         </div>
         <div style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-                <span style="color:#e8ecff;font-size:14px;font-weight:500">EmpowerNow (Y1): endpoints × $500 × 12 +</span>
-                <span id="calc-enow" style="color:#00E7F6;font-size:20px;font-weight:600">$0</span>
+                <span style="color:#e8ecff;font-size:14px;font-weight:500">EmpowerNow: Contact us for a custom quote</span>
+                <span id="calc-enow" style="color:#00E7F6;font-size:16px;font-weight:500">—</span>
             </div>
         </div>
     </div>
     
     <div style="text-align:center">
-        <a class="btn btn-ghost" id="calc-cta" href={`${import.meta.env.BASE_URL}pricing/`} style="border:2px solid var(--pulse-cyan);color:var(--pulse-cyan);font-size:16px;padding:12px 28px">Estimate my savings</a>
+        <a class="btn btn-ghost" id="calc-cta" href={`${import.meta.env.BASE_URL}demo/`} style="border:2px solid var(--pulse-cyan);color:var(--pulse-cyan);font-size:16px;padding:12px 28px">Book a demo for savings estimate</a>
     </div>
 </div>
 
@@ -183,17 +183,13 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Ast
             const P=Math.max(2, Math.min(5, Number(platforms?.value)||2));
             const C=Math.max(10000, Number(cost?.value)||50000);
             const diy=E*P*4*C;
-            const enow=E*500*12;
             
             // Get current values more reliably
             const fromDText = diyEl?.textContent || '0';
-            const fromEText = enowEl?.textContent || '0';
             const fromD = Number(fromDText.replace(/[^0-9]/g,'')) || 0;
-            const fromE = Number(fromEText.replace(/[^0-9]/g,'')) || 0;
             
-            // Update both values
+            // Update DIY value only (EmpowerNow pricing not finalized)
             if(diyEl) animateTo(diyEl, fromD, diy, 200);
-            if(enowEl) animateTo(enowEl, fromE, enow, 200);
             
             // Update slider value displays
             if(endpointsVal) endpointsVal.textContent = String(E);
@@ -212,11 +208,11 @@ const { defaultEndpoints = 30, defaultPlatforms = 2, defaultCost = 50000 } = Ast
         cta && cta.addEventListener('click', ()=>{
             try{
                 const E=Number(endpoints?.value)||20, P=Number(platforms?.value)||2, C=Number(cost?.value)||50000;
-                const diy=E*P*4*C; const enow=E*500*12; const savings=diy-enow;
+                const diy=E*P*4*C;
                 const dnt = (navigator as any).doNotTrack==='1' || (window as any).doNotTrack==='1';
                 if(!dnt){
                     (window).dataLayer=(window).dataLayer||[];
-                    (window).dataLayer.push({event:'calc_submit', diy, empowernow_y1:enow, savings});
+                    (window).dataLayer.push({event:'calc_submit', diy, endpoints:E, platforms:P});
                 }
             }catch{}
         });
